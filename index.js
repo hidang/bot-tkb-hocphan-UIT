@@ -1,5 +1,5 @@
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
-const VALIDATION_TOKEN = 'dangdeptraibotchattt';
+const VALIDATION_TOKEN = 'dangdeptraibotchat';
 const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAJUZCubGJoMKRHt5xLLDNvY3vy85exTgg3NudkQ35rpw398T66iABofXScgZAHklz5Rw73MfahMGYqau5WOk99ov8ZCjXZAWtItJiddI4aTZB3znQiU6Ao5ZCtj10S63nGqRr726ZAmhfC76nRNzBXVAtyb9s0HfHC4WrC3zYiRvnNi6y6uzw4AaosviLD6AgZDZD';
 
 var http = require('http');
