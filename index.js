@@ -1,6 +1,6 @@
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
 const VALIDATION_TOKEN = 'dangdeptraibotchat';
-const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAHovYvOmIpUYtfZBzJxJvoPzpZB8rliTaq8LhKZCiZA4UuhMhHGIhWwIQukCDFnxLnucrK46sXZCBk0QLZAGl8xMJn2hsaMaETkQMZA7iZBAlqFGOQCZBkta8uig1qq3ZAZBNsJMEQG4FvgvZC8xlpDWca9JijsVavBfM3ipiioUNBCyWpLJJy544ZBsZD';
+const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABALNVmBFrwRmj4yQcZAZBPu3WILaZCNFEQ02oAxL62VKVHfnSoVUDcFlXWh79FMEjgaxCW9mK9ZBxNGTqUZB7SaBfe4wqiTLyM8Uv18s1ZCHb8ifJyOqOHDZBtWQEdGh10sLZAxn1vao2GKQiSH3DM6tK6PThw1rESChok5bb2oqGOTvIY0r9D0Bsrgo7Eyn10QZDZD';
 
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -34,6 +34,7 @@ app.post('/webhook', function(req, res) { // Phần sử lý tin nhắn của ng
         if (message.message.text) {
           var text = message.message.text;
           sendMessage(senderId, "Hello!! I'm a bot. Your message: " + text);
+          
         }
       }
     }
