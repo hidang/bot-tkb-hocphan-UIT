@@ -10,8 +10,13 @@ var app = express();
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-var server = http.createServer(app);
+//var server = http.createServer(app);
 var request = require("request");
+
+var server = require("http").Server(app);//co no moi chay
+server.listen(process.env.PORT || 3000);
+
+
 
 app.get('/', (req, res) => {
   res.send("Home page. Server running okay.");
@@ -61,9 +66,9 @@ function sendMessage(senderId, message) {
   });
 }
 
-app.set('port', process.env.PORT || 5000);
-app.set('ip', process.env.IP || "0.0.0.0");
+// app.set('port', process.env.PORT || 5000);
+//app.set('ip', process.env.IP || "0.0.0.0");
 
-server.listen(app.get('port'), app.get('ip'), function() {
-  console.log("Chat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
-});
+// server.listen(app.get('port'), app.get('ip'), function() {
+//   console.log("Chat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
+// });
