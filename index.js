@@ -30,6 +30,7 @@ app.get('/webhook', function(req, res) { // Đây là path để validate tooken
 
 app.post("/webhook", (req, res) => {
   console.log(req.body) // Call your action on the request here
+  console.log("DA NHAN DUOC TIN NHAN THANH CONG!");
   res.status(200).end() // Responding is important
 });
 
@@ -51,10 +52,3 @@ function sendMessage(senderId, message) {
     }
   });
 }
-
-// app.set('port', process.env.PORT || 5000);
-//app.set('ip', process.env.IP || "0.0.0.0");
-
-// server.listen(app.get('port'), app.get('ip'), function() {
-//   console.log("Chat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
-// });
