@@ -65,7 +65,7 @@ app.post("/webhook", (req, res) => {
           var senderId = webhook_event.sender.id;
           if(text == 'hi' || text == "hello")
           {
-            sendMessage(senderId, "Đỗ Văn Bot: " + 'Xin Chào');
+            sendMessage(senderId, "Đỗ Văn Bot: " + "Xin Chào");
           }
           else{sendMessage(senderId, "Đỗ Văn Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
         }
@@ -83,7 +83,7 @@ app.post("/webhook", (req, res) => {
 // Gửi thông tin tới REST API để Bot tự trả lời
 function sendMessage(senderId, message) {
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
+    url: 'https://graph.facebook.com/v7.0/me/messages',
     qs: {
       access_token: PAGE_ACCESS_TOKEN,
     },
