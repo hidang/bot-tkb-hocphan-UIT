@@ -11,27 +11,6 @@ const
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
 
-// Gửi thông tin tới REST API để Bot tự trả lời
-function sendMessage(senderId, message) {
-    request({
-      url: 'https://graph.facebook.com/v7.0/me/messages',
-      qs: {
-        access_token: PAGE_ACCESS_TOKEN,
-      },
-      method: 'POST',
-      json: {
-          "messaging_type": "RESPONSE",
-          "recipient":{
-            "id": senderId
-          },
-          "message":{
-            "text": message
-          }
-      }
-    });
-  }
-
-
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -88,4 +67,22 @@ app.post("/webhook", (req, res) => {
     res.status(200).send("OK");
 });
 
-
+// Gửi thông tin tới REST API để Bot tự trả lời
+function sendMessage(senderId, message) {
+  request({
+    url: 'https://graph.facebook.com/v7.0/me/messages',
+    qs: {
+      access_token: PAGE_ACCESS_TOKEN,
+    },
+    method: 'POST',
+    json: {
+        "messaging_type": RESPONSE,
+        "recipient":{
+          "id": senderId
+        },
+        "message":{
+          "text": message
+        }
+    }
+  });
+}
