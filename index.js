@@ -64,9 +64,9 @@ app.post("/webhook", (req, res) => {
           var text = webhook_event.message.text;
           if(text == 'hi' || text == "hello")
           {
-            sendMessage(webhook_event.sender.id, "Đỗ Văn Bot: " + 'Xin Chào');
+            sendMessage(webhook_event.recipient.id, "Đỗ Văn Bot: " + 'Xin Chào');
           }
-          else{sendMessage(webhook_event.sender.id, "Đỗ Văn Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
+          else{sendMessage(webhook_event.recipient.id, "Đỗ Văn Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
         }
       }
     });
