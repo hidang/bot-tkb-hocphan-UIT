@@ -48,53 +48,52 @@ app.get('/webhook', (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-  let body = req.body;
-  // Checks this is an event from a page subscription
-  if (body.object === 'page') {
-    // Iterates over each entry - there may be multiple if batched
-    body.entry.forEach(function(entry) {
-      // Gets the message. entry.messaging is an array, but 
-      // will only ever contain one message, so we get index 0
-      let webhook_event = entry.messaging[0];
+    let body = req.body;
+    
+    if (body.object === 'page') {
+        // Iterates over each entry - there may be multiple if batched
+        body.entry.forEach(function(entry) {
 
-      console.log(webhook_event.message.text);
-      if (webhook_event.message) {
-        // Nếu người dùng gửi tin nhắn đến
-        if (webhook_event.message.text) {
-          var text = webhook_event.message.text;
-          var senderId = webhook_event.sender.id;
-          if(text == 'hi' || text == "hello")
-          {
-            sendMessage(senderId, "Đỗ Văn Bot: " + "Xin Chào");
-          }
-          else{sendMessage(senderId, "Đỗ Văn Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
-        }
-      }
-    });
+            // Gets the message. entry.messaging is an array, but
+            // will only ever contain one message, so we get index 0
+            let webhook_event = entry.messaging[0];
+            console.log(webhook_event);
 
-    // Returns a '200 OK' response to all requests
-    res.status(200).send('EVENT_RECEIVED');
-  }else{
-    // Returns a '404 Not Found' if event is not from a page subscription
-    res.sendStatus(404);
+            // Get the sender PSID
+            let sender_psid = webhook_event.sender.id;
+            console.log('Sender PSID: ' + sender_psid);
+
+            // Check if the event is a message or postback and
+            // pass the event to the appropriate handler function
+            if (webhook_event.message) {
+                 console.log(webhook_event.message)
+            } else if (webhook_event.postback) {
+                 console.log(webhook_event.postback)
+            }  
+      });
+      // Returns a '200 OK' response to all requests
+      res.status(200).send('EVENT_RECEIVED');
+  } else {
+      // Returns a '404 Not Found' if event is not from a page subscription
+      res.sendStatus(404);
   }
 });
 
 // Gửi thông tin tới REST API để Bot tự trả lời
-function sendMessage(senderId, message) {
-  request({
-    url: 'https://graph.facebook.com/v7.0/me/messages',
-    qs: {
-      access_token: PAGE_ACCESS_TOKEN,
-    },
-    method: 'POST',
-    json: {
-      "recipient": {
-        "id": senderId
-      },
-      "message": {
-        "text": message
-      },
-    }
-  });
-}
+// function sendMessage(senderId, message) {
+  // request({
+  //   url: 'https://graph.facebook.com/v7.0/me/messages',
+  //   qs: {
+  //     access_token: PAGE_ACCESS_TOKEN,
+  //   },
+  //   method: 'POST',
+  //   json: {
+  //     "recipient": {
+  //       "id": senderId
+  //     },
+  //     "message": {
+  //       "text": message
+  //     },
+  //   }
+  // });
+// }
