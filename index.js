@@ -58,6 +58,7 @@ app.post("/webhook", (req, res) => {
           if (message.message.text) {
             var text = message.message.text;
             console.log(text); // In tin nhắn người dùng
+            console.log(senderId);
             sendMessage(senderId, "Trả lời nè: " + text);
           }
         }
