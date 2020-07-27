@@ -89,11 +89,11 @@ function sendMessage(senderId, message) {
     },
     method: 'POST',
     json: {
-      recipient: {
-        id: senderId
+      "recipient": {
+        "id": senderId
       },
-      message: {
-        text: message
+      "message": {
+        "text": message
       },
     }
   });
