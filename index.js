@@ -76,7 +76,7 @@ function sendMessage(senderId, message) {
     },
     method: 'POST',
     json: {
-        "messaging_type": "UPDATE",
+        "messaging_type": "MESSAGE_TAG",
         "recipient":{
           "id": senderId
         },
