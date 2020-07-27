@@ -74,7 +74,6 @@ function sendMessage(senderId, message) {
     qs: {
       access_token: PAGE_ACCESS_TOKEN,
     },
-    method: 'POST',
     json: {
         "messaging_type": "RESPONSE",
         "recipient":{
