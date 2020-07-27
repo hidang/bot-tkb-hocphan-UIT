@@ -29,10 +29,29 @@ app.get('/webhook', function(req, res) { // Đây là path để validate tooken
 });
 
 app.post("/webhook", (req, res) => {
-  console.log("TIN NHANH: "+ req.id); // Call your action on the request here
-  sendMessage(req.id, 'ok this ' + ' is bot by Dang');
-  console.log("DA NHAN DUOC TIN NHAN THANH CONG!");
-  res.status(200).end() // Responding is important
+  let body = req.body;
+
+  // Checks this is an event from a page subscription
+  if (body.object === 'page') {
+
+    // Iterates over each entry - there may be multiple if batched
+    body.entry.forEach(function(entry) {
+
+      // Gets the message. entry.messaging is an array, but 
+      // will only ever contain one message, so we get index 0
+      let webhook_event = entry.messaging[0];
+
+      console.log(webhook_event);
+      sendMessage(body.id, webhook_event);
+    });
+
+    // Returns a '200 OK' response to all requests
+    res.status(200).send('EVENT_RECEIVED');
+  } else {
+    // Returns a '404 Not Found' if event is not from a page subscription
+    res.sendStatus(404);
+  }
+
 });
 
 // Đây là function dùng api của facebook để gửi tin nhắn
