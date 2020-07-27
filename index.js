@@ -1,7 +1,7 @@
 'use strict';
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
 const VALIDATION_TOKEN = 'dangdeptraibotchat';
-const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAEIqslKUZB6IBRy2qj1Y1HPyn2ykUuoPpEN0hlP2xoA3SszuHzZCLoHhyyaF7m0ZBQyLfE9viLFI21uIkPCoAEajYQUGhp8rbwFhoA3TBj5rsjk0dwSSZAz2XDnqKxDlHGRXW9xzvljMb3jzmJGlxRQIMJcuiF6hHvhEAVzKTxXHMT5KgbJaDyIfqrxToxmpAnTZAlwpO';
+const PAGE_ACCESS_TOKEN = '951255488630080|Jvj24guKdTtC-7tkD4IyhgXkqdg';
 
 
 
@@ -62,11 +62,12 @@ app.post("/webhook", (req, res) => {
         // Nếu người dùng gửi tin nhắn đến
         if (webhook_event.message.text) {
           var text = webhook_event.message.text;
+          var senderId = webhook_event.sender.id;
           if(text == 'hi' || text == "hello")
           {
-            sendMessage(webhook_event.recipient.id, "Đỗ Văn Bot: " + 'Xin Chào');
+            sendMessage(senderId, "Đỗ Văn Bot: " + 'Xin Chào');
           }
-          else{sendMessage(webhook_event.recipient.id, "Đỗ Văn Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
+          else{sendMessage(senderId, "Đỗ Văn Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
         }
       }
     });
