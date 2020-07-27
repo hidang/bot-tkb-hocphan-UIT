@@ -49,7 +49,7 @@ app.get('/webhook', (req, res) => {
 
 app.post("/webhook", (req, res) => {
     let body = req.body;
-    
+
     if (body.object === 'page') {
         // Iterates over each entry - there may be multiple if batched
         body.entry.forEach(function(entry) {
@@ -66,9 +66,10 @@ app.post("/webhook", (req, res) => {
             // Check if the event is a message or postback and
             // pass the event to the appropriate handler function
             if (webhook_event.message) {
-                 console.log(webhook_event.message)
+                sendMessage(sender_psid, webhook_event.message.text);
+                console.log(webhook_event.message);
             } else if (webhook_event.postback) {
-                 console.log(webhook_event.postback)
+                console.log(webhook_event.postback);
             }  
       });
       // Returns a '200 OK' response to all requests
@@ -80,20 +81,20 @@ app.post("/webhook", (req, res) => {
 });
 
 // Gửi thông tin tới REST API để Bot tự trả lời
-// function sendMessage(senderId, message) {
-  // request({
-  //   url: 'https://graph.facebook.com/v7.0/me/messages',
-  //   qs: {
-  //     access_token: PAGE_ACCESS_TOKEN,
-  //   },
-  //   method: 'POST',
-  //   json: {
-  //     "recipient": {
-  //       "id": senderId
-  //     },
-  //     "message": {
-  //       "text": message
-  //     },
-  //   }
-  // });
-// }
+function sendMessage(senderId, message) {
+  request({
+    url: 'https://graph.facebook.com/v7.0/me/messages',
+    qs: {
+      access_token: PAGE_ACCESS_TOKEN,
+    },
+    method: 'POST',
+    json: {
+      "recipient": {
+        "id": senderId
+      },
+      "message": {
+        "text": message
+      },
+    }
+  });
+}
