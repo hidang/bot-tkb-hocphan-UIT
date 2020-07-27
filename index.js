@@ -1,7 +1,7 @@
 'use strict';
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
 const VALIDATION_TOKEN = 'dangdeptraibotchat';
-const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABADk7xAAZCDe38LjaXyKxZA4qtMLyyU6bfRIGrGFYZC21Kq1Hp4ZCbWqZADINQy7b1tHT1pfLIF5vOnuJqfqDFCAhlafxdZBZBSyyQR2ZACHde9YgcivPnrXZA5SsOW5liMZCo055CZCZCtfVndwOK2ABYwWZADtDXp8ZCVbLS5oTfZA2EUbEyZB470LMWH9qyBQILso7lHOcD7pFSjJK';
+const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAHc6Omx0OIgPtZCU4THMxB4ptBdLJfMpMwlzMDnNuOS85Wovc4WmZBjgm1G0soeCzqCZBKGZAM3ifhsZBtOEqXZBFGWZBuZBZA5G6bcU0oZBU2Ols48IrDYA0iHNmWkcf8JwdYL5LL31LBby3LMVD5eo2cw2ZCTU92ulvZAlov2dAWzo8s8ZBsZB5B95cMaXDLGNn3ciRV6pM4TVJp';
 
 
 const request = require('request');
@@ -76,7 +76,7 @@ function sendMessage(senderId, message) {
     },
     method: 'POST',
     json: {
-        "messaging_type": "MESSAGE_TAG",
+        "messaging_type": "RESPONSE",
         "recipient":{
           "id": senderId
         },
