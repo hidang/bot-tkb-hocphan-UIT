@@ -29,8 +29,8 @@ app.get('/webhook', function(req, res) { // Đây là path để validate tooken
 });
 
 app.post("/webhook", (req, res) => {
-  console.log("TIN NHANH: "+req.message) // Call your action on the request here
-
+  console.log("TIN NHANH: "+ req.id); // Call your action on the request here
+  sendMessage(req.id, 'ok this ' + ' is bot by Dang');
   console.log("DA NHAN DUOC TIN NHAN THANH CONG!");
   res.status(200).end() // Responding is important
 });
