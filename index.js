@@ -1,8 +1,9 @@
+'use strict';
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
 const VALIDATION_TOKEN = 'dangdeptraibotchat';
 const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAEIqslKUZB6IBRy2qj1Y1HPyn2ykUuoPpEN0hlP2xoA3SszuHzZCLoHhyyaF7m0ZBQyLfE9viLFI21uIkPCoAEajYQUGhp8rbwFhoA3TBj5rsjk0dwSSZAz2XDnqKxDlHGRXW9xzvljMb3jzmJGlxRQIMJcuiF6hHvhEAVzKTxXHMT5KgbJaDyIfqrxToxmpAnTZAlwpO';
 
-'use strict';
+
 
 // Imports dependencies and set up http server
 const
