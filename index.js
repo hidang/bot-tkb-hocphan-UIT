@@ -24,7 +24,7 @@ app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = VALIDATION_TOKEN;
-    
+  console.log("VAO NEEEE");
   // Parse the query params
   let mode = req.query['hub.mode'];
   let token = req.query['hub.verify_token'];
@@ -61,7 +61,7 @@ app.post("/webhook", (req, res) => {
       let webhook_event = entry.messaging[0];
 
       console.log(webhook_event);
-      sendMessage(body.id, webhook_event);
+      //sendMessage(body.id, webhook_event);
     });
 
     // Returns a '200 OK' response to all requests
@@ -74,20 +74,20 @@ app.post("/webhook", (req, res) => {
 });
 
 // Đây là function dùng api của facebook để gửi tin nhắn
-function sendMessage(senderId, message) {
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {
-      access_token: PAGE_ACCESS_TOKEN,
-    },
-    method: 'POST',
-    json: {
-      recipient: {
-        id: senderId
-      },
-      message: {
-        text: message
-      },
-    }
-  });
-}
+// function sendMessage(senderId, message) {
+//   request({
+//     url: 'https://graph.facebook.com/v2.6/me/messages',
+//     qs: {
+//       access_token: PAGE_ACCESS_TOKEN,
+//     },
+//     method: 'POST',
+//     json: {
+//       recipient: {
+//         id: senderId
+//       },
+//       message: {
+//         text: message
+//       },
+//     }
+//   });
+// }
