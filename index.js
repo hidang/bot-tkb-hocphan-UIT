@@ -4,7 +4,7 @@ const VALIDATION_TOKEN = 'dangdeptraibotchat';
 const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABADk7xAAZCDe38LjaXyKxZA4qtMLyyU6bfRIGrGFYZC21Kq1Hp4ZCbWqZADINQy7b1tHT1pfLIF5vOnuJqfqDFCAhlafxdZBZBSyyQR2ZACHde9YgcivPnrXZA5SsOW5liMZCo055CZCZCtfVndwOK2ABYwWZADtDXp8ZCVbLS5oTfZA2EUbEyZB470LMWH9qyBQILso7lHOcD7pFSjJK';
 
 
-
+const request = require('request');
 // Imports dependencies and set up http server
 const
   express = require('express'),
