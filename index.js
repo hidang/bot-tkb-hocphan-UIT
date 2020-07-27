@@ -57,7 +57,7 @@ app.post("/webhook", (req, res) => {
       // will only ever contain one message, so we get index 0
       let webhook_event = entry.messaging[0];
 
-      console.log(webhook_event);
+      console.log(webhook_event.message.text);
       if (webhook_event.message) {
         // Nếu người dùng gửi tin nhắn đến
         if (webhook_event.message.text) {
@@ -80,7 +80,7 @@ app.post("/webhook", (req, res) => {
   }
 });
 
-// Đây là function dùng api của facebook để gửi tin nhắn
+// Gửi thông tin tới REST API để Bot tự trả lời
 function sendMessage(senderId, message) {
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
