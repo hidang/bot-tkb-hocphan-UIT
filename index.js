@@ -70,10 +70,11 @@ app.post("/webhook", (req, res) => {
 
 // Gửi thông tin tới REST API để Bot tự trả lời
 function sendMessage(senderId, message) {
-  request.get({
+  request.post({
     url: 'https://graph.facebook.com/v7.0/me/messages?access_token=EAANhKW19jUABAJafuss98mpmukKBk0TmEvJvCFmvEamYLZAk7TxDCNc6TDj7wQnVDLX5UfnPYqWZBz2R5xZBfaZBH4XxvPXrIqhJ7Ajudd1dBU5F4BIC5BdQeA4MuFErivt8sglIfFL4Pw90occbQfKNZCNELIckKvVDzqyh6riHCcjLtbuzJT9LerxMI2pQjKlFuGQgQnXN4G8bRJZCSw',
     json: {
-        "messaging_type": "RESPONSE",
+        method: 'POST',
+        "messaging_type": 'RESPONSE',
         "recipient":{
           "id": senderId
         },
