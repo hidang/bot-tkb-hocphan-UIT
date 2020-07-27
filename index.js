@@ -1,7 +1,7 @@
 'use strict';
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
 const VALIDATION_TOKEN = 'dangdeptraibotchat';
-const PAGE_ACCESS_TOKEN = '951255488630080|Jvj24guKdTtC-7tkD4IyhgXkqdg';
+const PAGE_ACCESS_TOKEN = '73ff25d442376eaafa281aac020e0310';
 
 
 
