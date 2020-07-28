@@ -1,7 +1,7 @@
 'use strict';
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
 const VALIDATION_TOKEN = 'dangdeptraibotchat';
-const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAJafuss98mpmukKBk0TmEvJvCFmvEamYLZAk7TxDCNc6TDj7wQnVDLX5UfnPYqWZBz2R5xZBfaZBH4XxvPXrIqhJ7Ajudd1dBU5F4BIC5BdQeA4MuFErivt8sglIfFL4Pw90occbQfKNZCNELIckKvVDzqyh6riHCcjLtbuzJT9LerxMI2pQjKlFuGQgQnXN4G8bRJZCSw';
+const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABACTlRpNGZBZB1aqPwZCbXkXkS5YpO1fp1ZA8QRCZA1rSFuZC5QTiaF99zlmLiE1VcIMM8fZBkx2zfjH0GyGLcA9TUj8KSvDVor27dRSHlIyRxuvBB5EPoPub0xgOuRY19ZATDZAhnWmMncZAqUp6PpDdrpScrJPHnLjIaX2HtXdcYYjSoIN4xADO1B8DMzRAXTe4dZADIkeo8ra';
 
 
 const request = require('request');
@@ -71,7 +71,7 @@ app.post("/webhook", (req, res) => {
 // Gửi thông tin tới REST API để Bot tự trả lời
 function sendMessage(senderId, message) {
   request.post({
-    url: 'https://graph.facebook.com/v7.0/me/messages?access_token=EAANhKW19jUABAJafuss98mpmukKBk0TmEvJvCFmvEamYLZAk7TxDCNc6TDj7wQnVDLX5UfnPYqWZBz2R5xZBfaZBH4XxvPXrIqhJ7Ajudd1dBU5F4BIC5BdQeA4MuFErivt8sglIfFL4Pw90occbQfKNZCNELIckKvVDzqyh6riHCcjLtbuzJT9LerxMI2pQjKlFuGQgQnXN4G8bRJZCSw',
+    url: 'https://graph.facebook.com/v7.0/me/messages?access_token='+PAGE_ACCESS_TOKEN,
     json: {
         method: 'POST',
         "messaging_type": 'RESPONSE',
