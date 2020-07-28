@@ -49,7 +49,7 @@ app.get('/webhook', (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-    console.log(req);
+    //console.log(req);
 
     let body = req.body;
     console.log(body);
