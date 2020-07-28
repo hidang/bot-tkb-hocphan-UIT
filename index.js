@@ -48,24 +48,32 @@ app.get('/webhook', (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-    var entries = req.body.entry;
-    for (var entry of entries) {
-      var messaging = entry.messaging;
-      for (var message of messaging) {
-        var senderId = message.sender.id;
-        if (message.message) {
-          // If user send text
-          if (message.message.text) {
-            var text = message.message.text;
-            console.log(text); // In tin nhắn người dùng
-            console.log(senderId);
-            sendMessage(senderId, "Trả lời nè: " + text);
-          }
-        }
-      }
+    let body = req.body;
+
+    // Checks this is an event from a page subscription
+    if (body.object === 'page') {
+  
+      // Iterates over each entry - there may be multiple if batched
+      body.entry.forEach(function(entry) {
+  
+        // Gets the message. entry.messaging is an array, but 
+        // will only ever contain one message, so we get index 0
+        let webhook_event = entry.messaging[0];
+        console.log(webhook_event);
+        var senderId = webhook_event.sender.id;
+        var text = webhook_event.message.text;
+        console.log(text); // In tin nhắn người dùng
+        console.log(senderId);
+        sendMessage(senderId, "Trả lời nè: " + text);
+          
+      });
+  
+      // Returns a '200 OK' response to all requests
+      res.status(200).send('EVENT_RECEIVED');
+    } else {
+      // Returns a '404 Not Found' if event is not from a page subscription
+      res.sendStatus(404);
     }
-   
-    res.status(200).send("OK");
 });
 
 // Gửi thông tin tới REST API để Bot tự trả lời
