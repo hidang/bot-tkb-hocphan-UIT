@@ -82,7 +82,6 @@ function sendMessage(senderId, message) {
     url: 'https://graph.facebook.com/v7.0/me/messages?access_token='+PAGE_ACCESS_TOKEN,
     json: {
         method: 'POST',
-        "messaging_type": 'RESPONSE',
         "recipient":{
           "id": senderId
         },
