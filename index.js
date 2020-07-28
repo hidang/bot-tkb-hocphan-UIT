@@ -1,7 +1,7 @@
 'use strict';
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
 const VALIDATION_TOKEN = 'dangdeptraibotchat';
-const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAAt47ZCnEvV3wemsBBwZCWkhrqwZCyRIVlq4R0C8beNNdMZAVlzDSaAiPKN7vjwFeVXLPe1LZCEJbAhry3WGUINIEgtmfoQZC3eZCoLciAQQXSNqOdMDoo8qQWfDBZCBST4DfsCTjB2JO8bg8bRZBxOVEFJooY84tHAlaawnzB3X4GkfyOzj4Kn8ZD';
+const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAKBTfyybqw047ioKyB4fs3SmHH4MA5ZBEeNdyBjBWWmhIbSFspKn3BJ6XEGfKCZB8MinKyh2ZA1Ci6mPD2E363RmqbPMeQoyXDS98BG3JWEhXPTsBo89RDsmugNOYYitQf59Q7hVnDZByTV96RUZAPdM817jxIgrxMY8Pide36mZCgklMrn8XLFHYQvVBMty70IZAd7zjD1';
 
 
 const request = require('request');
@@ -64,6 +64,16 @@ app.post("/webhook", (req, res) => {
         var text = webhook_event.message.text;
         console.log(text); // In tin nhắn người dùng
         console.log(senderId);
+        if (text == "hi" || text == "hello" || text == "Hello" || text == "Hi") {
+            sendMessage(senderId, "xin chào " + senderId + " tên bạn là gì?");
+        }else
+        if (text == 'info') {
+            sendMessage(senderId, "ver 0.1 by hidang, thank you!");
+        }else
+        if (text == 'menu') {
+            sendMessage(senderId, "1. điểm thi '\n' 2. Hình ảnh");
+        }else
+
         sendMessage(senderId, "Trả lời nè: " + text);
           
       });
