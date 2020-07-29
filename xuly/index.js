@@ -43,7 +43,7 @@ function callSendAPI(sender_psid, response) {
     "method": "POST",
     "json": request_body
   }, (err, res, body) => {
-    if (!err) {
+    if (err) {
       console.log('message ĐÃ ĐƯỢC GỬI!')
     } else {
       console.error("THẤT BẠI to send message:" + err);
