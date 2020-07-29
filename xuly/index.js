@@ -30,7 +30,7 @@ function handleMessage(sender_psid, received_message) {
       // }
       switch (received_message.text.toLowerCase()) {   
         case 'add menu':
-          addPersistentMenu();
+          //addPersistentMenu();
           break
 
         case 'typing on':
