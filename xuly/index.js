@@ -31,7 +31,15 @@ function handleMessage(sender_psid, received_message) {
       switch (received_message.text.toLowerCase()) {   
         case 'add menu':
           addPersistentMenu();
-          break;
+          break
+
+        case 'typing on':
+          //sendTypingOn(sender_psid);
+          break        
+    
+        case 'typing off':
+          //sendTypingOff(sender_psid);
+          break
       }
     }
     else if (received_message.attachments) {//(2)
@@ -121,7 +129,7 @@ function callSendAPI(sender_psid, response) {
 
 function addPersistentMenu(){
   request({
-     url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
+     url: 'https://graph.facebook.com/v7.0/me/messenger_profile',
      qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
      method: 'POST',
      json:{
