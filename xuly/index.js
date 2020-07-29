@@ -4,7 +4,7 @@ const request = require('request');
 
 module.exports = { //chìa ra function ....
   handleMessage: handleMessage,
-  callSendAPI: callSendAPI,
+  //callSendAPI: callSendAPI,
   sendMessage: sendMessage,
 };
 
