@@ -7,7 +7,7 @@ module.exports = { //chìa ra function ....
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
   addPersistentMenu: addPersistentMenu,
-  
+
 };
 
 function handleMessage(sender_psid, received_message) {
@@ -104,7 +104,7 @@ function callSendAPI(sender_psid, response) {
 function addPersistentMenu(){
   request({
      url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
-     qs: { access_token: PAGE_ACCESS_TOKEN },
+     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
      method: 'POST',
      json:{
    "get_started":{
@@ -121,7 +121,7 @@ function addPersistentMenu(){
  })
   request({
      url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
-     qs: { access_token: PAGE_ACCESS_TOKEN },
+     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
      method: 'POST',
      json:{
  "persistent_menu":[
