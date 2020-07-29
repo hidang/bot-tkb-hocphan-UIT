@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 const request = require('request');
 
 
@@ -44,10 +44,9 @@ function callSendAPI(sender_psid, response) {
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
-      console.log('message ĐÃ ĐƯỢC GỬI!');
-      console.log(process.env.PAGE_ACCESS_TOKEN);
+      console.log('message ĐÃ ĐƯỢC GỬI!: ' +err);
     } else {
-      console.error("THẤT BẠI to send message:" + err);
+      console.error("THẤT BẠI to send message: " + err);
     }
   }); 
 }

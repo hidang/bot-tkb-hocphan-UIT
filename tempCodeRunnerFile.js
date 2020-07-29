@@ -1,1 +1,1 @@
-xuly
+'use strict';
