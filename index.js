@@ -2,8 +2,6 @@
 require('dotenv').config();
 const xuly = require('./xuly/index.js');
 
-
-
 // Imports dependencies and set up http server
 const
   express = require('express'),
