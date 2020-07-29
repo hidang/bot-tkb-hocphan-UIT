@@ -16,18 +16,15 @@ function handleMessage(sender_psid, received_message) {
   
       // Create the payload for a basic text message
       response = {
-        "text": `You sent the message: "${received_message.text}". Now send me an image!`
-
+        "text": `You sent the message: "${received_message.text}".`
+        
       }
+      callSendAPI(sender_psid, response);// Sends the response message
     }  
-    
-    // Sends the response message
-    callSendAPI(sender_psid, response);
-    
 }
   
 function callSendAPI(sender_psid, response) {
-  console.log('Sender PSID by callSendAPI: ' + sender_psid);
+  //console.log('Sender PSID by callSendAPI: ' + sender_psid);
   // Construct the message body
   let request_body = {
     "recipient": {
@@ -44,14 +41,12 @@ function callSendAPI(sender_psid, response) {
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
-      console.log('message ĐÃ ĐƯỢC GỬI!: ' +err);
+      console.log('message' + request_body.message +'ĐÃ ĐƯỢC GỬI!: ' +err);
     } else {
       console.error("THẤT BẠI to send message: " + err);
     }
   }); 
 }
-
-
 function handlePostback(sender_psid, received_postback) {
     let response;
     
@@ -67,23 +62,6 @@ function handlePostback(sender_psid, received_postback) {
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
 }
-  
-  
-//   // Gửi thông tin tới REST API để Bot tự trả lời
-// function sendMessage(senderId, message) {
-//     request.post({
-//       url: 'https://graph.facebook.com/v7.0/me/messages?access_token='+PAGE_ACCESS_TOKEN,
-//       json: {
-//           method: 'POST',
-//           "recipient":{
-//             "id": senderId
-//           },
-//           "message":{
-//             "text": message
-//           }
-//       }
-//     });
-// }
 
 
 
