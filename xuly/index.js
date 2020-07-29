@@ -11,12 +11,27 @@ module.exports = { //chìa ra function ....
 };
 
 function handleMessage(sender_psid, received_message) {
-    //console.log('Sender PSID by handleMessage: ' + sender_psid);
+    // var message = received_message;
+    var isEcho = received_message.is_echo;
+    var messageId = received_message.mid;
+    var appId = received_message.app_id;
+    var metadata = received_message.metadata;
+  
+    // // You may get a text or attachment but not both
+    // var messageText = received_message.text;
+    // var messageAttachments = received_message.attachments;
+    // var quickReply = received_message.quick_reply;
+
     let response;
     if (received_message.text) {// Check if the message contains text
-      // Create the payload for a basic text message
-      response = {
-        "text": `You sent the message: "${received_message.text}".`
+      // // Create the payload for a basic text message
+      // response = {
+      //   "text": `You sent the message: "${received_message.text}".`
+      // }
+      switch (received_message.text.toLowerCase()) {   
+        case 'add menu':
+          addPersistentMenu();
+          break;
       }
     }
     else if (received_message.attachments) {//(2)
@@ -51,12 +66,15 @@ function handleMessage(sender_psid, received_message) {
 
       
     } 
+    else if (received_message.quickReply) {
+      
+
+    }
 
     callSendAPI(sender_psid, response);// Sends the response message
 }
   
 function handlePostback(sender_psid, received_postback) {
-  addPersistentMenu();
   let response;
   
   // Get the payload for the postback
