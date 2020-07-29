@@ -13,7 +13,7 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
 
 app.get('/', (req, res) => {
-  res.send("Home page. Server running okay.");
+  res.send("Home page. Server chạy ngon lành cành đào");
 });
 
 // Adds support for GET requests to our webhook
@@ -67,7 +67,7 @@ app.post("/webhook", (req, res) => {
         // pass the event to the appropriate handler function
         if (webhook_event.message) {
           xuly.handleMessage(sender_psid, webhook_event.message);        
-        } else if (webhook_event.postback) {
+        } else if (webhook_event.postback) {//(2)
           xuly.handlePostback(sender_psid, webhook_event.postback);
         }
       });
