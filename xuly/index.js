@@ -79,7 +79,7 @@ function handleMessage(sender_psid, received_message) {
 
     }
 
-    callSendAPI(sender_psid, response);// Sends the response message
+    //callSendAPI(sender_psid, response);// Sends the response message
 }
   
 function handlePostback(sender_psid, received_postback) {
@@ -95,35 +95,35 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Oops, try sending another image." }
   }
   // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
+  //callSendAPI(sender_psid, response);
 }
 
 
 
 
-function callSendAPI(sender_psid, response) {
-  //console.log('Sender PSID by callSendAPI: ' + sender_psid);
-  // Construct the message body
-  let request_body = {
-    "recipient": {
-      "id": sender_psid
-    },
-    "message": response
-  }
-  // Send the HTTP request to the Messenger Platform
-  request({
-    "uri": "https://graph.facebook.com/v7.0/me/messages",
-    "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-      console.log('message' + request_body.message +'ĐÃ ĐƯỢC GỬI!: ' +err);
-    } else {
-      console.error("THẤT BẠI to send message: " + err);
-    }
-  }); 
-}
+// function callSendAPI(sender_psid, response) {
+//   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
+//   // Construct the message body
+//   let request_body = {
+//     "recipient": {
+//       "id": sender_psid
+//     },
+//     "message": response
+//   }
+//   // Send the HTTP request to the Messenger Platform
+//   request({
+//     "uri": "https://graph.facebook.com/v7.0/me/messages",
+//     "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
+//     "method": "POST",
+//     "json": request_body
+//   }, (err, res, body) => {
+//     if (!err) {
+//       console.log('message' + request_body.message +'ĐÃ ĐƯỢC GỬI!: ' +err);
+//     } else {
+//       console.error("THẤT BẠI to send message: " + err);
+//     }
+//   }); 
+// }
 
 
 
@@ -205,7 +205,7 @@ function addPersistentMenu(){
 //      }
 //  })
  
- }
+}
 
 
  function callSendAPI(messageData) {
