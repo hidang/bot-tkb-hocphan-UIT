@@ -10,17 +10,44 @@ module.exports = { //chìa ra function ....
 function handleMessage(sender_psid, received_message) {
     //console.log('Sender PSID by handleMessage: ' + sender_psid);
     let response;
-  
-    // Check if the message contains text
-    if (received_message.text) {    
-  
+    if (received_message.text) {// Check if the message contains text
       // Create the payload for a basic text message
       response = {
         "text": `You sent the message: "${received_message.text}".`
-        
       }
-      callSendAPI(sender_psid, response);// Sends the response message
-    }  
+    }
+    else if (received_message.attachments) {
+  
+      // Gets the URL of the message attachment
+      let attachment_url = received_message.attachments[0].payload.url;
+      response = {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": [{
+              "title": "Is this the right picture?",
+              "subtitle": "Tap a button to answer.",
+              "image_url": attachment_url,
+              "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Yes!",
+                  "payload": "yes",
+                },
+                {
+                  "type": "postback",
+                  "title": "No!",
+                  "payload": "no",
+                }
+              ],
+            }]
+          }
+        }
+      }
+    } 
+
+    callSendAPI(sender_psid, response);// Sends the response message
 }
   
 function callSendAPI(sender_psid, response) {
@@ -32,7 +59,6 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
-
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v7.0/me/messages",
@@ -47,6 +73,7 @@ function callSendAPI(sender_psid, response) {
     }
   }); 
 }
+
 function handlePostback(sender_psid, received_postback) {
     let response;
     
