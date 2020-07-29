@@ -1,10 +1,9 @@
 'use strict';
-const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
-const VALIDATION_TOKEN = 'dangdeptraibotchat';
-const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABACnUSlW3EsvhjzPKtNBNQkvb65zpFRaW96YNlvW6Dj0IaeLGL5GXmOZAQi2utSeAvR0J4blrSI0UxApMsbV0VUbLiygWp8xVKyWs1P2Arh8IFBtNQYq22SggCLGXFC0Fq80hfu45wLrSgOvqqj33yLIugh8yIZArYaCqkW7tOgaXUsCiMZD';
+require('dotenv').config();
+const xuly = require('./xuly');
 
 
-const request = require('request');
+
 // Imports dependencies and set up http server
 const
   express = require('express'),
@@ -42,7 +41,7 @@ app.get('/webhook', (req, res) => {
     
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
-      console.log('THAT_BAIIIII');
+      //console.log('THAT_BAIIIII');
       res.sendStatus(403);      
     }
   }
@@ -58,27 +57,21 @@ app.post("/webhook", (req, res) => {
   
       // Iterates over each entry - there may be multiple if batched
       body.entry.forEach(function(entry) {
-  
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
-        var senderId = webhook_event.sender.id;
-        var text = webhook_event.message.text;
-        console.log(text); // In tin nhắn người dùng
-        console.log(senderId);
-        if (text == "hi" || text == "hello" || text == "Hello" || text == "Hi") {
-            sendMessage(senderId, "xin chào " + senderId + " tên bạn là gì?");
-        }else
-        if (text == 'info') {
-            sendMessage(senderId, "ver 0.1 by hidang, thank you!");
-        }else
-        if (text == 'menu') {
-            sendMessage(senderId, "1. điểm thi '\n' 2. Hình ảnh");
-        }else
+        //console.log(webhook_event);
 
-        sendMessage(senderId, "Trả lời nè: " + text);
-          
+        // Get the sender PSID
+        let sender_psid = webhook_event.sender.id;
+        console.log('Sender PSID: ' + sender_psid);
+        // Check if the event is a message or postback and
+        // pass the event to the appropriate handler function
+        if (webhook_event.message) {
+          xuly.handleMessage(sender_psid, webhook_event.message);        
+        } else if (webhook_event.postback) {
+          xuly.handlePostback(sender_psid, webhook_event.postback);
+        }
       });
   
       // Returns a '200 OK' response to all requests
@@ -89,19 +82,4 @@ app.post("/webhook", (req, res) => {
     }
 });
 
-// Gửi thông tin tới REST API để Bot tự trả lời
-function sendMessage(senderId, message) {
-  request.post({
-    url: 'https://graph.facebook.com/v7.0/me/messages?access_token='+PAGE_ACCESS_TOKEN,
-    json: {
-        method: 'POST',
-        "recipient":{
-          "id": senderId
-        },
-        "message":{
-          "text": message
-        }
-    }
-  });
-}
 
