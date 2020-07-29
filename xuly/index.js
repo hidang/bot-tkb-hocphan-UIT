@@ -4,8 +4,7 @@ const request = require('request');
 
 module.exports = { //chìa ra function ....
   handleMessage: handleMessage,
-  //callSendAPI: callSendAPI,
-  sendMessage: sendMessage,
+  callSendAPI: callSendAPI,
 };
 
 function handleMessage(sender_psid, received_message) {
