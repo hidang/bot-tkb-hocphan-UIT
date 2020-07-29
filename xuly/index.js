@@ -2,7 +2,7 @@ require('dotenv').config();
 const request = require('request');
 
 function handleMessage(sender_psid, received_message) {
-  console.log('Sender PSID by handleMessage: ' + sender_psid);
+    //console.log('Sender PSID by handleMessage: ' + sender_psid);
     let response;
   
     // Check if the message contains text
@@ -20,6 +20,7 @@ function handleMessage(sender_psid, received_message) {
 }
   
 function callSendAPI(sender_psid, response) {
+  console.log('Sender PSID by callSendAPI: ' + sender_psid);
   // Construct the message body
   let request_body = {
     "recipient": {
