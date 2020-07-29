@@ -23,7 +23,8 @@ function handleMessage(sender_psid, received_message) {
     }  
     
     // Sends the response message
-    callSendAPI(sender_psid, response);    
+    callSendAPI(sender_psid, response);
+    
 }
   
 function callSendAPI(sender_psid, response) {
@@ -69,27 +70,21 @@ function handlePostback(sender_psid, received_postback) {
 }
   
   
-  // Gửi thông tin tới REST API để Bot tự trả lời
-function sendMessage(senderId, message) {
-    request.post({
-      url: 'https://graph.facebook.com/v7.0/me/messages?access_token='+PAGE_ACCESS_TOKEN,
-      json: {
-          method: 'POST',
-          "recipient":{
-            "id": senderId
-          },
-          "message":{
-            "text": message
-          }
-      }
-    });
-}
-  
-
-// Sends response messages via the Send API
-function callSendAPI(sender_psid, response) {
-  
-}
+//   // Gửi thông tin tới REST API để Bot tự trả lời
+// function sendMessage(senderId, message) {
+//     request.post({
+//       url: 'https://graph.facebook.com/v7.0/me/messages?access_token='+PAGE_ACCESS_TOKEN,
+//       json: {
+//           method: 'POST',
+//           "recipient":{
+//             "id": senderId
+//           },
+//           "message":{
+//             "text": message
+//           }
+//       }
+//     });
+// }
 
 
 
