@@ -1,7 +1,7 @@
 'use strict';
 const APP_SECRET = '688ed30a9a6e41538d9e3b1a445dbd90';
 const VALIDATION_TOKEN = 'dangdeptraibotchat';
-const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABAIhnsQTOaK5OMeEawgflbbiM0ezkx5y1NI5FIBQxsdEKmqDocPt6LzeMDgPuKJdXr4mUziW5by8jn9XEZAyEblOBbfu5Kc9mxOXChPKgnbtCnuibBhaLqZAvqwgMMbgkCMalIgFp3eZC71cgnoZAbGtw33ZB4uVQnNJUBlzCiFK6ecAiGa8tgf3fS8ZCYfym9KYTC99puK';
+const PAGE_ACCESS_TOKEN = 'EAANhKW19jUABACnUSlW3EsvhjzPKtNBNQkvb65zpFRaW96YNlvW6Dj0IaeLGL5GXmOZAQi2utSeAvR0J4blrSI0UxApMsbV0VUbLiygWp8xVKyWs1P2Arh8IFBtNQYq22SggCLGXFC0Fq80hfu45wLrSgOvqqj33yLIugh8yIZArYaCqkW7tOgaXUsCiMZD';
 
 
 const request = require('request');
@@ -52,7 +52,7 @@ app.post("/webhook", (req, res) => {
     //console.log(req);
 
     let body = req.body;
-    console.log(body);
+    //console.log(body);
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
   
