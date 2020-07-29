@@ -1,6 +1,13 @@
 require('dotenv').config();
 const request = require('request');
 
+
+module.exports = { //chìa ra function ....
+  handleMessage: handleMessage,
+  callSendAPI: callSendAPI,
+  sendMessage: sendMessage,
+};
+
 function handleMessage(sender_psid, received_message) {
     //console.log('Sender PSID by handleMessage: ' + sender_psid);
     let response;
@@ -95,8 +102,3 @@ function callSendAPI(sender_psid, response) {
 
 
 
-
-module.exports = { //chia ra function ....
-  handleMessage: handleMessage,
-  sendMessage: sendMessage,
-};
