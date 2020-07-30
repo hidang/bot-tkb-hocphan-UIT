@@ -91,7 +91,57 @@ function handlePostback(sender_psid, received_postback) {
     }
   }
   else if (payload === '<postback_payload>') {//NÚT START
-    console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!')
+    //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
+    response = {// tao menu cho user
+      "psid": sender_psid,
+      "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false, // neu true thi close keyborad user
+                "call_to_actions": [
+                    {
+                        "type": "postback",
+                        "title": "Chọn môn học",
+                        "payload": "chon_mon_hoc"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Hướng dẫn",
+                        "payload": "huong_dan"
+                    },
+                    {
+                        "type": "web_url",
+                        "title": "Trang chủ",
+                        "url": "https://www.github.com/hidang",
+                        "webview_height_ratio": "full"
+                    },
+                    {
+                      "title":"MORE",
+                      "type":"nested",//nhiều menumenu...
+                      "call_to_actions":[
+                        {
+                          "title":"Who am I",
+                          "type":"postback",
+                          "payload":"WHO"
+                        },
+                        {
+                          "title":"Joke",
+                          "type":"postback",
+                          "payload":"joke"
+                        },
+                        {
+                          "title":"Contact Info",
+                          "type":"postback",
+                          "payload":"CONTACT"
+                        }
+                      ]
+                    },
+                ]
+            }
+        ]
+    }
+    callSendAPI(sender_psid, response);
+    
     // sender: { id: '3006492652803294' },
     // recipient: { id: '104124098046144' },
     // timestamp: 1596112909237,
