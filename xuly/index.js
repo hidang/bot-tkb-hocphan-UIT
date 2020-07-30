@@ -115,27 +115,27 @@ function handlePostback(sender_psid, received_postback) {
                         "url": "https://www.github.com/hidang",
                         "webview_height_ratio": "full"
                     },
-                    {
-                      "title":"MORE",
-                      "type":"nested",//nhiều menumenu...
-                      "call_to_actions":[
-                        {
-                          "title":"Who am I",
-                          "type":"postback",
-                          "payload":"WHO"
-                        },
-                        {
-                          "title":"Joke",
-                          "type":"postback",
-                          "payload":"joke"
-                        },
-                        {
-                          "title":"Contact Info",
-                          "type":"postback",
-                          "payload":"CONTACT"
-                        }
-                      ]
-                    },
+                    // {
+                    //   "title":"MORE",
+                    //   "type":"nested",//nhiều menumenu...
+                    //   "call_to_actions":[
+                    //     {
+                    //       "title":"Who am I",
+                    //       "type":"postback",
+                    //       "payload":"WHO"
+                    //     },
+                    //     {
+                    //       "title":"Joke",
+                    //       "type":"postback",
+                    //       "payload":"joke"
+                    //     },
+                    //     {
+                    //       "title":"Contact Info",
+                    //       "type":"postback",
+                    //       "payload":"CONTACT"
+                    //     }
+                    //   ]
+                    // }
                 ]
             }
         ]
