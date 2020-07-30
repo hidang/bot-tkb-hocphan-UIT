@@ -74,20 +74,6 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }
-  else if(payload === 'get_started') {
-    response = {
-      "get_started": {"payload": "<postback_payload>"},
-      "greeting": [
-        {
-          "locale":"default",
-          "text":"Hello! {{user_first_name}}!" 
-        }, {
-          "locale":"en_US",
-          "text":"Timeless apparel for the masses."
-        }
-      ]
-    }
-  }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
