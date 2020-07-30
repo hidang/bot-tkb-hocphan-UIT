@@ -1,6 +1,7 @@
 require('dotenv').config();
 const request = require('request');
 var previousMessageHash = {};
+var senderContext = {};
 
 module.exports = { //chìa ra function ....
   handleMessage: handleMessage,
