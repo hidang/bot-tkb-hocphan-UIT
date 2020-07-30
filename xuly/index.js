@@ -101,7 +101,7 @@ function handlePostback(sender_psid, received_postback) {
               },
               {
                 "type":"postback",
-                "url":"https://www.github.com/hidang",
+                "payload": "<hidang_github>",
                 "title":"hidang github"
               }
             ]
