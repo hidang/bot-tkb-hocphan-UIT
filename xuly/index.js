@@ -74,7 +74,7 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }
-  else{
+  else if(payload === 'get_started') {
     response = {
       "get_started": {"payload": "<postback_payload>"},
       "greeting": [
