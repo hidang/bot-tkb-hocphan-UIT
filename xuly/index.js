@@ -84,9 +84,7 @@ function handlePostback(sender_psid, received_postback) {
     response = { 
       //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
 
-      "recipient":{
-        "id":"<PSID>"
-      },
+
       "message":{
         "attachment":{
           "type":"template",
@@ -134,7 +132,7 @@ function callSendAPI(sender_psid, response) {
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
-      console.log('message: ' + request_body.message.text +' ĐÃ ĐƯỢC GỬI!: ' +err);
+      console.log('message: ' + request_body.message.text +' ĐÃ ĐƯỢC GỬI!: ' +err+res);
     } else {
       console.error("THẤT BẠI to send message: " + err);
     }
