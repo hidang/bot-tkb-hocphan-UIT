@@ -83,33 +83,15 @@ function handlePostback(sender_psid, received_postback) {
     // postback: { title: 'Get Started', payload: '<postback_payload>' }
     response = { 
       //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
-
-
-      "message":{
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"button",
-            "text":"What do you want to do next?",
-            "buttons":[
-              {
-                "type":"web_url",
-                "url":"https://www.heroku.com",
-                "title":"Heroku"
-              },
-              {
-                "type":"postback",
-                "payload": "<hidang_github>",
-                "title":"hidang github"
-              }
-            ]
-          }
+      "text":"What do you want to do next?",
+      "buttons":[
+        {
+          "type":"web_url",
+          "url":"https://www.heroku.com",
+          "title":"Heroku"
         }
-      }
-      
+      ]
     }
-
-
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
