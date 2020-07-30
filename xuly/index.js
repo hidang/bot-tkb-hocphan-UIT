@@ -15,10 +15,13 @@ function handleMessage(sender_psid, received_message) {
     // var messageAttachments = received_message.attachments;
     // var quickReply = received_message.quick_reply;
 
-    let response;
+    let response;// response is a JSON
     if (received_message.text) {// Check if the message contains text
       // Create the payload for a basic text message
       response = {
+        "recipient": {
+          "id": sender_psid
+        },
         "message": {
           "text": `You sent the message: "${received_message.text}".`
         }
@@ -65,17 +68,27 @@ function handleMessage(sender_psid, received_message) {
 }
   
 function handlePostback(sender_psid, received_postback) {
-  let response;
+  let response;// response is a JSON
   
   // Get the payload for the postback
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "message": {"text": "Thanks!"} }
+    response = { 
+      "recipient": {
+        "id": sender_psid
+      },
+      "message": {"text": "Thanks!"} 
+    }
   } 
   else if (payload === 'no') {
-    response = { "message": {"text": "Oops, try sending another image." }}
+    response = { 
+      "recipient": {
+        "id": sender_psid
+      },
+      "message": {"text": "Oops, try sending another image." }
+    }
   }
   else if (payload === '<postback_payload>') {//NÚT START
     console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!')
@@ -86,6 +99,9 @@ function handlePostback(sender_psid, received_postback) {
     response = { 
       //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
       //"text":"What do you want to do next?",
+      "recipient": {
+        "id": sender_psid
+      },
       "buttons":
         {
           "type":"web_url",
@@ -100,22 +116,15 @@ function handlePostback(sender_psid, received_postback) {
 
 function callSendAPI(sender_psid, response) {
   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
-  // Construct the message body
-  let request_body = {
-    "recipient": {
-      "id": sender_psid
-    },
-    response
-  }
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v7.0/me/messages",
     "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
     "method": "POST",
-    "json": request_body
+    "json": response
   }, (err, res, body) => {
     if (!err) {
-      console.log('message: ' + request_body.message.text +' ĐÃ ĐƯỢC GỬI!: ' +err+res);
+      console.log('message: ' + response +' ĐÃ ĐƯỢC GỬI!: ' +err);
     } else {
       console.error("THẤT BẠI to send message: " + err);
     }
