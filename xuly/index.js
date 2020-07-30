@@ -82,7 +82,8 @@ function handlePostback(sender_psid, received_postback) {
     // timestamp: 1596112909237,
     // postback: { title: 'Get Started', payload: '<postback_payload>' }
     response = { 
-      "text": "Xin chào {{user_full_name}}!, Bạn cần làm gì?",
+      //"text": "Xin chào {{user_full_name}}!, Bạn cần làm gì?",
+
       "recipient":{
         "id":"<PSID>"
       },
