@@ -19,9 +19,11 @@ function handleMessage(sender_psid, received_message) {
     if (received_message.text) {// Check if the message contains text
       // Create the payload for a basic text message
       response = {
+        "get_started": {"payload": "<postback_payload>"},
         "text": `You sent the message: "${received_message.text}".`
       }
       callSendAPI(sender_psid, response);// Sends the response message
+
     }
     else if (received_message.attachments) {//(2)
       //https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start#setup-complete
@@ -52,6 +54,7 @@ function handleMessage(sender_psid, received_message) {
           }
         }
       }
+      
       callSendAPI(sender_psid, response);// Sends the response message
     } 
     else if (received_message.quickReply) {
@@ -107,6 +110,5 @@ module.exports = { //chìa ra function ....
   handleMessage: handleMessage,
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
-
 };
 
