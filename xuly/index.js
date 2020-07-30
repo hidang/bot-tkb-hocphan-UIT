@@ -146,7 +146,7 @@ function handlePostback(sender_psid, received_postback) {
     // recipient: { id: '104124098046144' },
     // timestamp: 1596112909237,
     // postback: { title: 'Get Started', payload: '<postback_payload>' }
-    response = { 
+    let response = { 
       //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
       //"text":"What do you want to do next?",
         "recipient":{
