@@ -99,17 +99,31 @@ function handlePostback(sender_psid, received_postback) {
     response = { 
       //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
       //"text":"What do you want to do next?",
-      "recipient": {
-        "id": sender_psid
-      },
-      "buttons":
-        {
-          "type":"web_url",
-          "url":"https://www.heroku.com",
-          "title":"Heroku"
+        "recipient":{
+          "id": sender_psid
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"button",
+              "text":"What do you want to do next?",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://www.messenger.com",
+                  "title":"Visit Messenger"
+                },
+                {
+                  "type":"postback",
+                  "title":"<LOGIN>",
+                  "payload":"<login_ne>"
+                },
+              ]
+            }
+          }
         }
-    }
-  }
+      }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
