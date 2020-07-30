@@ -82,32 +82,32 @@ function handlePostback(sender_psid, received_postback) {
     // timestamp: 1596112909237,
     // postback: { title: 'Get Started', payload: '<postback_payload>' }
     response = { 
-      "text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
+      //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
 
-      // "recipient":{
-      //   "id":"<PSID>"
-      // },
-      // "message":{
-      //   "attachment":{
-      //     "type":"template",
-      //     "payload":{
-      //       "template_type":"button",
-      //       "text":"What do you want to do next?",
-      //       "buttons":[
-      //         {
-      //           "type":"web_url",
-      //           "url":"https://www.heroku.com",
-      //           "title":"Heroku"
-      //         },
-      //         {
-      //           "type":"postback",
-      //           "payload": "<hidang_github>",
-      //           "title":"hidang github"
-      //         }
-      //       ]
-      //     }
-      //   }
-      // }
+      "recipient":{
+        "id":"<PSID>"
+      },
+      "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"What do you want to do next?",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"https://www.heroku.com",
+                "title":"Heroku"
+              },
+              {
+                "type":"postback",
+                "payload": "<hidang_github>",
+                "title":"hidang github"
+              }
+            ]
+          }
+        }
+      }
       
     }
 
