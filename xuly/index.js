@@ -1,13 +1,7 @@
 require('dotenv').config();
 const request = require('request');
 
-module.exports = { //chìa ra function ....
-  handleMessage: handleMessage,
-  handlePostback: handlePostback,
-  callSendAPI: callSendAPI,
-  addPersistentMenu: addPersistentMenu,
 
-};
 
 function handleMessage(sender_psid, received_message) {
     // var message = received_message;
@@ -108,30 +102,11 @@ function callSendAPI(sender_psid, response) {
 
 
 
-function addPersistentMenu(){
-  request({
-     url: 'https://graph.facebook.com/v7.0/me/messenger_profile',
-     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-     method: 'POST',
-     json:{
-   "get_started":{
-     "payload":"GET_STARTED_PAYLOAD"
-    }
-  }
- }, function(error, response, body) {
-     console.log("Add persistent menu " + response)
-     if (error) {
-         console.log('Error sending messages: ', error)
-     } else if (response.body.error) {
-         console.log('Error: ', response.body.error)
-     }
- })
-}
 
+module.exports = { //chìa ra function ....
+  handleMessage: handleMessage,
+  handlePostback: handlePostback,
+  callSendAPI: callSendAPI,
 
-
-
-
-
-
+};
 
