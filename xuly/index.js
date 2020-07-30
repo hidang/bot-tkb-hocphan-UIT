@@ -92,7 +92,7 @@ function handlePostback(sender_psid, received_postback) {
   }
   else if (payload === '<postback_payload>') {//NÚT START
     //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
-    response = {// tao menu cho user
+    let response2 = {// tao menu cho user
       "psid": sender_psid,
       "persistent_menu": [
             {
@@ -140,13 +140,13 @@ function handlePostback(sender_psid, received_postback) {
             }
         ]
     }
-    callSendAPI(sender_psid, response);
+    callSendAPI(sender_psid, response2);
     
     // sender: { id: '3006492652803294' },
     // recipient: { id: '104124098046144' },
     // timestamp: 1596112909237,
     // postback: { title: 'Get Started', payload: '<postback_payload>' }
-    let response = { 
+    response = { 
       //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
       //"text":"What do you want to do next?",
         "recipient":{
@@ -173,8 +173,8 @@ function handlePostback(sender_psid, received_postback) {
             }
           }
         }
-      }
     }
+  }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
