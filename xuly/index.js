@@ -24,27 +24,29 @@ function handleMessage(sender_psid, received_message) {
 
     let response;
     if (received_message.text) {// Check if the message contains text
-      // // Create the payload for a basic text message
-      // response = {
-      //   "text": `You sent the message: "${received_message.text}".`
-      // }
-      switch (received_message.text.toLowerCase()) {   
-        case 'add menu':
-          addPersistentMenu();
-          break
-        
-        case 'remove menu':
-          removePersistentMenu();
-          break  
-
-        case 'typing on':
-          sendTypingOn(sender_psid);
-          break        
-    
-        case 'typing off':
-          sendTypingOff(sender_psid);
-          break
+      // Create the payload for a basic text message
+      response = {
+        "text": `You sent the message: "${received_message.text}".`
       }
+      callSendAPI(sender_psid, response);// Sends the response message
+      // switch (received_message.text.toLowerCase()) {   
+      //   case 'add menu':
+      //     addPersistentMenu();
+      //     break
+        
+      //   case 'remove menu':
+      //     removePersistentMenu();
+      //     break  
+
+      //   case 'typing on':
+      //     sendTypingOn(sender_psid);
+      //     break        
+    
+      //   case 'typing off':
+      //     sendTypingOff(sender_psid);
+      //     break
+      // }
+
     }
     else if (received_message.attachments) {//(2)
       //https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start#setup-complete
@@ -75,14 +77,14 @@ function handleMessage(sender_psid, received_message) {
           }
         }
       }
-
+      callSendAPI(sender_psid, response);// Sends the response message
     } 
     else if (received_message.quickReply) {
       
 
     }
 
-    callSendAPI(sender_psid, response);// Sends the response message
+    //callSendAPI(sender_psid, response);// Sends the response message
 }
   
 function handlePostback(sender_psid, received_postback) {
