@@ -76,6 +76,7 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Oops, try sending another image." }
   }
   else if (payload === '<postback_payload>') {//NÚT START
+    console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!')
     // sender: { id: '3006492652803294' },
     // recipient: { id: '104124098046144' },
     // timestamp: 1596112909237,
@@ -132,7 +133,7 @@ function callSendAPI(sender_psid, response) {
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
-      console.log('message' + request_body.message +'ĐÃ ĐƯỢC GỬI!: ' +err);
+      console.log('message: ' + request_body.message.text +' ĐÃ ĐƯỢC GỬI!: ' +err);
     } else {
       console.error("THẤT BẠI to send message: " + err);
     }
