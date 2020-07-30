@@ -19,7 +19,9 @@ function handleMessage(sender_psid, received_message) {
     if (received_message.text) {// Check if the message contains text
       // Create the payload for a basic text message
       response = {
-        "text": `You sent the message: "${received_message.text}".`
+        "message": {
+          "text": `You sent the message: "${received_message.text}".`
+        }
       }
       callSendAPI(sender_psid, response);// Sends the response message
 
@@ -70,10 +72,10 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "text": "Thanks!" }
+    response = { "message": {"text": "Thanks!"} }
   } 
   else if (payload === 'no') {
-    response = { "text": "Oops, try sending another image." }
+    response = { "message": {"text": "Oops, try sending another image." }}
   }
   else if (payload === '<postback_payload>') {//NÚT START
     console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!')
@@ -103,7 +105,7 @@ function callSendAPI(sender_psid, response) {
     "recipient": {
       "id": sender_psid
     },
-    "message": response
+    response
   }
   // Send the HTTP request to the Messenger Platform
   request({
