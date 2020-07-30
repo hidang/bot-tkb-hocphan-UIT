@@ -83,14 +83,13 @@ function handlePostback(sender_psid, received_postback) {
     // postback: { title: 'Get Started', payload: '<postback_payload>' }
     response = { 
       //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
-      "text":"What do you want to do next?",
-      "buttons":[
+      //"text":"What do you want to do next?",
+      "buttons":
         {
           "type":"web_url",
           "url":"https://www.heroku.com",
           "title":"Heroku"
         }
-      ]
     }
   }
   // Send the message to acknowledge the postback
