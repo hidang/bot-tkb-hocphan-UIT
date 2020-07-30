@@ -47,7 +47,7 @@ function handleMessage(sender_psid, received_message) {
           break
 
         default:
-          sendEnteredMessage(sender_psid, messageText);
+          sendEnteredMessage(sender_psid, received_message.text);
    
         
       }
