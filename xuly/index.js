@@ -307,23 +307,23 @@ console.log("sendEnteredMessage "+ messageText);
     if( previousMessageHash[recipientId] === 'send a message') {
          sendTextMessage(recipientId, messageText); // send a message to Matthew directly
     }
-    else if( senderContext[recipientId].state === 'addKeywordStep1') {
-        // addKeywordStep2(recipientId,messageText);
-    }
-    else if( senderContext[recipientId].state === 'addKeywordText') {
-         //addKeywordTextStep2(recipientId,messageText);
-    }
-    else if( senderContext[recipientId].state === 'addKeywordButton') {
-         //addKeywordButtonStep2(recipientId,messageText);
-    }
-    else if (emojiString.indexOf(messageText.substring(0,2)) > -1) {
-         var maxLength = emojiString.length;
-         var random = Math.floor(Math.random() * maxLength);
-         messageText = emojiString[random];
-         sendTextMessage(recipientId,messageText);
-    }
-    else { 
-         //sendCustomMessage(recipientId,messageText);
-   }
+    // else if( senderContext[recipientId].state === 'addKeywordStep1') {
+    //     // addKeywordStep2(recipientId,messageText);
+    // }
+    // else if( senderContext[recipientId].state === 'addKeywordText') {
+    //      //addKeywordTextStep2(recipientId,messageText);
+    // }
+    // else if( senderContext[recipientId].state === 'addKeywordButton') {
+    //      //addKeywordButtonStep2(recipientId,messageText);
+    // }
+    // else if (emojiString.indexOf(messageText.substring(0,2)) > -1) {
+    //      var maxLength = emojiString.length;
+    //      var random = Math.floor(Math.random() * maxLength);
+    //      messageText = emojiString[random];
+    //      sendTextMessage(recipientId,messageText);
+    // }
+  //   else { 
+  //        //sendCustomMessage(recipientId,messageText);
+  //  }
 }
 
