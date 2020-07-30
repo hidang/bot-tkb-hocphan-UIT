@@ -71,8 +71,45 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { "text": "Thanks!" }
-  } else if (payload === 'no') {
+  } 
+  else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
+  }
+  else if (payload === 'postback_payload') {//START
+    // sender: { id: '3006492652803294' },
+    // recipient: { id: '104124098046144' },
+    // timestamp: 1596112909237,
+    // postback: { title: 'Get Started', payload: '<postback_payload>' }
+    response = { 
+      "text": "Xin chào {{user_full_name}}!, Bạn cần làm gì?",
+      "recipient":{
+        "id":"<PSID>"
+      },
+      "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"What do you want to do next?",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"https://www.heroku.com",
+                "title":"Heroku"
+              },
+              {
+                "type":"postback",
+                "url":"https://www.github.com/hidang",
+                "title":"hidang github"
+              }
+            ]
+          }
+        }
+      }
+      
+    }
+
+
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
