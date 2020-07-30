@@ -75,7 +75,7 @@ function handlePostback(sender_psid, received_postback) {
   else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }
-  else if (payload === 'postback_payload') {//START
+  else if (payload === '<postback_payload>') {//NÚT START
     // sender: { id: '3006492652803294' },
     // recipient: { id: '104124098046144' },
     // timestamp: 1596112909237,
