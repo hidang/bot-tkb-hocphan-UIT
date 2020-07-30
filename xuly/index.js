@@ -29,23 +29,23 @@ function handleMessage(sender_psid, received_message) {
         "text": `You sent the message: "${received_message.text}".`
       }
       callSendAPI(sender_psid, response);// Sends the response message
-      // switch (received_message.text.toLowerCase()) {   
-      //   case 'add menu':
-      //     addPersistentMenu();
-      //     break
+      switch (received_message.text.toLowerCase()) {   
+        case 'add menu':
+          addPersistentMenu();
+          break
         
-      //   case 'remove menu':
-      //     removePersistentMenu();
-      //     break  
+        case 'remove menu':
+          removePersistentMenu();
+          break  
 
-      //   case 'typing on':
-      //     sendTypingOn(sender_psid);
-      //     break        
+        case 'typing on':
+          sendTypingOn(sender_psid);
+          break        
     
-      //   case 'typing off':
-      //     sendTypingOff(sender_psid);
-      //     break
-      // }
+        case 'typing off':
+          sendTypingOff(sender_psid);
+          break
+      }
 
     }
     else if (received_message.attachments) {//(2)
@@ -102,9 +102,6 @@ function handlePostback(sender_psid, received_postback) {
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
-
-
-
 
 function callSendAPI(sender_psid, response) {
   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
@@ -232,30 +229,30 @@ function removePersistentMenu(){
  })
  }
 
-//  function callSendAPI(messageData) {
-//   request({
-//     uri: 'https://graph.facebook.com/v2.6/me/messages',
-//     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-//     method: 'POST',
-//     json: messageData
+function callSendAPI_JSON(messageData) {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+    method: 'POST',
+    json: messageData
 
-//   }, function (error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//       var recipientId = body.recipient_id;
-//       var messageId = body.message_id;
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
 
-//       if (messageId) {
-//         console.log("Successfully sent message with id %s to recipient %s", 
-//           messageId, recipientId);
-//       } else {
-//       console.log("Successfully called Send API for recipient %s", 
-//         recipientId);
-//       }
-//     } else {
-//       console.error("Unable to send message. :" + response.error);
-//     }
-//   });  
-// }
+      if (messageId) {
+        console.log("Successfully sent message with id %s to recipient %s", 
+          messageId, recipientId);
+      } else {
+      console.log("Successfully called Send API for recipient %s", 
+        recipientId);
+      }
+    } else {
+      console.error("Unable to send message. :" + response.error);
+    }
+  });  
+}
 
 function sendTypingOn(recipientId) {
   console.log("Turning typing indicator on");
@@ -267,7 +264,7 @@ function sendTypingOn(recipientId) {
     sender_action: "typing_on"
   };
 
-  callSendAPI(messageData);
+  callSendAPI_JSON(messageData);
 }
 
 function sendTypingOff(recipientId) {
@@ -280,7 +277,7 @@ function sendTypingOff(recipientId) {
     sender_action: "typing_off"
   };
 
-  callSendAPI(messageData);
+  callSendAPI_JSON(messageData);
 }
 
 
