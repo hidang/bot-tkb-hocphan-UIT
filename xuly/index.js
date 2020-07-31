@@ -21,7 +21,8 @@ function callSendAPI(style, response) {
     }
   }); 
 }
-function STARTED(){
+
+function STARTED(sender_psid){
   //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
 
     // sender: { id: '3006492652803294' },
@@ -39,22 +40,22 @@ function STARTED(){
             "type":"template",
             "payload":{
               "template_type":"button",
-              "text":"Chào mừng bạn đến với DOVANBOT, xin lựa chọn chức năng bạn cần.",
+              "text":"Chào mừng bạn đến với DOVANBOT, xin lựa chọn chức năng bạn cần.\n Input - nhập danh sách mã lớp học để lấy hình thời khóa biểu của bạn \n Sign in/up - để đồng bộ data với web",
               "buttons":[
                 {
                   "type":"postback",
-                  "title":"Input danh sách mã lớp học để lấy hình thời khóa biểu",
+                  "title":"Input danh sách",
                   "payload":"danhsach_monhoc"
                 },
                 {
                   "type":"postback",
-                  "title":"Sign in/up - để đồng bộ data với web",
+                  "title":"Sign in/up",
                   "payload":"login_ne"
                 },
                 {
                   "type":"web_url",
                   "url":"https://dovanbot2.herokuapp.com/",
-                  "title":"Truy cập trang chủ"
+                  "title":"Trang chủ"
                 },
               ]
             }
@@ -63,7 +64,9 @@ function STARTED(){
     }
     callSendAPI('messages', response);
 }
-
+function HuongDan(sender_psid) {
+  STARTED(sender_psid);
+}
 
 function handleMessage(sender_psid, received_message) {
     // var message = received_message;
@@ -158,10 +161,10 @@ function handlePostback(sender_psid, received_postback) {
       callSendAPI('messages', response);
       break;
     case 'GET_STARTED_PAYLOAD':
-      STARTED();
+      STARTED(sender_psid);
       break;
     case 'huong_dan':
-
+      HuongDan(sender_psid);
       break;
 
     default:
