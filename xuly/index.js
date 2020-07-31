@@ -103,17 +103,17 @@ function handlePostback(sender_psid, received_postback) {
                 "call_to_actions": [
                     {
                         "type": "postback",
-                        "title": "Chọn môn học",
+                        "title": "📂 Chọn môn học",
                         "payload": "chon_mon_hoc"
                     },
                     {
                         "type": "postback",
-                        "title": "Hướng dẫn",
+                        "title": "📜 Hướng dẫn",
                         "payload": "huong_dan"
                     },
                     {
                         "type": "web_url",
-                        "title": "Trang chủ",
+                        "title": "📰 Trang chủ",
                         "url": "https://www.github.com/hidang",
                         "webview_height_ratio": "full"
                     }
