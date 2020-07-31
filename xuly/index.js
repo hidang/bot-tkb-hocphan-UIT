@@ -105,41 +105,41 @@ function handlePostback(sender_psid, received_postback) {
                 "call_to_actions": [
                     {
                         "type": "postback",
-                        "title": "📂 Chọn môn họccccccc",
+                        "title": "📂 Chọn môn học",
                         "payload": "chon_mon_hoc"
                     },
                     {
                         "type": "postback",
-                        "title": "📜 Hướng dẫnnnnnnnnnnnnn",
+                        "title": "📜 Hướng dẫn",
                         "payload": "huong_dan"
                     },
                     {
                         "type": "web_url",
-                        "title": "📰 Trang chủuuuuuuuuuu",
+                        "title": "📰 Trang chủ",
                         "url": "https://www.github.com/hidang",
                         "webview_height_ratio": "full"
                     }
-                    // {
-                    //   "title":"MORE",
-                    //   "type":"nested",//nhiều menumenu...
-                    //   "call_to_actions":[
-                    //     {
-                    //       "title":"Who am I",
-                    //       "type":"postback",
-                    //       "payload":"WHO"
-                    //     },
-                    //     {
-                    //       "title":"Joke",
-                    //       "type":"postback",
-                    //       "payload":"joke"
-                    //     },
-                    //     {
-                    //       "title":"Contact Info",
-                    //       "type":"postback",
-                    //       "payload":"CONTACT"
-                    //     }
-                    //   ]
-                    // }
+                    {
+                      "title":"🗄 MORE...",
+                      "type":"nested",//nhiều menumenu...
+                      "call_to_actions":[
+                        {
+                          "title":"Who am I",
+                          "type":"postback",
+                          "payload":"WHO"
+                        },
+                        {
+                          "title":"Trang kế tiếp",
+                          "type":"postback",
+                          "payload":"next_page"
+                        },
+                        {
+                          "title":"Contact Info",
+                          "type":"postback",
+                          "payload":"CONTACT"
+                        }
+                      ]
+                    }
                 ]
             }
         ]
