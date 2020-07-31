@@ -100,7 +100,7 @@ function handlePostback(sender_psid, received_postback) {
     // sender: { id: '3006492652803294' },
     // recipient: { id: '104124098046144' },
     // timestamp: 1596112909237,
-    // postback: { title: 'Get Started', payload: '<postback_payload>' }
+    // postback: { title: 'Get Started', payload: 'GET_STARTED_PAYLOAD' }
     response = { 
       //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
       //"text":"What do you want to do next?",
@@ -112,17 +112,22 @@ function handlePostback(sender_psid, received_postback) {
             "type":"template",
             "payload":{
               "template_type":"button",
-              "text":"What do you want to do next?",
+              "text":"Chào mừng bạn đến với DOVANBOT, xin lựa chọn chức năng bạn cần.",
               "buttons":[
                 {
-                  "type":"web_url",
-                  "url":"https://www.messenger.com",
-                  "title":"Visit Messenger"
+                  "type":"postback",
+                  "title":"Input danh sách mã lớp học để lấy hình thời khóa biểu",
+                  "payload":"danhsach_monhoc"
                 },
                 {
                   "type":"postback",
-                  "title":"<LOGIN>",
-                  "payload":"<login_ne>"
+                  "title":"Sign in/up - để đồng bộ data với web",
+                  "payload":"login_ne"
+                },
+                {
+                  "type":"web_url",
+                  "url":"https://dovanbot2.herokuapp.com/",
+                  "title":"Truy cập trang chủ"
                 },
               ]
             }
@@ -154,7 +159,7 @@ function callSendAPI(style, response) {
 }
 
 
-module.exports = { //chìa ra function() để index.js khác có thể reques và dùng ....
+module.exports = { //chìa ra function() để server.js khác có thể reques và dùng ....
   handleMessage: handleMessage,
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
