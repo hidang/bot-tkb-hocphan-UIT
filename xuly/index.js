@@ -115,7 +115,7 @@ function handlePostback(sender_psid, received_postback) {
                     },
                     {
                         "type": "web_url",
-                        "title": "📰 Trang chủ",
+                        "title": "📰 Trang chủuuuuuuuuuu",
                         "url": "https://www.github.com/hidang",
                         "webview_height_ratio": "full"
                     }
