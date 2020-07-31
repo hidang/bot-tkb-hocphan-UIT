@@ -44,18 +44,18 @@ function STARTED(sender_psid){
               "buttons":[
                 {
                   "type":"postback",
-                  "title":"Input danh sách",
+                  "title":" ⌨ Input danh sách",
                   "payload":"danhsach_monhoc"
                 },
                 {
                   "type":"postback",
-                  "title":"Sign in/up",
+                  "title":"🏷 Sign in/up",
                   "payload":"login_ne"
                 },
                 {
                   "type":"web_url",
                   "url":"https://dovanbot2.herokuapp.com/",
-                  "title":"Trang chủ"
+                  "title":"🐥 Trang chủ"
                 },
               ]
             }
