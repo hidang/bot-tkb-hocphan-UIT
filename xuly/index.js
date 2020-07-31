@@ -103,7 +103,7 @@ function handlePostback(sender_psid, received_postback) {
                 "call_to_actions": [
                     {
                         "type": "postback",
-                        "title": "📂 Chọn môn học",
+                        "title": "📂 Chọn môn họccccccc",
                         "payload": "chon_mon_hoc"
                     },
                     {
@@ -183,7 +183,7 @@ function callSendAPI(style, response) {
   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
   // Send the HTTP request to the Messenger Platform
   request({
-    "uri": "https://graph.facebook.com/v2.6/me/" + style,
+    "uri": "https://graph.facebook.com/v7.0/me/" + style,
     "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": response
