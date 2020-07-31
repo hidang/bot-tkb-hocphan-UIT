@@ -1,7 +1,7 @@
 'use strict';
 ///////////////////////////////////////////////SETUP_SERVER//////////////////////////////////////////////////
 var xuly = require('./xuly/index.js');//xuly tin nhan
-require('dotenv').config();
+require('dotenv').config();//Thư viện dùng .env -> dấu token pass...
 
 var express = require("express");
 var  bodyParser = require('body-parser');
@@ -10,21 +10,32 @@ var app = express();
 app.use(bodyParser.json(), express.static("public")); // creates express http server
 app.set("view engine", "ejs");
 app.set("views", "./views");
-
-// Sets server port and logs message on success
-app.listen(process.env.PORT || 3000, () => console.log('Server is listening'));
+var server = require("http").Server(app);
+server.listen(process.env.PORT || 3000, () => console.log('Server is listening'));
+var io = require("socket.io")(server);
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 
-
-app.get('/', (req, res) => {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.get('/', (req, res) => { // <=> app.get('/', function(req, res){
   //res.send("Home page. Server chạy ngon lành cành đào");//thường ở đây sẽ chèn html vào để chạy web
   res.render("trangchu");//dùng farmework ejs để build html trangchu.ejs ra
 });
 
+////////////////////////////SOKET_IO//////////////////////////////////////////////////
+io.on("connection", function(socket){//khi có người dùng truy cập web thì "connection" sẽ đc truyền qua
+  console.log("socket nè: Có người kết nối: " + socket.id);
+  //----------------------------------------------
+  //nguoi dung ngat ket noi vào trang web
+  socket.on("disconnect", function(){
+      console.log(socket.Username + " đã ngắt kết nối rồi nè!!!");
+  });
+});
+////////////////////////////END_SOKET_IO//////////////////////////////////////////////////
 
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
 app.get('/webhook', (req, res) => {
 
