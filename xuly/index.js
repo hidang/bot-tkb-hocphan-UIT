@@ -26,7 +26,7 @@ function handleMessage(sender_psid, received_message) {
           "text": `You sent the message: "${received_message.text}".`
         }
       }
-      callSendAPI(sender_psid, response);// Sends the response message
+      callSendAPI('message', response);// Sends the response message
 
     }
     else if (received_message.attachments) {//(2)
@@ -64,12 +64,10 @@ function handleMessage(sender_psid, received_message) {
         }
       }
       
-      callSendAPI(sender_psid, response);// Sends the response message
+      callSendAPI('message', response);// Sends the response message
     } 
     else if (received_message.quickReply) {
     }
-
-    //callSendAPI(sender_psid, response);// Sends the response message
 }
   
 function handlePostback(sender_psid, received_postback) {
@@ -97,9 +95,7 @@ function handlePostback(sender_psid, received_postback) {
   }
   else if (payload === '<postback_payload>') {//NÚT START
     //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
-    let response2;
-    response2 = {// tao menu cho user
-      
+    response = {// tao menu cho user
       "psid": sender_psid,
       "persistent_menu": [
             {
@@ -147,7 +143,7 @@ function handlePostback(sender_psid, received_postback) {
             }
         ]
     }
-    callSendAPI(sender_psid, response2);
+    callSendAPI('custom_user_settings', response);
     
     // sender: { id: '3006492652803294' },
     // recipient: { id: '104124098046144' },
@@ -181,16 +177,15 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
     }
+    callSendAPI('message', response);
   }
-  // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
 }
 
-function callSendAPI(sender_psid, response) {
+function callSendAPI(style, response) {
   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
   // Send the HTTP request to the Messenger Platform
   request({
-    "uri": "https://graph.facebook.com/v7.0/me/messages",
+    "uri": "https://graph.facebook.com/v7.0/me/" + style,
     "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": response
