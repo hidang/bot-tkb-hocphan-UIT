@@ -15,6 +15,64 @@ function handleMessage(sender_psid, received_message) {
 
     let response;// response is a JSON
     if (received_message.text) {// Check if the message contains text
+
+
+      //////////////////////////////////////////
+      response = {// tao menu cho user
+        "psid": sender_psid,
+        "persistent_menu": [
+              {
+                  "locale": "default",
+                  "composer_input_disabled": false, // neu true thi close keyborad user
+                  "call_to_actions": [
+                      {
+                          "type": "postback",
+                          "title": "📂 Chọn môn họccccccc",
+                          "payload": "chon_mon_hoc"
+                      },
+                      {
+                          "type": "postback",
+                          "title": "📜 Hướng dẫn",
+                          "payload": "huong_dan"
+                      },
+                      {
+                          "type": "web_url",
+                          "title": "📰 Trang chủ",
+                          "url": "https://www.github.com/hidang",
+                          "webview_height_ratio": "full"
+                      }
+                      // {
+                      //   "title":"MORE",
+                      //   "type":"nested",//nhiều menumenu...
+                      //   "call_to_actions":[
+                      //     {
+                      //       "title":"Who am I",
+                      //       "type":"postback",
+                      //       "payload":"WHO"
+                      //     },
+                      //     {
+                      //       "title":"Joke",
+                      //       "type":"postback",
+                      //       "payload":"joke"
+                      //     },
+                      //     {
+                      //       "title":"Contact Info",
+                      //       "type":"postback",
+                      //       "payload":"CONTACT"
+                      //     }
+                      //   ]
+                      // }
+                  ]
+              }
+          ]
+      }
+      callSendAPI('custom_user_settings', response);
+
+
+
+      //////////////////////////////////////////
+
+
       // Create the payload for a basic text message
       response = {
         "recipient": {
