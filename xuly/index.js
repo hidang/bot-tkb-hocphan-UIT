@@ -28,79 +28,6 @@ function handleMessage(sender_psid, received_message) {
         }
       }
       callSendAPI('messages', response);// Sends the response message
-
-      ///////////////////////////////////////////////////////////
-      if (messageText) {
-        console.log("Received message for user %d and page %d at %d with message: %s", 
-        messageText);
-    
-        // If we receive a text message, check to see if it matches any special
-        // keywords and send back the corresponding example. Otherwise, just echo
-        // the text we received.
-        switch (messageText.toLowerCase()) {
-          case 'image':
-            //sendImageMessage(senderID, "http://messengerdemo.parseapp.com/img/rift.png");
-            break;
-    
-          case 'gif':
-            //sendGifMessage(senderID);
-            break;
-    
-          case 'audio':
-            //sendAudioMessage(senderID);
-            break;
-    
-          case 'video':
-            //sendVideoMessage(senderID);
-            break;
-    
-          case 'file':
-            //sendFileMessage(senderID);
-            break;
-    
-          case 'button':
-            //sendButtonMessage(senderID);
-            break;
-    
-          case 'generic':
-            //sendGenericMessage(senderID);
-            break;
-    
-          case 'receipt':
-            //sendReceiptMessage(senderID);
-            break;
-    
-          case 'quick reply':
-            //sendQuickReply(senderID);
-            break        
-    
-          case 'read receipt':
-            //sendReadReceipt(senderID);
-            break        
-    
-          case 'typing on':
-            //sendTypingOn(senderID);
-            break        
-    
-          case 'typing off':
-            //sendTypingOff(senderID);
-            break        
-    
-          case 'user info':
-            //if(firstName)
-                //sendTextMessage(senderID,firstName);
-            break        
-    
-          case 'add menu':
-            addPersistentMenu();
-            break        
-    
-          case 'remove menu':
-            //removePersistentMenu();
-            break
-        }
-      }
-      ///////////////////////////////////////////////////////////
     }
     else if (received_message.attachments) {//(2)
       //https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start#setup-complete
@@ -217,7 +144,7 @@ function handlePostback(sender_psid, received_postback) {
             }
         ]
     }
-    callSendAPI('custom_user_settings', response);
+    callSendAPI('messenger_profile', response);//do not "custom_user_settings" -> web se ko hien ra
     
     // sender: { id: '3006492652803294' },
     // recipient: { id: '104124098046144' },
@@ -276,87 +203,6 @@ function callSendAPI(style, response) {
     }
   }); 
 }
-
-function addPersistentMenu(){
-  request({
-     url: 'https://graph.facebook.com/v7.0/me/messenger_profile',
-     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-     method: 'POST',
-     json:{
-   "get_started":{
-     "payload":"GET_STARTED_PAYLOAD"
-    }
-  }
- }, function(error, response, body) {
-     console.log("Add persistent menu " + response)
-     if (error) {
-         console.log('Error sending messages: ', error)
-     } else if (response.body.error) {
-         console.log('Error: ', response.body.error)
-     }
- })
-  request({
-     url: 'https://graph.facebook.com/v7.0/me/messenger_profile',
-     qs: { access_token: PAGE_ACCESS_TOKEN },
-     method: 'POST',
-     json:{
- "persistent_menu":[
-     {
-       "locale":"default",
-       "composer_input_disabled":false,
-       "call_to_actions":[
-         {
-           "title":"Home",
-           "type":"postback",
-           "payload":"HOME"
-         },
-         {
-           "title":"MORE...",
-           "type":"nested",
-           "call_to_actions":[
-             {
-               "title":"Who am I",
-               "type":"postback",
-               "payload":"WHO"
-             },
-             {
-               "title":"Joke",
-               "type":"postback",
-               "payload":"joke"
-             },
-             {
-               "title":"Contact Info",
-               "type":"postback",
-               "payload":"CONTACT"
-             }
-           ]
-         },
-         {
-           "type":"web_url",
-           "title":"Latest News",
-           "url":"http://foxnews.com",
-           "webview_height_ratio":"full"
-         }
-       ]
-     },
-     {
-       "locale":"zh_CN",
-       "composer_input_disabled":false
-     }
-     ]
-     }
- 
- }, function(error, response, body) {
-     console.log(response)
-     if (error) {
-         console.log('Error sending messages: ', error)
-     } else if (response.body.error) {
-         console.log('Error: ', response.body.error)
-     }
- })
- 
- }
-
 
 
 module.exports = { //chìa ra function ....
