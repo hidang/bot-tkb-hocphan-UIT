@@ -1,22 +1,31 @@
 'use strict';
+///////////////////////////////////////////////SETUP_SERVER//////////////////////////////////////////////////
+var xuly = require('./xuly/index.js');//xuly tin nhan
 require('dotenv').config();
-const xuly = require('./xuly/index.js');
 
-// Imports dependencies and set up http server
-const
-  express = require('express'),
-  bodyParser = require('body-parser'),
-  app = express().use(bodyParser.json()); // creates express http server
+var express = require("express");
+var  bodyParser = require('body-parser');
+
+var app = express();
+app.use(bodyParser.json(), express.static("public")); // creates express http server
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
 // Sets server port and logs message on success
-app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
+app.listen(process.env.PORT || 3000, () => console.log('Server is listening'));
+//////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 
 
 app.get('/', (req, res) => {
-  res.send("Home page. Server chạy ngon lành cành đào");
+  //res.send("Home page. Server chạy ngon lành cành đào");//thường ở đây sẽ chèn html vào để chạy web
+  res.render("trangchu");//dùng farmework ejs để build html trangchu.ejs ra
 });
 
-// Adds support for GET requests to our webhook
+
+
+
+
+// Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
 app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
@@ -75,5 +84,6 @@ app.post("/webhook", (req, res) => {
       res.sendStatus(404);
     }
 });
+// END// Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
 
 
