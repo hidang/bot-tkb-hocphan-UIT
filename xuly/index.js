@@ -97,7 +97,7 @@ function handlePostback(sender_psid, received_postback) {
   else if (payload === 'GET_STARTED_PAYLOAD') {//NÚT START
     //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
     response = {// tao menu cho user
-      //"psid": sender_psid,
+      "psid": sender_psid,
       "persistent_menu": [
             {
                 "locale": "default",
