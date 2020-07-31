@@ -9,70 +9,15 @@ function handleMessage(sender_psid, received_message) {
     var metadata = received_message.metadata;
   
     // // You may get a text or attachment but not both
-    // var messageText = received_message.text;
+    var messageText = received_message.text;
     // var messageAttachments = received_message.attachments;
     // var quickReply = received_message.quick_reply;
 
+
+
+
     let response;// response is a JSON
     if (received_message.text) {// Check if the message contains text
-
-
-      //////////////////////////////////////////
-      response = {// tao menu cho user
-        "psid": sender_psid,
-        "persistent_menu": [
-              {
-                  "locale": "default",
-                  "composer_input_disabled": false, // neu true thi close keyborad user
-                  "call_to_actions": [
-                      {
-                          "type": "postback",
-                          "title": "📂 Chọn môn họccccccc",
-                          "payload": "chon_mon_hoc"
-                      },
-                      {
-                          "type": "postback",
-                          "title": "📜 Hướng dẫn",
-                          "payload": "huong_dan"
-                      },
-                      {
-                          "type": "web_url",
-                          "title": "📰 Trang chủ",
-                          "url": "https://www.github.com/hidang",
-                          "webview_height_ratio": "full"
-                      }
-                      // {
-                      //   "title":"MORE",
-                      //   "type":"nested",//nhiều menumenu...
-                      //   "call_to_actions":[
-                      //     {
-                      //       "title":"Who am I",
-                      //       "type":"postback",
-                      //       "payload":"WHO"
-                      //     },
-                      //     {
-                      //       "title":"Joke",
-                      //       "type":"postback",
-                      //       "payload":"joke"
-                      //     },
-                      //     {
-                      //       "title":"Contact Info",
-                      //       "type":"postback",
-                      //       "payload":"CONTACT"
-                      //     }
-                      //   ]
-                      // }
-                  ]
-              }
-          ]
-      }
-      callSendAPI('custom_user_settings', response);
-
-
-
-      //////////////////////////////////////////
-
-
       // Create the payload for a basic text message
       response = {
         "recipient": {
@@ -84,6 +29,78 @@ function handleMessage(sender_psid, received_message) {
       }
       callSendAPI('messages', response);// Sends the response message
 
+      ///////////////////////////////////////////////////////////
+      if (messageText) {
+        console.log("Received message for user %d and page %d at %d with message: %s", 
+        senderID,messageText);
+    
+        // If we receive a text message, check to see if it matches any special
+        // keywords and send back the corresponding example. Otherwise, just echo
+        // the text we received.
+        switch (messageText.toLowerCase()) {
+          case 'image':
+            //sendImageMessage(senderID, "http://messengerdemo.parseapp.com/img/rift.png");
+            break;
+    
+          case 'gif':
+            //sendGifMessage(senderID);
+            break;
+    
+          case 'audio':
+            //sendAudioMessage(senderID);
+            break;
+    
+          case 'video':
+            //sendVideoMessage(senderID);
+            break;
+    
+          case 'file':
+            //sendFileMessage(senderID);
+            break;
+    
+          case 'button':
+            //sendButtonMessage(senderID);
+            break;
+    
+          case 'generic':
+            //sendGenericMessage(senderID);
+            break;
+    
+          case 'receipt':
+            //sendReceiptMessage(senderID);
+            break;
+    
+          case 'quick reply':
+            //sendQuickReply(senderID);
+            break        
+    
+          case 'read receipt':
+            //sendReadReceipt(senderID);
+            break        
+    
+          case 'typing on':
+            //sendTypingOn(senderID);
+            break        
+    
+          case 'typing off':
+            //sendTypingOff(senderID);
+            break        
+    
+          case 'user info':
+            //if(firstName)
+                //sendTextMessage(senderID,firstName);
+            break        
+    
+          case 'add menu':
+            addPersistentMenu();
+            break        
+    
+          case 'remove menu':
+            //removePersistentMenu();
+            break
+        }
+      }
+      ///////////////////////////////////////////////////////////
     }
     else if (received_message.attachments) {//(2)
       //https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start#setup-complete
@@ -236,7 +253,13 @@ function handlePostback(sender_psid, received_postback) {
     }
     callSendAPI('messages', response);
   }
+
+  
 }
+
+
+
+
 function callSendAPI(style, response) {
   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
   // Send the HTTP request to the Messenger Platform
