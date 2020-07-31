@@ -119,27 +119,27 @@ function handlePostback(sender_psid, received_postback) {
                         "url": "https://www.github.com/hidang",
                         "webview_height_ratio": "full"
                     },
-                    {
-                      "title":"🗄 MORE...",
-                      "type":"nested",//nhiều menumenu...
-                      "call_to_actions":[
-                        {
-                          "title":"Who am I",
-                          "type":"postback",
-                          "payload":"WHO"
-                        },
-                        {
-                          "title":"Trang kế tiếp",
-                          "type":"postback",
-                          "payload":"next_page"
-                        },
-                        {
-                          "title":"Contact Info",
-                          "type":"postback",
-                          "payload":"CONTACT"
-                        }
-                      ]
-                    }
+                    // {
+                    //   "title":"🗄 MORE...",
+                    //   "type":"nested",//nhiều menumenu...
+                    //   "call_to_actions":[
+                    //     {
+                    //       "title":"Who am I",
+                    //       "type":"postback",
+                    //       "payload":"WHO"
+                    //     },
+                    //     {
+                    //       "title":"Trang kế tiếp",
+                    //       "type":"postback",
+                    //       "payload":"next_page"
+                    //     },
+                    //     {
+                    //       "title":"Contact Info",
+                    //       "type":"postback",
+                    //       "payload":"CONTACT"
+                    //     }
+                    //   ]
+                    // }
                 ]
             }
         ]
@@ -195,9 +195,9 @@ function callSendAPI(style, response) {
     "json": response
   }, (err, res, body) => {
     if (!err) {
-      console.log('message: ' + response +' ĐÃ ĐƯỢC GỬI!: ' +err);
+      console.log('message: ' + response +' ĐÃ ĐƯỢC GỬI!: ' +err.message);
     } else {
-      console.error("THẤT BẠI to send message: " + err);
+      console.error("THẤT BẠI to send message: " + err.message);
     }
   }); 
 }
