@@ -52,21 +52,15 @@ app.post("/webhook", (req, res) => {
     //console.log(body);
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
-  
-      // Iterates over each entry - there may be multiple if batched
       body.entry.forEach(function(entry) {
-        // Gets the message. entry.messaging is an array, but 
-        // will only ever contain one message, so we get index 0
-        let webhook_event = entry.messaging[0];
-        //console.log(webhook_event);
 
-        // Get the sender PSID
+        let webhook_event = entry.messaging[0];
+
         let sender_psid = webhook_event.sender.id;
         //console.log('Sender PSID: ' + sender_psid);
         console.log('EVEN VAOPOOOOOOOOO!!!!!!!');
         console.log(webhook_event);
-        // Check if the event is a message or postback and
-        // pass the event to the appropriate handler function
+
         if (webhook_event.message) {
           xuly.handleMessage(sender_psid, webhook_event.message);        
         } else if (webhook_event.postback) {//(2)
