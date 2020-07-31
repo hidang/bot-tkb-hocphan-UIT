@@ -280,7 +280,7 @@ function callSendAPI(style, response) {
 function addPersistentMenu(){
   request({
      url: 'https://graph.facebook.com/v7.0/me/messenger_profile',
-     qs: { access_token: PAGE_ACCESS_TOKEN },
+     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
      method: 'POST',
      json:{
    "get_started":{
