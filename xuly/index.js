@@ -97,7 +97,9 @@ function handlePostback(sender_psid, received_postback) {
   }
   else if (payload === '<postback_payload>') {//NÚT START
     //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
-    let response2 = {// tao menu cho user
+    let response2;
+    response2 = {// tao menu cho user
+      
       "psid": sender_psid,
       "persistent_menu": [
             {
