@@ -195,9 +195,9 @@ function callSendAPI(style, response) {
     "json": response
   }, (err, res, body) => {
     if (!err) {
-      console.log('message: ' + response +' ĐÃ ĐƯỢC GỬI!: ' +err.message);
+      console.log('message: ' + response +' ĐÃ ĐƯỢC GỬI!: ' +err);
     } else {
-      console.error("THẤT BẠI to send message: " + err.message);
+      console.error("THẤT BẠI to send message: " + err);
     }
   }); 
 }
