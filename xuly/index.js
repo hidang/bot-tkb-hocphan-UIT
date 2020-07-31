@@ -34,6 +34,9 @@ function handleMessage(sender_psid, received_message) {
       // Gets the URL of the message attachment
       let attachment_url = received_message.attachments[0].payload.url;
       response = {
+        "recipient": {
+          "id": sender_psid
+        },
         "attachment": {
           "type": "template",
           "payload": {
@@ -114,7 +117,7 @@ function handlePostback(sender_psid, received_postback) {
                         "title": "Trang chủ",
                         "url": "https://www.github.com/hidang",
                         "webview_height_ratio": "full"
-                    },
+                    }
                     // {
                     //   "title":"MORE",
                     //   "type":"nested",//nhiều menumenu...
