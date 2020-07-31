@@ -144,7 +144,7 @@ function handlePostback(sender_psid, received_postback) {
             }
         ]
     }
-    callSendAPI('messenger_profile', response);//do not "custom_user_settings" -> web se ko hien ra
+    callSendAPI('custom_user_settings', response);//do not "custom_user_settings" -> web se ko hien ra
     
     // sender: { id: '3006492652803294' },
     // recipient: { id: '104124098046144' },
