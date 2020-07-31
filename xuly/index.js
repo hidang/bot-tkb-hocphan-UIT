@@ -1,8 +1,6 @@
 require('dotenv').config();
 const request = require('request');
 
-
-
 function handleMessage(sender_psid, received_message) {
     // var message = received_message;
     var isEcho = received_message.is_echo;
@@ -26,7 +24,7 @@ function handleMessage(sender_psid, received_message) {
           "text": `You sent the message: "${received_message.text}".`
         }
       }
-      callSendAPI('message', response);// Sends the response message
+      callSendAPI('messages', response);// Sends the response message
 
     }
     else if (received_message.attachments) {//(2)
@@ -64,12 +62,11 @@ function handleMessage(sender_psid, received_message) {
         }
       }
       
-      callSendAPI('message', response);// Sends the response message
+      callSendAPI('messages', response);// Sends the response message
     } 
     else if (received_message.quickReply) {
     }
 }
-  
 function handlePostback(sender_psid, received_postback) {
   let response;// response is a JSON
   
@@ -84,6 +81,7 @@ function handlePostback(sender_psid, received_postback) {
       },
       "message": {"text": "Thanks!"} 
     }
+    callSendAPI('messages', response);
   } 
   else if (payload === 'no') {
     response = { 
@@ -92,6 +90,7 @@ function handlePostback(sender_psid, received_postback) {
       },
       "message": {"text": "Oops, try sending another image." }
     }
+    callSendAPI('messages', response);
   }
   else if (payload === '<postback_payload>') {//NÚT START
     //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
@@ -177,10 +176,9 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
     }
-    callSendAPI('message', response);
+    callSendAPI('messages', response);
   }
 }
-
 function callSendAPI(style, response) {
   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
   // Send the HTTP request to the Messenger Platform
@@ -197,13 +195,8 @@ function callSendAPI(style, response) {
     }
   }); 
 }
-
-
-
-
 module.exports = { //chìa ra function ....
   handleMessage: handleMessage,
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
 };
-
