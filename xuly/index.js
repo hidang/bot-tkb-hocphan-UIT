@@ -37,27 +37,29 @@ function handleMessage(sender_psid, received_message) {
         "recipient": {
           "id": sender_psid
         },
-        "attachment": {
-          "type": "template",
-          "payload": {
-            "template_type": "generic",
-            "elements": [{
-              "title": "Is this the right picture?",
-              "subtitle": "Tap a button to answer.",
-              "image_url": attachment_url,
-              "buttons": [
-                {
-                  "type": "postback",
-                  "title": "OKOKO!",
-                  "payload": "yes",
-                },
-                {
-                  "type": "postback",
-                  "title": "No!",
-                  "payload": "no",
-                }
-              ],
-            }]
+        "message":{
+          "attachment": {
+            "type": "template",
+            "payload": {
+              "template_type": "generic",
+              "elements": [{
+                "title": "Is this the right picture?",
+                "subtitle": "Tap a button to answer.",
+                "image_url": attachment_url,
+                "buttons": [
+                  {
+                    "type": "postback",
+                    "title": "OKOKO!",
+                    "payload": "yes",
+                  },
+                  {
+                    "type": "postback",
+                    "title": "No!",
+                    "payload": "no",
+                  }
+                ],
+              }]
+            }
           }
         }
       }
