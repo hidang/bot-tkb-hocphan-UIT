@@ -97,7 +97,7 @@ function handlePostback(sender_psid, received_postback) {
   else if (payload === '<postback_payload>') {//NÚT START
     //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
     response = {// tao menu cho user
-      "psid": sender_psid,
+      //"psid": sender_psid,
       "persistent_menu": [
             {
                 "locale": "default",
@@ -110,7 +110,7 @@ function handlePostback(sender_psid, received_postback) {
                     },
                     {
                         "type": "postback",
-                        "title": "📜 Hướng dẫn",
+                        "title": "📜 Hướng dẫnnnnnnnnnnnnn",
                         "payload": "huong_dan"
                     },
                     {
@@ -185,8 +185,6 @@ function handlePostback(sender_psid, received_postback) {
 }
 
 
-
-
 function callSendAPI(style, response) {
   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
   // Send the HTTP request to the Messenger Platform
@@ -205,7 +203,7 @@ function callSendAPI(style, response) {
 }
 
 
-module.exports = { //chìa ra function ....
+module.exports = { //chìa ra function() để index.js khác có thể reques và dùng ....
   handleMessage: handleMessage,
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
