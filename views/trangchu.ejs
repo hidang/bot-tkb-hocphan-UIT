@@ -1,18 +1,97 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Trang chủ fanpage DOVANBOT</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="socket.io/socket.io.js"></script>
-        <script src="xulyweb.js"></script> <!--  con trỏ lúc này đang ở thư mục public luôn nghe -->
 
-        <link rel="stylesheet" type="text/css" href="layout.css"/><!--  con trỏ lúc này đang ở thư mục public luôn nghe -->
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Trang chủ fanpage DOVANBOT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="xulyweb.js"></script> <!--  con trỏ lúc này đang ở thư mục public luôn nghe -->
+    <link rel="stylesheet" type="text/css" href="layout.css" /><!--  con trỏ lúc này đang ở thư mục public luôn nghe -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
 
-    <body>
-        <h1>Hello Chương!!!</h1>
-    </body>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1 class="heading" id="heading1">DOVANBOT</h1>
+            <div class="date">
+                <h2>xin chao cac ban</h2>
+            </div>
+            <table border="1">
+                <tr>
+                    <th colspan="3">THÔNG TIN SINH VIÊN</th>
+                </tr>
+                <tr>
+                    <td>ID của bạn</td>
+                    <td>Mã lớp học đã chọn </td>
+                    <td><a href="">TKB của bạn</a></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <!-- <td><input type="text"></td> -->
+                </tr>
+            </table>
+        </div>
+        <!-- -----------------------account--------------- -->
+        <!-- <div class="account-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-container">
+                            <div class="form-btn">
+                                <span onclick="login()">Login</span>
+                                <span onclick="register()">Resigter</span>
+                                <hr id="Indicator">
+                                <form id="LoginForm">
+                                    <input type="text" placeholder="Username">
+                                    <input type="password" placeholder="Password">
+                                    <button type="submit" class="btn">Login</button>
+                                    <a href="">Forgot password</a>
+                                </form>
+
+                                <form id="RegForm">
+                                    <input type="text" placeholder="Username">
+                                    <input type="email" placeholder="Email">
+                                    <input type="password" placeholder="Password">
+                                    <button type="submit" class="btn">Resigter</button>
+                                    <a href="">Forgot password</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <form>
+        <input type="text" placeholder="dien ten cac ban vao day">
+        <textarea cols="100" rows="10" placeholder="Một chút nhận xét <3"></textarea>
+        <input type="submit" value="gui tin nhan">
+    </form>
+    <script>
+        var LoginForm = document.getElementById("LoginForm")
+        var RegForm = document.getElementById("RegForm")
+        var Indicator = document.getElementById("Indicator")
+
+        function register() {
+            RegForm.style.transform = "translateX(0px)";
+            LoginForm.style.transform = "translateX(0px)";
+            Indicator.style.transform = "translateX(100px)";
+        }
+
+        function login() {
+            RegForm.style.transform = "translateX(300px)";
+            LoginForm.style.transform = "translateX(300px)";
+            Indicator.style.transform = "translateX(0px)";
+        }    -->
+    </script>
+</body>
 
 
 </html>
