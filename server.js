@@ -136,4 +136,6 @@ module.exports = {
   //chìa ra function() để .js khác có thể reques và dùng ....
   them_id: them_id,
   FINDtoADDID: FINDtoADDID,
+  client,
+  app,
 };
