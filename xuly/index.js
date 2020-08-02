@@ -1,7 +1,7 @@
 require("dotenv").config();
 const request = require("request");
 const getserver = require("../server.js");
-let client = getserver.getclient_mongodb;
+const client = getserver.getclient_mongodb;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = {
   //chìa ra function() để server.js khác có thể reques và dùng ....
