@@ -21,52 +21,41 @@ const uri =
   "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?authSource=admin&replicaSet=atlas-wrg027-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 module.exports = {
-  //chìa ra function() để server.js khác có thể reques và dùng ....
+  //chìa ra function() để .js khác có thể reques và dùng ....
   them_id: them_id,
   FINDtoADDID: FINDtoADDID,
-  //callSendAPI: callSendAPI,
 };
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
+client.connect((err) => {
+  if (err) throw err;
+  console.log("->DA KET NOI database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
+});
 function them_id(sender_psid) {
-  client.connect((err) => {
-    var dbo = client.db("dovanbot");
-    var myobj = {
-      _id: sender_psid,
-    };
-    dbo.collection("user").insertOne(myobj, function (err, res) {
-      if (err) throw err;
-      console.log(sender_psid + ": inserted!!!!");
-      client.close();
-    });
+  var dbo = client.db("dovanbot");
+  var myobj = {
+    _id: sender_psid,
+  };
+  dbo.collection("user").insertOne(myobj, function (err, res) {
     if (err) throw err;
-    console.log("DA KET NOI them_id");
-    client.close();
+    console.log("DA them_id thanh cong!");
   });
 }
 function FINDtoADDID(sender_psid) {
-  let kq;
-  client.connect((err) => {
+  var kq = false;
+  var dbo = client.db("dovanbot");
+  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
-    console.log("DA KET NOI ()find_add");
-    var dbo = client.db("dovanbot");
-    dbo
-      .collection("user")
-      .findOne({ _id: sender_psid }, function (err, result) {
-        if (err) throw err;
-        if (result == null) {
-          kq = false;
-        } else {
-          kq = true;
-        }
-        client.close();
-      });
-    client.close();
+    console.log(result);
+    if (result == null) {
+      kq = false;
+    } else {
+      kq = true;
+    }
   });
   return kq;
 }
-
 /////////////////////////TODO: END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get("/", (req, res) => {
@@ -83,8 +72,9 @@ io.on("connection", function (socket) {
   //----------------------------------------------
   //nguoi dung ngat ket noi vào trang web
   socket.on("disconnect", function () {
-    console.log(socket.Username + " đã ngắt kết nối rồi nè!!!");
+    console.log(socket.id + " đã ngắt kết nối rồi nè!!!");
   });
+  //console.log(FINDtoADDID("123"));
 });
 ////////////////////////////END_SOKET_IO//////////////////////////////////////////////////
 
