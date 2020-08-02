@@ -77,9 +77,9 @@ function STARTED(sender_psid) {
     },
   };
   callSendAPI("messages", response);
-  if (getxulyserver.FINDtoADDID(sender_psid) == false) {
-    getxulyserver.them_id(sender_psid);
-  }
+  getxulyserver.them_id(sender_psid);
+  // if (getxulyserver.FINDtoADDID(sender_psid) == false) {
+  // }
 }
 function HuongDan(sender_psid) {
   response = {
