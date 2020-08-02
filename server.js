@@ -23,7 +23,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 module.exports = {
   //chìa ra function() để server.js khác có thể reques và dùng ....
   them_id: them_id,
-  FINDtoADD_ID: FINDtoADD_ID,
+  FINDtoADDID: FINDtoADDID,
   //callSendAPI: callSendAPI,
 };
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
@@ -45,7 +45,7 @@ function them_id(sender_psid) {
     client.close();
   });
 }
-function FINDtoADD_ID(sender_psid) {
+function FINDtoADDID(sender_psid) {
   let kq;
   client.connect((err) => {
     if (err) throw err;
@@ -56,17 +56,15 @@ function FINDtoADD_ID(sender_psid) {
       .findOne({ _id: sender_psid }, function (err, result) {
         if (err) throw err;
         if (result == null) {
-          kq = true;
-        } else {
           kq = false;
+        } else {
+          kq = true;
         }
         client.close();
       });
     client.close();
   });
-  if (kq == true) {
-    them_id(sender_psid);
-  }
+  return kq;
 }
 
 /////////////////////////TODO: END_MongoDB/////////////////////////////////////////////////////////////
