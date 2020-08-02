@@ -1,7 +1,10 @@
 require("dotenv").config();
 const request = require("request");
-const getserver = require("../server.js");
-const client = getserver.getclient_mongodb;
+
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?authSource=admin&replicaSet=atlas-wrg027-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = {
   //chìa ra function() để server.js khác có thể reques và dùng ....

@@ -12,19 +12,9 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 const server = require("http").Server(app);
 server.listen(process.env.PORT || 3000, () =>
-  console.log("Server is listening")
+  console.log("Server is listeningggggggggggg")
 );
 const io = require("socket.io")(server);
-const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-module.exports = {
-  getclient_mongodb: getclient_mongodb,
-};
-function getclient_mongodb() {
-  return client;
-}
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
