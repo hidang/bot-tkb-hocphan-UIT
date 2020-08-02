@@ -88,10 +88,12 @@ function HuongDan(sender_psid) {
         payload: {
           template_type: "button",
           text:
-            "Chat bot với 2 tính năng chính:\n1: Tìm kiếm mã lớp học để đkhp UIT\n2: Xuất hình ảnh tkb từ danh sách mã môn học mà bạn đã nhập vào\n" +
-            "Ngoài ra chức năng login sẽ tạo tài khoản và lưu dữ liệu cho bạn\n" +
-            "Trang web liên kết sẽ sử dùng cùng cơ sở dữ liệu với chatbot nên chỉ cần login vào web là có thể xem tkb của bạn <3" +
-            "Lựa chọn các chức năng tại menu góc dưới nhé.",
+            "Chat bot với 2 tính năng chính:\n" +
+            "📌 1: Tìm kiếm và tạo danh sách mã lớp học để tạo tkb đkhp UIT\n" +
+            "📌 2: Xuất hình ảnh tkb từ danh sách mã môn học mà bạn đã nhập vào\n" +
+            "📦 Ngoài ra chức năng login sẽ tạo tài khoản và lưu dữ liệu cho bạn\n" +
+            "📦 Trang web liên kết sẽ sử dùng cùng cơ sở dữ liệu với chatbot nên chỉ cần login vào web là có thể xem tkb của bạn <3 \n" +
+            "👇 Lựa chọn các chức năng tại menu góc dưới nhé.",
           buttons: [
             {
               type: "web_url",
