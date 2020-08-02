@@ -1,6 +1,6 @@
 require("dotenv").config();
 const request = require("request");
-const getxulyserver = require("../server.js");
+const getxulyserver = require(".././server.js");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = {
   //chìa ra function() để server.js khác có thể reques và dùng ....

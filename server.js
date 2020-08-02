@@ -20,11 +20,7 @@ const MongoClient = require("mongodb").MongoClient;
 const uri =
   "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?authSource=admin&replicaSet=atlas-wrg027-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true";
 const client = new MongoClient(uri, { useNewUrlParser: true });
-module.exports = {
-  //chìa ra function() để .js khác có thể reques và dùng ....
-  them_id: them_id,
-  FINDtoADDID: FINDtoADDID,
-};
+
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
@@ -39,7 +35,7 @@ function them_id(sender_psid) {
   };
   dbo.collection("user").insertOne(myobj, function (err, res) {
     if (err) throw err;
-    console.log("DA them_id thanh cong!");
+    console.log("DA them_id: " + sender_psid + " thanh cong!");
   });
 }
 function FINDtoADDID(sender_psid) {
@@ -135,3 +131,9 @@ app.post("/webhook", (req, res) => {
   }
 });
 // END// Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
+
+module.exports = {
+  //chìa ra function() để .js khác có thể reques và dùng ....
+  them_id: them_id,
+  FINDtoADDID: FINDtoADDID,
+};
