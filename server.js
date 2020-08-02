@@ -16,10 +16,7 @@ server.listen(process.env.PORT || 3000, () =>
 const io = require("socket.io")(server);
 
 const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://hidang:" +
-  process.env.pass_ne +
-  "@cluster0.wdxpd.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = process.env.URI_NE;
 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
