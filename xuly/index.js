@@ -78,7 +78,7 @@ function STARTED(sender_psid) {
     },
   };
   callSendAPI("messages", response);
-  xulyserver.them_id(sender_psid);
+  them_id(sender_psid);
   // if (getxulyserver.FINDtoADDID(sender_psid) == false) {
   // }
 }
