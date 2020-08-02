@@ -42,12 +42,13 @@ function FINDtoADDID(sender_psid) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
-    if (result == null) {
+    if (result === null) {
       kq = false;
     } else {
       kq = true;
     }
   });
+  console.log(kq + "NEEEEEENEEEEEE");
   return kq;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
@@ -222,7 +223,7 @@ function handlePostback(sender_psid, received_postback) {
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
-      if (FINDtoADDID(sender_psid) == false) {
+      if (FINDtoADDID(sender_psid) === false) {
         them_id(sender_psid);
       }
       break;
