@@ -1,21 +1,30 @@
 "use strict";
 ///////////////////////////////////////////////SETUP_SERVER//////////////////////////////////////////////////
-var xuly = require("./xuly/index.js"); //xuly tin nhan
+const xuly = require("./xuly/index.js"); //xuly tin nhan
 require("dotenv").config(); //Thư viện dùng .env -> dấu token pass...
 
-var express = require("express");
-var bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
 
-var app = express();
+const app = express();
 app.use(bodyParser.json(), express.static("public")); // creates express http server
 app.set("view engine", "ejs");
 app.set("views", "./views");
-var server = require("http").Server(app);
+const server = require("http").Server(app);
 server.listen(process.env.PORT || 3000, () =>
   console.log("Server is listening")
 );
-var io = require("socket.io")(server);
-
+const io = require("socket.io")(server);
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+module.exports = {
+  getclient_mongodb: getclient_mongodb,
+};
+function getclient_mongodb() {
+  return client;
+}
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
