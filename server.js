@@ -42,6 +42,7 @@ function FINDtoADDID(sender_psid) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
+    console.log(result + "!!@@@NEEEEEENEEEEEE");
     if (result === null) {
       kq = false;
     } else {
