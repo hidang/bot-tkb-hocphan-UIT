@@ -1,10 +1,7 @@
 require("dotenv").config();
 const request = require("request");
-
-const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const getserver = require("../server.js");
+let client = getserver.getclient_mongodb;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = {
   //chìa ra function() để server.js khác có thể reques và dùng ....
