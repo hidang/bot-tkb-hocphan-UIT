@@ -43,7 +43,7 @@ function FINDtoADDID(sender_psid) {
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
     console.log(result);
-    if (result._id === null) {
+    if (result._id == null) {
       kq = false;
     } else {
       kq = true;
@@ -224,7 +224,8 @@ function handlePostback(sender_psid, received_postback) {
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
-      if (FINDtoADDID(sender_psid) === false) {
+      let kqq = FINDtoADDID(sender_psid);
+      if (kqq == false) {
         them_id(sender_psid);
       }
       break;
