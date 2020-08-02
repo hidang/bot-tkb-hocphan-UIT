@@ -43,7 +43,7 @@ function FINDtoADDID(sender_psid) {
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
     console.log(result);
-    if (result != null) {
+    if (result._id != null) {
       kq = true;
     } else {
       kq = false;
