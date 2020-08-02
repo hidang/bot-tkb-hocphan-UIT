@@ -23,12 +23,12 @@ function CHUAHOANTHANH(sender_psid) {
             {
               type: "postback",
               title: "📜 Hướng dẫn sử dụng",
-              payload: "danhsach_monhoc",
+              payload: "huong_dan",
             },
             {
               type: "web_url",
               url: "https://dovanbot2.herokuapp.com/",
-              title: "🐥 Trang chủ",
+              title: "🐥 Web liênkếtvớichatbot",
             },
           ],
         },
@@ -56,7 +56,7 @@ function STARTED(sender_psid) {
         payload: {
           template_type: "button",
           text:
-            "<3 Chào mừng bạn đến với DOVANBOT, lựa chọn các chức năng tại menu nhé.",
+            "<3 Chào mừng bạn đến với DOVANBOT, lựa chọn các chức năng tại menu dưới góc nhé.",
           buttons: [
             {
               title: "📜 Hướng dẫn sử dụng",
@@ -76,7 +76,34 @@ function STARTED(sender_psid) {
   callSendAPI("messages", response);
 }
 function HuongDan(sender_psid) {
-  STARTED(sender_psid);
+  response = {
+    //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
+    //"text":"What do you want to do next?",
+    recipient: {
+      id: sender_psid,
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text:
+            "Chat bot với 2 tính năng chính:\n1: Tìm kiếm mã lớp học để đkhp UIT\n2: Xuất hình ảnh tkb từ danh sách mã môn học mà bạn đã nhập vào\n" +
+            "Ngoài ra chức năng login sẽ tạo tài khoản và lưu dữ liệu cho bạn\n" +
+            "Trang web liên kết sẽ sử dùng cùng cơ sở dữ liệu với chatbot nên chỉ cần login vào web là có thể xem tkb của bạn <3" +
+            "Lựa chọn các chức năng tại menu góc dưới nhé.",
+          buttons: [
+            {
+              type: "web_url",
+              url: "https://dovanbot2.herokuapp.com/",
+              title: "🐥 Trang web liên kết chatbot",
+            },
+          ],
+        },
+      },
+    },
+  };
+  callSendAPI("messages", response);
 }
 function LOGIN(sender_psid) {}
 function LOGOUT(sender_psid) {}
