@@ -1,6 +1,6 @@
 require("dotenv").config();
 const request = require("request");
-const xulyserver = require("./server.js");
+var xulyserver = require("./server.js");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
