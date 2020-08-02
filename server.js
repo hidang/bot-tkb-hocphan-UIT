@@ -224,7 +224,7 @@ function handlePostback(sender_psid, received_postback) {
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
-      if (getxulyserver.FINDtoADDID(sender_psid) == false) {
+      if (FINDtoADDID(sender_psid) == false) {
         them_id(sender_psid);
       }
       break;
