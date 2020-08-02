@@ -1,6 +1,7 @@
 require("dotenv").config();
 const request = require("request");
-const getxulyserver = require(".././server.js");
+const xulyserver = require(".././server.js");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = {
   //chìa ra function() để server.js khác có thể reques và dùng ....
@@ -77,7 +78,7 @@ function STARTED(sender_psid) {
     },
   };
   callSendAPI("messages", response);
-  getxulyserver.them_id(sender_psid);
+  xulyserver.them_id(sender_psid);
   // if (getxulyserver.FINDtoADDID(sender_psid) == false) {
   // }
 }
