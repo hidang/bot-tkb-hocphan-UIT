@@ -64,16 +64,6 @@ function STARTED(sender_psid) {
               payload: "huong_dan",
             },
             {
-              title: "✏ Input danh sách mã lớp",
-              type: "postback",
-              payload: "input_code_class",
-            },
-            {
-              title: "📲 Xuất hình ảnh tkb",
-              type: "postback",
-              payload: "get_iamge",
-            },
-            {
               type: "web_url",
               url: "https://dovanbot2.herokuapp.com/",
               title: "🐥 Trang web liên kết chatbot",
