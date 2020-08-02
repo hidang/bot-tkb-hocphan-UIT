@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 ///////////////////////////////////////////////SETUP_SERVER//////////////////////////////////////////////////
 const xuly = require("./xuly/index.js"); //xuly tin nhan
 require("dotenv").config(); //Thư viện dùng .env -> dấu token pass...
