@@ -1,11 +1,55 @@
 require("dotenv").config();
 const request = require("request");
+
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = {
   //chìa ra function() để server.js khác có thể reques và dùng ....
   handleMessage: handleMessage,
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
 };
+
+/////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
+function ADD_id(sender_psid) {
+  client.connect((err) => {
+    var dbo = client.db("dovanbot");
+    var myobj = {
+      _id: sender_psid,
+    };
+    dbo.collection("user").insertOne(myobj, function (err, res) {
+      if (err) throw err;
+      console.log(sender_psid + ": inserted!!!!");
+      client.close();
+    });
+    if (err) throw err;
+    console.log("DA KET NOI");
+    client.close();
+  });
+}
+function FINDtoADD_ID(sender_psid) {
+  client.connect((err) => {
+    if (err) throw err;
+    console.log("DA KET NOI ()find_add");
+    var dbo = client.db("dovanbot");
+    dbo
+      .collection("user")
+      .findOne({ _id: sender_psid }, function (err, result) {
+        if (err) throw err;
+        if (result == null) {
+          ADD_id(sender_psid);
+        }
+        client.close();
+      });
+    client.close();
+  });
+}
+
+/////////////////////////TODO: END_MongoDB/////////////////////////////////////////////////////////////
+
 function CHUAHOANTHANH(sender_psid) {
   response = {
     //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
@@ -44,6 +88,7 @@ function STARTED(sender_psid) {
   // recipient: { id: '104124098046144' },
   // timestamp: 1596112909237,
   // postback: { title: 'Get Started', payload: 'GET_STARTED_PAYLOAD' }
+  FINDtoADD_ID(sender_psid);
   response = {
     //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
     //"text":"What do you want to do next?",
@@ -89,10 +134,10 @@ function HuongDan(sender_psid) {
           template_type: "button",
           text:
             "Chat bot với 2 tính năng chính:\n" +
-            "📌 1: Tìm kiếm và tạo danh sách mã lớp học để tạo tkb đkhp UIT\n" +
+            "📌 1: Tìm kiếm và lưu danh sách mã lớp học để tạo tkb đkhp UIT\n" +
             "📌 2: Xuất hình ảnh tkb từ danh sách mã môn học mà bạn đã nhập vào\n" +
             "📦 Ngoài ra chức năng login sẽ tạo tài khoản và lưu dữ liệu cho bạn\n" +
-            "📦 Trang web liên kết sẽ sử dùng cùng cơ sở dữ liệu với chatbot nên chỉ cần login vào web là có thể xem tkb của bạn <3 \n" +
+            "📦 Trang web liên kết sẽ sử dụng cùng cơ sở dữ liệu với chatbot nên chỉ cần login vào web là có thể xem tkb của bạn <3 \n" +
             "👇 Lựa chọn các chức năng tại menu góc dưới nhé.",
           buttons: [
             {
