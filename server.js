@@ -11,13 +11,16 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 const server = require("http").Server(app);
 server.listen(process.env.PORT || 3000, () =>
-  console.log("Server is listeningggggggggggg")
+  console.log("Server is listeningggggggggggg nè")
 );
 const io = require("socket.io")(server);
 
 const MongoClient = require("mongodb").MongoClient;
 const uri =
-  "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?authSource=admin&replicaSet=atlas-wrg027-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true";
+  "mongodb+srv://hidang:" +
+  process.env.pass_ne +
+  "@cluster0.wdxpd.mongodb.net/<dbname>?retryWrites=true&w=majority";
+
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
@@ -25,7 +28,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 client.connect((err) => {
   if (err) throw err;
-  console.log("->DA KET NOI database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
+  console.log("->DA KET NOI thành công database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
 });
 function them_id(sender_psid) {
   var dbo = client.db("dovanbot");
@@ -78,7 +81,6 @@ io.on("connection", function (socket) {
 app.get("/webhook", (req, res) => {
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = process.env.VALIDATION_TOKEN;
-  console.log("VAO NEEEE");
   // Parse the query params
   let mode = req.query["hub.mode"];
   let token = req.query["hub.verify_token"];
@@ -89,7 +91,7 @@ app.get("/webhook", (req, res) => {
     // Checks the mode and token sent is correct
     if (mode === "subscribe" && token === VERIFY_TOKEN) {
       // Responds with the challenge token from the request
-      console.log("WEBHOOK_VERIFIED");
+      //console.log("WEBHOOK_VERIFIED");
       res.status(200).send(challenge);
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
@@ -112,7 +114,7 @@ app.post("/webhook", (req, res) => {
       let sender_psid = webhook_event.sender.id;
       //console.log('Sender PSID: ' + sender_psid);
       console.log("EVEN VAOPOOOOOOOOO!!!!!!!");
-      console.log(webhook_event);
+      //TODO:console.log(webhook_event);
 
       if (webhook_event.message) {
         handleMessage(sender_psid, webhook_event.message);
@@ -255,9 +257,9 @@ function callSendAPI(style, response) {
     },
     (err, res, body) => {
       if (!err) {
-        console.log("message: " + response + " ĐÃ ĐƯỢC GỬI!: " + err);
+        //console.log("message: " + response + " ĐÃ ĐƯỢC GỬI!: " + err);
       } else {
-        console.error("THẤT BẠI to send message: " + err);
+        console.error("THẤT BẠI to send message in callSendAPI(): " + err);
       }
     }
   );
