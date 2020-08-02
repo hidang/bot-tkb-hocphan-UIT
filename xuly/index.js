@@ -14,7 +14,7 @@ module.exports = {
 };
 
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
-function ADD_id(sender_psid) {
+function them_id(sender_psid) {
   client.connect((err) => {
     var dbo = client.db("dovanbot");
     var myobj = {
@@ -26,7 +26,7 @@ function ADD_id(sender_psid) {
       client.close();
     });
     if (err) throw err;
-    console.log("DA KET NOI");
+    console.log("DA KET NOI them_id");
     client.close();
   });
 }
@@ -40,12 +40,17 @@ function FINDtoADD_ID(sender_psid) {
       .findOne({ _id: sender_psid }, function (err, result) {
         if (err) throw err;
         if (result == null) {
-          ADD_id(sender_psid);
+          let kq = true;
+        } else {
+          kq = false;
         }
         client.close();
       });
     client.close();
   });
+  if (kq == true) {
+    them_id(sender_psid);
+  }
 }
 
 /////////////////////////TODO: END_MongoDB/////////////////////////////////////////////////////////////
@@ -88,7 +93,6 @@ function STARTED(sender_psid) {
   // recipient: { id: '104124098046144' },
   // timestamp: 1596112909237,
   // postback: { title: 'Get Started', payload: 'GET_STARTED_PAYLOAD' }
-  FINDtoADD_ID(sender_psid);
   response = {
     //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
     //"text":"What do you want to do next?",
@@ -119,6 +123,7 @@ function STARTED(sender_psid) {
     },
   };
   callSendAPI("messages", response);
+  FINDtoADD_ID(sender_psid);
 }
 function HuongDan(sender_psid) {
   response = {
