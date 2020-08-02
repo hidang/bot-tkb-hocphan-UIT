@@ -3,12 +3,6 @@ const request = require("request");
 const xulyserver = require(".././server.js");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-module.exports = {
-  //chìa ra function() để server.js khác có thể reques và dùng ....
-  handleMessage: handleMessage,
-  handlePostback: handlePostback,
-  callSendAPI: callSendAPI,
-};
 
 function CHUAHOANTHANH(sender_psid) {
   response = {
@@ -78,7 +72,7 @@ function STARTED(sender_psid) {
     },
   };
   callSendAPI("messages", response);
-  them_id(sender_psid);
+  xulyserver.them_id(sender_psid);
   // if (getxulyserver.FINDtoADDID(sender_psid) == false) {
   // }
 }
@@ -245,3 +239,10 @@ function handlePostback(sender_psid, received_postback) {
       break;
   }
 }
+
+module.exports = {
+  //chìa ra function() để server.js khác có thể reques và dùng ....
+  handleMessage: handleMessage,
+  handlePostback: handlePostback,
+  callSendAPI: callSendAPI,
+};
