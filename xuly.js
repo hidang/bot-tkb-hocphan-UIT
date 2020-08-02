@@ -72,9 +72,6 @@ function STARTED(sender_psid) {
     },
   };
   callSendAPI("messages", response);
-  xulyserver.them_id(sender_psid);
-  // if (getxulyserver.FINDtoADDID(sender_psid) == false) {
-  // }
 }
 function HuongDan(sender_psid) {
   response = {
@@ -223,6 +220,9 @@ function handlePostback(sender_psid, received_postback) {
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
+      xulyserver.them_id(sender_psid);
+      // if (getxulyserver.FINDtoADDID(sender_psid) == false) {
+      // }
       break;
     case "huong_dan":
       HuongDan(sender_psid);
