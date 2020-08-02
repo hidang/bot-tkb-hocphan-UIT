@@ -6,7 +6,37 @@ module.exports = {
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
 };
-
+function CHUAHOANTHANH(sender_psid) {
+  response = {
+    //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
+    //"text":"What do you want to do next?",
+    recipient: {
+      id: sender_psid,
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Thật xin lỗi: server chưa update <3",
+          buttons: [
+            {
+              type: "postback",
+              title: "📜 Hướng dẫn sử dụng",
+              payload: "danhsach_monhoc",
+            },
+            {
+              type: "web_url",
+              url: "https://dovanbot2.herokuapp.com/",
+              title: "🐥 Trang chủ",
+            },
+          ],
+        },
+      },
+    },
+  };
+  callSendAPI("messages", response);
+}
 function STARTED(sender_psid) {
   //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
 
@@ -26,22 +56,27 @@ function STARTED(sender_psid) {
         payload: {
           template_type: "button",
           text:
-            "Chào mừng bạn đến với DOVANBOT, xin lựa chọn chức năng bạn cần.\n Input - nhập danh sách mã lớp học để lấy hình thời khóa biểu của bạn \n Sign in/up - để đồng bộ data với web",
+            "<3 Chào mừng bạn đến với DOVANBOT, lựa chọn các chức năng tại menu nhé.",
           buttons: [
             {
+              title: "📜 Hướng dẫn sử dụng",
               type: "postback",
-              title: " ⌨ Input danh sách",
-              payload: "danhsach_monhoc",
+              payload: "huong_dan",
             },
             {
+              title: "✏ Input danh sách mã lớp",
               type: "postback",
-              title: "🏷 Sign in/up",
-              payload: "login_ne",
+              payload: "input_code_class",
+            },
+            {
+              title: "📲 Xuất hình ảnh tkb",
+              type: "postback",
+              payload: "get_iamge",
             },
             {
               type: "web_url",
               url: "https://dovanbot2.herokuapp.com/",
-              title: "🐥 Trang chủ",
+              title: "🐥 Trang web liên kết chatbot",
             },
           ],
         },
@@ -53,6 +88,8 @@ function STARTED(sender_psid) {
 function HuongDan(sender_psid) {
   STARTED(sender_psid);
 }
+function LOGIN(sender_psid) {}
+function LOGOUT(sender_psid) {}
 
 function callSendAPI(style, response) {
   //console.log('Sender PSID by callSendAPI: ' + sender_psid);
@@ -170,8 +207,15 @@ function handlePostback(sender_psid, received_postback) {
     case "huong_dan":
       HuongDan(sender_psid);
       break;
+    case "login":
+      LOGIN(sender_psid);
+      break;
+    case "logout":
+      LOGOUT(sender_psid);
+      break;
 
     default:
+      CHUAHOANTHANH(sender_psid);
       break;
   }
 }
