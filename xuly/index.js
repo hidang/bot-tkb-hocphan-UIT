@@ -31,6 +31,7 @@ function them_id(sender_psid) {
   });
 }
 function FINDtoADD_ID(sender_psid) {
+  let kq;
   client.connect((err) => {
     if (err) throw err;
     console.log("DA KET NOI ()find_add");
@@ -40,7 +41,7 @@ function FINDtoADD_ID(sender_psid) {
       .findOne({ _id: sender_psid }, function (err, result) {
         if (err) throw err;
         if (result == null) {
-          let kq = true;
+          kq = true;
         } else {
           kq = false;
         }
