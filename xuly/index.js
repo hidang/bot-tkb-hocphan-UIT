@@ -1,10 +1,6 @@
 require("dotenv").config();
 const request = require("request");
-
-const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://hidang:hidang582279@cluster0.wdxpd.mongodb.net/dovanbot?authSource=admin&replicaSet=atlas-wrg027-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const getxulyserver = require("../server.js");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = {
   //chìa ra function() để server.js khác có thể reques và dùng ....
@@ -12,49 +8,6 @@ module.exports = {
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
 };
-
-/////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
-function them_id(sender_psid) {
-  client.connect((err) => {
-    var dbo = client.db("dovanbot");
-    var myobj = {
-      _id: sender_psid,
-    };
-    dbo.collection("user").insertOne(myobj, function (err, res) {
-      if (err) throw err;
-      console.log(sender_psid + ": inserted!!!!");
-      client.close();
-    });
-    if (err) throw err;
-    console.log("DA KET NOI them_id");
-    client.close();
-  });
-}
-function FINDtoADD_ID(sender_psid) {
-  let kq;
-  client.connect((err) => {
-    if (err) throw err;
-    console.log("DA KET NOI ()find_add");
-    var dbo = client.db("dovanbot");
-    dbo
-      .collection("user")
-      .findOne({ _id: sender_psid }, function (err, result) {
-        if (err) throw err;
-        if (result == null) {
-          kq = true;
-        } else {
-          kq = false;
-        }
-        client.close();
-      });
-    client.close();
-  });
-  if (kq == true) {
-    them_id(sender_psid);
-  }
-}
-
-/////////////////////////TODO: END_MongoDB/////////////////////////////////////////////////////////////
 
 function CHUAHOANTHANH(sender_psid) {
   response = {
@@ -124,7 +77,7 @@ function STARTED(sender_psid) {
     },
   };
   callSendAPI("messages", response);
-  FINDtoADD_ID(sender_psid);
+  getxulyserver.FINDtoADD_ID(sender_psid);
 }
 function HuongDan(sender_psid) {
   response = {
