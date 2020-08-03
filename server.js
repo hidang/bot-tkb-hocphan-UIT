@@ -61,17 +61,13 @@ function ChangeTypeTyping(sender_psid, typing) {
   console.log(typing);
   var dbo = client.db("dovanbot");
   //var myquery = { _id: sender_psid };
-  //var newvalues = { $set: { type_typing: type } };
+  var newvalues = { $set: { type_typing: type } };
   dbo
     .collection("customers")
-    .updateOne(
-      { _id: sender_psid },
-      { $set: { type_typing: typing } },
-      function (err, res) {
-        if (err) throw err;
-        console.log("Up date typeTyping thanhcong");
-      }
-    );
+    .updateOne({ _id: sender_psid }, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("Up date typeTyping thanhcong");
+    });
 }
 function getTypeTyping(sender_psid) {
   let oktype = -1;
