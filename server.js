@@ -81,23 +81,25 @@ function getTypeTyping(sender_psid, oktype) {
   //   console.log(oktype);
   // }
   var dbo = client.db("dovanbot");
-  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
-    if (err) throw err;
-    //console.log(result);
-    //console.log(result._id);
-    //var resultt = result._id;
-    if (result == null) {
-      console.log(
-        "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
-          sender_psid
-      );
-    } else {
-      oktype = result.type_typing;
-      console.log(result.type_typing);
-    }
-  });
-  console.log(oktype);
-  return oktype;
+  return dbo
+    .collection("user")
+    .findOne({ _id: sender_psid }, function (err, result) {
+      if (err) throw err;
+      //console.log(result);
+      //console.log(result._id);
+      //var resultt = result._id;
+      if (result == null) {
+        console.log(
+          "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
+            sender_psid
+        );
+      } else {
+        return result.type_typing;
+        //console.log(result.type_typing);
+      }
+    });
+  // console.log(oktype);
+  // return oktype;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,9 +195,9 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     // Create the payload for a basic text message
 
-    console.log(getTypeTyping(sender_psid, "zo"));
-    let t = getTypeTyping(sender_psid, "heyzo");
-    switch (t) {
+    //console.log(getTypeTyping(sender_psid, "zo"));
+    //let t = getTypeTyping(sender_psid, "heyzo");
+    switch (getTypeTyping(sender_psid, "heyzo")) {
       case "input_username": //input username
         console.log("GET USERNAME THANH CONG");
         ChangeTypeTyping(sender_psid, "input_khong");
