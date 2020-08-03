@@ -1,4 +1,4 @@
-//"use strict";
+"use strict";
 ///////////////////////////////////////////////SETUP_SERVER//////////////////////////////////////////////////
 require("dotenv").config(); //Thư viện dùng .env -> dấu token pass...
 const request = require("request");
@@ -21,7 +21,7 @@ const uri = process.env.URI_NE;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
-
+// let type_typing = 0;
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 client.connect((err) => {
   if (err) throw err;
@@ -32,6 +32,7 @@ function them_id(sender_psid) {
   var dbo = client.db("dovanbot");
   var myobj = {
     _id: sender_psid,
+    type_typing: 0,
   };
   dbo.collection("user").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -131,30 +132,47 @@ app.post("/webhook", (req, res) => {
 // END// Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
 //////////////////////TODO:EVENT_MESSENGER////////////////////////////////////////////////////////////////
 function handleMessage(sender_psid, received_message) {
-  // var message = received_message;
-  var isEcho = received_message.is_echo;
-  var messageId = received_message.mid;
-  var appId = received_message.app_id;
-  var metadata = received_message.metadata;
-
-  // // You may get a text or attachment but not both
-  var messageText = received_message.text;
-  // var messageAttachments = received_message.attachments;
-  // var quickReply = received_message.quick_reply;
-
+  let type = 0;
   let response; // response is a JSON
+  //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
     // Check if the message contains text
     // Create the payload for a basic text message
-    response = {
-      recipient: {
-        id: sender_psid,
-      },
-      message: {
-        text: `You sent the message: "${received_message.text}".`,
-      },
-    };
-    callSendAPI("messages", response); // Sends the response message
+    var dbo = client.db("dovanbot");
+    dbo
+      .collection("user")
+      .findOne({ _id: sender_psid }, function (err, result) {
+        if (err) throw err;
+        //console.log(result);
+        //console.log(result._id);
+        //var resultt = result._id;
+        if (result != null) {
+          //console.log("false -> add");
+          type = result.type_typing;
+        } else {
+          console.log(
+            "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
+              sender_psid
+          );
+        }
+      });
+    switch (type) {
+      case 1: //input username
+        break;
+
+      default:
+        // response = {
+        //   recipient: {
+        //     id: sender_psid,
+        //   },
+        //   message: {
+        //     text: `You sent the message: "${received_message.text}".`,
+        //   },
+        // };
+        // callSendAPI("messages", response); // Sends the response message
+        CHUAHOANTHANH(sender_psid);
+        break;
+    }
   } else if (received_message.attachments) {
     //(2)
     //https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start#setup-complete
@@ -309,7 +327,8 @@ function STARTED(sender_psid) {
         type: "template",
         payload: {
           template_type: "button",
-          text: `<3 Xin chào "${user_full_name}" lựa chọn các chức năng tại menu dưới góc nhé.`,
+          text:
+            "<3 Xin chào {{user_full_name}} lựa chọn các chức năng tại menu dưới góc nhé.",
           buttons: [
             {
               title: "📜 Hướng dẫn sử dụng",
@@ -380,7 +399,19 @@ function LOGIN(sender_psid) {
           },
         };
         callSendAPI("messages", response); // Sends the response message
+        typing_username = 0;
       } else {
+        //da login
+        let response;
+        response = {
+          recipient: {
+            id: sender_psid,
+          },
+          message: {
+            text: "Bạn đã đăng nhập với username: " + result.username,
+          },
+        };
+        callSendAPI("messages", response); // Sends the response message
       }
     });
 }
