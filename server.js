@@ -22,7 +22,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 // let type_typing = 0;
-
+let oktype;
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 client.connect((err) => {
   if (err) throw err;
@@ -74,10 +74,9 @@ function ChangeTypeTyping(sender_psid, typing) {
     );
 }
 function getTypeTyping(sender_psid) {
-  let oktype;
   function setoktype(ok) {
-    oktype = ok;
-    //console.log(oktype);
+    oktype = ok + "";
+    console.log(oktype);
   }
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
