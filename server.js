@@ -60,11 +60,11 @@ function ChangeTypeTyping(sender_psid, typing) {
   console.log("TYPINGGGG _>>>");
   console.log(typing);
   var dbo = client.db("dovanbot");
-  //var myquery = { _id: sender_psid };
-  var newvalues = { $set: { type_typing: type } };
+  var myquery = { _id: sender_psid };
+  var newvalues = { $set: { type_typing: typing } };
   dbo
     .collection("customers")
-    .updateOne({ _id: sender_psid }, newvalues, function (err, res) {
+    .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
       console.log("Up date typeTyping thanhcong");
     });
