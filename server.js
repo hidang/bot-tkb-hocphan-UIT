@@ -52,6 +52,29 @@ function FINDtoADDID(sender_psid) {
     }
   });
 }
+function ChangeTypeTyping(type) {
+  //update
+}
+function getTypeTyping(sender_psid) {
+  let oktype;
+  var dbo = client.db("dovanbot");
+  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
+    if (err) throw err;
+    //console.log(result);
+    //console.log(result._id);
+    //var resultt = result._id;
+    if (result != null) {
+      //console.log("false -> add");
+      oktype = result.type_typing;
+    } else {
+      console.log(
+        "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
+          sender_psid
+      );
+    }
+  });
+  return oktype;
+}
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get("/", (req, res) => {
@@ -132,30 +155,17 @@ app.post("/webhook", (req, res) => {
 // END// Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
 //////////////////////TODO:EVENT_MESSENGER////////////////////////////////////////////////////////////////
 function handleMessage(sender_psid, received_message) {
-  let type = 0;
+  let type;
   let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
+  type = getTypeTyping(sender_psid);
+  console.log("TYPE NE: ");
+  console.log(type);
+
   if (received_message.text) {
     // Check if the message contains text
     // Create the payload for a basic text message
-    var dbo = client.db("dovanbot");
-    dbo
-      .collection("user")
-      .findOne({ _id: sender_psid }, function (err, result) {
-        if (err) throw err;
-        //console.log(result);
-        //console.log(result._id);
-        //var resultt = result._id;
-        if (result != null) {
-          //console.log("false -> add");
-          type = result.type_typing;
-        } else {
-          console.log(
-            "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
-              sender_psid
-          );
-        }
-      });
+
     switch (type) {
       case 1: //input username
         break;
@@ -328,7 +338,7 @@ function STARTED(sender_psid) {
         payload: {
           template_type: "button",
           text:
-            "<3 Xin chào {{user_full_name}} lựa chọn các chức năng tại menu dưới góc nhé.",
+            "💛 Xin chào bạn đã đến với DOVANBOT, lựa chọn các chức năng tại menu dưới góc nhé.",
           buttons: [
             {
               title: "📜 Hướng dẫn sử dụng",
@@ -399,7 +409,7 @@ function LOGIN(sender_psid) {
           },
         };
         callSendAPI("messages", response); // Sends the response message
-        typing_username = 0;
+        ChangeTypeTyping(0);
       } else {
         //da login
         let response;
