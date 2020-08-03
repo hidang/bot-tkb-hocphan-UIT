@@ -1,1 +1,1 @@
-@cluster0.wdxpd.mongodb.net/dovanbot?authSource=admin&replicaSet=atlas-wrg027-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true
+type
