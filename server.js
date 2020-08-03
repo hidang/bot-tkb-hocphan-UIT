@@ -74,9 +74,8 @@ function ChangeTypeTyping(sender_psid, typing) {
       }
     );
 }
-
+let oktype;
 function getTypeTyping(sender_psid) {
-  let oktype;
   // function setoktype(ok) {
   //   oktype = ok;
   //   console.log(oktype);
