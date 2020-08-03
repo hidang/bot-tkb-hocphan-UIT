@@ -55,20 +55,21 @@ function FINDtoADDID(sender_psid) {
     }
   });
 }
-function ChangeTypeTyping(sender_psid, type) {
+function ChangeTypeTyping(sender_psid, typing) {
   //update type_typing
   var dbo = client.db("dovanbot");
   //var myquery = { _id: sender_psid };
   //var newvalues = { $set: { type_typing: type } };
   dbo
     .collection("customers")
-    .updateOne({ _id: sender_psid }, { $set: { type_typing: type } }, function (
-      err,
-      res
-    ) {
-      if (err) throw err;
-      console.log("Up date typeTyping thanhcong");
-    });
+    .updateOne(
+      { _id: sender_psid },
+      { $set: { type_typing: typing } },
+      function (err, res) {
+        if (err) throw err;
+        console.log("Up date typeTyping thanhcong");
+      }
+    );
 }
 function getTypeTyping(sender_psid) {
   let oktype = -1;
@@ -177,20 +178,20 @@ app.post("/webhook", (req, res) => {
 //////////////////////TODO:EVENT_MESSENGER////////////////////////////////////////////////////////////////
 function handleMessage(sender_psid, received_message) {
   //let type;
-  let type = getTypeTyping(sender_psid); //TODO:
+  //let type = getTypeTyping(sender_psid); //TODO:
   let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
   //const type = getTypeTyping(sender_psid);
 
-  console.log("TYPE NE: ");
-  console.log(type);
+  //console.log("TYPE NE: ");
+  //console.log(type);
 
   if (received_message.text) {
     // Check if the message contains text
     // Create the payload for a basic text message
 
-    switch (type) {
+    switch (getTypeTyping(sender_psid)) {
       case 1: //input username
         console.log("GET USERNAME THANH CONG");
         ChangeTypeTyping(sender_psid, 0);
