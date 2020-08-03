@@ -167,10 +167,11 @@ app.post("/webhook", (req, res) => {
 // END// Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
 //////////////////////TODO:EVENT_MESSENGER////////////////////////////////////////////////////////////////
 function handleMessage(sender_psid, received_message) {
-  let type;
+  //let type;
   let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
-  type = getTypeTyping(sender_psid);
+  const type = getTypeTyping(sender_psid);
+
   console.log("TYPE NE: ");
   console.log(type);
 
