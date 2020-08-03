@@ -21,7 +21,7 @@ const uri = process.env.URI_NE;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
-var kq;
+var kq = "true";
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 client.connect((err) => {
   if (err) throw err;
@@ -41,8 +41,8 @@ function FINDtoADDID(sender_psid) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
-    console.log(result);
-    console.log(result._id);
+    //console.log(result);
+    //console.log(result._id);
     var resultt = result._id;
     if (resultt != null) {
       kq = "true";
