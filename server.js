@@ -193,6 +193,7 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     // Create the payload for a basic text message
 
+    console.log(getTypeTyping(sender_psid));
     switch (getTypeTyping(sender_psid)) {
       case "input_username": //input username
         console.log("GET USERNAME THANH CONG");
