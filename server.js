@@ -21,7 +21,7 @@ const uri = process.env.URI_NE;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
-//var kq = "";
+var kq = "false";
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 client.connect((err) => {
   if (err) throw err;
@@ -39,22 +39,18 @@ function them_id(sender_psid) {
 }
 function FINDtoADDID(sender_psid) {
   var dbo = client.db("dovanbot");
-  return dbo
-    .collection("user")
-    .findOne({ _id: sender_psid }, function (err, result) {
-      if (err) throw err;
-      console.log(result);
-      //console.log(result._id);
-      //var resultt = result._id;
-      if (result == null) {
-        console.log("false");
-        return "false";
-      } else {
-        return "true";
-      }
-    });
-  // console.log(kq);
-  // return kq;
+  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    //console.log(result._id);
+    //var resultt = result._id;
+    if (result == null) {
+      console.log("false");
+      kq = "false";
+    } else {
+      kq = "true";
+    }
+  });
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -228,7 +224,8 @@ function handlePostback(sender_psid, received_postback) {
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
-      if (FINDtoADDID(sender_psid) == "false") {
+      FINDtoADDID(sender_psid); //return =>kq
+      if (kq == "false") {
         them_id(sender_psid);
       }
       break;
