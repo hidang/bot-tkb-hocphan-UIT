@@ -50,7 +50,7 @@ function FINDtoADDID(sender_psid) {
       kq = "true";
     }
   });
-  console.log(kq + " NEEEEEENEEEEEE");
+  console.log(kq);
   return kq;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
