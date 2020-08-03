@@ -43,11 +43,11 @@ function FINDtoADDID(sender_psid) {
     if (err) throw err;
     //console.log(result);
     //console.log(result._id);
-    var resultt = result._id;
-    if (resultt != null) {
-      kq = "true";
-    } else {
+    //var resultt = result._id;
+    if (result == null) {
       kq = "false";
+    } else {
+      kq = "true";
     }
   });
   console.log(kq + " NEEEEEENEEEEEE");
