@@ -56,17 +56,18 @@ function FINDtoADDID(sender_psid) {
   });
 }
 function ChangeTypeTyping(sender_psid, typing) {
+  var t = 0;
+  t = typing;
   //update type_typing
   console.log("TYPINGGGG _>>>");
-  console.log(typing);
+  console.log(t);
   var dbo = client.db("dovanbot");
   var myquery = { _id: sender_psid };
-  var newvalues = { $set: { type_typing: typing } };
+  var newvalues = { $set: { type_typing: t } };
   dbo
     .collection("customers")
     .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
-      console.log(res);
       console.log("Up date typeTyping thanhcong");
     });
 }
