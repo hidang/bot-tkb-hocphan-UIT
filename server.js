@@ -76,30 +76,29 @@ function ChangeTypeTyping(sender_psid, typing) {
 }
 
 function getTypeTyping(sender_psid, oktype) {
-  // function setoktype(ok) {
-  //   oktype = ok;
-  //   console.log(oktype);
-  // }
   var dbo = client.db("dovanbot");
-  return dbo
-    .collection("user")
-    .findOne({ _id: sender_psid }, function (err, result) {
-      if (err) throw err;
-      //console.log(result);
-      //console.log(result._id);
-      //var resultt = result._id;
-      if (result == null) {
-        console.log(
-          "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
-            sender_psid
-        );
-      } else {
-        return result.type_typing;
-        //console.log(result.type_typing);
-      }
-    });
+  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
+    if (err) throw err;
+    //console.log(result);
+    //console.log(result._id);
+    //var resultt = result._id;
+    if (result == null) {
+      console.log(
+        "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
+          sender_psid
+      );
+    } else {
+      setoktype(result.type_typing);
+      //console.log(result.type_typing);
+    }
+  });
   // console.log(oktype);
   // return oktype;
+  return function setoktype(ok) {
+    oktype = ok;
+    console.log(oktype);
+    return oktype;
+  };
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
