@@ -45,12 +45,12 @@ function FINDtoADDID(sender_psid) {
     console.log(result._id);
     var resultt = result._id;
     if (resultt._id != null) {
-      kq = true;
+      kq = "true";
     } else {
-      kq = false;
+      kq = "false";
     }
   });
-  console.log(kq + "NEEEEEENEEEEEE");
+  console.log(kq + " NEEEEEENEEEEEE");
   return kq;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
@@ -225,7 +225,7 @@ function handlePostback(sender_psid, received_postback) {
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
-      if (FINDtoADDID(sender_psid) == false) {
+      if (FINDtoADDID(sender_psid) == "false") {
         them_id(sender_psid);
       }
       break;
