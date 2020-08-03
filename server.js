@@ -44,7 +44,7 @@ function FINDtoADDID(sender_psid) {
     console.log(result);
     console.log(result._id);
     var resultt = result._id;
-    if (resultt._id != null) {
+    if (resultt != null) {
       kq = "true";
     } else {
       kq = "false";
