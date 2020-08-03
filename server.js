@@ -77,7 +77,7 @@ function getTypeTyping(sender_psid) {
   let oktype;
   function setoktype(ok) {
     oktype = ok;
-    console.log(oktype);
+    //console.log(oktype);
   }
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
@@ -97,6 +97,7 @@ function getTypeTyping(sender_psid) {
       );
     }
   });
+  console.log(oktype);
   return oktype;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
@@ -194,7 +195,8 @@ function handleMessage(sender_psid, received_message) {
     // Create the payload for a basic text message
 
     console.log(getTypeTyping(sender_psid));
-    switch (getTypeTyping(sender_psid)) {
+    let t = getTypeTyping(sender_psid);
+    switch (t) {
       case "input_username": //input username
         console.log("GET USERNAME THANH CONG");
         ChangeTypeTyping(sender_psid, "input_khong");
