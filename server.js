@@ -79,6 +79,7 @@ function getTypeTyping(sender_psid) {
     if (result != null) {
       //console.log("false -> add");
       oktype = result.type_typing;
+      console.log(result.type_typing);
       return result.type_typing;
     } else {
       console.log(
