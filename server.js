@@ -33,7 +33,7 @@ function them_id(sender_psid) {
   var dbo = client.db("dovanbot");
   var myobj = {
     _id: sender_psid,
-    type_typing: 0,
+    type_typing: "input_khong",
     username: null,
     password: null,
   };
@@ -56,14 +56,12 @@ function FINDtoADDID(sender_psid) {
   });
 }
 function ChangeTypeTyping(sender_psid, typing) {
-  var t = 0;
-  t = typing;
   //update type_typing
   console.log("TYPINGGGG _>>>");
-  console.log(t);
+  console.log(typing);
   var dbo = client.db("dovanbot");
   var myquery = { _id: sender_psid };
-  var newvalues = { $set: { type_typing: t } };
+  var newvalues = { $set: { type_typing: typing } };
   dbo
     .collection("customers")
     .updateOne(myquery, newvalues, function (err, res) {
@@ -72,7 +70,7 @@ function ChangeTypeTyping(sender_psid, typing) {
     });
 }
 function getTypeTyping(sender_psid) {
-  let oktype = -1;
+  let oktype;
   function setoktype(ok) {
     oktype = ok;
     console.log(oktype);
@@ -86,7 +84,7 @@ function getTypeTyping(sender_psid) {
     if (result != null) {
       //console.log("false -> add");
       setoktype(result.type_typing);
-      console.log(result.type_typing);
+      //console.log(result.type_typing);
       //return result.type_typing;
     } else {
       console.log(
@@ -192,9 +190,9 @@ function handleMessage(sender_psid, received_message) {
     // Create the payload for a basic text message
 
     switch (getTypeTyping(sender_psid)) {
-      case 1: //input username
+      case "input_username": //input username
         console.log("GET USERNAME THANH CONG");
-        ChangeTypeTyping(sender_psid, 0);
+        ChangeTypeTyping(sender_psid, "input_khong");
         break;
 
       default:
@@ -428,7 +426,7 @@ function LOGIN(sender_psid) {
         },
       };
       callSendAPI("messages", response); // Sends the response message
-      ChangeTypeTyping(sender_psid, 1);
+      ChangeTypeTyping(sender_psid, "input_username");
     } else {
       //da login
       let response;
