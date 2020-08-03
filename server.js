@@ -1,4 +1,5 @@
 "use strict";
+//heroku logs --app=dovanbot2 --tail
 ///////////////////////////////////////////////SETUP_SERVER//////////////////////////////////////////////////
 require("dotenv").config(); //Thư viện dùng .env -> dấu token pass...
 const request = require("request");
@@ -74,10 +75,10 @@ function ChangeTypeTyping(sender_psid, typing) {
     );
 }
 function getTypeTyping(sender_psid) {
-  function setoktype(ok) {
-    oktype = ok;
-    console.log(oktype);
-  }
+  // function setoktype(ok) {
+  //   oktype = ok;
+  //   console.log(oktype);
+  // }
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
@@ -86,8 +87,8 @@ function getTypeTyping(sender_psid) {
     //var resultt = result._id;
     if (result != null) {
       //console.log("false -> add");
-      setoktype(result.type_typing);
-      console.log(result.type_typing);
+      oktype = result.type_typing;
+      //console.log(result.type_typing);
       //return result.type_typing;
     } else {
       console.log(
@@ -97,7 +98,7 @@ function getTypeTyping(sender_psid) {
     }
   });
   console.log(oktype);
-  return oktype + "";
+  return oktype;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
