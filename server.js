@@ -21,7 +21,7 @@ const uri = process.env.URI_NE;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
-var kq = "";
+//var kq = "";
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 client.connect((err) => {
   if (err) throw err;
@@ -34,24 +34,27 @@ function them_id(sender_psid) {
   };
   dbo.collection("user").insertOne(myobj, function (err, res) {
     if (err) throw err;
-    console.log("DA them_id: " + sender_psid + " thanh cong!");
+    console.log("DA them_id: " + sender_psid + " thanh cong! ()them_id");
   });
 }
 function FINDtoADDID(sender_psid) {
   var dbo = client.db("dovanbot");
-  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
-    if (err) throw err;
-    console.log(result);
-    //console.log(result._id);
-    //var resultt = result._id;
-    if (result == null) {
-      kq = "false";
-    } else {
-      kq = "true";
-    }
-  });
-  console.log(kq);
-  return kq;
+  return dbo
+    .collection("user")
+    .findOne({ _id: sender_psid }, function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      //console.log(result._id);
+      //var resultt = result._id;
+      if (result == null) {
+        console.log("false");
+        return "false";
+      } else {
+        return "true";
+      }
+    });
+  // console.log(kq);
+  // return kq;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
