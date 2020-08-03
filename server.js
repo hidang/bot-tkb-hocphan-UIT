@@ -98,7 +98,7 @@ function getTypeTyping(sender_psid, oktype) {
     oktype = ok;
     //console.log(oktype);
   }
-  console.log(dbo);
+  console.log(oktype);
   return oktype;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
