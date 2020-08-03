@@ -66,6 +66,7 @@ function ChangeTypeTyping(sender_psid, typing) {
     .collection("customers")
     .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
+      console.log(res);
       console.log("Up date typeTyping thanhcong");
     });
 }
