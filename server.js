@@ -27,6 +27,7 @@ client.connect((err) => {
   if (err) throw err;
   console.log("->DA KET NOI thành công database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
 });
+
 function them_id(sender_psid) {
   var dbo = client.db("dovanbot");
   var myobj = {
@@ -41,11 +42,11 @@ function FINDtoADDID(sender_psid) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
-    console.log(result);
+    //console.log(result);
     //console.log(result._id);
     //var resultt = result._id;
     if (result == null) {
-      console.log("false -> add");
+      //console.log("false -> add");
       them_id(sender_psid);
     }
   });
@@ -109,7 +110,7 @@ app.post("/webhook", (req, res) => {
 
       let sender_psid = webhook_event.sender.id;
       //console.log('Sender PSID: ' + sender_psid);
-      console.log("EVEN VAOPOOOOOOOOO!!!!!!!");
+      console.log("webhook EVEN VAOPOOOOOOOOO!!!!!!!");
       //TODO:console.log(webhook_event);
 
       if (webhook_event.message) {
@@ -308,8 +309,7 @@ function STARTED(sender_psid) {
         type: "template",
         payload: {
           template_type: "button",
-          text:
-            "<3 Chào mừng bạn đến với DOVANBOT, lựa chọn các chức năng tại menu dưới góc nhé.",
+          text: `<3 Xin chào "${user_full_name}" lựa chọn các chức năng tại menu dưới góc nhé.`,
           buttons: [
             {
               title: "📜 Hướng dẫn sử dụng",
@@ -360,7 +360,30 @@ function HuongDan(sender_psid) {
   };
   callSendAPI("messages", response);
 }
-function LOGIN(sender_psid) {}
+function LOGIN(sender_psid) {
+  var dbo = client.db("dovanbot");
+  dbo
+    .collection("user")
+    .findOne({ _id: sender_psid, username: "" }, function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      if (result == null) {
+        //chua login
+        // console.log("result = null");
+        let response;
+        response = {
+          recipient: {
+            id: sender_psid,
+          },
+          message: {
+            text: "✏ Nhập username của bạn: ",
+          },
+        };
+        callSendAPI("messages", response); // Sends the response message
+      } else {
+      }
+    });
+}
 function LOGOUT(sender_psid) {}
 
 //////////////////////END:EVENT_MESSENGER////////////////////////////////////////////////////////////////
