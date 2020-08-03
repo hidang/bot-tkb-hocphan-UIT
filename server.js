@@ -57,6 +57,8 @@ function FINDtoADDID(sender_psid) {
 }
 function ChangeTypeTyping(sender_psid, typing) {
   //update type_typing
+  console.log("TYPINGGGG _>>>");
+  console.log(typing);
   var dbo = client.db("dovanbot");
   //var myquery = { _id: sender_psid };
   //var newvalues = { $set: { type_typing: type } };
