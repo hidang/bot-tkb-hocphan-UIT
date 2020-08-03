@@ -177,6 +177,7 @@ function handleMessage(sender_psid, received_message) {
 
   console.log("TYPE NE: ");
   console.log(type);
+  console.log(getTypeTyping(sender_psid));
 
   if (received_message.text) {
     // Check if the message contains text
