@@ -21,7 +21,7 @@ const uri = process.env.URI_NE;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
-let kq = "false";
+
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 client.connect((err) => {
   if (err) throw err;
@@ -45,10 +45,8 @@ function FINDtoADDID(sender_psid) {
     //console.log(result._id);
     //var resultt = result._id;
     if (result == null) {
-      console.log("false");
-      kq = "false";
-    } else {
-      kq = "true";
+      console.log("false -> add");
+      them_id(sender_psid);
     }
   });
 }
@@ -224,10 +222,7 @@ function handlePostback(sender_psid, received_postback) {
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
-      FINDtoADDID(sender_psid); //return =>kq
-      if (kq == "false") {
-        them_id(sender_psid);
-      }
+      FINDtoADDID(sender_psid);
       break;
     case "huong_dan":
       HuongDan(sender_psid);
