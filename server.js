@@ -96,9 +96,9 @@ function getTypeTyping(sender_psid, oktype) {
   // return oktype;
   function setoktype(ok) {
     oktype = ok;
-    //console.log(oktype);
+    console.log(oktype);
   }
-  console.log(oktype);
+  //console.log(oktype);
   return oktype;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
@@ -195,7 +195,7 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     // Create the payload for a basic text message
 
-    console.log(getTypeTyping(sender_psid, "zooo"));
+    //console.log(getTypeTyping(sender_psid, "zooo"));
     //let t = getTypeTyping(sender_psid, "heyzo");
     switch (getTypeTyping(sender_psid, "heyzo")) {
       case "input_username": //input username
