@@ -52,8 +52,21 @@ function FINDtoADDID(sender_psid) {
     }
   });
 }
-function ChangeTypeTyping(type) {
-  //update
+function ChangeTypeTyping(sender_psid, type) {
+  //update type_typing
+  if (err) throw err;
+  var dbo = client.db("dovanbot");
+  //var myquery = { _id: sender_psid };
+  //var newvalues = { $set: { type_typing: type } };
+  dbo
+    .collection("customers")
+    .updateOne({ _id: sender_psid }, { $set: { type_typing: type } }, function (
+      err,
+      res
+    ) {
+      if (err) throw err;
+      console.log("Up date typeTyping thanhcong");
+    });
 }
 function getTypeTyping(sender_psid) {
   let oktype;
@@ -168,18 +181,12 @@ function handleMessage(sender_psid, received_message) {
 
     switch (type) {
       case 1: //input username
+        console.log("GET USERNAME THANH CONG");
+        ChangeTypeTyping(sender_psid, 0);
         break;
 
       default:
-        // response = {
-        //   recipient: {
-        //     id: sender_psid,
-        //   },
-        //   message: {
-        //     text: `You sent the message: "${received_message.text}".`,
-        //   },
-        // };
-        // callSendAPI("messages", response); // Sends the response message
+        // text: `You sent the message: "${received_message.text}".`,
         CHUAHOANTHANH(sender_psid);
         break;
     }
@@ -408,7 +415,7 @@ function LOGIN(sender_psid) {
         },
       };
       callSendAPI("messages", response); // Sends the response message
-      ChangeTypeTyping(0);
+      ChangeTypeTyping(sender_psid, 1);
     } else {
       //da login
       let response;
