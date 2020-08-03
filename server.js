@@ -366,6 +366,7 @@ function STARTED(sender_psid) {
   callSendAPI("messages", response);
 }
 function HuongDan(sender_psid) {
+  let response;
   response = {
     //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
     //"text":"What do you want to do next?",
