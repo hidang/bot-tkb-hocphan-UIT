@@ -54,7 +54,6 @@ function FINDtoADDID(sender_psid) {
 }
 function ChangeTypeTyping(sender_psid, type) {
   //update type_typing
-  if (err) throw err;
   var dbo = client.db("dovanbot");
   //var myquery = { _id: sender_psid };
   //var newvalues = { $set: { type_typing: type } };
