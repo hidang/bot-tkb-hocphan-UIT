@@ -72,6 +72,10 @@ function ChangeTypeTyping(sender_psid, type) {
 }
 function getTypeTyping(sender_psid) {
   let oktype = -1;
+  function setoktype(ok) {
+    oktype = ok;
+    console.log(oktype);
+  }
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
@@ -80,8 +84,7 @@ function getTypeTyping(sender_psid) {
     //var resultt = result._id;
     if (result != null) {
       //console.log("false -> add");
-      oktype = result.type_typing;
-      console.log(oktype);
+      setoktype(result.type_typing);
       console.log(result.type_typing);
       //return result.type_typing;
     } else {
