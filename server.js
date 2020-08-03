@@ -74,8 +74,8 @@ function ChangeTypeTyping(sender_psid, typing) {
       }
     );
 }
-let oktype;
-function getTypeTyping(sender_psid) {
+
+function getTypeTyping(sender_psid, oktype) {
   // function setoktype(ok) {
   //   oktype = ok;
   //   console.log(oktype);
@@ -195,8 +195,8 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     // Create the payload for a basic text message
 
-    console.log(getTypeTyping(sender_psid));
-    let t = getTypeTyping(sender_psid);
+    console.log(getTypeTyping(sender_psid, "zo"));
+    let t = getTypeTyping(sender_psid, "heyzo");
     switch (t) {
       case "input_username": //input username
         console.log("GET USERNAME THANH CONG");
