@@ -22,6 +22,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 // let type_typing = 0;
+let type = 0;
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 client.connect((err) => {
   if (err) throw err;
@@ -85,7 +86,7 @@ function getTypeTyping(sender_psid) {
       );
     }
   });
-  return oktype;
+  type = oktype;
 }
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -170,7 +171,8 @@ function handleMessage(sender_psid, received_message) {
   //let type;
   let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
-  const type = getTypeTyping(sender_psid);
+  //FIXME: chua lay dc type ham lol
+  //const type = getTypeTyping(sender_psid);
 
   console.log("TYPE NE: ");
   console.log(type);
