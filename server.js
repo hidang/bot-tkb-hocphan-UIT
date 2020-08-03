@@ -34,6 +34,8 @@ function them_id(sender_psid) {
   var myobj = {
     _id: sender_psid,
     type_typing: 0,
+    username: null,
+    password: null,
   };
   dbo.collection("user").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -69,7 +71,7 @@ function ChangeTypeTyping(sender_psid, type) {
     });
 }
 function getTypeTyping(sender_psid) {
-  let oktype;
+  let oktype = -1;
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
@@ -79,8 +81,9 @@ function getTypeTyping(sender_psid) {
     if (result != null) {
       //console.log("false -> add");
       oktype = result.type_typing;
+      console.log(oktype);
       console.log(result.type_typing);
-      return result.type_typing;
+      //return result.type_typing;
     } else {
       console.log(
         "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
@@ -179,7 +182,6 @@ function handleMessage(sender_psid, received_message) {
 
   console.log("TYPE NE: ");
   console.log(type);
-  console.log(getTypeTyping(sender_psid));
 
   if (received_message.text) {
     // Check if the message contains text
