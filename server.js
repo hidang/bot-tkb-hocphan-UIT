@@ -311,7 +311,7 @@ function CHUAHOANTHANH(sender_psid) {
 }
 function STARTED(sender_psid) {
   //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
-
+  let response;
   // sender: { id: '3006492652803294' },
   // recipient: { id: '104124098046144' },
   // timestamp: 1596112909237,
