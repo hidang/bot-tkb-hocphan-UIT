@@ -75,7 +75,7 @@ function ChangeTypeTyping(sender_psid, typing) {
 }
 function getTypeTyping(sender_psid) {
   function setoktype(ok) {
-    oktype = ok + "";
+    oktype = ok;
     console.log(oktype);
   }
   var dbo = client.db("dovanbot");
@@ -87,7 +87,7 @@ function getTypeTyping(sender_psid) {
     if (result != null) {
       //console.log("false -> add");
       setoktype(result.type_typing);
-      //console.log(result.type_typing);
+      console.log(result.type_typing);
       //return result.type_typing;
     } else {
       console.log(
