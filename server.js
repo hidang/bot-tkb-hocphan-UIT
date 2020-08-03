@@ -289,6 +289,7 @@ function callSendAPI(style, response) {
 }
 
 function CHUAHOANTHANH(sender_psid) {
+  let response;
   response = {
     //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
     //"text":"What do you want to do next?",
@@ -391,39 +392,37 @@ function HuongDan(sender_psid) {
 }
 function LOGIN(sender_psid) {
   var dbo = client.db("dovanbot");
-  dbo
-    .collection("user")
-    .findOne({ _id: sender_psid, username: "" }, function (err, result) {
-      if (err) throw err;
-      console.log(result);
-      if (result == null) {
-        //chua login
-        // console.log("result = null");
-        let response;
-        response = {
-          recipient: {
-            id: sender_psid,
-          },
-          message: {
-            text: "✏ Nhập username của bạn: ",
-          },
-        };
-        callSendAPI("messages", response); // Sends the response message
-        ChangeTypeTyping(0);
-      } else {
-        //da login
-        let response;
-        response = {
-          recipient: {
-            id: sender_psid,
-          },
-          message: {
-            text: "Bạn đã đăng nhập với username: " + result.username,
-          },
-        };
-        callSendAPI("messages", response); // Sends the response message
-      }
-    });
+  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    if (result.username == null) {
+      //chua login
+      // console.log("result = null");
+      let response;
+      response = {
+        recipient: {
+          id: sender_psid,
+        },
+        message: {
+          text: "✏ Nhập username của bạn: ",
+        },
+      };
+      callSendAPI("messages", response); // Sends the response message
+      ChangeTypeTyping(0);
+    } else {
+      //da login
+      let response;
+      response = {
+        recipient: {
+          id: sender_psid,
+        },
+        message: {
+          text: "Bạn đã đăng nhập với username: " + result.username,
+        },
+      };
+      callSendAPI("messages", response); // Sends the response message
+    }
+  });
 }
 function LOGOUT(sender_psid) {}
 
