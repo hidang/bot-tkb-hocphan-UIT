@@ -86,18 +86,15 @@ function getTypeTyping(sender_psid, oktype) {
     //console.log(result);
     //console.log(result._id);
     //var resultt = result._id;
-    oktype = result.type_typing;
-    // if (result != null) {
-    //   //console.log("false -> add");
-    //   oktype = result.type_typing;
-    //   //console.log(result.type_typing);
-    //   //return result.type_typing;
-    // } else {
-    //   console.log(
-    //     "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
-    //       sender_psid
-    //   );
-    // }
+    if (result == null) {
+      console.log(
+        "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
+          sender_psid
+      );
+    } else {
+      oktype = result.type_typing;
+      console.log(result.type_typing);
+    }
   });
   console.log(oktype);
   return oktype;
