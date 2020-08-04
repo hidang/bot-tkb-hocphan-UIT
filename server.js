@@ -198,7 +198,7 @@ function handleMessage(sender_psid, received_message) {
       default:
         // text: `You sent the message: "${received_message.text}".`,
         CHUAHOANTHANH(sender_psid);
-        console.log(kieunhapne);
+        //console.log(kieunhapne);
         break;
     }
   } else if (received_message.attachments) {
