@@ -190,7 +190,12 @@ function handleMessage(sender_psid, received_message) {
         ChangeTypeTyping(sender_psid, "input_khong");
         break;
       }
-
+      case "input_password": {
+        //input username
+        console.log("GET USERNAME THANH CONG");
+        ChangeTypeTyping(sender_psid, "input_khong");
+        break;
+      }
       default:
         // text: `You sent the message: "${received_message.text}".`,
         CHUAHOANTHANH(sender_psid);
