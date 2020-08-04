@@ -180,7 +180,7 @@ function handleMessage(sender_psid, received_message) {
     return type;
   });
   if (received_message.text) {
-    switch (tykieunhapnepe) {
+    switch (kieunhapne) {
       case "input_username": {
         //input username
         console.log("GET USERNAME THANH CONG");
@@ -196,7 +196,7 @@ function handleMessage(sender_psid, received_message) {
       default:
         // text: `You sent the message: "${received_message.text}".`,
         CHUAHOANTHANH(sender_psid);
-        console.log(tykieunhapnepe);
+        console.log(kieunhapne);
         break;
     }
   } else if (received_message.attachments) {
