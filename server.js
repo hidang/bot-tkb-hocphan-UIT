@@ -88,7 +88,8 @@ let getTypeTyping = function (sender_psid, callback) {
           sender_psid
       );
     } else {
-      callback(result.type_typing);
+      console.log(result.type_typing);
+      callback(result.type_typing + "");
       //console.log(result.type_typing);
     }
   });
