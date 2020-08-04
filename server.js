@@ -178,12 +178,11 @@ function handleMessage(sender_psid, received_message) {
   //FIXME: chua lay dc type ham lol
 
   if (received_message.text) {
-    let typene = getTypeTyping(sender_psid, function (type) {
-      console.log(type);
-      return type;
-    });
-    console.log(typene);
-    switch (typene) {
+    switch (
+      getTypeTyping(sender_psid, function (type) {
+        return type;
+      })
+    ) {
       case "input_username": {
         //input username
         console.log("GET USERNAME THANH CONG");
