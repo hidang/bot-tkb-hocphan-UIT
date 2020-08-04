@@ -75,7 +75,7 @@ function ChangeTypeTyping(sender_psid, typing) {
     );
 }
 
-module.exports.getTypeTyping = function (sender_psid, callback) {
+getTypeTyping = function (sender_psid, callback) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
