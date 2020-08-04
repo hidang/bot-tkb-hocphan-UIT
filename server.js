@@ -176,9 +176,10 @@ function handleMessage(sender_psid, received_message) {
   let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
-  let kieunhapne = getTypeTyping(sender_psid, function (type) {
+  const kieunhapne = getTypeTyping(sender_psid, function (type) {
     return type;
   });
+
   if (received_message.text) {
     switch (kieunhapne) {
       case "input_username": {
