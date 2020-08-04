@@ -178,31 +178,30 @@ function handleMessage(sender_psid, received_message) {
   let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
-  const kieunhapne = getTypeTyping(sender_psid, function (tt) {
-    console.log(tt);
-    return tt;
-  });
 
   if (received_message.text) {
-    switch (kieunhapne) {
-      case "input_username": {
-        //input username
-        console.log("GET USERNAME THANH CONG");
-        ChangeTypeTyping(sender_psid, "input_khong");
-        break;
+    getTypeTyping(sender_psid, function (kieunhapne) {
+      //console.log(kieunhapne);
+      switch (kieunhapne) {
+        case "input_username": {
+          //input username
+          console.log("GET USERNAME THANH CONG");
+          ChangeTypeTyping(sender_psid, "input_khong");
+          break;
+        }
+        case "input_password": {
+          //input username
+          console.log("GET USERNAME THANH CONG");
+          ChangeTypeTyping(sender_psid, "input_khong");
+          break;
+        }
+        default:
+          // text: `You sent the message: "${received_message.text}".`,
+          CHUAHOANTHANH(sender_psid);
+          //console.log(kieunhapne);
+          break;
       }
-      case "input_password": {
-        //input username
-        console.log("GET USERNAME THANH CONG");
-        ChangeTypeTyping(sender_psid, "input_khong");
-        break;
-      }
-      default:
-        // text: `You sent the message: "${received_message.text}".`,
-        CHUAHOANTHANH(sender_psid);
-        //console.log(kieunhapne);
-        break;
-    }
+    });
   } else if (received_message.attachments) {
     //(2)
     //https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start#setup-complete
