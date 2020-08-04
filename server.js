@@ -483,23 +483,40 @@ function LOGIN(sender_psid) {
           id: sender_psid,
         },
         message: {
-          text: "✏ Nhập username của bạn: ",
+          text: "✏ Nhập/Tạo username của bạn: ",
         },
       };
       callSendAPI("messages", response); // Sends the response message
       ChangeTypeTyping(sender_psid, "input_username");
     } else {
-      //da login
-      let response;
-      response = {
-        recipient: {
-          id: sender_psid,
-        },
-        message: {
-          text: "Bạn đã đăng nhập với username: " + result.username,
-        },
-      };
-      callSendAPI("messages", response); // Sends the response message
+      if (result.password == null) {
+        let response;
+        response = {
+          recipient: {
+            id: sender_psid,
+          },
+          message: {
+            text:
+              "Bạn đã đăng nhập với username: " +
+              result.username +
+              ", Nhưng chưa đặt password, xin nhập ✏ password:",
+          },
+        };
+        ChangeTypeTyping(sender_psid, "input_password");
+        callSendAPI("messages", response); // Sends the response message}
+      } else {
+        //da login
+        let response;
+        response = {
+          recipient: {
+            id: sender_psid,
+          },
+          message: {
+            text: "Bạn đã đăng nhập với username: " + result.username,
+          },
+        };
+        callSendAPI("messages", response); // Sends the response message}
+      }
     }
   });
 }
