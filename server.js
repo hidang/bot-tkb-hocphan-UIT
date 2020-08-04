@@ -89,7 +89,7 @@ let getTypeTyping = function (sender_psid, callback) {
       );
     } else {
       //FIXME:getTypeTyping
-      console.log(result.type_typing);
+      //console.log(result.type_typing);
       return callback(result.type_typing);
       //console.log(result.type_typing);
     }
@@ -179,6 +179,7 @@ function handleMessage(sender_psid, received_message) {
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
   const kieunhapne = getTypeTyping(sender_psid, function (tt) {
+    console.log(tt);
     return tt;
   });
 
