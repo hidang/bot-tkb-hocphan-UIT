@@ -179,8 +179,8 @@ function handleMessage(sender_psid, received_message) {
 
   var typene;
   getTypeTyping(sender_psid, function (type) {
-    console.log(type);
-    typene = type;
+    console.log(type + "");
+    typene = type + "";
   });
   console.log(typene);
   if (received_message.text) {
