@@ -91,7 +91,7 @@ function getTypeTyping(sender_psid, oktype) {
             sender_psid
         );
       } else {
-        return callback(result.type_typing);
+        return result.type_typing;
         //console.log(result.type_typing);
       }
     });
