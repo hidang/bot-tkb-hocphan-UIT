@@ -88,8 +88,9 @@ let getTypeTyping = function (sender_psid, callback) {
           sender_psid
       );
     } else {
+      //FIXME:getTypeTyping
       console.log(result.type_typing);
-      throw callback(result.type_typing);
+      return callback(result.type_typing);
       //console.log(result.type_typing);
     }
   });
