@@ -57,9 +57,6 @@ function FINDtoADDID(sender_psid) {
   });
 }
 function ChangeTypeTyping(sender_psid, typing) {
-  //update type_typing
-  // console.log("TYPINGGGG _>>>");
-  // console.log(typing);
   var dbo = client.db("dovanbot");
   // var myquery = { _id: sender_psid };
   // var newvalues = { $set: { type_typing: typing } };
@@ -74,7 +71,20 @@ function ChangeTypeTyping(sender_psid, typing) {
       }
     );
 }
-
+function Change_username(sender_psid, typing) {
+  var dbo = client.db("dovanbot");
+  // var myquery = { _id: sender_psid };
+  // var newvalues = { $set: { type_typing: typing } };
+  dbo
+    .collection("user")
+    .updateOne({ _id: sender_psid }, { $set: { username: typing } }, function (
+      err,
+      res
+    ) {
+      if (err) throw err;
+      console.log("Up date username thanhcong");
+    });
+}
 let getTypeTyping = function (sender_psid, callback) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
@@ -186,6 +196,7 @@ function handleMessage(sender_psid, received_message) {
         case "input_username": {
           //input username
           console.log("GET USERNAME THANH CONG");
+          Change_username(sender_psid, received_message.text);
           ChangeTypeTyping(sender_psid, "input_khong");
           break;
         }
