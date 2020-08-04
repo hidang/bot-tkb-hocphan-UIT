@@ -77,7 +77,7 @@ function ChangeTypeTyping(sender_psid, typing) {
 
 function getTypeTyping(sender_psid, oktype) {
   var dbo = client.db("dovanbot");
-  dang.setoktype = setoktype;
+  //FIXME:dang.setoktype = setoktype;
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
     //console.log(result);
