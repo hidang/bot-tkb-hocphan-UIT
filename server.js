@@ -176,13 +176,11 @@ function handleMessage(sender_psid, received_message) {
   let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
-
+  let kieunhapne = getTypeTyping(sender_psid, function (type) {
+    return type;
+  });
   if (received_message.text) {
-    switch (
-      getTypeTyping(sender_psid, function (type) {
-        return type;
-      })
-    ) {
+    switch (tykieunhapnepe) {
       case "input_username": {
         //input username
         console.log("GET USERNAME THANH CONG");
@@ -195,10 +193,11 @@ function handleMessage(sender_psid, received_message) {
         ChangeTypeTyping(sender_psid, "input_khong");
         break;
       }
-      // default:
-      //   // text: `You sent the message: "${received_message.text}".`,
-      //   CHUAHOANTHANH(sender_psid);
-      //   break;
+      default:
+        // text: `You sent the message: "${received_message.text}".`,
+        CHUAHOANTHANH(sender_psid);
+        console.log(tykieunhapnepe);
+        break;
     }
   } else if (received_message.attachments) {
     //(2)
