@@ -195,10 +195,10 @@ function handleMessage(sender_psid, received_message) {
         ChangeTypeTyping(sender_psid, "input_khong");
         break;
       }
-      default:
-        // text: `You sent the message: "${received_message.text}".`,
-        CHUAHOANTHANH(sender_psid);
-        break;
+      // default:
+      //   // text: `You sent the message: "${received_message.text}".`,
+      //   CHUAHOANTHANH(sender_psid);
+      //   break;
     }
   } else if (received_message.attachments) {
     //(2)
