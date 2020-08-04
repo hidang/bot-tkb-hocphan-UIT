@@ -75,7 +75,7 @@ function ChangeTypeTyping(sender_psid, typing) {
     );
 }
 
-function getTypeTyping(sender_psid, callback) {
+var getTypeTyping = function (sender_psid, callback) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
@@ -92,7 +92,7 @@ function getTypeTyping(sender_psid, callback) {
       //console.log(result.type_typing);
     }
   });
-}
+};
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get("/", (req, res) => {
