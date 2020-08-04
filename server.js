@@ -75,30 +75,24 @@ function ChangeTypeTyping(sender_psid, typing) {
     );
 }
 
-function getTypeTyping(sender_psid, oktype) {
+module.exports.getTypeTyping = function (sender_psid, callback) {
   var dbo = client.db("dovanbot");
-  //FIXME:dang.setoktype = setoktype;
-  return dbo
-    .collection("user")
-    .findOne({ _id: sender_psid }, function (err, result) {
-      if (err) throw err;
-      //console.log(result);
-      //console.log(result._id);
-      //var resultt = result._id;
-      if (result == null) {
-        console.log(
-          "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
-            sender_psid
-        );
-      } else {
-        return result.type_typing;
-        //console.log(result.type_typing);
-      }
-    });
-  // console.log(oktype);
-  // return oktype;
-  //console.log(oktype);
-}
+  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
+    if (err) throw err;
+    //console.log(result);
+    //console.log(result._id);
+    //var resultt = result._id;
+    if (result == null) {
+      console.log(
+        "#ERROR ()handleMessage INPUT SERVER luc STARTed id_user: " +
+          sender_psid
+      );
+    } else {
+      callback && callback(result.type_typing);
+      //console.log(result.type_typing);
+    }
+  });
+};
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get("/", (req, res) => {
@@ -179,23 +173,17 @@ app.post("/webhook", (req, res) => {
 // END// Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
 //////////////////////TODO:EVENT_MESSENGER////////////////////////////////////////////////////////////////
 function handleMessage(sender_psid, received_message) {
-  //let type;
-  //let type = getTypeTyping(sender_psid); //TODO:
   let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
-  //const type = getTypeTyping(sender_psid);
 
-  //console.log("TYPE NE: ");
-  //console.log(type);
-
+  var typene;
+  getTypeTyping(sender_psid, function (type) {
+    typene = type;
+  });
+  console.log(typene);
   if (received_message.text) {
-    // Check if the message contains text
-    // Create the payload for a basic text message
-
-    //console.log(getTypeTyping(sender_psid, "zooo"));
-    //let t = getTypeTyping(sender_psid, "heyzo");
-    switch (getTypeTyping(sender_psid, "heyzo")) {
+    switch (typene) {
       case "input_username": //input username
         console.log("GET USERNAME THANH CONG");
         ChangeTypeTyping(sender_psid, "input_khong");
