@@ -85,6 +85,20 @@ function Change_username(sender_psid, typing) {
       console.log("Up date username thanhcong");
     });
 }
+function Change_password(sender_psid, typing) {
+  var dbo = client.db("dovanbot");
+  // var myquery = { _id: sender_psid };
+  // var newvalues = { $set: { type_typing: typing } };
+  dbo
+    .collection("user")
+    .updateOne({ _id: sender_psid }, { $set: { password: typing } }, function (
+      err,
+      res
+    ) {
+      if (err) throw err;
+      console.log("Up date password thanhcong");
+    });
+}
 let getTypeTyping = function (sender_psid, callback) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
@@ -100,7 +114,7 @@ let getTypeTyping = function (sender_psid, callback) {
     } else {
       //FIXME:getTypeTyping
       //console.log(result.type_typing);
-      return callback(result.type_typing);
+      return callback(result);
       //console.log(result.type_typing);
     }
   });
@@ -190,19 +204,52 @@ function handleMessage(sender_psid, received_message) {
   //FIXME: chua lay dc type ham lol
 
   if (received_message.text) {
-    getTypeTyping(sender_psid, function (kieunhapne) {
+    getTypeTyping(sender_psid, function (result) {
       //console.log(kieunhapne);
-      switch (kieunhapne) {
+      switch (result.type_typing) {
         case "input_username": {
-          //input username
-          console.log("GET USERNAME THANH CONG");
           Change_username(sender_psid, received_message.text);
-          ChangeTypeTyping(sender_psid, "input_khong");
+          if (result.password == null) {
+            let response;
+            response = {
+              recipient: {
+                id: sender_psid,
+              },
+              message: {
+                text: "✏ Nhập password của bạn: ",
+              },
+            };
+            callSendAPI("messages", response); // Sends the response message
+            ChangeTypeTyping(sender_psid, "input_password");
+          } else {
+            let response;
+            response = {
+              recipient: {
+                id: sender_psid,
+              },
+              message: {
+                text: "Bạn đã đăng nhập với password: " + result.password,
+              },
+            };
+            callSendAPI("messages", response); // Sends the response message
+          }
           break;
         }
         case "input_password": {
           //input username
-          console.log("GET USERNAME THANH CONG");
+          console.log("GET PASSWORD THANH CONG");
+          Change_password(sender_psid, received_message.text);
+
+          let response;
+          response = {
+            recipient: {
+              id: sender_psid,
+            },
+            message: {
+              text: "💛 Bạn đã đăng nhập/tạo tài khoản thành công",
+            },
+          };
+          callSendAPI("messages", response); // Sends the response message
           ChangeTypeTyping(sender_psid, "input_khong");
           break;
         }
@@ -425,7 +472,8 @@ function LOGIN(sender_psid) {
   var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
     if (err) throw err;
-    console.log(result);
+    //console.log(result);
+    ////USERNAME///
     if (result.username == null) {
       //chua login
       // console.log("result = null");
