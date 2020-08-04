@@ -177,10 +177,9 @@ function handleMessage(sender_psid, received_message) {
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
 
-  let typene;
-  getTypeTyping(sender_psid, function (type) {
+  let typene = getTypeTyping(sender_psid, function (type) {
     console.log(type + "");
-    typene = type + "";
+    return type;
   });
   console.log(typene);
   if (received_message.text) {
