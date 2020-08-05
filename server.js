@@ -1,11 +1,11 @@
 "use strict";
 //heroku logs --app=dovanbot2 --tail
+//heroku restart --app=dovanbot2
 ///////////////////////////////////////////////SETUP_SERVER//////////////////////////////////////////////////
 require("dotenv").config(); //Thư viện dùng .env -> dấu token pass...
 const request = require("request");
 const express = require("express");
 const bodyParser = require("body-parser");
-
 const app = express();
 app.use(bodyParser.json(), express.static("public")); // creates express http server
 app.set("view engine", "ejs");
@@ -15,17 +15,15 @@ server.listen(process.env.PORT || 3000, () =>
   console.log("Server is listeningggggggggggg nè")
 );
 const io = require("socket.io")(server);
-
-const MongoClient = require("mongodb").MongoClient;
-const uri = process.env.URI_NE;
-
-const client = new MongoClient(uri, { useNewUrlParser: true });
-
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
+
 let thaotac_excel = require("./thaotac_excel.js");
 // let kq = thaotac_excel.get_Malop("E10");
 // console.log(kq.data.malop);
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
+const uri = process.env.URI_NE;
+const MongoClient = require("mongodb").MongoClient;
+const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect((err) => {
   if (err) throw err;
   console.log("->DA KET NOI thành công database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
