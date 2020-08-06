@@ -189,10 +189,8 @@ function handleMessage(sender_psid, received_message) {
           if (n <= 359) {
             for (var i = 0; i < n; i++) {
               if (received_message.text[i] == "\n") {
+                CODE_CLASS.push(received_message.text.slice(temp, i));
                 temp = i + 1;
-                var kqcode = received_message.text.slice(temp, i);
-                console.log(kqcode);
-                CODE_CLASS.push(kqcode);
               }
             }
             CODE_CLASS.push(received_message.text.slice(temp, n)); //dòng cuối
