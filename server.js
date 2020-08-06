@@ -178,8 +178,8 @@ function handleMessage(sender_psid, received_message) {
         }
         case "input_code_class": {
           //console.log(received_message.text);
-          var pos = received_message.text.search("\n");
-          console.log(pos);
+          //var pos = received_message.text.search("\n");
+          //console.log(pos);
           // var content = received_message.text.substr(pos);
           // console.log(content);
           var codekq = [];
@@ -187,7 +187,7 @@ function handleMessage(sender_psid, received_message) {
           for (var i = 0, n = received_message.text.length; i < n; i++) {
             if (received_message.text[i] == "\n") {
               let kqtest = received_message.text.slice(temp, i);
-              temp = i + 1;
+              temp = i + 2;
               console.log(kqtest);
             }
           }
