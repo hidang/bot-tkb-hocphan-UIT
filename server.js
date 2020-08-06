@@ -177,7 +177,11 @@ function handleMessage(sender_psid, received_message) {
           break;
         }
         case "input_code_class": {
-          console.log(received_message.text);
+          //console.log(received_message.text);
+          var pos = received_message.text.search("\n");
+          console.log(pos);
+          var content = str.substr(pos);
+          console.log(content);
           break;
         }
         default:
