@@ -19,14 +19,13 @@ const io = require("socket.io")(server);
 
 let thaotac_excel = require("./thaotac_excel.js");
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
-var uri = process.env.URI_NE;
-var MongoClient = require("mongodb").MongoClient;
-var client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect((err) => {
+const uri = process.env.URI_NE;
+const MongoClient = require("mongodb").MongoClient;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+module.exports = client.connect((err) => {
   if (err) throw err;
   console.log("->DA KET NOI thành công database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
 });
-module.exports = client;
 function them_id(sender_psid) {
   var dbo = client.db("dovanbot");
   var myobj = {
