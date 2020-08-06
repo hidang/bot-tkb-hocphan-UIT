@@ -160,7 +160,7 @@ function handleMessage(sender_psid, received_message) {
         }
         case "input_password": {
           //input username
-          console.log("GET PASSWORD THANH CONG");
+          //console.log("GET PASSWORD THANH CONG");
           Change_password(sender_psid, received_message.text);
 
           let response;
@@ -174,6 +174,10 @@ function handleMessage(sender_psid, received_message) {
           };
           callSendAPI("messages", response); // Sends the response message
           ChangeTypeTyping(sender_psid, "input_khong");
+          break;
+        }
+        case "input_code_class": {
+          console.log(received_message.text);
           break;
         }
         default:
@@ -448,7 +452,19 @@ function LOGIN(sender_psid) {
 function LOGOUT(sender_psid) {
   CHUAHOANTHANH(sender_psid);
 }
-function INPUT_CODE_CLASS(sender_psid) {}
+function INPUT_CODE_CLASS(sender_psid) {
+  let response;
+  response = {
+    recipient: {
+      id: sender_psid,
+    },
+    message: {
+      text: "✏ Input danh sách mã lớp, mỗi mã lớp trên một dòng: ",
+    },
+  };
+  callSendAPI("messages", response); // Sends the response message
+  ChangeTypeTyping(sender_psid, "input_code_class");
+}
 //////////////////////END:EVENT_MESSENGER////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
