@@ -182,20 +182,24 @@ function handleMessage(sender_psid, received_message) {
           //console.log(pos);
           // var content = received_message.text.substr(pos);
           // console.log(content);
-          var codekq = [];
+          var CODE_CLASS = [];
           var temp = 0;
           var n = received_message.text.length;
           //console.log(n);
           if (n <= 359) {
             for (var i = 0; i < n; i++) {
               if (received_message.text[i] == "\n") {
-                let kqtest = received_message.text.slice(temp, i);
                 temp = i + 1;
-                console.log(kqtest);
+                CODE_CLASS.push(received_message.text.slice(temp, i));
               }
             }
-            let kqtest = received_message.text.slice(temp, n);
-            console.log(kqtest);
+            CODE_CLASS.push(received_message.text.slice(temp, n)); //dòng cuối
+
+            //test
+            for (let index = 0; index < CODE_CLASS.length; index++) {
+              console.log(CODE_CLASS[index]);
+            }
+            //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
             ChangeTypeTyping(sender_psid, "input_khong");
           } else {
             let response;
