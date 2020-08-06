@@ -18,6 +18,6 @@ module.exports.get_Malop = (index) => {
   return response;
 };
 
-module.exports.get_Tenmonhoc = () => {
+module.exports.set_Code_Class = (data) => {
   // Code here
 };
