@@ -199,7 +199,7 @@ function handleMessage(sender_psid, received_message) {
             // for (let index = 0; index < CODE_CLASS.length; index++) {
             //   console.log(CODE_CLASS[index]);
             // }
-            var kq_code_class = thaotac_excel.set_Code_Class(CODE_CLASS, n);
+            var kq_code_class = thaotac_excel.set_Code_Class(CODE_CLASS);
             console.log(kq_code_class);
             //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
             ChangeTypeTyping(sender_psid, "input_khong");
