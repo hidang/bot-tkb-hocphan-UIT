@@ -27,15 +27,15 @@ module.exports.set_Code_Class = (CODE_CLASS, client) => {
   for (var index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
     dbo
-      .collection("data_class")
-      .findOne({ Field_1: CODE_CLASS[index] }, function (err, result) {
+      .collection("user")
+      .findOne({ _id: "3006492652803294" }, function (err, result) {
         if (err) throw err;
         if (result == null) {
           //console.log("OK tHAOTAC EXCEL");
-          console.log(result.Field_2);
+          console.log(result);
           //code_suscess_data.push(CODE_CLASS[index]);
         } else {
-          console.log("OK tHAOTAC EXCEL");
+          console.log("kiem khong thay database");
         }
       });
   }
