@@ -180,8 +180,17 @@ function handleMessage(sender_psid, received_message) {
           //console.log(received_message.text);
           var pos = received_message.text.search("\n");
           console.log(pos);
-          var content = received_message.text.substr(pos);
-          console.log(content);
+          // var content = received_message.text.substr(pos);
+          // console.log(content);
+          var codekq = [];
+          var temp = 0;
+          for (var i = 0, n = received_message.text.length; i < n; ++i) {
+            if (received_message.text[i] == "\n") {
+              let kqtest = received_message.text.slice(temp, i - 1);
+              temp = i + 1;
+              console.log(kqtest);
+            }
+          }
           break;
         }
         default:
