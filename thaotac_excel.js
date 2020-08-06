@@ -1,4 +1,4 @@
-var server = require("./server.js");
+//var server = require("./server.js");
 var XLSX = require("xlsx");
 var workbook = XLSX.readFile("TKB_KHDT_04-08-2020_1596503345_HK_1_NH2020.xlsx");
 
@@ -17,8 +17,8 @@ module.exports.get_Malop = (index) => {
   return response;
 };
 
-module.exports.set_Code_Class = (CODE_CLASS) => {
-  var dbo = server.client.db("dovanbot");
+module.exports.set_Code_Class = (CODE_CLASS, client) => {
+  var dbo = client.db("dovanbot");
   dbo.collection("user").findOne({ _id: "123456" }, function (err, result) {
     if (err) throw err;
     //console.log(result);
