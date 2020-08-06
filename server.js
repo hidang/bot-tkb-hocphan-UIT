@@ -187,7 +187,7 @@ function handleMessage(sender_psid, received_message) {
           for (var i = 0, n = received_message.text.length; i < n; i++) {
             if (received_message.text[i] == "\n") {
               let kqtest = received_message.text.slice(temp, i);
-              temp = i + 2;
+              temp = i;
               console.log(kqtest);
             }
           }
