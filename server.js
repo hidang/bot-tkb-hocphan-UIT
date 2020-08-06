@@ -36,6 +36,7 @@ function them_id(sender_psid) {
     type_typing: "input_khong",
     username: null,
     password: null,
+    code_class: null,
   };
   dbo.collection("user").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -261,7 +262,9 @@ function handlePostback(sender_psid, received_postback) {
     case "logout":
       LOGOUT(sender_psid);
       break;
-
+    case "input_code_class":
+      INPUT_CODE_CLASS(sender_psid);
+      break;
     default:
       CHUAHOANTHANH(sender_psid);
       break;
@@ -442,9 +445,12 @@ function LOGIN(sender_psid) {
     }
   });
 }
-function LOGOUT(sender_psid) {}
-
+function LOGOUT(sender_psid) {
+  CHUAHOANTHANH(sender_psid);
+}
+function INPUT_CODE_CLASS(sender_psid) {}
 //////////////////////END:EVENT_MESSENGER////////////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get("/", (req, res) => {
   // <=> app.get('/', function(req, res){
