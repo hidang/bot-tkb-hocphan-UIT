@@ -180,7 +180,7 @@ function handleMessage(sender_psid, received_message) {
           //console.log(received_message.text);
           var pos = received_message.text.search("\n");
           console.log(pos);
-          var content = str.substr(pos);
+          var content = received_message.text.substr(pos);
           console.log(content);
           break;
         }
