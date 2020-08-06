@@ -18,10 +18,11 @@ module.exports.get_Malop = (index) => {
   return response;
 };
 
-module.exports.set_Code_Class = (CODE_CLASS, n) => {
+module.exports.set_Code_Class = (CODE_CLASS) => {
   var code_suscess = [];
   var code_error = [];
   //xu ly ne
+  var n = CODE_CLASS.length;
   for (var index = 0; index < n; index++) {
     console.log(CODE_CLASS[index]);
   }
