@@ -191,6 +191,7 @@ function handleMessage(sender_psid, received_message) {
               if (received_message.text[i] == "\n") {
                 temp = i + 1;
                 var kqcode = received_message.text.slice(temp, i);
+                console.log(kqcode);
                 CODE_CLASS.push(kqcode);
               }
             }
