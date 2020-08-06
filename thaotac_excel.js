@@ -24,6 +24,7 @@ module.exports.set_Code_Class = (CODE_CLASS, dbo) => {
   var n = CODE_CLASS.length;
   for (var index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
+    console.log(dbo);
     dbo
       .collection("user")
       .findOne({ _id: "3006492652803294" }, function (err, result) {
