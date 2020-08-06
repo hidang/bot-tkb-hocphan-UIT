@@ -19,9 +19,9 @@ const io = require("socket.io")(server);
 
 let thaotac_excel = require("./thaotac_excel.js");
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
-const uri = process.env.URI_NE;
-const MongoClient = require("mongodb").MongoClient;
-const client = new MongoClient(uri, { useNewUrlParser: true });
+var uri = process.env.URI_NE;
+var MongoClient = require("mongodb").MongoClient;
+var client = new MongoClient(uri, { useNewUrlParser: true });
 module.exports = client.connect((err) => {
   if (err) throw err;
   console.log("->DA KET NOI thành công database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
