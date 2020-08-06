@@ -17,19 +17,19 @@ module.exports.get_Malop = (index) => {
   return response;
 };
 
-module.exports.set_Code_Class = (CODE_CLASS, dbo) => {
+module.exports.set_Code_Class = (CODE_CLASS, client) => {
+  var dbo = client.db("dovanbot");
   var code_suscess_data = [];
   var response = {};
   var code_error = [];
   var n = CODE_CLASS.length;
   for (var index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
-    console.log(dbo.databaseName);
     dbo
       .collection("user")
       .findOne({ _id: "3006492652803294" }, function (err, result) {
         if (err) throw err;
-        if (result == null) {
+        if (result != null) {
           //console.log("OK tHAOTAC EXCEL");
           console.log(result);
           //code_suscess_data.push(CODE_CLASS[index]);
