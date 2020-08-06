@@ -18,6 +18,21 @@ module.exports.get_Malop = (index) => {
   return response;
 };
 
-module.exports.set_Code_Class = (data) => {
-  // Code here
+module.exports.set_Code_Class = (code_data, n) => {
+  var code_suscess = [];
+  var code_error = [];
+  //xu ly ne
+  for (let index = 0; index < n; index++) {
+    console.log(code_data[index]);
+  }
+  let response;
+  response = {
+    data: {
+      code_suscess: code_suscess,
+    },
+    error: {
+      code_error: code_error,
+    },
+  };
+  return response;
 };
