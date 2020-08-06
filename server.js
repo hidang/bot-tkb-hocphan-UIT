@@ -185,16 +185,32 @@ function handleMessage(sender_psid, received_message) {
           var codekq = [];
           var temp = 0;
           var n = received_message.text.length;
-          console.log(n);
-          for (var i = 0; i < n; i++) {
-            if (received_message.text[i] == "\n") {
-              let kqtest = received_message.text.slice(temp, i);
-              temp = i + 1;
-              console.log(kqtest);
+          //console.log(n);
+          if (n <= 359) {
+            for (var i = 0; i < n; i++) {
+              if (received_message.text[i] == "\n") {
+                let kqtest = received_message.text.slice(temp, i);
+                temp = i + 1;
+                console.log(kqtest);
+              }
             }
+            let kqtest = received_message.text.slice(temp, n);
+            console.log(kqtest);
+            ChangeTypeTyping(sender_psid, "input_khong");
+          } else {
+            let response;
+            response = {
+              recipient: {
+                id: sender_psid,
+              },
+              message: {
+                text:
+                  "Danh sách có vẻ quá dài hoặc không hợp lệ, xin vui lòng nhập lại, nếu đây là lỗi hệ thống xin báo lại cho admin",
+              },
+            };
+            callSendAPI("messages", response); // Sends the response message
           }
-          let kqtest = received_message.text.slice(temp, n);
-          console.log(kqtest);
+
           break;
         }
         default:
