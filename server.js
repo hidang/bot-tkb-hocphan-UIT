@@ -19,10 +19,10 @@ const io = require("socket.io")(server);
 
 let thaotac_excel = require("./thaotac_excel.js");
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
-var uri = process.env.URI_NE;
-var MongoClient = require("mongodb").MongoClient;
-var client = new MongoClient(uri, { useNewUrlParser: true });
-module.exports = client.connect((err) => {
+const uri = process.env.URI_NE;
+const MongoClient = require("mongodb").MongoClient;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect((err) => {
   if (err) throw err;
   console.log("->DA KET NOI thành công database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
 });
@@ -196,8 +196,11 @@ function handleMessage(sender_psid, received_message) {
             // for (let index = 0; index < CODE_CLASS.length; index++) {
             //   console.log(CODE_CLASS[index]);
             // }
-            var dbo = client.db("dovanbot");
-            var kq_code_class = thaotac_excel.set_Code_Class(CODE_CLASS, dbo);
+
+            var kq_code_class = thaotac_excel.set_Code_Class(
+              CODE_CLASS,
+              client
+            );
             console.log(kq_code_class);
             //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
             ChangeTypeTyping(sender_psid, "input_khong");
