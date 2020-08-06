@@ -182,7 +182,7 @@ function handleMessage(sender_psid, received_message) {
           //console.log(pos);
           // var content = received_message.text.substr(pos);
           // console.log(content);
-          var CODE_CLASS = [];
+          let CODE_CLASS = [];
           var temp = 0;
           var n = received_message.text.length;
           //console.log(n);
