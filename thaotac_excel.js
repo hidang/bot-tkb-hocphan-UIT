@@ -18,20 +18,20 @@ module.exports.get_Malop = (index) => {
 };
 
 module.exports.set_Code_Class = (CODE_CLASS) => {
-  var dbo = server.client.db("dovanbot");
-  dbo.collection("user").findOne({ _id: "123456" }, function (err, result) {
-    if (err) throw err;
-    //console.log(result);
-    //console.log(result._id);
-    //var resultt = result._id;
-    if (result == null) {
-      //console.log("false -> add");
-      //them_id(sender_psid);
-      console.log("OK tHAOTAC EXCEL");
-    } else {
-      console.log("OK tHAOTAC EXCEL");
-    }
-  });
+  // var dbo = server.client.db("dovanbot");
+  // dbo.collection("user").findOne({ _id: "123456" }, function (err, result) {
+  //   if (err) throw err;
+  //   //console.log(result);
+  //   //console.log(result._id);
+  //   //var resultt = result._id;
+  //   if (result == null) {
+  //     //console.log("false -> add");
+  //     //them_id(sender_psid);
+  //     console.log("OK tHAOTAC EXCEL");
+  //   } else {
+  //     console.log("OK tHAOTAC EXCEL");
+  //   }
+  // });
   var code_suscess_data = [];
   var response = {};
   var code_error = [];

@@ -22,7 +22,7 @@ let thaotac_excel = require("./thaotac_excel.js");
 var uri = process.env.URI_NE;
 var MongoClient = require("mongodb").MongoClient;
 var client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect((err) => {
+await client.connect((err) => {
   if (err) throw err;
   console.log("->DA KET NOI thành công database MONGODB!!!!!!######"); //neu chua connect ma goi la crash server, hơi chuối
 });
