@@ -19,25 +19,25 @@ module.exports.get_Malop = (index) => {
 
 module.exports.set_Code_Class = (CODE_CLASS, client) => {
   var dbo = client.db("dovanbot");
-  dbo.collection("user").findOne({ _id: "123456" }, function (err, result) {
-    if (err) throw err;
-    //console.log(result);
-    //console.log(result._id);
-    //var resultt = result._id;
-    if (result == null) {
-      //console.log("false -> add");
-      //them_id(sender_psid);
-      console.log("OK tHAOTAC EXCEL");
-    } else {
-      console.log("OK tHAOTAC EXCEL");
-    }
-  });
+
   var code_suscess_data = [];
   var response = {};
   var code_error = [];
   var n = CODE_CLASS.length;
   for (var index = 0; index < n; index++) {
-    console.log(CODE_CLASS[index]);
+    //console.log(CODE_CLASS[index]);
+    dbo
+      .collection("data_class")
+      .findOne({ Field_1: CODE_CLASS[index] }, function (err, result) {
+        if (err) throw err;
+        if (result == null) {
+          //console.log("OK tHAOTAC EXCEL");
+          console.log(result.Field_2);
+          //code_suscess_data.push(CODE_CLASS[index]);
+        } else {
+          console.log("OK tHAOTAC EXCEL");
+        }
+      });
   }
 
   response = {
