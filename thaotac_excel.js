@@ -1,6 +1,10 @@
 //var server = require("./server.js");
 var XLSX = require("xlsx");
 var workbook = XLSX.readFile("TKB_KHDT_04-08-2020_1596503345_HK_1_NH2020.xlsx");
+let code_suscess_data = [];
+let code_error = [];
+let response = {};
+module.exports = { code_suscess_data, code_error, response };
 
 module.exports.get_Malop = (index) => {
   var first_sheet_name = workbook.SheetNames[0];
@@ -16,9 +20,7 @@ module.exports.get_Malop = (index) => {
   };
   return response;
 };
-let code_suscess_data = [];
-let code_error = [];
-let response = {};
+
 module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
   var dbo = client.db("dovanbot");
   var n = CODE_CLASS.length;
