@@ -1,7 +1,7 @@
 //var server = require("./server.js");
 var XLSX = require("xlsx");
 var workbook = XLSX.readFile("TKB_KHDT_04-08-2020_1596503345_HK_1_NH2020.xlsx");
-var code_suscess_data = [];
+var code_suscess_data = [{}];
 var code_error = [];
 var response = {};
 
