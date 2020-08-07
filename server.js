@@ -196,11 +196,18 @@ function handleMessage(sender_psid, received_message) {
             // for (let index = 0; index < CODE_CLASS.length; index++) {
             //   console.log(CODE_CLASS[index]);
             // }
-            var response;
+            var response = {
+              data: {
+                code_suscess: code_suscess_data,
+              },
+              error: {
+                code_error: code_error,
+              },
+            };
             response = thaotac_excel.set_Code_Class(
               CODE_CLASS,
               client,
-              kq_code_class
+              response
             );
             console.log(response.code_suscess);
             //console.log(kq_code_class.code_suscess[0]);
