@@ -28,16 +28,17 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
     var result = dbo
       .collection("data_class")
       .findOne({ Field_1: CODE_CLASS[index] });
+    if (result != null) {
+      code_suscess_data.push(CODE_CLASS[index]);
+      console.log(code_suscess_data);
+    } else {
+      console.log("kiem khong thay database");
+      //code_error.push(CODE_CLASS[index]);
+    }
   }
   // function (err, result) {
   //   if (err) throw err;
-  if (result != null) {
-    code_suscess_data.push(CODE_CLASS[index]);
-    console.log(code_suscess_data);
-  } else {
-    console.log("kiem khong thay database");
-    //code_error.push(CODE_CLASS[index]);
-  }
+
   // });
   //console.log(code_suscess_data[0]);
   //console.log(code_suscess_data);
