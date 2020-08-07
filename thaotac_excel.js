@@ -17,7 +17,7 @@ module.exports.get_Malop = (index) => {
   return response;
 };
 
-module.exports.set_Code_Class = (CODE_CLASS, client) => {
+module.exports.set_Code_Class = (CODE_CLASS, client, response) => {
   var dbo = client.db("dovanbot");
   var code_suscess_data = [];
   var response = {};

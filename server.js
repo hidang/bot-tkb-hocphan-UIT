@@ -197,7 +197,11 @@ function handleMessage(sender_psid, received_message) {
             //   console.log(CODE_CLASS[index]);
             // }
             var kq_code_class;
-            kq_code_class = thaotac_excel.set_Code_Class(CODE_CLASS, client);
+            kq_code_class = thaotac_excel.set_Code_Class(
+              CODE_CLASS,
+              client,
+              kq_code_class
+            );
             console.log(kq_code_class);
             console.log(kq_code_class.code_suscess[0]);
             //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
