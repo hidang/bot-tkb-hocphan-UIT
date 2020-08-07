@@ -30,12 +30,11 @@ module.exports.set_Code_Class = (CODE_CLASS, client) => {
       .findOne({ Field_1: CODE_CLASS[index] }, function (err, result) {
         if (err) throw err;
         if (result != null) {
-          //console.log("OK tHAOTAC EXCEL");
           code_suscess_data.push(result);
-          console.log(result);
-          //code_suscess_data.push(CODE_CLASS[index]);
+          //console.log(result);
         } else {
           console.log("kiem khong thay database");
+          code_error.push(CODE_CLASS[index]);
         }
       });
   }
