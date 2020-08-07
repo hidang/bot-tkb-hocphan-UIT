@@ -197,7 +197,7 @@ function handleMessage(sender_psid, received_message) {
             // }
             //var callback;
             thaotac_excel.set_Code_Class(CODE_CLASS, client, function (result) {
-              console.log(result.code_test);
+              console.log(result.code_suscess);
             });
 
             //console.log(kq_code_class.code_suscess[0]);
