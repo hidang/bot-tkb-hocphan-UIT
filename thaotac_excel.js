@@ -42,15 +42,15 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
   // });
   //console.log(code_suscess_data[0]);
   //console.log(code_suscess_data);
-  response = {
+  // response = ;
+  return callback({
     data: {
-      code_suscess: code_suscess_data,
+      code_suscess: module.exports.code_suscess_data,
       code_test: CODE_CLASS[0],
     },
     error: {
-      code_error: code_error,
+      code_error: module.exports.code_error,
     },
-  };
-  return callback(response);
+  });
 };
 //////////////////////////////////////////////END:THAO_TAC_EXCEL/////////////////////////////////////////////////
