@@ -191,14 +191,7 @@ function handleMessage(sender_psid, received_message) {
             }
             CODE_CLASS.push(received_message.text.slice(temp, n)); //dòng cuối
 
-            //test
-            // for (let index = 0; index < CODE_CLASS.length; index++) {
-            //   console.log(CODE_CLASS[index]);
-            // }
-            //var callback;
             thaotac_excel.set_Code_Class(CODE_CLASS, client, function (result) {
-              //console.log(result);
-              console.log("Sau sẻver: ");
               console.log(result);
             });
 
