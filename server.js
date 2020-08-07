@@ -204,7 +204,7 @@ function handleMessage(sender_psid, received_message) {
                 return result;
               }
             );
-            console.log(data_class);
+            console.log(data_class.code_suscess);
             //console.log(kq_code_class.code_suscess[0]);
             //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
             ChangeTypeTyping(sender_psid, "input_khong");
