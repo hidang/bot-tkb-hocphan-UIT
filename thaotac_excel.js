@@ -16,11 +16,11 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
       .collection("data_class")
       .findOne({ Field_1: CODE_CLASS[index] });
     if (result != null) {
-      code_suscess_data.push(CODE_CLASS[index]);
+      code_suscess_data.push(result);
       //console.log(code_suscess_data);
     } else {
       console.log("kiem khong thay database");
-      //code_error.push(CODE_CLASS[index]);
+      code_error.push(CODE_CLASS[index]);
     }
   }
   return callback({
