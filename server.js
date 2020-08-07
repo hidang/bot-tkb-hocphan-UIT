@@ -200,7 +200,7 @@ function handleMessage(sender_psid, received_message) {
               result
             ) {
               //console.log(result);
-              console.log(result.code_suscess);
+              await console.log(result.code_suscess);
             });
 
             //console.log(kq_code_class.code_suscess[0]);
