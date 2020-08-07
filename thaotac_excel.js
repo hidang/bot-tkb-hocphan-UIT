@@ -30,11 +30,11 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
       .findOne({ Field_1: CODE_CLASS[index] }, function (err, result) {
         if (err) throw err;
         if (result != null) {
-          console.log(CODE_CLASS[index]);
           code_suscess_data.push(CODE_CLASS[index]);
+          console.log(code_suscess_data);
         } else {
           console.log("kiem khong thay database");
-          code_error.push(CODE_CLASS[index]);
+          //code_error.push(CODE_CLASS[index]);
         }
       });
   }
