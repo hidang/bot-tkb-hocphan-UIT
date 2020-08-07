@@ -38,6 +38,7 @@ module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
         }
       });
   }
+  console.log(code_suscess_data);
   // module.exports.response = {
   //   data: {
   //     code_suscess: code_suscess_data,
