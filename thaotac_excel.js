@@ -16,10 +16,11 @@ module.exports.get_Malop = (index) => {
   };
   return response;
 };
+var code_suscess_data = [];
+var code_error = [];
+module.exports = { code_suscess_data, code_error };
 //////////////////////////////////////////////TODO:THAO_TAC_EXCEL/////////////////////////////////////////////////
 module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
-  let code_suscess_data = [];
-  var code_error = [];
   var response = {};
   var dbo = client.db("dovanbot");
   var n = CODE_CLASS.length;
@@ -45,11 +46,11 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
   // response = ;
   return callback({
     data: {
-      code_suscess: module.exports.code_suscess_data,
+      code_suscess: code_suscess_data,
       code_test: CODE_CLASS[0],
     },
     error: {
-      code_error: module.exports.code_error,
+      code_error: code_error,
     },
   });
 };
