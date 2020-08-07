@@ -5,14 +5,14 @@ module.exports = {};
 
 //////////////////////////////////////////////TODO://///////////////////////////////////////////////
 module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
-  var code_suscess_data = [];
-  var code_error = [];
+  let code_suscess_data = [];
+  let code_error = [];
   //var response = {};
-  var dbo = client.db("dovanbot");
+  let dbo = client.db("dovanbot");
   var n = CODE_CLASS.length;
   for (let index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
-    var result;
+    let result;
     module.exports = result = dbo
       .collection("data_class")
       .findOne({ Field_1: CODE_CLASS[index] });
