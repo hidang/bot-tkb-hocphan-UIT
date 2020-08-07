@@ -129,8 +129,8 @@ var set_Code_Class = function (CODE_CLASS, callback) {
       .findOne({ Field_1: CODE_CLASS[index] }, function (err, result) {
         if (err) throw err;
         if (result != null) {
-          code_suscess_data.push(CODE_CLASS[index]);
           console.log(CODE_CLASS[index]);
+          code_suscess_data.push(CODE_CLASS[index]);
         } else {
           console.log("kiem khong thay database");
           code_error.push(CODE_CLASS[index]);
@@ -138,7 +138,7 @@ var set_Code_Class = function (CODE_CLASS, callback) {
       });
   }
   //console.log(code_suscess_data[0]);
-  console.log(code_suscess_data);
+  //console.log(code_suscess_data);
   response = {
     data: {
       code_suscess: code_suscess_data,
@@ -233,7 +233,7 @@ function handleMessage(sender_psid, received_message) {
             // }
             //var callback;
             set_Code_Class(CODE_CLASS, function (result) {
-              console.log(result);
+              //console.log(result);
             });
 
             //console.log(kq_code_class.code_suscess[0]);
