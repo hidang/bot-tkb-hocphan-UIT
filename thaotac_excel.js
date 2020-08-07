@@ -27,7 +27,7 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
     //console.log(CODE_CLASS[index]);
     dbo
       .collection("data_class")
-      .findOne({ Field_1: CODE_CLASS[index] }, function (err, result) {
+      .findOne({ Field_1: CODE_CLASS[index] }, async function (err, result) {
         if (err) throw err;
         if (result != null) {
           code_suscess_data.push(CODE_CLASS[index]);
