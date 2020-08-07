@@ -43,6 +43,7 @@ module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
   response = {
     data: {
       code_suscess: code_suscess_data,
+      code_test: CODE_CLASS[0],
     },
     error: {
       code_error: code_error,
