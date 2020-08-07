@@ -4,7 +4,6 @@ var workbook = XLSX.readFile("TKB_KHDT_04-08-2020_1596503345_HK_1_NH2020.xlsx");
 var code_suscess_data = [];
 var code_error = [];
 var response = {};
-module.exports = { code_suscess_data, code_error, response };
 
 module.exports.get_Malop = (index) => {
   var first_sheet_name = workbook.SheetNames[0];
@@ -50,11 +49,11 @@ module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
   // };
   return callback({
     data: {
-      code_suscess: code_suscess_data,
+      code_suscess: module.exports.code_suscess_data,
       code_test: CODE_CLASS[0],
     },
     error: {
-      code_error: code_error,
+      code_error: module.exports.code_error,
     },
   });
 };
