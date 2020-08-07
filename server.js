@@ -199,7 +199,7 @@ function handleMessage(sender_psid, received_message) {
             let data_class = thaotac_excel.set_Code_Class(
               CODE_CLASS,
               client,
-              function (result) {
+              async function (result) {
                 //console.log(result);
                 return result;
               }
