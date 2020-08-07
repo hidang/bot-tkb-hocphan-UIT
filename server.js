@@ -16,7 +16,7 @@ server.listen(process.env.PORT || 3000, () =>
 );
 const io = require("socket.io")(server);
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
-
+let thaotac_excel = require("./thaotac_excel.js");
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 const uri = process.env.URI_NE;
 const MongoClient = require("mongodb").MongoClient;
@@ -115,42 +115,6 @@ var getTypeTyping = function (sender_psid, callback) {
   });
 };
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
-//////////////////////////////////////////////TODO:THAO_TAC_EXCEL/////////////////////////////////////////////////
-var set_Code_Class = function (CODE_CLASS, callback) {
-  let code_suscess_data = [];
-  var code_error = [];
-  var response = {};
-  var dbo = client.db("dovanbot");
-  var n = CODE_CLASS.length;
-  for (let index = 0; index < n; index++) {
-    //console.log(CODE_CLASS[index]);
-    dbo
-      .collection("data_class")
-      .findOne({ Field_1: CODE_CLASS[index] }, function (err, result) {
-        if (err) throw err;
-        if (result != null) {
-          console.log(CODE_CLASS[index]);
-          code_suscess_data.push(CODE_CLASS[index]);
-        } else {
-          console.log("kiem khong thay database");
-          code_error.push(CODE_CLASS[index]);
-        }
-      });
-  }
-  //console.log(code_suscess_data[0]);
-  //console.log(code_suscess_data);
-  response = {
-    data: {
-      code_suscess: code_suscess_data,
-      code_test: CODE_CLASS[0],
-    },
-    error: {
-      code_error: code_error,
-    },
-  };
-  return callback(response);
-};
-//////////////////////////////////////////////END:THAO_TAC_EXCEL/////////////////////////////////////////////////
 
 //////////////////////TODO:EVENT_MESSENGER////////////////////////////////////////////////////////////////
 function handleMessage(sender_psid, received_message) {
@@ -232,8 +196,8 @@ function handleMessage(sender_psid, received_message) {
             //   console.log(CODE_CLASS[index]);
             // }
             //var callback;
-            set_Code_Class(CODE_CLASS, function (result) {
-              //console.log(result);
+            thaotac_excel.set_Code_Class(CODE_CLASS, client, function (result) {
+              console.log(result);
             });
 
             //console.log(kq_code_class.code_suscess[0]);

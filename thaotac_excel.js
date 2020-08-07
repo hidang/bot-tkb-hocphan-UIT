@@ -16,3 +16,39 @@ module.exports.get_Malop = (index) => {
   };
   return response;
 };
+//////////////////////////////////////////////TODO:THAO_TAC_EXCEL/////////////////////////////////////////////////
+module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
+  let code_suscess_data = [];
+  var code_error = [];
+  var response = {};
+  var dbo = client.db("dovanbot");
+  var n = CODE_CLASS.length;
+  for (let index = 0; index < n; index++) {
+    //console.log(CODE_CLASS[index]);
+    dbo
+      .collection("data_class")
+      .findOne({ Field_1: CODE_CLASS[index] }, function (err, result) {
+        if (err) throw err;
+        if (result != null) {
+          console.log(CODE_CLASS[index]);
+          code_suscess_data.push(CODE_CLASS[index]);
+        } else {
+          console.log("kiem khong thay database");
+          code_error.push(CODE_CLASS[index]);
+        }
+      });
+  }
+  //console.log(code_suscess_data[0]);
+  //console.log(code_suscess_data);
+  response = {
+    data: {
+      code_suscess: code_suscess_data,
+      code_test: CODE_CLASS[0],
+    },
+    error: {
+      code_error: code_error,
+    },
+  };
+  return callback(response);
+};
+//////////////////////////////////////////////END:THAO_TAC_EXCEL/////////////////////////////////////////////////
