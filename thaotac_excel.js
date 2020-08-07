@@ -17,7 +17,7 @@ module.exports.get_Malop = (index) => {
   return response;
 };
 //////////////////////////////////////////////TODO:THAO_TAC_EXCEL/////////////////////////////////////////////////
-module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
+module.exports.set_Code_Class = async function (CODE_CLASS, client, callback) {
   let code_suscess_data = [];
   var code_error = [];
   var response = {};
@@ -25,7 +25,7 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
   var n = CODE_CLASS.length;
   for (let index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
-    dbo
+    await dbo
       .collection("data_class")
       .findOne({ Field_1: CODE_CLASS[index] }, async function (err, result) {
         if (err) throw err;
