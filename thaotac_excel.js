@@ -1,9 +1,9 @@
 //var server = require("./server.js");
 var XLSX = require("xlsx");
 var workbook = XLSX.readFile("TKB_KHDT_04-08-2020_1596503345_HK_1_NH2020.xlsx");
-let code_suscess_data = [];
-let code_error = [];
-let response = {};
+var code_suscess_data = [];
+var code_error = [];
+var response = {};
 module.exports = { code_suscess_data, code_error, response };
 
 module.exports.get_Malop = (index) => {
@@ -39,8 +39,16 @@ module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
         }
       });
   }
-
-  response = {
+  // module.exports.response = {
+  //   data: {
+  //     code_suscess: code_suscess_data,
+  //     code_test: CODE_CLASS[0],
+  //   },
+  //   error: {
+  //     code_error: code_error,
+  //   },
+  // };
+  return callback({
     data: {
       code_suscess: code_suscess_data,
       code_test: CODE_CLASS[0],
@@ -48,6 +56,5 @@ module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
     error: {
       code_error: code_error,
     },
-  };
-  return callback(response);
+  });
 };
