@@ -194,7 +194,7 @@ function handleMessage(sender_psid, received_message) {
             thaotac_excel.set_Code_Class(CODE_CLASS, client, function (result) {
               console.log(result);
             });
-
+            delete thaotac_excel();
             //console.log(kq_code_class.code_suscess[0]);
             //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
             ChangeTypeTyping(sender_psid, "input_khong");
