@@ -17,7 +17,7 @@ server.listen(process.env.PORT || 3000, () =>
 const io = require("socket.io")(server);
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 
-let thaotac_excel = require("./thaotac_excel.js");
+const thaotac_excel = require("./thaotac_excel.js");
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 const uri = process.env.URI_NE;
 const MongoClient = require("mongodb").MongoClient;
@@ -198,7 +198,7 @@ function handleMessage(sender_psid, received_message) {
             // }
             //var callback;
             thaotac_excel.set_Code_Class(CODE_CLASS, client, function (result) {
-              console.log(result.code_suscess);
+              console.log(result);
             });
 
             //console.log(kq_code_class.code_suscess[0]);
