@@ -196,20 +196,11 @@ function handleMessage(sender_psid, received_message) {
             // for (let index = 0; index < CODE_CLASS.length; index++) {
             //   console.log(CODE_CLASS[index]);
             // }
-            var response = {
-              data: {
-                code_suscess: code_suscess_data,
-              },
-              error: {
-                code_error: code_error,
-              },
-            };
-            response = thaotac_excel.set_Code_Class(
-              CODE_CLASS,
-              client,
-              response
-            );
-            console.log(response.code_suscess);
+            //var callback;
+            thaotac_excel.set_Code_Class(CODE_CLASS, client, function (result) {
+              console.log(result.code_suscess);
+            });
+
             //console.log(kq_code_class.code_suscess[0]);
             //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
             ChangeTypeTyping(sender_psid, "input_khong");
