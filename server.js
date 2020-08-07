@@ -196,15 +196,13 @@ function handleMessage(sender_psid, received_message) {
             //   console.log(CODE_CLASS[index]);
             // }
             //var callback;
-            let data_class = thaotac_excel.set_Code_Class(
-              CODE_CLASS,
-              client,
-              async function (result) {
-                //console.log(result);
-                return result;
-              }
-            );
-            console.log(data_class.code_suscess);
+            thaotac_excel.set_Code_Class(CODE_CLASS, client, async function (
+              result
+            ) {
+              //console.log(result);
+              console.log(result.code_suscess);
+            });
+
             //console.log(kq_code_class.code_suscess[0]);
             //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
             ChangeTypeTyping(sender_psid, "input_khong");
