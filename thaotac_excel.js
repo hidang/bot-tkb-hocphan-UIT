@@ -31,14 +31,14 @@ module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
         if (err) throw err;
         if (result != null) {
           code_suscess_data.push(result);
-          console.log(result);
+          //console.log(result);
         } else {
           console.log("kiem khong thay database");
           code_error.push(CODE_CLASS[index]);
         }
       });
   }
-  console.log(code_suscess_data[0]);
+  console.log(code_suscess_data[0].Field_1);
   // module.exports.response = {
   //   data: {
   //     code_suscess: code_suscess_data,
