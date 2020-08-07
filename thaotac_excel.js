@@ -1,27 +1,13 @@
 //var server = require("./server.js");
-var XLSX = require("xlsx");
-var workbook = XLSX.readFile("TKB_KHDT_04-08-2020_1596503345_HK_1_NH2020.xlsx");
+// var XLSX = require("xlsx");
+// var workbook = XLSX.readFile("TKB_KHDT_04-08-2020_1596503345_HK_1_NH2020.xlsx");
 
-module.exports.get_Malop = (index) => {
-  var first_sheet_name = workbook.SheetNames[0];
-  var worksheet = workbook.Sheets[first_sheet_name]; //trang tinh'
-  var address_of_cell = index;
-  var desired_cell = worksheet[address_of_cell];
-  var desired_value = desired_cell ? desired_cell.v : undefined;
-  let response;
-  response = {
-    data: {
-      malop: desired_value,
-    },
-  };
-  return response;
-};
 var code_suscess_data = [];
 var code_error = [];
 module.exports = { code_suscess_data, code_error };
-//////////////////////////////////////////////TODO:THAO_TAC_EXCEL/////////////////////////////////////////////////
+//////////////////////////////////////////////TODO://///////////////////////////////////////////////
 module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
-  var response = {};
+  //var response = {};
   var dbo = client.db("dovanbot");
   var n = CODE_CLASS.length;
   for (let index = 0; index < n; index++) {
@@ -31,27 +17,33 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
       .findOne({ Field_1: CODE_CLASS[index] });
     if (result != null) {
       code_suscess_data.push(CODE_CLASS[index]);
-      console.log(code_suscess_data);
+      //console.log(code_suscess_data);
     } else {
       console.log("kiem khong thay database");
       //code_error.push(CODE_CLASS[index]);
     }
   }
-  // function (err, result) {
-  //   if (err) throw err;
-
-  // });
-  //console.log(code_suscess_data[0]);
-  //console.log(code_suscess_data);
-  // response = ;
   return callback({
     data: {
       code_suscess: code_suscess_data,
-      code_test: CODE_CLASS[0],
     },
     error: {
       code_error: code_error,
     },
   });
 };
-//////////////////////////////////////////////END:THAO_TAC_EXCEL/////////////////////////////////////////////////
+//////////////////////////////////////////////END://///////////////////////////////////////////////
+// module.exports.get_Malop = (index) => {
+//   var first_sheet_name = workbook.SheetNames[0];
+//   var worksheet = workbook.Sheets[first_sheet_name]; //trang tinh'
+//   var address_of_cell = index;
+//   var desired_cell = worksheet[address_of_cell];
+//   var desired_value = desired_cell ? desired_cell.v : undefined;
+//   let response;
+//   response = {
+//     data: {
+//       malop: desired_value,
+//     },
+//   };
+//   return response;
+// };
