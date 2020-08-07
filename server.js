@@ -117,7 +117,7 @@ var getTypeTyping = function (sender_psid, callback) {
 /////////////////////////END_MongoDB/////////////////////////////////////////////////////////////
 //////////////////////////////////////////////TODO:THAO_TAC_EXCEL/////////////////////////////////////////////////
 var set_Code_Class = function (CODE_CLASS, callback) {
-  var code_suscess_data = [];
+  let code_suscess_data = [];
   var code_error = [];
   var response = {};
   var dbo = client.db("dovanbot");
@@ -130,7 +130,7 @@ var set_Code_Class = function (CODE_CLASS, callback) {
         if (err) throw err;
         if (result != null) {
           code_suscess_data.push(CODE_CLASS[index]);
-          //console.log(result);
+          console.log(CODE_CLASS[index]);
         } else {
           console.log("kiem khong thay database");
           code_error.push(CODE_CLASS[index]);
