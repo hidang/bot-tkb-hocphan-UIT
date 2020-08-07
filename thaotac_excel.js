@@ -26,11 +26,12 @@ module.exports.set_Code_Class = (CODE_CLASS, client) => {
   for (var index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
     dbo
-      .collection("user")
-      .findOne({ _id: "3006492652803294" }, function (err, result) {
+      .collection("data_class")
+      .findOne({ Filed_1: CODE_CLASS[index] }, function (err, result) {
         if (err) throw err;
         if (result != null) {
           //console.log("OK tHAOTAC EXCEL");
+          code_suscess_data.push(result);
           console.log(result);
           //code_suscess_data.push(CODE_CLASS[index]);
         } else {
