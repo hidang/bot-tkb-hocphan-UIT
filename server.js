@@ -138,6 +138,7 @@ var set_Code_Class = function (CODE_CLASS, callback) {
       });
   }
   //console.log(code_suscess_data[0]);
+  console.log(code_suscess_data);
   response = {
     data: {
       code_suscess: code_suscess_data,
