@@ -12,7 +12,8 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
   var n = CODE_CLASS.length;
   for (let index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
-    var result = dbo
+    var result;
+    module.exports = result = dbo
       .collection("data_class")
       .findOne({ Field_1: CODE_CLASS[index] });
     if (result != null) {
