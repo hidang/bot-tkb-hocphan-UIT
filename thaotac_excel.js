@@ -1,12 +1,12 @@
 //var server = require("./server.js");
 // var XLSX = require("xlsx");
 // var workbook = XLSX.readFile("TKB_KHDT_04-08-2020_1596503345_HK_1_NH2020.xlsx");
+module.exports = {};
 
-var code_suscess_data = [];
-var code_error = [];
-module.exports = { code_suscess_data, code_error };
 //////////////////////////////////////////////TODO://///////////////////////////////////////////////
 module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
+  var code_suscess_data = [];
+  var code_error = [];
   //var response = {};
   var dbo = client.db("dovanbot");
   var n = CODE_CLASS.length;
