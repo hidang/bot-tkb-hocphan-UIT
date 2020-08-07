@@ -16,12 +16,11 @@ module.exports.get_Malop = (index) => {
   };
   return response;
 };
-
+let code_suscess_data = [];
+let code_error = [];
 module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
   var dbo = client.db("dovanbot");
-  var code_suscess_data = [];
   var response = {};
-  var code_error = [];
   var n = CODE_CLASS.length;
   for (var index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
