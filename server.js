@@ -17,7 +17,7 @@ server.listen(process.env.PORT || 3000, () =>
 const io = require("socket.io")(server);
 //////////////////////////////////////////////END_SETUP_SERVER/////////////////////////////////////////////////
 
-const thaotac_excel = require("./thaotac_excel.js");
+let thaotac_excel = require("./thaotac_excel.js");
 /////////////////////////TODO: MongoDB/////////////////////////////////////////////////////////////
 const uri = process.env.URI_NE;
 const MongoClient = require("mongodb").MongoClient;
