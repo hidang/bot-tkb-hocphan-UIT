@@ -18,9 +18,9 @@ module.exports.get_Malop = (index) => {
 };
 let code_suscess_data = [];
 let code_error = [];
+let response = {};
 module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
   var dbo = client.db("dovanbot");
-  var response = {};
   var n = CODE_CLASS.length;
   for (var index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
@@ -38,13 +38,13 @@ module.exports.set_Code_Class = (CODE_CLASS, client, callback) => {
       });
   }
 
-  // response = {
-  //   data: {
-  //     code_suscess: code_suscess_data,
-  //   },
-  //   error: {
-  //     code_error: code_error,
-  //   },
-  // };
-  return callback(CODE_CLASS[0]);
+  response = {
+    data: {
+      code_suscess: code_suscess_data,
+    },
+    error: {
+      code_error: code_error,
+    },
+  };
+  return callback(response);
 };
