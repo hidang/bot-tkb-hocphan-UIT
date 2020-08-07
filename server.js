@@ -122,7 +122,7 @@ var set_Code_Class = function (CODE_CLASS, callback) {
   var response = {};
   var dbo = client.db("dovanbot");
   var n = CODE_CLASS.length;
-  for (var index = 0; index < n; index++) {
+  for (let index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
     dbo
       .collection("data_class")
