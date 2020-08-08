@@ -4,7 +4,7 @@
 
 //////////////////////////////////////////////TODO://///////////////////////////////////////////////
 module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
-  let code_suscess_data = [];
+  let code_suscess_data = [{}];
   let code_error = [];
   module.exports = { code_suscess_data, code_error };
   //var response = {};
