@@ -192,7 +192,7 @@ function handleMessage(sender_psid, received_message) {
             CODE_CLASS.push(received_message.text.slice(temp, n)); //dòng cuối
 
             thaotac_excel.set_Code_Class(CODE_CLASS, client, function (result) {
-              console.log(result.code_suscess);
+              console.log(result);
             });
             //delete thaotac_excel();
             //console.log(kq_code_class.code_suscess[0]);
