@@ -13,8 +13,8 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
   module.exports = { code_suscess_data, code_error, dbo, n };
   for (let index = 0; index < n; index++) {
     //console.log(CODE_CLASS[index]);
-    let result;
-    module.exports = result = dbo
+
+    var result = dbo
       .collection("data_class")
       .findOne({ Field_1: CODE_CLASS[index] });
   }
