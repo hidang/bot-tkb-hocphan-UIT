@@ -4,7 +4,7 @@
 
 //////////////////////////////////////////////TODO://///////////////////////////////////////////////
 module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
-  let code_suscess_data = [{}];
+  let code_suscess_data = [];
   let code_error = [];
   module.exports = { code_suscess_data, code_error };
   //var response = {};
@@ -17,7 +17,7 @@ module.exports.set_Code_Class = function (CODE_CLASS, client, callback) {
       .collection("data_class")
       .findOne({ Field_1: CODE_CLASS[index] });
     if (result != null) {
-      code_suscess_data.push(result);
+      code_suscess_data.push(result.Field_2);
       console.log(code_suscess_data);
     } else {
       console.log("kiem khong thay database");
