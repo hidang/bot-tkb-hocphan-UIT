@@ -30,11 +30,11 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
       FB_API.callSendAPI("messages", response);
       break;
     case "GET_STARTED_PAYLOAD":
-      STARTED.STARTED(sender_psid);
+      STARTED(sender_psid);
       //FINDtoADDID(sender_psid);
       break;
     case "huong_dan":
-      HuongDan.HuongDan(sender_psid);
+      HuongDan(sender_psid);
       break;
     case "login":
       //LOGIN(sender_psid);
@@ -46,7 +46,7 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
       //INPUT_CODE_CLASS(sender_psid);
       break;
     default:
-      CHUAHOANTHANH.CHUAHOANTHANH(sender_psid);
+      CHUAHOANTHANH(sender_psid);
       break;
   }
 }
