@@ -43,10 +43,10 @@ router.post('/', (req, res) => {
 
       if (webhook_event.message) {
         console.log(sender_psid +': ' +webhook_event.message);
-        //handleMessage(sender_psid, webhook_event.message);
+        //handleMessage.handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
         //(2)
-        handlePostback(sender_psid, webhook_event.postback);
+        handlePostback.handlePostback(sender_psid, webhook_event.postback);
       }
     });
 
