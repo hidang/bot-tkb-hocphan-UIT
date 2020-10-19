@@ -4,7 +4,7 @@ const router = express.Router();
 //const handleMessage = require('../handle_message/handleMessage');
 const handlePostback = require('../handle_message/handlePostback');
 // Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = process.env.VALIDATION_TOKEN;
   // Parse the query params
@@ -26,10 +26,11 @@ router.get("/", (req, res) => {
     }
   }
 });
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
+  
   //console.log(req);
   let body = req.body;
-  //console.log(body);
+  console.log(body);
   // Checks this is an event from a page subscription
   if (body.object === "page") {
     body.entry.forEach(function (entry) {
