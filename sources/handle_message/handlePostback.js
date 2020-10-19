@@ -5,7 +5,7 @@ const HuongDan         = require('../botFunction/HuongDan');
 // const Change_password  = require('../botFunction/Change_password');
 // const ChangeTypeTyping = require('../botFunction/ChangeTypeTyping');
 const CHUAHOANTHANH    = require('../botFunction/chuahoanthanh');
-const callSendAPI      = require('../useAPI/callSendAPI');
+const FB_API      = require('../useAPI/FB_API');
 module.exports.handlePostback = function (sender_psid, received_postback) {
   let response; // response is a JSON
   // Get the payload for the postback
@@ -18,7 +18,7 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
         },
         message: { text: "Thanks!" },
       };
-      callSendAPI("messages", response);
+      FB_API.callSendAPI("messages", response);
       break;
     case "no":
       response = {
@@ -27,7 +27,7 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
         },
         message: { text: "Oops, try sending another image." },
       };
-      callSendAPI("messages", response);
+      FB_API.callSendAPI("messages", response);
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED.STARTED(sender_psid);

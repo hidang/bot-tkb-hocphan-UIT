@@ -1,4 +1,4 @@
-const callSendAPI = require('../useAPI/callSendAPI');
+const FB_API = require('../useAPI/FB_API');
 module.exports.CHUAHOANTHANH = function(sender_psid) {
   let response;
   response = {
@@ -29,5 +29,5 @@ module.exports.CHUAHOANTHANH = function(sender_psid) {
       },
     },
   };
-  callSendAPI("messages", response);
+  FB_API.callSendAPI("messages", response);
 }

@@ -1,4 +1,4 @@
-const callSendAPI = require('../useAPI/callSendAPI');
+const FB_API = require('../useAPI/FB_API');
 module.exports.STARTED = function (sender_psid) {
   //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
   let response;
@@ -35,5 +35,5 @@ module.exports.STARTED = function (sender_psid) {
       },
     },
   };
-  callSendAPI("messages", response);
+  FB_API.callSendAPI("messages", response);
 }
