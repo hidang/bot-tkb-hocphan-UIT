@@ -1,5 +1,5 @@
 const FB_API = require('../useAPI/FB_API');
-module.exports.CHUAHOANTHANH = function(sender_psid) {
+module.exports = function(sender_psid) {
   let response;
   response = {
     //"text": `Xin chào "${{user_full_name}}!", Bạn cần làm gì?`,
