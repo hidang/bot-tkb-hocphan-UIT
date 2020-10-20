@@ -4,6 +4,7 @@ const HuongDan         = require('../botFunction/HuongDan');
 // const Change_username  = require('../botFunction/Change_username');
 // const Change_password  = require('../botFunction/Change_password');
 // const ChangeTypeTyping = require('../botFunction/ChangeTypeTyping');
+const addID      = require('../utils/handlers/users');
 const CHUAHOANTHANH    = require('../botFunction/chuahoanthanh');
 const FB_API      = require('../useAPI/FB_API');
 module.exports.handlePostback = function (sender_psid, received_postback) {
@@ -31,7 +32,7 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
       break;
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
-      //FINDtoADDID(sender_psid);
+      addID.FINDtoADDID(sender_psid);
       break;
     case "huong_dan":
       HuongDan(sender_psid);

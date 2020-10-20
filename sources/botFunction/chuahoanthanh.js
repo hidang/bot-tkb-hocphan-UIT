@@ -12,7 +12,7 @@ module.exports = function(sender_psid) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Thật xin lỗi: server chưa update <3",
+          text: "Thật xin lỗi: server đang hoàn thiện tính năng này <3",
           buttons: [
             {
               type: "postback",

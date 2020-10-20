@@ -27,20 +27,17 @@ router.get('/', (req, res) => {
   }
 });
 router.post('/', (req, res) => {
-  
   //console.log(req);
   let body = req.body;
-  console.log(body);
+  //console.log(body);
   // Checks this is an event from a page subscription
   if (body.object === "page") {
     body.entry.forEach(function (entry) {
       let webhook_event = entry.messaging[0];
-
       let sender_psid = webhook_event.sender.id;
       //console.log('Sender PSID: ' + sender_psid);
-      console.log("webhook EVEN VAOPOOOOOOOOO!!!!!!!");
-      //TODO:console.log(webhook_event);
-
+      //console.log("webhook EVEN VAOPOOOOOOOOO!!!!!!!");
+      //console.log(webhook_event);
       if (webhook_event.message) {
         console.log(sender_psid +': ' +webhook_event.message);
         //handleMessage.handleMessage(sender_psid, webhook_event.message);
@@ -49,7 +46,6 @@ router.post('/', (req, res) => {
         handlePostback.handlePostback(sender_psid, webhook_event.postback);
       }
     });
-
     // Returns a '200 OK' response to all requests
     res.status(200).send("EVENT_RECEIVED");
   } else {
