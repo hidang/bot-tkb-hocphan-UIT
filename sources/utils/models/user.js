@@ -1,3 +1,4 @@
+// collection users
 var mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
@@ -6,4 +7,4 @@ const userSchema = mongoose.Schema({
   username: String,
   code_class: Array
 });
-module.exports = mongoose.model('dangs', userSchema);
+module.exports = mongoose.model('users', userSchema);//nếu users không có s nó cũng tự thêm
