@@ -6,4 +6,4 @@ const userSchema = mongoose.Schema({
   username: String,
   code_class: Array
 });
-module.exports = mongoose.model('dang', userSchema);
+module.exports = mongoose.model('dangs', userSchema);
