@@ -21,6 +21,7 @@ mongoose.connect(require("../../../config/app").db.connectionUri, {
 function createNew(sender_id, cb){
   User.findOne({ _id: sender_id }).exec((err, user) => {
     if (user) { //nếu đã tồn tại
+      console.log(user);
       return cb(null, false);
     } else {
       var newUser = new User({
