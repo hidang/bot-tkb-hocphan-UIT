@@ -1,27 +1,13 @@
+const db_user = require('../utils/handlers/users');
+
 function them_id(sender_psid) {
-  var dbo = client.db("dovanbot");
-  var myobj = {
-    _id: sender_psid,
-    type_typing: "input_khong",
-    username: null,
-    password: null,
-    code_class: null,
-  };
-  dbo.collection("user").insertOne(myobj, function (err, res) {
-    if (err) throw err;
-    console.log("DA them_id: " + sender_psid + " thanh cong! ()them_id");
-  });
+
 }
-module.exports.FINDtoADDID = function(sender_psid) {
-  var dbo = client.db("dovanbot");
-  dbo.collection("user").findOne({ _id: sender_psid }, function (err, result) {
-    if (err) throw err;
-    //console.log(result);
-    //console.log(result._id);
-    //var resultt = result._id;
-    if (result == null) {
-    //console.log("false -> add");
-    them_id(sender_psid);
-    }
+module.exports.FINDtoADDID = (sender_psid) => {
+  db_user.createNew(sender_psid, (err, result) => {
+    if(result) console.log(sender_psid +'- đã thêm!');
+    //có 2 TH lỗi ở đây: 
+    if (err === null) console.log(sender_psid +'- đã tồn tại!'); //Đã tồn tại
+    else console.log('*addID.js them id mới thất bại: !'+ err);//database lỗi
   });
 }
