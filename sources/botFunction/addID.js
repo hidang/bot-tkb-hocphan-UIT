@@ -1,9 +1,6 @@
 const db_user = require('../utils/handlers/users');
 
-function them_id(sender_psid) {
-
-}
-module.exports.FINDtoADDID = (sender_psid) => {
+module.exports.FINDtoADDID = function (sender_psid) {
   db_user.createNew(sender_psid, (err, result) => {
     if(result) console.log(sender_psid +'- đã thêm!');
     //có 2 TH lỗi ở đây: 
