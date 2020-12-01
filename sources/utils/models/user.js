@@ -1,7 +1,5 @@
-// collection users
+// collection is "users"
 const mongoose = require('mongoose');
-const mongoose_conect = require("../../database/mongooes");
-mongoose_conect.conect();
 const userSchema = mongoose.Schema({
   _id: String,
   type_typing: String,
