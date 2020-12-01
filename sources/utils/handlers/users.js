@@ -1,23 +1,12 @@
-var mongoose = require("mongoose");
+var mongoose = require("../../database/mongooes");
 var User = require("../models/user");
 
-mongoose.connect(require("../../../config/app").db.connectionUri, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true
-});
+// mongoose.connect(require("../../../config/app").db.connectionUri, {
+//   useUnifiedTopology: true,
+//   useNewUrlParser: true
+// });
+mongoose.conect();
 
-//find 
-// function findOne(sender_id, cb) {
-//   User.findOne(sender_id).exec((err, user) => {
-//     if (err) return cb(err, false);
-//     if (user) {
-//       return cb(err, user);
-//     } else {
-//       return cb(null, false);
-//     }
-//   });
-// }
-//add~create id
 function createNew(sender_id, cb){
   User.findOne({ _id: sender_id }).exec((err, user) => {
     if (user) { //nếu đã tồn tại
@@ -43,3 +32,15 @@ module.exports = {
   createNew: createNew,
   
 };
+//find 
+// function findOne(sender_id, cb) {
+//   User.findOne(sender_id).exec((err, user) => {
+//     if (err) return cb(err, false);
+//     if (user) {
+//       return cb(err, user);
+//     } else {
+//       return cb(null, false);
+//     }
+//   });
+// }
+//add~create id
