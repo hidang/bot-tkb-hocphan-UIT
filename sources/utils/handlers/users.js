@@ -1,11 +1,4 @@
-var mongoose = require("../../database/mongooes");
 var User = require("../models/user");
-
-// mongoose.connect(require("../../../config/app").db.connectionUri, {
-//   useUnifiedTopology: true,
-//   useNewUrlParser: true
-// });
-//mongoose.conect();
 
 function createNew(sender_id, cb){
   User.findOne({ _id: sender_id }).exec((err, user) => {
