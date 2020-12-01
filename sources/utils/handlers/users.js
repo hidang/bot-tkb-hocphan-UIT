@@ -1,4 +1,6 @@
 var User = require("../models/user");
+const mongoose_conect = require("../../database/mongooes");
+mongoose_conect.conect();
 
 function createNew(sender_id, cb){
   User.findOne({ _id: sender_id }).exec((err, user) => {
@@ -19,11 +21,10 @@ function createNew(sender_id, cb){
   });
 }
 
-// Expose all the api...
+
 module.exports = {
   //findOne: findOne,
   createNew: createNew,
-  
 };
 //find 
 // function findOne(sender_id, cb) {
