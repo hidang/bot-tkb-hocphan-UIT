@@ -7,5 +7,4 @@ function conect() {
 }
 module.exports = {
   conect: conect,
-  
 };
