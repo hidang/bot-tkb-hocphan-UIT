@@ -5,7 +5,7 @@ var User = require("../models/user");
 //   useUnifiedTopology: true,
 //   useNewUrlParser: true
 // });
-mongoose.conect();
+//mongoose.conect();
 
 function createNew(sender_id, cb){
   User.findOne({ _id: sender_id }).exec((err, user) => {
