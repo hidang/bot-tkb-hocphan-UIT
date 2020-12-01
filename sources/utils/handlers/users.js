@@ -19,7 +19,7 @@ function createNew(sender_id, cb){
       });
     }
   });
-  return("Loi ket noi den database!", null);
+  return cb("Loi ket noi den database!", null);
 }
 
 
