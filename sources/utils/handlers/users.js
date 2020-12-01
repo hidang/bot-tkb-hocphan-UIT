@@ -1,6 +1,7 @@
 var User = require("../models/user");
 const mongoose_conect = require("../../database/mongooes");
-mongoose_conect.conect();
+const { render } = require("ejs");
+//mongoose_conect.conect();
 
 function createNew(sender_id, cb){
   User.findOne({ _id: sender_id }).exec((err, user) => {
@@ -19,6 +20,7 @@ function createNew(sender_id, cb){
       });
     }
   });
+  return("Loi ket noi den database!", null);
 }
 
 
