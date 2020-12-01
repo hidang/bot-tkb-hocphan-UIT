@@ -1,6 +1,5 @@
 var User = require("../models/user");
 const mongoose_conect = require("../../database/mongooes");
-const { render } = require("ejs");
 //mongoose_conect.conect();
 
 function createNew(sender_id, cb){
