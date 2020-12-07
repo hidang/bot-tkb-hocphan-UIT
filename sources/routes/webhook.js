@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
       res.status(200).send(challenge);
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
-      //console.log('THAT_BAIIIII');
+      console.log('403 Forbidden: Verify tokens do not match!');
       res.sendStatus(403);
     }
   }
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
       let webhook_event = entry.messaging[0];
       let sender_psid = webhook_event.sender.id;
       //console.log('Sender PSID: ' + sender_psid);
-      //console.log("webhook EVEN VAOPOOOOOOOOO!!!!!!!");
+      //console.log("webhook EVENT!!!!!!!");
       //console.log(webhook_event);
       if (webhook_event.message) {
         console.log(sender_psid +': ' +webhook_event.message);
@@ -50,6 +50,7 @@ router.post('/', (req, res) => {
     res.status(200).send("EVENT_RECEIVED");
   } else {
     // Returns a '404 Not Found' if event is not from a page subscription
+    console.log("404 Not Found: Event is not from a page subscription!");
     res.sendStatus(404);
   }
 });

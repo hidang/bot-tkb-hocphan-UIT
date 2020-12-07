@@ -2,7 +2,7 @@ var User = require("../models/user");
 const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
 
-function createNew(sender_id, cb){
+const createNew = (sender_id, cb) => {
   User.findOne({ _id: sender_id }).exec((err, user) => {
     if (user) { //nếu đã tồn tại
       //console.log(user);
@@ -21,7 +21,6 @@ function createNew(sender_id, cb){
   });
   return cb("Lỗi kết nối đến database! *user.js", null);
 }
-
 
 module.exports = {
   //findOne: findOne,
