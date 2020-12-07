@@ -1,8 +1,8 @@
-var User = require("../models/_user");
+const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
-mongoose_conect.conect();
+await mongoose_conect.conect();
 
-const createNew = (sender_id, cb) => {//async with Aarrow function
+const createNew = async (sender_id, cb) => {//async with Aarrow function
   try {
     console.log("##HERE1");
     await User.findOne({ _id: sender_id }).exec((err, user) => {
@@ -17,13 +17,13 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
           username: null,
           code_class: null
         });
-        newUser.save((err, res) => {
+        await newUser.save((err, res) => {
           return cb(err, res);
         });
       }
     });
   } catch (error) {
-    console.log("##HERE3");
+    console.log("##HERE3" +error);
     return cb("Lỗi kết nối đến database! *user.js: "+error, null);//send message to user
   }
 }
