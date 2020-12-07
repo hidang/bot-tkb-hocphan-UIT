@@ -1,4 +1,4 @@
-var User = require("../models/user");
+var User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
 
