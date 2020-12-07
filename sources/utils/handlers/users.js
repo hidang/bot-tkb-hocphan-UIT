@@ -3,8 +3,10 @@ const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
 
 const createNew = async (sender_id, cb) => {//async with Aarrow function
+  console.log("##HERE1");
   try {
     await User.findOne({ _id: sender_id }).exec((err, user) => {
+      console.log("##HERE2");
       if (user) { //nếu đã tồn tại
         //console.log(user);
         return cb(null, false);
@@ -21,6 +23,7 @@ const createNew = async (sender_id, cb) => {//async with Aarrow function
       }
     });
   } catch (error) {
+    console.log("##HERE3");
     return cb("Lỗi kết nối đến database! *user.js: "+error, null);//send message to user
   }
 }
