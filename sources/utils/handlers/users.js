@@ -7,6 +7,7 @@ if(conect_){
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
   if(conect_){
+    console.log(typeof conect_);
     console.log(conect_);
     //return;
   };
