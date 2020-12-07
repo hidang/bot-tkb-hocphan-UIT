@@ -20,7 +20,7 @@ const createNew = async (sender_id, cb) => {//async with Aarrow function
           username: null,
           code_class: null
         });
-        await newUser.save((err, res) => {
+        newUser.save((err, res) => {
           return cb(err, res);
         });
       }
