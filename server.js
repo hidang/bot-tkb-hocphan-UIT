@@ -9,6 +9,7 @@ app.use(bodyParser.json(), express.static("public")); // creates express http se
 app.set("view engine", "ejs");// view engine setup
 app.set("views", "./views");// view engine setup
 const server = require("http").Server(app);
+
 server.listen(process.env.PORT || 3000, () =>
   console.log("Server is listening nè!")
 );
