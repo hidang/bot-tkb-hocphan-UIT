@@ -6,7 +6,7 @@ conect_.then(function(data){
     console.log(data);
   }
 );
-conect_.catch(function(error){
+conect_.catch(function(error){//mongooes.js error: Promise { MongoParseError:: }
   console.log(error);
 })
 
