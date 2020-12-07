@@ -7,7 +7,7 @@ if(conect_){
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
   if(conect_){
-    console.log("2##HERE" + conect_);
+    console.log(conect_);
     //return;
   };
   User.findOne({ _id: sender_id }).exec((err, user) => {
