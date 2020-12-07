@@ -2,11 +2,13 @@ const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 const conect_ = mongoose_conect.conect();
 conect_.then(function(data){
+  console.log("#1#users.js");
     console.log(data);
-  }.catch(function(error){
-    console.log(error);
-  })
+  }
 );
+conect_.catch(function(error){
+  console.log(error);
+})
 
 // if(typeof conect_ === "object"){
 //   console.log("1##HERE" + conect_);
