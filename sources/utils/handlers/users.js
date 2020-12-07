@@ -3,8 +3,8 @@ const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {
-  User.findOne({ _id: sender_id }).exec((err, user) => {
-    try {
+  try {
+    User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { //nếu đã tồn tại
         console.log(user);
         return cb(null, false);
@@ -19,25 +19,16 @@ const createNew = (sender_id, cb) => {
           return cb(err, res);
         });
       }
-    } catch (error) {
-      return cb("Lỗi kết nối đến database! *user.js: "+error, null);
-    }
-  });
+    });
+  } catch (error) {
+    return cb("Lỗi kết nối đến database! *user.js: "+error, null);
+  }
 }
+const updateCodeClass = (sender_id, cb) =>{//tra ra code err: trùng, đã thêm
 
+}
 module.exports = {
   //findOne: findOne,
   createNew: createNew,
+  updateCodeClass: updateCodeClass,
 };
-//find 
-// function findOne(sender_id, cb) {
-//   User.findOne(sender_id).exec((err, user) => {
-//     if (err) return cb(err, false);
-//     if (user) {
-//       return cb(err, user);
-//     } else {
-//       return cb(null, false);
-//     }
-//   });
-// }
-//add~create id
