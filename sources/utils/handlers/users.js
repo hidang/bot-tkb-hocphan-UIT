@@ -2,10 +2,10 @@ var User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
 
-const createNew = async (sender_id, cb) => {//async with Aarrow function
-  console.log("##HERE1");
+const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
-    console.log(await User.findOne({ _id: sender_id }).exec((err, user) => {
+    console.log("##HERE1");
+    await User.findOne({ _id: sender_id }).exec((err, user) => {
       console.log("##HERE2");
       if (user) { //nếu đã tồn tại
         //console.log(user);
@@ -21,8 +21,7 @@ const createNew = async (sender_id, cb) => {//async with Aarrow function
           return cb(err, res);
         });
       }
-    })
-    );
+    });
   } catch (error) {
     console.log("##HERE3");
     return cb("Lỗi kết nối đến database! *user.js: "+error, null);//send message to user
