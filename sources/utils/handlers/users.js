@@ -4,22 +4,26 @@ mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {
   User.findOne({ _id: sender_id }).exec((err, user) => {
-    if (user) { //nếu đã tồn tại
-      //console.log(user);
-      return cb(null, false);
-    } else {
-      var newUser = new User({
-        _id: sender_id,
-        type_typing: "khong",
-        username: null,
-        code_class: null
-      });
-      newUser.save((err, res) => {
-        return cb(err, res);
-      });
+    try {
+      if (user) { //nếu đã tồn tại
+        //console.log(user);
+        return cb(null, false);
+      } else {
+        var newUser = new User({
+          _id: sender_id,
+          type_typing: "khong",
+          username: null,
+          code_class: null
+        });
+        newUser.save((err, res) => {
+          return cb(err, res);
+        });
+      }
+    } catch (error) {
+      return cb("Lỗi kết nối đến database! *user.js: "+error, null);
     }
   });
-  return cb("Lỗi kết nối đến database! *user.js", null);
+
 }
 
 module.exports = {
