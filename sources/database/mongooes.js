@@ -6,7 +6,7 @@ async function conect() {
       useNewUrlParser: true
     });
   } catch (error) {//TODO: send message thông báo user lỗi database
-    console.log('LOI KET NOI DATABASE:' +error);
+    console.log('LOI KET NOI DATABASE:' +error);//TODO: send message thông báo user lỗi database
   }
 }
 module.exports = {
