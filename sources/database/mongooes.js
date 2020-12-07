@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-function conect() {
+async function conect() {
   try {
-    mongoose.connect(require("../../config/app").db.connectionUri, {
+    await mongoose.connect(require("../../config/app").db.connectionUri, {
       useUnifiedTopology: true,
       useNewUrlParser: true
     });
