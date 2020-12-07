@@ -6,7 +6,7 @@ const createNew = (sender_id, cb) => {
   try {
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { //nếu đã tồn tại
-        console.log(user);
+        //console.log(user);
         return cb(null, false);
       } else {
         var newUser = new User({
