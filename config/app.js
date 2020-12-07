@@ -9,7 +9,7 @@ module.exports = {
   author: "hidang",
   version: "2.0",
   db: {
-    connectionUri: 'hidangdeptrai',//process.env.URI_NE,
+    connectionUri: process.env.URI_NE,//'hidangdeptrai',//
     params: {},
     collections: ["user"]
   }
