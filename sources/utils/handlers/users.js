@@ -6,7 +6,7 @@ const createNew = (sender_id, cb) => {
   User.findOne({ _id: sender_id }).exec((err, user) => {
     try {
       if (user) { //nếu đã tồn tại
-        //console.log(user);
+        console.log(user);
         return cb(null, false);
       } else {
         var newUser = new User({
@@ -23,7 +23,6 @@ const createNew = (sender_id, cb) => {
       return cb("Lỗi kết nối đến database! *user.js: "+error, null);
     }
   });
-
 }
 
 module.exports = {
