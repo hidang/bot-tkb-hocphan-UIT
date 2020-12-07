@@ -1,12 +1,15 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
-await mongoose_conect.conect();
-
+try {
+  mongoose_conect.conect();
+} catch(error){
+  console.log("##"+error);
+}
 const createNew = async (sender_id, cb) => {//async with Aarrow function
   try {
     console.log("##HERE1");
     await User.findOne({ _id: sender_id }).exec((err, user) => {
-      console.log("##HERE2");
+      console.log("##HERE2"+err);
       if (user) { //nếu đã tồn tại
         //console.log(user);
         return cb(null, false);
