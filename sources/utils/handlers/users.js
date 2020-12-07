@@ -1,16 +1,23 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 const conect_ = mongoose_conect.conect();
-if(typeof conect_ === "object"){
-  console.log("1##HERE" + conect_);
-};
+conect_.then(function(data){
+    console.log(data);
+  }.catch(function(error){
+    console.log(error);
+  })
+);
+
+// if(typeof conect_ === "object"){
+//   console.log("1##HERE" + conect_);
+// };
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
-  if(conect_){
-    console.log(typeof conect_);
-    console.log(conect_.MongoParseError);
-    //return;
-  };
+  // if(conect_){
+  //   console.log(typeof conect_);
+  //   console.log(conect_);
+  //   //return;
+  // };
   User.findOne({ _id: sender_id }).exec((err, user) => {
     if (user) { //nếu đã tồn tại
       //console.log(user);
