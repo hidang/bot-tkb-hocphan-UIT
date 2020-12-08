@@ -1,7 +1,7 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 var flag = true;
-const conect_ = mongoose_conect.conect().catch(function(error){//mongooes.js error: Promise { MongoParseError:: }
+mongoose_conect.conect().catch(function(error){//mongooes.js error: Promise { MongoParseError:: }
   console.log(error);
   flag = false;
 });
