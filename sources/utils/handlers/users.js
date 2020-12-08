@@ -4,7 +4,7 @@ mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
-    console.log(User.users);
+    console.log(User.users); //Không kết nối đc thì undefined
     console.log(mongoose_conect)
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { 
