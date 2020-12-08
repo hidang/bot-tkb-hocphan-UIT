@@ -1,7 +1,7 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
-
+console.log(mongoose_conect.failed_connect);
 const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
     if (mongoose_conect.failed_connect) {
@@ -29,6 +29,7 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
     })
   }catch(error) {
     //TODO: truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
+    console.error('inner', error.message);
     console.log("database bảo trì :)");
   }
 }
