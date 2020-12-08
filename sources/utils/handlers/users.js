@@ -4,6 +4,7 @@ mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
+    console.log(User);
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { 
         //console.log(user);
@@ -22,7 +23,7 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
       if (err) {
         return cb("Lỗi khi đang thực thi User.findOne() |database! *user.js: "+err, null);//send message to user
       }
-      throw new Error('oops');//lỗi kết nối database nên User.findOne() không thể tồn tại->thông báo admin->user
+      //throw new Error('oops');//lỗi kết nối database nên User.findOne() không thể tồn tại->thông báo admin->user
     })
   
   }catch(error) {
