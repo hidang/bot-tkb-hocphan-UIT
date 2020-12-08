@@ -1,12 +1,14 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
-console.log(mongoose_conect.failed_connect);
+
 const createNew = (sender_id, cb) => {//async with Aarrow function
+  if (mongoose_conect.failed_connect) {
+    //throw new Error('Loi database ne');
+    console.log('failed_connect');
+    return cb('failed_connect', false);
+  }
   try {
-    if (mongoose_conect.failed_connect) {
-      throw new Error('Loi database ne');
-    }
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { 
         //console.log(user);
@@ -29,7 +31,7 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
     })
   }catch(error) {
     //TODO: truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
-    console.error('inner', error.message);
+    //console.error('inner', error.message);
     console.log("database bảo trì :)");
   }
 }
