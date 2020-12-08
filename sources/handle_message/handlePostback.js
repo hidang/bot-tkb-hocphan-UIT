@@ -1,5 +1,5 @@
 const STARTED          = require('../botFunction/start');
-const huongdan         = require('../botFunction/huongdan');
+const huong_dan         = require('../botFunction/huong_dan');
 // const getTypeTyping    = require('../botFunction/getTypeTyping');
 // const Change_username  = require('../botFunction/Change_username');
 // const Change_password  = require('../botFunction/Change_password');
@@ -35,7 +35,7 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
       addID.FINDtoADDID(sender_psid);
       break;
     case "huong_dan":
-      huongdan(sender_psid);
+      huong_dan(sender_psid);
       break;
     case "login":
       //LOGIN(sender_psid);
