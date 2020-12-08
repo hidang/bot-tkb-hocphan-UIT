@@ -1,33 +1,36 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
-var flag = true;
-mongoose_conect.conect().catch(function(error){//mongooes.js error: Promise { MongoParseError:: }
-  console.log(error);
-  flag = false;
-});
+mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
-  if (flag === false) {
-    console.log("#1#error database");
-  }
-  User.findOne({ _id: sender_id }).exec((err, user) => {//TODO: truong hop database server bi ngat?
-    if (user) { //nếu đã tồn tại
-      //console.log(user);
-      return cb(null, false);
-    } else {
-      var newUser = new User({
-        _id: sender_id,
-        type_typing: "khong",
-        username: null,
-        code_class: null
-      });
-      newUser.save((err, res) => {
-        return cb(err, res);
-      });
-    }
-    if (err) {
-      return cb("Lỗi User.findOne database! *user.js: "+err, null);//send message to user
-    }
+  Promise.resolve(
+    User.findOne({ _id: sender_id }).exec((err, user) => {//TODO: truong hop database server bi ngat?
+      if (user) { //nếu đã tồn tại
+        //console.log(user);
+        return cb(null, false);
+      } else {
+        var newUser = new User({
+          _id: sender_id,
+          type_typing: "khong",
+          username: null,
+          code_class: null
+        });
+        newUser.save((err, res) => {
+          return cb(err, res);
+        });
+      }
+      if (err) {
+        return cb("Lỗi User.findOne() database! *user.js: "+err, null);//send message to user
+      }
+    })
+
+  )
+  .then(function(cb) {
+    return cb;
+  })
+  .catch(function() {
+    // do something
+    console.log("Khong the thuc thi User.findOne()");
   });
 }
 const updateCodeClass = (sender_id, cb) =>{//tra ra code err: trùng, đã thêm
