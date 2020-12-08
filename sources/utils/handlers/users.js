@@ -3,7 +3,7 @@ const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
-  console.log(mongoose_conect.check_connect());
+  //console.log(mongoose_conect.check_connect());
   try {
     if (mongoose_conect.check_connect()) {
       throw new Error('*users.js Không kết nối được database-server');//go to catch()
