@@ -1,11 +1,11 @@
 const STARTED          = require('../botFunction/start');
-const HuongDan         = require('../botFunction/huongdan');
+const huongdan         = require('../botFunction/huongdan');
 // const getTypeTyping    = require('../botFunction/getTypeTyping');
 // const Change_username  = require('../botFunction/Change_username');
 // const Change_password  = require('../botFunction/Change_password');
 // const ChangeTypeTyping = require('../botFunction/ChangeTypeTyping');
 const addID      = require('../botFunction/addID');
-const CHUAHOANTHANH    = require('../botFunction/chuahoanthanh');
+const chuahoanthanh    = require('../botFunction/chuahoanthanh');
 const FB_API      = require('../useAPI/FB_API');
 module.exports.handlePostback = function (sender_psid, received_postback) {
   let response; // response is a JSON
@@ -35,7 +35,7 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
       addID.FINDtoADDID(sender_psid);
       break;
     case "huong_dan":
-      HuongDan(sender_psid);
+      huongdan(sender_psid);
       break;
     case "login":
       //LOGIN(sender_psid);
@@ -47,7 +47,7 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
       //INPUT_CODE_CLASS(sender_psid);
       break;
     default:
-      CHUAHOANTHANH(sender_psid);
+      chuahoanthanh(sender_psid);
       break;
   }
 }
