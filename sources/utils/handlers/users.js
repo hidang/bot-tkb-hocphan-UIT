@@ -25,8 +25,8 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
         });
       }
       if (err) {
-        //TODO: truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
-        return cb("Lỗi khi đang thực thi User.findOne() |database! *users.js: " + err, null);//send message to user
+        //truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
+        return cb("#H# Lỗi khi đang thực thi User.findOne() |database! *users.js: " + err, null);//send message to user
       }
     })
   }catch(error) {
