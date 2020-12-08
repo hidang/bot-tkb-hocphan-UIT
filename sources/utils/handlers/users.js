@@ -4,7 +4,9 @@ mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
-    console.log(User); //Không kết nối đc thì undefined
+    if (mongoose_conect.failed_connect) {
+      throw new Error('Loi database ne');
+    }
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { 
         //console.log(user);
@@ -25,7 +27,6 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
       }
       //throw new Error('oops');//lỗi kết nối database nên User.findOne() không thể tồn tại->thông báo admin->user
     })
-  
   }catch(error) {
     //TODO: truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
     console.log("database bảo trì :)");
