@@ -10,7 +10,7 @@ async function conect() {//Phải sử dụng async/await nếu không bot sẽ 
     set_connect(false);
   } catch (error) {
     set_connect(true);
-    console.log('LOI KET NOI DATABASE *mongoose.js: ' + error);//TODO: send message thông báo user lỗi database
+    console.log('LOI KET NOI DATABASE *mongoose.js: ' + error);//thông báo admin lỗi database
   }
 }
 function set_connect(check) {
