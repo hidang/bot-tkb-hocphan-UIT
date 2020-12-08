@@ -7,7 +7,7 @@ async function conect() {//Phải sử dụng async/await nếu không bot sẽ 
       useUnifiedTopology: true,
       useNewUrlParser: true
     });
-    set_connect(false);
+    //set_connect(false);???
   } catch (error) {
     set_connect(true);
     console.log('LOI KET NOI DATABASE *mongoose.js:' + error);//TODO: send message thông báo user lỗi database
