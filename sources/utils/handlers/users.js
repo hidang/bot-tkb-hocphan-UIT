@@ -1,26 +1,22 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 const conect_ = mongoose_conect.conect();
-conect_.then(function(data){
-  console.log("#1#users.js");
-    console.log(data);
-  }
-);
+var flag = true;
+conect_.then((r)=>{
+  console.log("That bai ma van chay vao");
+  console.log(r);
+});
 conect_.catch(function(error){//mongooes.js error: Promise { MongoParseError:: }
   console.log(error);
-})
-
-// if(typeof conect_ === "object"){
-//   console.log("1##HERE" + conect_);
-// };
+  flag = false;
+});
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
-  // if(conect_){
-  //   console.log(typeof conect_);
-  //   console.log(conect_);
-  //   //return;
-  // };
-  User.findOne({ _id: sender_id }).exec((err, user) => {
+  if(!flag){//chua test
+    console.log("Loi database");//TODO:send message to user
+    return;
+  };
+  User.findOne({ _id: sender_id }).exec((err, user) => {//TODO: truong hop database server bi ngat
     if (user) { //nếu đã tồn tại
       //console.log(user);
       return cb(null, false);
@@ -36,8 +32,7 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
       });
     }
     if (err) {
-      console.log("3##HERE" +error);
-      return cb("Lỗi kết nối đến database! *user.js: "+error, null);//send message to user
+      return cb("Lỗi User.findOne database! *user.js: "+error, null);//send message to user
     }
   });
 }
