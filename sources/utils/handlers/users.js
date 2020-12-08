@@ -26,6 +26,7 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
 
   )
   .then(function(cb) {
+    console.log("Di vao day");
     return cb;
   })
   .catch(function() {
