@@ -31,8 +31,7 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
     return cb;
   })
   .catch(function() {
-    // do something
-    console.log("Khong the thuc thi User.findOne()");
+    console.log("Khong the thuc thi User.findOne() lỗi không mong muốn");
   });
 }
 const updateCodeClass = (sender_id, cb) =>{//tra ra code err: trùng, đã thêm
