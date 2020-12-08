@@ -6,7 +6,8 @@ module.exports.FINDtoADDID = (sender_psid) => {
     else //có 2 TH lỗi ở đây: 
       if (err === null) console.log(sender_psid +'- đã tồn tại!'); //result === false
         else /*if(err !== null)*/ {
-          console.log('*addID.js them id mới thất bại: !\n'+ err);//database lỗi
+          //TODO:send message đến user ib
+          console.log('*addID.js them id mới thất bại: ! - '+ err);//database lỗi
         }
   });
 }
