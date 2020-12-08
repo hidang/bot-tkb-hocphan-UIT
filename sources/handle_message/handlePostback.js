@@ -1,5 +1,5 @@
-const STARTED          = require('../botFunction/STARTED');
-const HuongDan         = require('../botFunction/HuongDan');
+const STARTED          = require('../botFunction/start');
+const HuongDan         = require('../botFunction/huongdan');
 // const getTypeTyping    = require('../botFunction/getTypeTyping');
 // const Change_username  = require('../botFunction/Change_username');
 // const Change_password  = require('../botFunction/Change_password');
