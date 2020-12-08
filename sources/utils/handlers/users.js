@@ -6,12 +6,12 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
   console.log(mongoose_conect.check_connect());
   try {
     if (mongoose_conect.check_connect()) {
-      throw new Error('Loi database ne');
+      throw new Error('*users.js Không kết nối được database-server');//go to catch()
     }
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { 
         //console.log(user);
-        return cb(null, false);//nếu đã tồn tại
+        return cb(null, null);//nếu đã tồn tại
       } else {
         var newUser = new User({
           _id: sender_id,
@@ -20,18 +20,18 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
           code_class: null
         });
         newUser.save((err, res) => {
+          if(err) console.log("#3#");
           return cb(err, res);//thêm user thành công
         });
       }
       if (err) {
-        return cb("Lỗi khi đang thực thi User.findOne() |database! *user.js: "+err, null);//send message to user
+        //TODO: truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
+        return cb("Lỗi khi đang thực thi User.findOne() |database! *users.js: " + err, null);//send message to user
       }
-      //throw new Error('oops');//lỗi kết nối database nên User.findOne() không thể tồn tại->thông báo admin->user
     })
   }catch(error) {
-    //TODO: truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
-    console.error('inner', error.message);
-    console.log("database bảo trì :)");
+    console.error(error.message);
+    return cb("Lỗi không nối được đến database-server!", null);//send to mess-> user
   }
 }
 const updateCodeClass = (sender_id, cb) =>{//tra ra code err: trùng, đã thêm
