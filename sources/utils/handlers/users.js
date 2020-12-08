@@ -3,8 +3,8 @@ const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
-  console.log(mongoose_conect.failed_connect);
-  if (mongoose_conect.failed_connect) {
+  console.log(mongoose_conect.check_connect());
+  if (mongoose_conect.check_connect()) {
     throw new Error('Loi database ne');
   }
   try {

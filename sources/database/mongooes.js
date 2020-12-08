@@ -9,7 +9,7 @@ async function conect() {//Phải sử dụng async/await nếu không bot sẽ 
     });
     //failed_connect = false;
   } catch (error) {
-    failed_connect = true;
+    set_connect(true);
     console.log('LOI KET NOI DATABASE:' + error);//TODO: send message thông báo user lỗi database
   }
 }
@@ -21,6 +21,6 @@ function check_connect() {
 }
 
 module.exports = {
-  failed_connect,
+  check_connect: check_connect,
   conect: conect,
 };
