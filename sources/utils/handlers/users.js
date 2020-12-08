@@ -4,7 +4,6 @@ mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
   console.log(mongoose_conect.failed_connect);
-  //mongoose_conect.failed_connect = true;
   if (mongoose_conect.failed_connect) {
     throw new Error('Loi database ne');
   }
