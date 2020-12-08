@@ -4,10 +4,10 @@ mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
   console.log(mongoose_conect.check_connect());
-  if (mongoose_conect.check_connect()) {
-    throw new Error('Loi database ne');
-  }
   try {
+    if (mongoose_conect.check_connect()) {
+      throw new Error('Loi database ne');
+    }
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { 
         //console.log(user);
