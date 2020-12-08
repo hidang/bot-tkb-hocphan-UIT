@@ -1,0 +1,1 @@
+heroku logs --app=dovanbot2 --tail
