@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-var failed_connect = false;
+let failed_connect = false;
 
 async function conect() {//Phải sử dụng async/await nếu không bot sẽ crash khi không kết nối được database
   try {
