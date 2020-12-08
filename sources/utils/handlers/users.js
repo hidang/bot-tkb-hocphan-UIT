@@ -5,9 +5,9 @@ mongoose_conect.conect();
 const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
     User.findOne({ _id: sender_id }).exec((err, user) => {
-      if (user) { //nếu đã tồn tại
+      if (user) { 
         //console.log(user);
-        return cb(null, false);
+        return cb(null, false);//nếu đã tồn tại
       } else {
         var newUser = new User({
           _id: sender_id,
@@ -16,18 +16,18 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
           code_class: null
         });
         newUser.save((err, res) => {
-          return cb(err, res);
+          return cb(err, res);//thêm user thành công
         });
       }
       if (err) {
-        return cb("Lỗi User.findOne() database! *user.js: "+err, null);//send message to user
+        return cb("Lỗi khi đang thực thi User.findOne() |database! *user.js: "+err, null);//send message to user
       }
-      throw new Error('oops');
+      throw new Error('oops');//lỗi kết nối database nên User.findOne() không thể tồn tại->thông báo admin->user
     })
   
   }catch(error) {
     //TODO: truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
-    console.log("thuc thi User.findOne() lỗi không mong muốn, se khong the xay ra :)");
+    console.log("database bảo trì :)");
   }
 }
 const updateCodeClass = (sender_id, cb) =>{//tra ra code err: trùng, đã thêm
