@@ -4,7 +4,8 @@ mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
-    console.log(User);
+    console.log(User.users);
+    console.log(mongoose_conect)
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { 
         //console.log(user);
