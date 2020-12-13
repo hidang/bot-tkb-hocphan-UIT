@@ -3,7 +3,8 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 const get_type_typing = async (sender_psid) =>{
-  return await getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
+  let data =  await getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
+  return data;
 }
 module.exports.handleMessage = (sender_psid, received_message) => {
   //let response; // response is a JSON
