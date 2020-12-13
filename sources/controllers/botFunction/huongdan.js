@@ -1,4 +1,4 @@
-const FB_API = require('../useAPI/FB_API');
+const FB_API = require('../../useAPI/FB_API');
 module.exports = function (sender_psid) {
   let response;
   response = {
