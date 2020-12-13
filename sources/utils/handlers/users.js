@@ -3,7 +3,6 @@ const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
 
 const createNew = (sender_id, cb) => {//async with Aarrow function
-  //console.log(mongoose_conect.check_connect());
   try {
     if (mongoose_conect.check_connect()) {
       throw new Error('*users.js Không kết nối được database-server');//go to catch()
@@ -11,34 +10,58 @@ const createNew = (sender_id, cb) => {//async with Aarrow function
     User.findOne({ _id: sender_id }).exec((err, user) => {
       if (user) { 
         //console.log(user);
-        return cb(null, null);//nếu đã tồn tại
+        return cb(null, false);//nếu đã tồn tại
       } else {
-        var newUser = new User({
+        var newUser = new User({//TODO: var newUser -> user
           _id: sender_id,
           type_typing: "khong",
           username: null,
           code_class: null
         });
         newUser.save((err, res) => {
-          if(err) console.log("#3#");
+          if(err) console.log("#createNew()# save that bai");
           return cb(err, res);//thêm user thành công
         });
       }
       if (err) {
         //truong hop ket noi thanh cong nhưng database server bi ngat giữa chừng
-        return cb("#H# Lỗi khi đang thực thi User.findOne() |database! *users.js: " + err, null);//send message to user
+        return cb("#H# Lỗi khi đang thực thi User.findOne() |database! *users.js: " + err, false);//send message to user
       }
     })
-  }catch(error) {
+  } catch(error) {
     console.error(error.message);
     return cb("Lỗi không nối được đến database-server!", null);//send to mess-> user
   }
 }
-const updateCodeClass = (sender_id, cb) =>{//tra ra code err: trùng, đã thêm
-
+const updateCodeClass = (typing, sender_id, cb) =>{//trả ra code err: trùng, đã thêm
+  if (mongoose_conect.check_connect()) {
+    return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
+  }
+  User.findOne({ _id: sender_id }).exec((err, user) => {
+    if(!err) {
+      if(!user) {
+        user = new User({
+          _id: sender_id,
+          type_typing: "khong",
+          username: null,
+          code_class: null
+        });
+      }
+      user.type_typing = typing;
+      user.save(function(err, res) {
+          if(!err) {
+            return cb(err, res);
+          }
+          else {
+            console.log("#updateCodeClass()# save that bai");
+          }
+      });
+    }else {
+      return(err, false);
+    }
+  });
 }
 module.exports = {
-  //findOne: findOne,
   createNew: createNew,
   updateCodeClass: updateCodeClass,
 };

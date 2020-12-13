@@ -1,4 +1,4 @@
-var dbHost = process.env.URI_NE; //|| "localhost";
+//var dbHost = process.env.URI_MONGODB; //|| "localhost";
 module.exports = {
   name: "dovanbot",
   title: "dovanbot",
@@ -9,7 +9,7 @@ module.exports = {
   author: "hidang",
   version: "2.0",
   db: {
-    connectionUri: process.env.URI_NE,//'hidangdeptrai',//
+    connectionUri: process.env.URI_MONGODB,//'hidangdeptrai',//
     params: {},
     collections: ["user"]
   }

@@ -1,5 +1,6 @@
 const FB_API      = require('../../useAPI/FB_API');
-module.exports.input_Code_Class = function (sender_psid) {
+const changeTypeTyping = require('./changeTypeTyping');
+module.exports.input_Code_Class = (sender_psid) => {
   let response;
   response = {
     recipient: {
@@ -11,5 +12,5 @@ module.exports.input_Code_Class = function (sender_psid) {
     },
   };
   FB_API.callSendAPI("messages", response);
-  //ChangeTypeTyping(sender_psid, "input_code_class");
+  changeTypeTyping.ChangeTypeTyping(sender_psid, "code_class");
 }
