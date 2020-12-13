@@ -21,7 +21,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
           //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
           //ChangeTypeTyping(sender_psid, "input_khong");
         } else {
-          sendTextMessage(
+          sendTextMessage.sendTextMessage(
             sender_psid, 
             "Danh sách có vẻ quá dài hoặc không hợp lệ, xin vui lòng nhập lại, nếu đây là lỗi hệ thống xin báo lại cho admin"
           );
@@ -29,7 +29,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
         break;
       }
       case false:{
-        sendTextMessage(
+        sendTextMessage.sendTextMessage(
           sender_psid, 
           "Lỗi không mong muốn từ phía database server, thành thật xin lỗi, xin thử lại sau ít phút."
         );
