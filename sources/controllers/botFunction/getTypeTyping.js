@@ -1,4 +1,5 @@
 const db_user = require('../../utils/handlers/users');
+
 module.exports.getTypeTyping = (sender_psid) =>{
   db_user.getTypeTyping(sender_psid, (err, result) =>{
     if(!err) {
