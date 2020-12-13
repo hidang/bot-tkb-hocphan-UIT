@@ -1,15 +1,12 @@
-module.exports.ChangeTypeTyping = function (sender_psid, typing) {
-  var dbo = client.db("dovanbot");
-  // var myquery = { _id: sender_psid };
-  // var newvalues = { $set: { type_typing: typing } };
-  dbo
-    .collection("user")
-    .updateOne(
-      { _id: sender_psid },
-      { $set: { type_typing: typing } },
-      function (err, res) {
-        if (err) throw err;
-        console.log("Up date typeTyping thanhcong");
-      }
-    );
+const db_user = require('../../utils/handlers/users');
+module.exports.ChangeTypeTyping = (sender_psid, typing) => {
+  db_user.updateCodeClass(typing, sender_psid, (err, result) =>{
+    if(result) 
+      console.log(sender_psid +'- đã update thành công!' + typing);
+    else {
+      //database lỗi->TODO:send message 
+      console.log('*ChangeTypeTyping.js update thất bại: ! - '+ err);
+    }
+  });
 }
+
