@@ -61,11 +61,11 @@ const updateCodeClass = (typing, sender_id, cb) =>{//trả ra code err: trùng, 
     }
   });
 }
-const getTypeTyping = (sender_id, cb) =>{
+const getTypeTyping = async (sender_id, cb) =>{
   if (mongoose_conect.check_connect()) {
     return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
   }
-  User.findOne({ _id: sender_id }).exec((err, user) => {
+  await User.findOne({ _id: sender_id }).exec((err, user) => {
     if(!err) {
       if(!user) {
         user = new User({
