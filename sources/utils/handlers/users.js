@@ -1,7 +1,7 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
-const doc = await User.findOne({ _id: sender_id });
+
 const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
     if (mongoose_conect.check_connect()) {
@@ -61,7 +61,7 @@ const updateCodeClass = (typing, sender_id, cb) =>{//trả ra code err: trùng, 
     }
   });
 }
-const getTypeTyping = (sender_id, cb) =>{
+const getTypeTyping = async (sender_id, cb) =>{
   if (mongoose_conect.check_connect()) {
     return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
   }
