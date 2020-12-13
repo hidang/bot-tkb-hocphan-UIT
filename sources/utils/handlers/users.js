@@ -61,7 +61,37 @@ const updateCodeClass = (typing, sender_id, cb) =>{//trả ra code err: trùng, 
     }
   });
 }
+const getTypeTyping = (sender_id, cb) =>{
+  if (mongoose_conect.check_connect()) {
+    return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
+  }
+  User.findOne({ _id: sender_id }).exec((err, user) => {
+    if(!err) {
+      if(!user) {
+        user = new User({
+          _id: sender_id,
+          type_typing: "khong",
+          username: null,
+          code_class: null
+        });
+        user.save(function(err, res) {
+          if(!err) {
+            return cb(err, "khong");
+          }
+          else {
+            console.log("#updateCodeClass()# save that bai");
+          }
+        });
+      }else {
+        return cb(err, user.type_typing);
+      }
+    }else {
+      return(err, false);
+    }
+  });
+}
 module.exports = {
   createNew: createNew,
   updateCodeClass: updateCodeClass,
+  getTypeTyping: getTypeTyping,
 };
