@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-//const handleMessage = require('../handle_message/handleMessage');
+const handleMessage = require('../handle_message/handleMessage');
 const handlePostback = require('../handle_message/handlePostback');
-// Adds support for GET/POST requests to our webhook -> của FB Messenger////////////////////////////////////////
+// Adds support for GET/POST requests to our webhook -> của FB Messenger
 router.get('/', (req, res) => {
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = process.env.VALIDATION_TOKEN;
@@ -35,12 +35,9 @@ router.post('/', (req, res) => {
     body.entry.forEach(function (entry) {
       let webhook_event = entry.messaging[0];
       let sender_psid = webhook_event.sender.id;
-      //console.log('Sender PSID: ' + sender_psid);
-      //console.log("webhook EVENT!!!!!!!");
-      //console.log(webhook_event);
       if (webhook_event.message) {
-        console.log(sender_psid +': ' +webhook_event.message);
-        //handleMessage.handleMessage(sender_psid, webhook_event.message);
+        console.log(sender_psid +': ' + webhook_event);
+        handleMessage.handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
         //(2)
         handlePostback.handlePostback(sender_psid, webhook_event.postback);
