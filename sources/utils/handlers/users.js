@@ -65,8 +65,8 @@ const getTypeTyping = (sender_id, cb) =>{
   if (mongoose_conect.check_connect()) {
     return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
   }
-  return new Promise(resolve => {
-    User.findOne({ _id: sender_id }).exec((err, user) => {
+  try {
+    await User.findOne({ _id: sender_id }).exec((err, user) => {
       if(!err) {
         if(!user) {
           user = new User({
@@ -90,7 +90,10 @@ const getTypeTyping = (sender_id, cb) =>{
         return(err, false);
       }
     });
-  })
+  } catch (error) {
+    
+  }
+  
 }
 module.exports = {
   createNew: createNew,
