@@ -2,12 +2,9 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 //const FB_API        = require('../useAPI/FB_API');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
-const get_type_typing = async (sender_psid) =>{
-  let data;
-  try {
-    data =  await getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
-  } catch (error) {
-  }
+const get_type_typing = (sender_psid) =>{
+  let data; 
+  data = getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
   return data;
 }
 module.exports.handleMessage = (sender_psid, received_message) => {
