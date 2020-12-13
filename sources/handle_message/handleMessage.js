@@ -11,7 +11,9 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
   //FIXME: chua lay dc type ham lol
 
   if (received_message.text) {
-    switch (await get_type_typing(sender_psid)) {
+    let type_typing = await get_type_typing(sender_psid);
+    console.log(type_typing);
+    switch (type_typing) {
       case "input_username": {
         break;
       }
