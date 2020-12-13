@@ -1,7 +1,7 @@
 const User = require("../models/_user");
 const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect();
-
+const doc = await User.findOne({ _id: sender_id });
 const createNew = (sender_id, cb) => {//async with Aarrow function
   try {
     if (mongoose_conect.check_connect()) {
