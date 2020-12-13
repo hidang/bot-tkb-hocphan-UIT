@@ -3,11 +3,9 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 const get_type_typing = (sender_psid) =>{
-  let data; 
-  getTypeTyping.getTypeTyping(sender_psid, (result) => {
-    data = result;
+  return getTypeTyping.getTypeTyping(sender_psid, (result) => {
+    return result;
   });
-  return data;
 }
 module.exports.handleMessage = (sender_psid, received_message) => {
   //let response; // response is a JSON
