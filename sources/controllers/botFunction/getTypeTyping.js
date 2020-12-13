@@ -1,6 +1,6 @@
 const db_user = require('../../utils/handlers/users');
-module.exports.getTypeTyping = (sender_psid) =>{
-  db_user.getTypeTyping(sender_psid, (err, result) =>{
+module.exports.getTypeTyping = async (sender_psid) =>{
+  await db_user.getTypeTyping(sender_psid, (err, result) =>{
     if(!err) {
       console.log(sender_psid +'- đã get thành công!' + result);
       return result;
