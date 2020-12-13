@@ -1,4 +1,4 @@
-const db_user = require('../utils/handlers/users');
+const db_user = require('../../utils/handlers/users');
 
 module.exports.FINDtoADDID = (sender_psid) => {
   db_user.createNew(sender_psid, (err, result) => {
