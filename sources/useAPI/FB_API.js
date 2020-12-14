@@ -11,7 +11,7 @@ module.exports.callSendAPI = function (style, response) {
     },
     (err, res, body) => {
       if (!err) {
-        //console.log("message: " + response + " ĐÃ ĐƯỢC GỬI!: " + err);
+        console.log("message: " + response + " ĐÃ ĐƯỢC GỬI!: " + err);
       } else {
         console.error("THẤT BẠI to send message in callSendAPI(): " + err);
       }
