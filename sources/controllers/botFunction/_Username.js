@@ -3,7 +3,7 @@ const sendTextMessage      = require('./sendTextMessage');
 const changeTypeTyping = require('./changeTypeTyping');
 
 const set_input_Username = (sender_psid) => {
-  sendTextMessage.sendTextMessage(sender_psid, "✏ Nhập username mới (6->30 kí tự): ");
+  sendTextMessage(sender_psid, "✏ Nhập username mới (6->30 kí tự): ");
   changeTypeTyping(sender_psid, "username");
 }
 const updateUsername = (sender_psid, username) =>{
