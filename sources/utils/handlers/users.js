@@ -1,4 +1,4 @@
-const User = require("../models/_user");
+const User = require("../models/User");
 const mongoose_conect = require("../../database/mongooes");
 mongoose_conect.conect()
 const createNew = (sender_id, cb) => {
