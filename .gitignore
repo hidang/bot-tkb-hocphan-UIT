@@ -1,9 +1,8 @@
-/node_modules
+#https://stackoverflow.com/questions/43762338/how-to-remove-file-from-git-history
+#git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD
 
 # dotenv environment variables file
 /*.env
 
-# vscode environment
 .tempCodeRunnerFile.js
-
-
+/node_modules
