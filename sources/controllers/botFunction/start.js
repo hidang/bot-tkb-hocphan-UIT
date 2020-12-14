@@ -24,12 +24,8 @@ module.exports = function (sender_psid) {
               title: "📜 Hướng dẫn sử dụng",
               type: "postback",
               payload: "huong_dan",
-            },
-            {
-              type: "web_url",
-              url: require('../../../config/app').web.uri,
-              title: "📎 Trang web liên kết chatbot",
-            },
+            }
+          
           ],
         },
       },

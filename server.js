@@ -11,7 +11,7 @@ app.set("views", "./views");
 const server = require("http").Server(app);
 
 server.listen(process.env.PORT || 3000, () =>
-  console.log("Server is listening nè!")
+  console.log("Server khởi động thành công!")
 );
 
 const indexRouter = require('./sources/routes/index');

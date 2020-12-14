@@ -30,7 +30,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
         var err = _Username.check_err_username(received_message.text);
         if(!err){
           _Username.updateUsername(sender_psid, received_message.text);
-          changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
+          changeTypeTyping(sender_psid, "khong");
           sendTextMessage.sendTextMessage(
             sender_psid, 
             "Thay đổi thành công, username của bạn hiện tại là: " + received_message.text

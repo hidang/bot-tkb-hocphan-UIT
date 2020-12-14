@@ -4,7 +4,7 @@ const changeTypeTyping = require('./changeTypeTyping');
 
 const set_input_Username = (sender_psid) => {
   sendTextMessage.sendTextMessage(sender_psid, "✏ Nhập username mới (6->30 kí tự): ");
-  changeTypeTyping.ChangeTypeTyping(sender_psid, "username");
+  changeTypeTyping(sender_psid, "username");
 }
 const updateUsername = (sender_psid, username) =>{
   db_user.updateUsername(username, sender_psid, (err, result) =>{
