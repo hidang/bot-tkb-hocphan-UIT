@@ -9,7 +9,7 @@ const set_input_Username = (sender_psid) => {
 const updateUsername = (sender_psid, username) =>{
   db_user.updateUsername(username, sender_psid, (err, result) =>{
     if(!err){
-      //console.log(sender_psid +'- đã update thành công!' + typing);
+      //console.log(sender_psid +'- đã update thành công!' + username);
     }
     else {
       //database lỗi->TODO:send message 
@@ -17,13 +17,13 @@ const updateUsername = (sender_psid, username) =>{
     }
   });
 }
-const check_username = (username) => {
+const check_err_username = (username) => {
   //username: [a->z] [A->Z] [0->9]
-
+  console.log(username);
 };
 
 module.exports = {
   set_input_Username: set_input_Username,
   updateUsername: updateUsername,
-  check_username: check_username,
+  check_err_username: check_err_username,
 }

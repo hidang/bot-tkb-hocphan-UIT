@@ -11,3 +11,5 @@
 |📲 Xuất hình ảnh tkb|
 |📜 Hướng dẫn sử dụng|
 |🔧 Change username|
+
+##### Xin hãy đóng góp thêm tính năng hoặc báo cáo lỗi mà bạn phát hiện ra được [tại đây](https://github.com/hidang/bot-tkb-hocphan-UIT/issues).

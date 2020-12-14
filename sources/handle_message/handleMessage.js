@@ -1,8 +1,9 @@
 const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 //const FB_API        = require('../useAPI/FB_API');
 const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
-const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
-const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
+const getTypeTyping    = require('../controllers/botFunction/getTypeTyping');
+const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
+const inputUsername    = require('../controllers/botFunction/inputUsername');
 module.exports.handleMessage = async (sender_psid, received_message) => {
   //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
@@ -21,6 +22,14 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
             sender_psid, 
             "Danh sách có vẻ quá dài hoặc không hợp lệ, xin vui lòng nhập lại, nếu đây là lỗi hệ thống xin báo lại cho admin"
           );
+        }
+        break;
+      }
+      case "username":{
+        if(!inputUsername.check_err_username(received_message.text)){
+          
+        } else{
+          
         }
         break;
       }
