@@ -16,7 +16,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
       case "code_class": {
         if (false) {
           //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
-          //ChangeTypeTyping(sender_psid, "input_khong");
+          //ChangeTypeTyping(sender_psid, "khong");
         } else {
           sendTextMessage.sendTextMessage(
             sender_psid, 
@@ -26,10 +26,20 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
         break;
       }
       case "username":{
-        if(!inputUsername.check_err_username(received_message.text)){
-          
+        var err = inputUsername.check_err_username(received_message.text);
+        if(!err){
+          //TODO: update Username database
+
+          changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
+          sendTextMessage.sendTextMessage(
+            sender_psid, 
+            "Thay đổi thành công, username của bạn hiện tại là " + received_message.text
+          );
         } else{
-          
+          sendTextMessage.sendTextMessage(
+            sender_psid, 
+            "Thay đổi thất bại, "+ err
+          );
         }
         break;
       }
