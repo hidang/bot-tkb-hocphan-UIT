@@ -1,6 +1,6 @@
 const STARTED          = require('../controllers/botFunction/start');
 const huongdan         = require('../controllers/botFunction/huongdan');
-const _CodeClass   = require('../controllers/botFunction/_CodeClass');
+const _CodeClass       = require('../controllers/botFunction/_CodeClass');
 const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const addID            = require('../controllers/botFunction/addID');
 const chuahoanthanh    = require('../controllers/botFunction/chuahoanthanh');

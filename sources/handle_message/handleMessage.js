@@ -3,8 +3,7 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const getTypeTyping    = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
-const _Username    = require('../controllers/botFunction/_Username');
-const { set_input_Username } = require('../controllers/botFunction/_Username');
+const _Username        = require('../controllers/botFunction/_Username');
 module.exports = async (sender_psid, received_message) => {
   //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
