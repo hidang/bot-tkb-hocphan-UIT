@@ -3,12 +3,7 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 const get_type_typing = (sender_psid) =>{
-  var data = new Promise( (resolve, reject) => {
-    resolve(getTypeTyping.getTypeTyping(sender_psid));  
-  });
-  return data.then((res) => {
-    return res;
-  });
+  return getTypeTyping.getTypeTyping(sender_psid);  
 }
 module.exports.handleMessage = async (sender_psid, received_message) => {
   //let response; // response is a JSON
@@ -16,7 +11,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
   //FIXME: chua lay dc type ham lol
 
   if (received_message.text) {
-    let type_typing = await get_type_typing(sender_psid);
+    let type_typing = await getTypeTyping.getTypeTyping(sender_psid);
     console.log(type_typing);
     switch (type_typing) {
       case "input_username": {
