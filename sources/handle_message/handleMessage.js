@@ -6,9 +6,7 @@ const get_type_typing = (sender_psid) =>{
   var data = new Promise(function (resole) {
     return getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
   });
-  return data.then(data =>{
-    return data;
-  });
+  return data.then();
 }
 module.exports.handleMessage = async (sender_psid, received_message) => {
   //let response; // response is a JSON
