@@ -6,7 +6,9 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
   //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
     let type_typing = await getTypeTyping.getTypeTyping(sender_psid);
-    console.log(type_typing);
+    if (!type_typing) {
+      type_typing = 'thatbai';
+    }
     switch (type_typing) {
       case "input_username": {
         break;
@@ -24,7 +26,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
         }
         break;
       }
-      case false:{
+      case "thatbai":{
         sendTextMessage.sendTextMessage(
           sender_psid, 
           "Lỗi không mong muốn từ phía database server, thành thật xin lỗi, xin thử lại sau ít phút."
