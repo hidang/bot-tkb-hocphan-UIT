@@ -1,6 +1,6 @@
 const db_user = require('../../utils/handlers/users');
 
-module.exports.getTypeTyping = (sender_psid) =>{
+module.exports = (sender_psid) =>{
   return new Promise(
     function (resolve) {
       db_user.getTypeTyping(sender_psid, (err, result) =>{

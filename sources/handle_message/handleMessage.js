@@ -5,10 +5,10 @@ const getTypeTyping    = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
 const _Username    = require('../controllers/botFunction/_Username');
 const { set_input_Username } = require('../controllers/botFunction/_Username');
-module.exports.handleMessage = async (sender_psid, received_message) => {
+module.exports = async (sender_psid, received_message) => {
   //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
-    let type_typing = await getTypeTyping.getTypeTyping(sender_psid);//that bai-> resolve(false);
+    let type_typing = await getTypeTyping(sender_psid);//that bai-> resolve(false);
     //console.log(type_typing);
     switch (type_typing) {
       case "input_username": {

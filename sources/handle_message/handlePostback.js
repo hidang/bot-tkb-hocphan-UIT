@@ -7,7 +7,7 @@ const chuahoanthanh    = require('../controllers/botFunction/chuahoanthanh');
 const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
 const _Username  = require('../controllers/botFunction/_Username');
 const FB_API           = require('../useAPI/FB_API');
-module.exports.handlePostback = async (sender_psid, received_postback) => {
+module.exports = async (sender_psid, received_postback) => {
   // Get the payload for the postback
   let payload = received_postback.payload;
   switch (payload) {

@@ -37,9 +37,9 @@ router.post('/', (req, res) => {
       let sender_psid = webhook_event.sender.id;
       if (webhook_event.message) {
         //console.log(sender_psid +': ',webhook_event);
-        handleMessage.handleMessage(sender_psid, webhook_event.message);
+        handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
-        handlePostback.handlePostback(sender_psid, webhook_event.postback);
+        handlePostback(sender_psid, webhook_event.postback);
       }
     });
     // Returns a '200 OK' response to all requests
