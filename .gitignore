@@ -1,4 +1,7 @@
-# testing
-.tempCodeRunnerFile.js
+/node_modules
+
 /*.env
+
+.tempCodeRunnerFile.js
+
 
