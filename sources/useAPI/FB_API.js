@@ -13,7 +13,7 @@ module.exports.callSendAPI = function (style, response) {
       if (!res) {
         //console.log("message ĐÃ ĐƯỢC GỬI! ");
       } else {
-        console.error("THẤT BẠI to send message in *callSendAPI(): " , err, res);
+        console.error("THẤT BẠI: send message in *callSendAPI()");
       }
     }
   );
