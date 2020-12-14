@@ -3,8 +3,8 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 const get_type_typing = (sender_psid) =>{
-  var data = new Promise( () => {
-    return getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
+  var data = new Promise( (resolve, reject) => {
+    resolve(getTypeTyping.getTypeTyping(sender_psid));  
   });
   return data.then((res) => {
     return res;
