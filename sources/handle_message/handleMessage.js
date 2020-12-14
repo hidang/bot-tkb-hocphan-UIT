@@ -33,7 +33,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
           changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
           sendTextMessage.sendTextMessage(
             sender_psid, 
-            "Thay đổi thành công, username của bạn hiện tại là " + received_message.text
+            "Thay đổi thành công, username của bạn hiện tại là: " + received_message.text
           );
         } else{
           sendTextMessage.sendTextMessage(
@@ -51,7 +51,10 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
         break;
       }
       default:
-        chuahoanthanh(sender_psid);
+        sendTextMessage.sendTextMessage(
+          sender_psid, 
+          "Thao tác không xác định xin hãy chọn chức năng tại Menu bot."
+        );
         changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
         break;
     }
