@@ -9,12 +9,13 @@ module.exports.callSendAPI = function (style, response) {
       method: "POST",
       json: response,
     },
-    (err, res, body) => {
-      if (!err) {
-        console.log("message ĐÃ ĐƯỢC GỬI! ",res);
-      } else {
-        console.error("THẤT BẠI: send message in *callSendAPI()");
-      }
-    }
+    //🔔!! LỖI PAGE_ACCESS_TOKEN THÌ err vẫn bằng null 😕 nên dẹp luôn.
+    // (err, res, body) => {
+    //   if (!err) {
+    //     console.log("message ĐÃ ĐƯỢC GỬI! ",res);
+    //   } else {
+    //     console.error("THẤT BẠI: send message in *callSendAPI()");
+    //   }
+    // }
   );
 }
