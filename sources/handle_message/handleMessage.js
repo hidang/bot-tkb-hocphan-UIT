@@ -5,10 +5,8 @@ const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 module.exports.handleMessage = async (sender_psid, received_message) => {
   //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
-    let type_typing = await getTypeTyping.getTypeTyping(sender_psid);
-    if (!type_typing) {
-      type_typing = 'thatbai';
-    }
+    let type_typing = await getTypeTyping.getTypeTyping(sender_psid);//that bai-> resolve(false);
+    //console.log(type_typing);
     switch (type_typing) {
       case "input_username": {
         break;
@@ -26,11 +24,12 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
         }
         break;
       }
-      case "thatbai":{
+      case false:{
         sendTextMessage.sendTextMessage(
           sender_psid, 
           "Lỗi không mong muốn từ phía database server, thành thật xin lỗi, xin thử lại sau ít phút."
         );
+        break;
       }
       default:
         chuahoanthanh(sender_psid);
