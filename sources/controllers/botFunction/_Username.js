@@ -33,7 +33,7 @@ const check_err_username = (username) => {
 const getUsername = (sender_psid) => {
   return new Promise(
     function (resolve) {
-      db_user.getTypeTyping(sender_psid, (err, result) =>{
+      db_user.getUsername(sender_psid, (err, result) =>{
         if(!err) {
           console.log(sender_psid +'- đã get thành công! ' + result);
           resolve(result);
