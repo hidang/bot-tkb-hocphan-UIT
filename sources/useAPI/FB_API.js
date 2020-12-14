@@ -10,10 +10,10 @@ module.exports.callSendAPI = function (style, response) {
       json: response,
     },
     (err, res, body) => {
-      if (!err) {
-        console.log("message: " + response + " ĐÃ ĐƯỢC GỬI!: " + err);
+      if (!res) {
+        console.log("message: " , response, " ĐÃ ĐƯỢC GỬI!: " , err);
       } else {
-        console.error("THẤT BẠI to send message in callSendAPI(): " + err);
+        console.error("THẤT BẠI to send message in callSendAPI(): " , err);
       }
     }
   );
