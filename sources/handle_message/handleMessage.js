@@ -3,18 +3,20 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 const get_type_typing = (sender_psid) =>{
-  var data = new Promise(function (resole) {
+  var data = new Promise( () => {
     return getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
   });
-  return data.then();
+  return data.then((res) => {
+    return res;
+  });
 }
-module.exports.handleMessage = (sender_psid, received_message) => {
+module.exports.handleMessage = async (sender_psid, received_message) => {
   //let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
 
   if (received_message.text) {
-    let type_typing = get_type_typing(sender_psid);
+    let type_typing = await get_type_typing(sender_psid);
     console.log(type_typing);
     switch (type_typing) {
       case "input_username": {
