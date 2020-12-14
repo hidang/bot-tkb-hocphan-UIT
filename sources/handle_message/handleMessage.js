@@ -3,9 +3,12 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 const get_type_typing = (sender_psid) =>{
-  let data; 
-  data = getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
-  return data;
+  var data = new Promise(function (resole) {
+    return getTypeTyping.getTypeTyping(sender_psid);//if err -> false | 0
+  });
+  return data.then(data =>{
+    return data;
+  });
 }
 module.exports.handleMessage = async (sender_psid, received_message) => {
   //let response; // response is a JSON
