@@ -1,5 +1,5 @@
 const db_user = require('../../utils/handlers/users');
-module.exports = function changeTfwafwypeTyping(sender_psid, typing) {
+module.exports =  (sender_psid, typing) => {
   db_user.updateCodeClass(typing, sender_psid, (err, result) =>{
     if(!err){
       //console.log(sender_psid +'- đã update thành công!' + typing);
