@@ -33,7 +33,7 @@ const createNew = (sender_id, cb) => {
     return cb("Lỗi không nối được đến database-server!", null);//send to mess-> user
   }
 }
-const updateCodeClass = (typing, sender_id, cb) =>{//trả ra code err: trùng, đã thêm
+const updateCodeClass = (typing, sender_id, cb) => {//trả ra code err: trùng, đã thêm
   if (mongoose_conect.check_connect()) {
     return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
   }
@@ -61,7 +61,7 @@ const updateCodeClass = (typing, sender_id, cb) =>{//trả ra code err: trùng, 
     }
   });
 }
-const getTypeTyping = (sender_id, cb) =>{
+const getTypeTyping = (sender_id, cb) => {
   if (mongoose_conect.check_connect()) {
     return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
   }
@@ -90,8 +90,12 @@ const getTypeTyping = (sender_id, cb) =>{
     }
   });
 }
+const updateUsername = (username, sender_psid, cb) => {
+  
+}
 module.exports = {
   createNew: createNew,
   updateCodeClass: updateCodeClass,
   getTypeTyping: getTypeTyping,
+  updateUsername: updateUsername,
 };
