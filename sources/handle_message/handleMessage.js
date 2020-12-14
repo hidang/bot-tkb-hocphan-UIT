@@ -3,14 +3,9 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 module.exports.handleMessage = async (sender_psid, received_message) => {
-  //let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
-  //FIXME: chua lay dc type ham lol
-
   if (received_message.text) {
-    let type_typing = 
-      await getTypeTyping.getTypeTyping(sender_psid)
-    ;
+    let type_typing = await getTypeTyping.getTypeTyping(sender_psid);
     console.log(type_typing);
     switch (type_typing) {
       case "input_username": {
