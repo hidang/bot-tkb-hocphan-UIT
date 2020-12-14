@@ -1,6 +1,6 @@
 const STARTED          = require('../controllers/botFunction/start');
 const huongdan         = require('../controllers/botFunction/huongdan');
-const inputCodeClass   = require('../controllers//botFunction/inputCodeClass');
+const _CodeClass   = require('../controllers/botFunction/_CodeClass');
 const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const addID            = require('../controllers/botFunction/addID');
 const chuahoanthanh    = require('../controllers/botFunction/chuahoanthanh');
@@ -14,14 +14,14 @@ module.exports = async (sender_psid, received_postback) => {
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
       huongdan(sender_psid);
-      addID.FINDtoADDID(sender_psid);
+      addID(sender_psid);
       break;
     case "huong_dan":
       huongdan(sender_psid);
       changeTypeTyping(sender_psid, "khong");
       break;
     case "input_code_class":
-      inputCodeClass.set_input_Code_Class(sender_psid);
+      _CodeClass.set_input_Code_Class(sender_psid);
       break;
     case "change_username":{
       _Username.set_input_Username(sender_psid);
@@ -30,7 +30,7 @@ module.exports = async (sender_psid, received_postback) => {
     case "view_username":{
       var username = await _Username.getUsername(sender_psid);
       if(username){
-        sendTextMessage.sendTextMessage(sender_psid, "usename hiện tại: " + username);
+        sendTextMessage(sender_psid, "usename hiện tại: " + username);
       }
       changeTypeTyping(sender_psid, "khong");
       break;

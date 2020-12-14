@@ -1,5 +1,5 @@
 const FB_API = require('../../useAPI/FB_API');
-module.exports.sendTextMessage = (sender_psid, text) => {
+module.exports = (sender_psid, text) => {
   var response = {
     recipient: {
       id: sender_psid,

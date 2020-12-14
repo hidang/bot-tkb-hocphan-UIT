@@ -1,6 +1,6 @@
 const db_user = require('../../utils/handlers/users');
 
-module.exports.FINDtoADDID = (sender_psid) => {
+module.exports = (sender_psid) => {
   db_user.createNew(sender_psid, (err, result) => {
     if(result) console.log(sender_psid +'- đã được thêm thành công! *addIDs');
     else //có 2 TH lỗi ở đây: 

@@ -19,7 +19,7 @@ module.exports = async (sender_psid, received_message) => {
           //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
           //changeTypeTyping(sender_psid, "khong");
         } else {
-          sendTextMessage.sendTextMessage(
+          sendTextMessage(
             sender_psid, 
             "Danh sách có vẻ quá dài hoặc không hợp lệ, xin vui lòng nhập lại, nếu đây là lỗi hệ thống xin báo lại cho admin"
           );
@@ -31,12 +31,12 @@ module.exports = async (sender_psid, received_message) => {
         if(!err){
           _Username.updateUsername(sender_psid, received_message.text);
           changeTypeTyping(sender_psid, "khong");
-          sendTextMessage.sendTextMessage(
+          sendTextMessage(
             sender_psid, 
             "Thay đổi thành công, username của bạn hiện tại là: " + received_message.text
           );
         } else{
-          sendTextMessage.sendTextMessage(
+          sendTextMessage(
             sender_psid, 
             "Thay đổi thất bại, "+ err
           );
@@ -44,14 +44,14 @@ module.exports = async (sender_psid, received_message) => {
         break;
       }
       case false:{
-        sendTextMessage.sendTextMessage(
+        sendTextMessage(
           sender_psid, 
           "Lỗi không mong muốn từ phía database server, xin thử lại sau ít phút 👉👈"
         );
         break;
       }
       default:
-        sendTextMessage.sendTextMessage(
+        sendTextMessage(
           sender_psid, 
           "👉👈Thao tác không xác định xin hãy chọn chức năng tại Menu bot 👇"
         );

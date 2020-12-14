@@ -1,6 +1,5 @@
 const FB_API = require('../../useAPI/FB_API');
 module.exports = function (sender_psid) {
-  //console.log('Vao <postback_payload> NÈNÈ!!!!!!!!!!');
   let response;
   // sender: { id: '3006492652803294' },
   // recipient: { id: '104124098046144' },
