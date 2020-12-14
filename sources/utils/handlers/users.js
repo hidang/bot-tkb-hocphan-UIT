@@ -15,7 +15,7 @@ const createNew = (sender_id, cb) => {
         var newUser = new User({//TODO: var newUser -> user
           _id: sender_id,
           type_typing: "khong",
-          username: null,
+          username: sender_id,
           code_class: null
         });
         newUser.save((err, res) => {
@@ -43,7 +43,7 @@ const updateCodeClass = (typing, sender_id, cb) => {//trả ra code err: trùng,
         user = new User({
           _id: sender_id,
           type_typing: "khong",
-          username: null,
+          username: sender_id,
           code_class: null
         });
       }
@@ -57,7 +57,7 @@ const updateCodeClass = (typing, sender_id, cb) => {//trả ra code err: trùng,
           }
       });
     }else {
-      return(err, false);
+      return(err, false);//Loi findOne database
     }
   });
 }
@@ -71,7 +71,7 @@ const getTypeTyping = (sender_id, cb) => {
         user = new User({
           _id: sender_id,
           type_typing: "khong",
-          username: null,
+          username: sender_id,
           code_class: null
         });
         user.save(function(err, res) {
@@ -90,8 +90,33 @@ const getTypeTyping = (sender_id, cb) => {
     }
   });
 }
-const updateUsername = (username, sender_psid, cb) => {
-  
+const updateUsername = (username, sender_id, cb) => {
+  if (mongoose_conect.check_connect()) {
+    return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
+  }
+  User.findOne({ _id: sender_id }).exec((err, user) => {
+    if(!err) {
+      if(!user) {
+        user = new User({
+          _id: sender_id,
+          type_typing: "khong",
+          username: sender_id,
+          code_class: null
+        });
+      }
+      user.username = username;
+      user.save(function(err, res) {
+          if(!err) {//thành công
+            return cb(err, res);//err === null, res == true;
+          }
+          else {
+            console.log("#updateUsername()# save that bai");
+          }
+      });
+    }else {
+      return(err, false);//Loi findOne database
+    }
+  });
 }
 module.exports = {
   createNew: createNew,

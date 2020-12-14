@@ -4,6 +4,7 @@ const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const getTypeTyping    = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
 const inputUsername    = require('../controllers/botFunction/inputUsername');
+const { set_input_Username } = require('../controllers/botFunction/inputUsername');
 module.exports.handleMessage = async (sender_psid, received_message) => {
   //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
@@ -28,8 +29,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
       case "username":{
         var err = inputUsername.check_err_username(received_message.text);
         if(!err){
-          //TODO: update Username database
-
+          inputUsername.updateUsername(set_input_Username, received_message.text);
           changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
           sendTextMessage.sendTextMessage(
             sender_psid, 
@@ -46,14 +46,14 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
       case false:{
         sendTextMessage.sendTextMessage(
           sender_psid, 
-          "Lỗi không mong muốn từ phía database server, thành thật xin lỗi, xin thử lại sau ít phút."
+          "Lỗi không mong muốn từ phía database server, xin thử lại sau ít phút 👉👈"
         );
         break;
       }
       default:
         sendTextMessage.sendTextMessage(
           sender_psid, 
-          "Thao tác không xác định xin hãy chọn chức năng tại Menu bot."
+          "👉👈Thao tác không xác định xin hãy chọn chức năng tại Menu bot 👇"
         );
         changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
         break;

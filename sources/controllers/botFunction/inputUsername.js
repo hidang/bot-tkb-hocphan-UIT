@@ -9,7 +9,7 @@ const set_input_Username = (sender_psid) => {
 const updateUsername = (sender_psid, username) =>{
   db_user.updateUsername(username, sender_psid, (err, result) =>{
     if(!err){
-      //console.log(sender_psid +'- đã update thành công!' + username);
+      console.log(sender_psid +'- đã update thành công!' + username);
     }
     else {
       //database lỗi->TODO:send message 
@@ -20,15 +20,15 @@ const updateUsername = (sender_psid, username) =>{
 const check_err_username = (username) => {
   //username: [a->z] [A->Z] [0->9]
   // if(item.tel1.match(letters)) //🧨match just match on typeof string
-  var letters = /^[a-z-A-Z-0-9]+$/;//✂ match(Space | ( | ) | 0->9 | + | -)
+  var letters = /^[a-z-A-Z-0-9]+$/;//✂ match([a->z][A->Z][0->9])
   var username_length = username.length;
   if (username_length < 6 | username_length > 30) {
-    return "username phải tối thiểu 6 kí tự và tối đa 30 kí tự, xin hãy nhập lại"
+    return "username phải tối thiểu 6, tối đa 30 kí tự, xin hãy nhập lại"
   }
   if(username.match(letters)){
     return null;
   }
-  return "username phải nằm trong các kí tự: [a->z]|[A->Z]|[0->9], xin hãy nhập lại"
+  return "username phải nằm trong các kí tự: [a->z][A->Z][0->9], xin hãy nhập lại"
 };
 
 module.exports = {
