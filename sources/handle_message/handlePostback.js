@@ -31,6 +31,7 @@ module.exports.handlePostback = async (sender_psid, received_postback) => {
       if(username){
         sendTextMessage.sendTextMessage(sender_psid, "usename hiện tại: " + username);
       }
+      changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
       break;
     }
     default:

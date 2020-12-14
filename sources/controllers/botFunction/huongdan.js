@@ -16,14 +16,14 @@ module.exports = function (sender_psid) {
             "Chat bot với 2 tính năng chính:\n" +
             "📌 1: Tìm kiếm và lưu danh sách mã lớp học để tạo tkb đkhp UIT\n" +
             "📌 2: Xuất hình ảnh tkb từ danh sách mã môn học mà bạn đã nhập vào\n" +
-            "📦 Ngoài ra chức năng login sẽ tạo tài khoản và lưu dữ liệu cho bạn\n" +
-            "📦 Trang web liên kết sẽ sử dụng cùng cơ sở dữ liệu với chatbot nên chỉ cần login vào web là có thể xem tkb của bạn <3 \n" +
-            "👇 Lựa chọn các chức năng tại menu góc dưới nhé.",
+            "👇 Lựa chọn các chức năng tại menu góc dưới\n" +
+            "📦 Trang web liên kết sẽ sử dụng cùng cơ sở dữ liệu với CHATBOT nên chỉ cần nhập username vào web là có thể xem tkb của bạn <3 \n" +
+            "bạn có thể xem hoặc thay đổi username tại menu nhé.\n",
           buttons: [
             {
               type: "web_url",
               url: "https://dovanbot2.herokuapp.com/",
-              title: "🐥 Trang web liên kết chatbot",
+              title: "📎 Trang web liên kết chatbot",
             },
           ],
         },

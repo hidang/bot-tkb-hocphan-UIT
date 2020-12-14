@@ -18,7 +18,7 @@ module.exports = function (sender_psid) {
         payload: {
           template_type: "button",
           text:
-            "💛 Xin chào bạn đã đến với DOVANBOT, lựa chọn các chức năng tại menu dưới góc nhé.",
+            "🎉 Xin chào bạn đã đến với CHATBOT tkbhp, lựa chọn các chức năng tại menu dưới góc nhé.",
           buttons: [
             {
               title: "📜 Hướng dẫn sử dụng",
@@ -27,8 +27,8 @@ module.exports = function (sender_psid) {
             },
             {
               type: "web_url",
-              url: "https://dovanbot2.herokuapp.com/",
-              title: "🐥 Trang web liên kết chatbot",
+              url: require('../../../config/app').web.uri,
+              title: "📎 Trang web liên kết chatbot",
             },
           ],
         },

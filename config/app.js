@@ -16,4 +16,7 @@ module.exports = {
     VERIFY_TOKEN: process.env.VALIDATION_TOKEN,
     PAGE_ACCESS_TOKEN: process.env.PAGE_ACCESS_TOKEN,
   },
+  web: {
+    uri: 'https://dovanbot2.herokuapp.com/',
+  }
 };
