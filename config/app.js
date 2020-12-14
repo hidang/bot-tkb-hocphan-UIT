@@ -1,4 +1,3 @@
-//var dbHost = process.env.URI_MONGODB; //|| "localhost";
 module.exports = {
   name: "dovanbot",
   title: "dovanbot",
