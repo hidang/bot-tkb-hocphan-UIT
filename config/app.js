@@ -13,5 +13,8 @@ module.exports = {
     params: {},
     collections: ["user"]
   },
-  VERIFY_TOKEN_FB: process.env.VALIDATION_TOKEN,
+  fb: {
+    VERIFY_TOKEN: process.env.VALIDATION_TOKEN,
+    PAGE_ACCESS_TOKEN: process.env.PAGE_ACCESS_TOKEN,
+  },
 };
