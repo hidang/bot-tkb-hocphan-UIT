@@ -9,8 +9,9 @@ module.exports = {
   author: "hidang",
   version: "2.0",
   db: {
-    connectionUri: 'hidangdeptrai',//process.env.URI_MONGODB,//
+    connectionUri: process.env.URI_MONGODB,//'hidangdeptrai',//
     params: {},
     collections: ["user"]
-  }
+  },
+  VERIFY_TOKEN_FB: process.env.VALIDATION_TOKEN,
 };
