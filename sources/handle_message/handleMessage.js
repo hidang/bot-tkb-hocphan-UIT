@@ -29,7 +29,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
       case "username":{
         var err = inputUsername.check_err_username(received_message.text);
         if(!err){
-          inputUsername.updateUsername(set_input_Username, received_message.text);
+          inputUsername.updateUsername(sender_psid, received_message.text);
           changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
           sendTextMessage.sendTextMessage(
             sender_psid, 
