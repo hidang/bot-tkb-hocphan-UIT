@@ -9,11 +9,11 @@ const set_input_Username = (sender_psid) => {
 const updateUsername = (sender_psid, username) =>{
   db_user.updateUsername(username, sender_psid, (err, result) =>{
     if(!err){
-      console.log(sender_psid +'- đã update thành công!' + username);
+      //console.log(sender_psid +'- đã update thành công!' + username);
     }
     else {
       //database lỗi->TODO:send message 
-      console.log('*inputUsername.js update thất bại: ! - '+ err);
+      console.log('*_Username.js update thất bại: ! - '+ err);
     }
   });
 }
@@ -30,9 +30,24 @@ const check_err_username = (username) => {
   }
   return "username phải nằm trong các kí tự: [a->z][A->Z][0->9], xin hãy nhập lại"
 };
-
+const getUsername = (sender_psid) => {
+  return new Promise(
+    function (resolve) {
+      db_user.getTypeTyping(sender_psid, (err, result) =>{
+        if(!err) {
+          console.log(sender_psid +'- đã get thành công! ' + result);
+          resolve(result);
+        }else {
+          console.log('*_Username.js get data thất bại: ! - '+ err);
+          resolve(false);
+        }
+      });
+    }
+  )
+}
 module.exports = {
   set_input_Username: set_input_Username,
   updateUsername: updateUsername,
   check_err_username: check_err_username,
+  getUsername: getUsername,
 }

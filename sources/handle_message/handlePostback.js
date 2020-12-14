@@ -4,9 +4,10 @@ const inputCodeClass   = require('../controllers//botFunction/inputCodeClass');
 const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const addID            = require('../controllers/botFunction/addID');
 const chuahoanthanh    = require('../controllers/botFunction/chuahoanthanh');
-const inputUsername  = require('../controllers/botFunction/inputUsername');
+const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
+const _Username  = require('../controllers/botFunction/_Username');
 const FB_API           = require('../useAPI/FB_API');
-module.exports.handlePostback = function (sender_psid, received_postback) {
+module.exports.handlePostback = async (sender_psid, received_postback) => {
   // Get the payload for the postback
   let payload = received_postback.payload;
   switch (payload) {
@@ -22,7 +23,14 @@ module.exports.handlePostback = function (sender_psid, received_postback) {
       inputCodeClass.set_input_Code_Class(sender_psid);
       break;
     case "change_username":{
-      inputUsername.set_input_Username(sender_psid);
+      _Username.set_input_Username(sender_psid);
+      break;
+    }
+    case "view_username":{
+      var username = await _Username.getUsername(sender_psid);
+      if(username){
+        sendTextMessage.sendTextMessage(sender_psid, "usename hiện tại: " + username);
+      }
       break;
     }
     default:

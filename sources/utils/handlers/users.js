@@ -1,6 +1,5 @@
 const User = require("../models/_user");
-const mongoose_conect = require("../../database/mongooes");
-mongoose_conect.conect();
+const mongoose_conect = require("../../database/mongooes").conect();
 
 const createNew = (sender_id, cb) => {
   try {
@@ -118,9 +117,39 @@ const updateUsername = (username, sender_id, cb) => {
     }
   });
 }
+const getUsername = (sender_id, cb) => {
+  if (mongoose_conect.check_connect()) {
+    return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
+  }
+  User.findOne({ _id: sender_id }).exec((err, user) => {
+    if(!err) {
+      if(!user) {
+        user = new User({
+          _id: sender_id,
+          type_typing: "khong",
+          username: sender_id,
+          code_class: null
+        });
+        user.save(function(err, res) {
+          if(!err) {
+            return cb(err, sender_id);
+          }
+          else {
+            console.log("#getUsername()# save that bai");
+          }
+        });
+      }else {
+        return cb(err, user.username);
+      }
+    }else {
+      return(err, false);
+    }
+  });
+}
 module.exports = {
   createNew: createNew,
   updateCodeClass: updateCodeClass,
   getTypeTyping: getTypeTyping,
   updateUsername: updateUsername,
+  getUsername: getUsername,
 };

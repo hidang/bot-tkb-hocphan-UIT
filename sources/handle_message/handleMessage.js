@@ -3,8 +3,8 @@ const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const getTypeTyping    = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
-const inputUsername    = require('../controllers/botFunction/inputUsername');
-const { set_input_Username } = require('../controllers/botFunction/inputUsername');
+const _Username    = require('../controllers/botFunction/_Username');
+const { set_input_Username } = require('../controllers/botFunction/_Username');
 module.exports.handleMessage = async (sender_psid, received_message) => {
   //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
@@ -17,7 +17,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
       case "code_class": {
         if (false) {
           //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
-          //ChangeTypeTyping(sender_psid, "khong");
+          //changeTypeTyping(sender_psid, "khong");
         } else {
           sendTextMessage.sendTextMessage(
             sender_psid, 
@@ -27,9 +27,9 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
         break;
       }
       case "username":{
-        var err = inputUsername.check_err_username(received_message.text);
+        var err = _Username.check_err_username(received_message.text);
         if(!err){
-          inputUsername.updateUsername(sender_psid, received_message.text);
+          _Username.updateUsername(sender_psid, received_message.text);
           changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
           sendTextMessage.sendTextMessage(
             sender_psid, 
@@ -55,7 +55,6 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
           sender_psid, 
           "👉👈Thao tác không xác định xin hãy chọn chức năng tại Menu bot 👇"
         );
-        changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
         break;
     }
   } 
