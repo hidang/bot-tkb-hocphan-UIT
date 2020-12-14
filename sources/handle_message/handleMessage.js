@@ -1,5 +1,6 @@
 const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
 //const FB_API        = require('../useAPI/FB_API');
+const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const getTypeTyping = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage = require('../controllers/botFunction/sendTextMessage');
 module.exports.handleMessage = async (sender_psid, received_message) => {
@@ -13,7 +14,6 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
       }
       case "code_class": {
         if (false) {
-
           //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
           //ChangeTypeTyping(sender_psid, "input_khong");
         } else {
@@ -33,6 +33,7 @@ module.exports.handleMessage = async (sender_psid, received_message) => {
       }
       default:
         chuahoanthanh(sender_psid);
+        changeTypeTyping.ChangeTypeTyping(sender_psid, "khong");
         break;
     }
   } 
