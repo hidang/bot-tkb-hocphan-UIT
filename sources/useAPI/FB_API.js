@@ -5,7 +5,7 @@ module.exports.callSendAPI = function (style, response) {
   request(
     {
       uri: "https://graph.facebook.com/v7.0/me/" + style,
-      qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+      qs: {access_token: require('../../config/app').fb.PAGE_ACCESS_TOKEN},
       method: "POST",
       json: response,
     },

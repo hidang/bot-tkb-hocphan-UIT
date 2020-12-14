@@ -6,7 +6,7 @@ const handlePostback = require('../handle_message/handlePostback');
 // Adds support for GET/POST requests to our webhook -> của FB Messenger
 router.get('/', (req, res) => {
   // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = require('../../config/app').VERIFY_TOKEN_FB;
+  let VERIFY_TOKEN = require('../../config/app').fb.VERIFY_TOKEN;
   // Parse the query params
   let mode = req.query["hub.mode"];
   let token = req.query["hub.verify_token"];
