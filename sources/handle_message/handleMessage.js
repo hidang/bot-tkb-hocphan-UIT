@@ -8,13 +8,13 @@ const get_type_typing = (sender_psid) =>{
   });
   return data.then();
 }
-module.exports.handleMessage = async (sender_psid, received_message) => {
+module.exports.handleMessage = (sender_psid, received_message) => {
   //let response; // response is a JSON
   //FIXME: chua them chuc nang chong spam
   //FIXME: chua lay dc type ham lol
 
   if (received_message.text) {
-    let type_typing = await get_type_typing(sender_psid);
+    let type_typing = get_type_typing(sender_psid);
     console.log(type_typing);
     switch (type_typing) {
       case "input_username": {
