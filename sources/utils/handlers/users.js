@@ -1,6 +1,6 @@
 const User = require("../models/_user");
-const mongoose_conect = require("../../database/mongooes").conect();
-
+const mongoose_conect = require("../../database/mongooes");
+mongoose_conect.conect()
 const createNew = (sender_id, cb) => {
   try {
     if (mongoose_conect.check_connect()) {
