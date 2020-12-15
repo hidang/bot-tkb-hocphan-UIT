@@ -169,7 +169,7 @@ const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
             return cb(err, res);
           }
           else {
-            console.log("#updateCodeClass()# save that bai");
+            console.log("#updateCodeClass()# save that bai", err);
           }
       });
     }else {
