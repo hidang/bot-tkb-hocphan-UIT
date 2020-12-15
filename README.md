@@ -9,7 +9,7 @@
 |🔍 Tên môn học/giảng viên/code môn học|
 |📑 Danh sách mã môn học của tôi|
 |📲 Xuất hình ảnh tkb|
+|🔧 Xem/thay đổi username|
 |📜 Hướng dẫn sử dụng|
-|🔧 Change username|
 
 ##### Xin hãy đóng góp thêm tính năng hoặc báo cáo lỗi mà bạn phát hiện ra được [tại đây](https://github.com/hidang/bot-tkb-hocphan-UIT/issues).
