@@ -54,7 +54,7 @@ const updateTypeTyping = (typing, sender_id, cb) => {//trả ra code err: trùng
           }
       });
     }else {
-      return(err, false);//Loi findOne database
+      return cb(err, false);//Loi findOne database
     }
   });
 }
@@ -82,7 +82,7 @@ const getTypeTyping = (sender_id, cb) => {
         return cb(err, user.type_typing);
       }
     }else {
-      return(err, false);
+      return cb(err, false);
     }
   });
 }
@@ -109,7 +109,7 @@ const updateUsername = (username, sender_id, cb) => {
           }
       });
     }else {
-      return(err, false);//Loi findOne database
+      return cb(err, false);//Loi findOne database
     }
   });
 }
@@ -137,7 +137,7 @@ const getUsername = (sender_id, cb) => {
         return cb(err, user.username);
       }
     }else {
-      return(err, false);
+      return cb(err, false);
     }
   });
 }
@@ -168,7 +168,7 @@ const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
           }
       });
     }else {
-      return(err, false);//Loi findOne database
+      return cb(err, false);//Loi findOne database
     }
   });
 }
@@ -196,7 +196,23 @@ const getCodeClass = (sender_id, cb) => {
         return cb(err, user.code_class);
       }
     }else {
-      return(err, false);
+      return cb(err, false);
+    }
+  });
+}
+const web_user_getCodeClass = (username, cb) => {
+  if (mongoose_conect.check_connect()) {
+    return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
+  }
+  User.findOne({ username: username }).exec((err, user) => {
+    if(!err) {
+      if(!user) {
+        return cb(err, null);
+      }else {
+        return cb(err, user.code_class);
+      }
+    }else {
+      return cb(err, false);
     }
   });
 }
@@ -208,4 +224,5 @@ module.exports = {
   updateUsername: updateUsername,
   getUsername: getUsername,
   getCodeClass: getCodeClass,
+  web_user_getCodeClass: web_user_getCodeClass,
 };

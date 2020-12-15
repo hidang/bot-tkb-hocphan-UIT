@@ -6,12 +6,7 @@ router.get("/", (req, res) => {  // <=> router.get('/', function(req, res){
   res.render("pages/trangchu"); //dùng farmework ejs để build html trangchu.ejs ra
 });
 
-router.get("/tkbhp", (req, res) => {
-  console.log(req.query.username);
-  
-  res.render('pages/tkbhp', {
-    username: req.query.username,
-  });
-});
+const tkbhp = require('../routes/api/tkbhp');
+router.use("/tkbhp", tkbhp);
 
 module.exports = router;

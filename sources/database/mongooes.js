@@ -8,6 +8,7 @@ async function conect() {//Phải sử dụng async/await nếu không bot sẽ 
       useNewUrlParser: true
     });
     set_connect(false);
+    console.log('Đã kết nối DATABASE *mongoose.js');
   } catch (error) {
     set_connect(true);
     console.log('LOI KET NOI DATABASE *mongoose.js: ' + error);//thông báo admin lỗi database

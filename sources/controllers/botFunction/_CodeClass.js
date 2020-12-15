@@ -36,26 +36,27 @@ const update_CodeClass = (sender_psid, code_class) => {
 }
 const getCodeClass = (sender_psid) => { 
   return new Promise(
-  function (resolve) {
-    db_user.getCodeClass(sender_psid, (err, result) =>{
-      if(!err) {
-        //console.log(sender_psid +'- đã getCodeClass thành công! ' + result);
-        if (!result) {
-          resolve(result);
-        }else{
-          var string_codeclass = '';
-          result.forEach(element => {
-            string_codeclass += `${element.code}\n`;
-          });
-          resolve(string_codeclass);
+    function (resolve) {
+      db_user.getCodeClass(sender_psid, (err, result) =>{
+        if(!err) {
+          //console.log(sender_psid +'- đã getCodeClass thành công! ' + result);
+          if (!result) {
+            resolve(result);
+          }else{
+            var string_codeclass = '';
+            result.forEach(element => {
+              string_codeclass += `${element.code}\n`;
+            });
+            resolve(string_codeclass);
+          }
+        }else {
+          console.log('*_CodeClass.js get data thất bại: ! - '+ err);
+          resolve(false);
         }
-      }else {
-        console.log('*_CodeClass.js get data thất bại: ! - '+ err);
-        resolve(false);
-      }
-    });
-  }
-)}
+      });
+    }
+  )
+}
 module.exports = {
   set_input_CodeClass: set_input_CodeClass,
   check_CodeClass_length: check_CodeClass_length,

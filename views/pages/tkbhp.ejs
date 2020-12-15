@@ -9,6 +9,13 @@
   <% if (username) { %>
     <h2><%= username %></h2>
   <% } %>
+  <% if (codeclass) { %>
+    <p><%= codeclass %></p>
+  <% } %>
 
+
+  <% if (err) { %>
+    <p><%= err %></p>
+  <% } %>
 </body>
 </html>
