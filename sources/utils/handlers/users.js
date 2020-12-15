@@ -157,7 +157,7 @@ const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
           _id: sender_id,
           type_typing: "khong",
           username: sender_id,
-          code_class: null
+          code_class: []
         });
       }
       code_class.forEach(element => {
