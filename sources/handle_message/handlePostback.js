@@ -21,7 +21,7 @@ module.exports = async (sender_psid, received_postback) => {
       changeTypeTyping(sender_psid, "khong");
       break;
     case "input_code_class":
-      _CodeClass.set_input_Code_Class(sender_psid);
+      _CodeClass.set_input_CodeClass(sender_psid);
       break;
     case "change_username":{
       _Username.set_input_Username(sender_psid);
