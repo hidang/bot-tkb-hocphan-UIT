@@ -155,7 +155,7 @@ const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
         });
       }
       code_class.forEach(element => {
-        user.code_class.push({ _id: sender_id,code: element });//https://mongoosejs.com/docs/2.7.x/docs/embedded-documents.html
+        user.code_class.push({ code: element });//https://mongoosejs.com/docs/2.7.x/docs/embedded-documents.html
       });
       
       user.save(function(err, res) {
