@@ -32,7 +32,7 @@ const createNew = (sender_id, cb) => {
     return cb("Lỗi không nối được đến database-server!", null);//send to mess-> user
   }
 }
-const updateCodeClass = (typing, sender_id, cb) => {//trả ra code err: trùng, đã thêm
+const updateTypeTyping = (typing, sender_id, cb) => {//trả ra code err: trùng, đã thêm
   if (mongoose_conect.check_connect()) {
     return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
   }
@@ -52,7 +52,7 @@ const updateCodeClass = (typing, sender_id, cb) => {//trả ra code err: trùng,
             return cb(err, res);
           }
           else {
-            console.log("#updateCodeClass()# save that bai");
+            console.log("#updateTypeTyping()# save that bai");
           }
       });
     }else {
@@ -146,8 +146,40 @@ const getUsername = (sender_id, cb) => {
     }
   });
 }
+const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
+  if (mongoose_conect.check_connect()) {
+    return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
+  }
+  User.findOne({ _id: sender_id }).exec((err, user) => {
+    if(!err) {
+      if(!user) {
+        user = new User({
+          _id: sender_id,
+          type_typing: "khong",
+          username: sender_id,
+          code_class: null
+        });
+      }
+      code_class.forEach(element => {
+        user.code_class.push(code_class[element]);
+      });
+      
+      user.save(function(err, res) {
+          if(!err) {
+            return cb(err, res);
+          }
+          else {
+            console.log("#updateCodeClass()# save that bai");
+          }
+      });
+    }else {
+      return(err, false);//Loi findOne database
+    }
+  });
+}
 module.exports = {
   createNew: createNew,
+  updateTypeTyping, updateTypeTyping,
   updateCodeClass: updateCodeClass,
   getTypeTyping: getTypeTyping,
   updateUsername: updateUsername,

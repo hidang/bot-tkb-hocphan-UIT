@@ -1,26 +1,35 @@
-const chuahoanthanh = require('../controllers/botFunction/chuahoanthanh');
-//const FB_API        = require('../useAPI/FB_API');
+const chuahoanthanh    = require('../controllers/botFunction/chuahoanthanh');
+//const FB_API         = require('../useAPI/FB_API');
 const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const getTypeTyping    = require('../controllers/botFunction/getTypeTyping');
 const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
 const _Username        = require('../controllers/botFunction/_Username');
+const _CodeClass       = require('../controllers/botFunction/_CodeClass');
 module.exports = async (sender_psid, received_message) => {
   //FIXME: chua them chuc nang chong spam
   if (received_message.text) {
     let type_typing = await getTypeTyping(sender_psid);//that bai-> resolve(false);
     //console.log(type_typing);
     switch (type_typing) {
-      case "input_username": {
-        break;
-      }
       case "code_class": {
-        if (false) {
-          //input danh sách thành công bạn có muốn lấy hình ảnh thời khóa biểu của bạn ngay bây giờ? -> câu trả lời nhanh
-          //changeTypeTyping(sender_psid, "khong");
+        if (!_CodeClass.check_CodeClass_length(received_message.text)) {//if độ dài ok
+          var code_class_array = _CodeClass.conver_string2array(received_message.text);
+          console.log(code_class_array);
+          var err = _CodeClass.check_CodeClass_err(code_class_array);
+          if(!err){
+            _CodeClass.update_CodeClass(sender_psid, code_class_array);//update ALL
+            sendTextMessage(
+              sender_psid, 
+              "🎉Cập nhập danh sách thành công"
+            );
+            console.log('cập nhập danh sach thanh cong');
+          }else{
+            
+          }
         } else {
           sendTextMessage(
             sender_psid, 
-            "Danh sách có vẻ quá dài hoặc không hợp lệ, xin vui lòng nhập lại, nếu đây là lỗi hệ thống xin báo lại cho admin"
+            "Danh sách có vẻ quá ngắn|dài hoặc không hợp lệ, xin vui lòng nhập lại, nếu đây là lỗi hệ thống xin báo lại cho admin"
           );
         }
         break;

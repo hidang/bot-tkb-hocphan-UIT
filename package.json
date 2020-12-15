@@ -4,7 +4,6 @@
   "description": "chatbotMessenger",
   "main": "sever.js",
   "scripts": {
-    
     "test": ""
   },
   "author": "hidang",

@@ -8,6 +8,7 @@ router.get("/", (req, res) => {  // <=> router.get('/', function(req, res){
 
 router.get("/tkbhp", (req, res) => {
   console.log(req.query.username);
+  
   res.render('pages/tkbhp', {
     username: req.query.username,
   });

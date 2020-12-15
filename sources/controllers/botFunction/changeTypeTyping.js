@@ -1,6 +1,6 @@
 const db_user = require('../../utils/handlers/users');
 module.exports = (sender_psid, typing) => {
-  db_user.updateCodeClass(typing, sender_psid, (err, result) =>{
+  db_user.updateTypeTyping(typing, sender_psid, (err, result) =>{
     if(!err){
       //console.log(sender_psid +'- đã update thành công!' + typing);
     }
