@@ -10,7 +10,7 @@ module.exports = (username) => {
           }else{
             var string_codeclass = '';
             result.forEach(element => {
-              string_codeclass += `${element.code}\n`;
+              string_codeclass += `${element.code}<br>`;
             });
             resolve(string_codeclass);
           }
