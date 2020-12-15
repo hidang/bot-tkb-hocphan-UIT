@@ -42,12 +42,13 @@ const getCodeClass = (sender_psid) => {
         //console.log(sender_psid +'- đã getCodeClass thành công! ' + result);
         if (!result) {
           resolve(result);
+        }else{
+          var string_codeclass = '';
+          result.forEach(element => {
+            string_codeclass += `${element.code}\n`;
+          });
+          resolve(string_codeclass);
         }
-        var string_codeclass = '';
-        result.forEach(element => {
-          string_codeclass += `${element.code}\n`;
-        });
-        resolve(string_codeclass);
       }else {
         console.log('*_CodeClass.js get data thất bại: ! - '+ err);
         resolve(false);
