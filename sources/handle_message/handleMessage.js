@@ -14,7 +14,7 @@ module.exports = async (sender_psid, received_message) => {
       case "code_class": {
         if (!_CodeClass.check_CodeClass_length(received_message.text)) {//if độ dài ok
           var code_class_array = _CodeClass.conver_string2array(received_message.text);
-          console.log(code_class_array);
+          console.log(code_class_array);//TODO:
           var err = _CodeClass.check_CodeClass_err(code_class_array);
           if(!err){
             _CodeClass.update_CodeClass(sender_psid, code_class_array);//update ALL

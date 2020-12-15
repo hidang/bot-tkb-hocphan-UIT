@@ -13,12 +13,12 @@ const check_CodeClass_length = (text_class) => {
   return false;//ok
 }
 const conver_string2array = (text_class) => {
-  var code_class = text_class
+  var code_class_array = text_class
                             .toUpperCase()
                             .split('\n')//chặt mỗi dòng thành từng phần tử
                             .map(srt => srt.trim())//xóa kí tự khoảng trắng ở đầu và cuối
                             .filter(srt => srt !== '');//xóa ''
-  return code_class;
+  return code_class_array;
 }
 const check_CodeClass_err = (code_class) => {
 
