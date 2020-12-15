@@ -127,7 +127,7 @@ const getUsername = (sender_id, cb) => {
         });
         user.save(function(err, res) {
           if(!err) {
-            return cb(err, sender_id);
+            return cb(err, sender_id);//🧨vì username mặc định là sender_id nên thay vì get từ csdl thì lấy id trả lại (server cùi phải làm vậy :((
           }
           else {
             console.log("#getUsername()# save that bai");
@@ -186,7 +186,7 @@ const getCodeClass = (sender_id, cb) => {
         });
         user.save(function(err, res) {
           if(!err) {
-            return cb(err, sender_id);
+            return cb(err, null);//🧨 user chưa tồn tại thì không có mã lớp -> result = null
           }
           else {
             console.log("#getCodeClass()# save that bai");

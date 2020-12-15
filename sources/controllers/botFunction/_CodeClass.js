@@ -39,7 +39,10 @@ const getCodeClass = (sender_psid) => {
   function (resolve) {
     db_user.getCodeClass(sender_psid, (err, result) =>{
       if(!err) {
-        console.log(sender_psid +'- đã getCodeClass thành công! ' + result);
+        //console.log(sender_psid +'- đã getCodeClass thành công! ' + result);
+        if (!result) {
+          resolve(result);
+        }
         var string_codeclass = '';
         result.forEach(element => {
           string_codeclass += `${element.code}\n`;
