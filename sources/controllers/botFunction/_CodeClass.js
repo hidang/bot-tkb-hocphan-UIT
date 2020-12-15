@@ -34,11 +34,25 @@ const update_CodeClass = (sender_psid, code_class) => {
     }
   });
 }
+const getCodeClass = (sender_psid) => { 
+  return new Promise(
+  function (resolve) {
+    db_user.getCodeClass(sender_psid, (err, result) =>{
+      if(!err) {
+        console.log(sender_psid +'- đã getCodeClass thành công! ' + result);
+        resolve(result);
+      }else {
+        console.log('*_CodeClass.js get data thất bại: ! - '+ err);
+        resolve(false);
+      }
+    });
+  }
+)}
 module.exports = {
   set_input_CodeClass: set_input_CodeClass,
   check_CodeClass_length: check_CodeClass_length,
   check_CodeClass_err: check_CodeClass_err,
   update_CodeClass: update_CodeClass,
   conver_string2array: conver_string2array,
-
+  getCodeClass: getCodeClass,
 }

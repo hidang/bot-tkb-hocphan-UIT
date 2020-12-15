@@ -154,6 +154,7 @@ const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
           username: sender_id
         });
       }
+      //FIXME: check tồn tại
       code_class.forEach(element => {
         user.code_class.push({ code: element });//https://mongoosejs.com/docs/2.7.x/docs/embedded-documents.html
       });
@@ -171,6 +172,34 @@ const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
     }
   });
 }
+const getCodeClass = (sender_id, cb) => {
+  if (mongoose_conect.check_connect()) {
+    return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
+  }
+  User.findOne({ _id: sender_id }).exec((err, user) => {
+    if(!err) {
+      if(!user) {
+        user = new User({
+          _id: sender_id,
+          type_typing: "khong",
+          username: sender_id
+        });
+        user.save(function(err, res) {
+          if(!err) {
+            return cb(err, sender_id);
+          }
+          else {
+            console.log("#getCodeClass()# save that bai");
+          }
+        });
+      }else {
+        return cb(err, user.code_class);
+      }
+    }else {
+      return(err, false);
+    }
+  });
+}
 module.exports = {
   createNew: createNew,
   updateTypeTyping, updateTypeTyping,
@@ -178,4 +207,5 @@ module.exports = {
   getTypeTyping: getTypeTyping,
   updateUsername: updateUsername,
   getUsername: getUsername,
+  getCodeClass: getCodeClass,
 };

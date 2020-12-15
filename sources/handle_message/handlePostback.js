@@ -1,11 +1,11 @@
 const STARTED          = require('../controllers/botFunction/start');
 const huongdan         = require('../controllers/botFunction/huongdan');
 const _CodeClass       = require('../controllers/botFunction/_CodeClass');
+const _Username        = require('../controllers/botFunction/_Username');
 const changeTypeTyping = require('../controllers/botFunction/changeTypeTyping');
 const addID            = require('../controllers/botFunction/addID');
 const chuahoanthanh    = require('../controllers/botFunction/chuahoanthanh');
 const sendTextMessage  = require('../controllers/botFunction/sendTextMessage');
-const _Username        = require('../controllers/botFunction/_Username');
 const FB_API           = require('../useAPI/FB_API');
 module.exports = async (sender_psid, received_postback) => {
   // Get the payload for the postback
@@ -34,6 +34,10 @@ module.exports = async (sender_psid, received_postback) => {
       }
       changeTypeTyping(sender_psid, "khong");
       break;
+    }
+    case "get_danh_sach":{
+      var text = _CodeClass.getCodeClass(sender_psid);
+      console.log(text);
     }
     default:
       chuahoanthanh(sender_psid);

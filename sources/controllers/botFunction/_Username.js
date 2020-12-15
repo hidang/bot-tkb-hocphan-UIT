@@ -35,7 +35,7 @@ const getUsername = (sender_psid) => {
     function (resolve) {
       db_user.getUsername(sender_psid, (err, result) =>{
         if(!err) {
-          console.log(sender_psid +'- đã get thành công! ' + result);
+          //console.log(sender_psid +'- đã get thành công! ' + result);
           resolve(result);
         }else {
           console.log('*_Username.js get data thất bại: ! - '+ err);
@@ -45,6 +45,7 @@ const getUsername = (sender_psid) => {
     }
   )
 }
+
 module.exports = {
   set_input_Username: set_input_Username,
   updateUsername: updateUsername,

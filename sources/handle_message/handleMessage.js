@@ -14,17 +14,19 @@ module.exports = async (sender_psid, received_message) => {
       case "code_class": {
         if (!_CodeClass.check_CodeClass_length(received_message.text)) {//if độ dài ok
           var code_class_array = _CodeClass.conver_string2array(received_message.text);
-          console.log(code_class_array);//TODO:
+          //console.log(code_class_array);
           var err = _CodeClass.check_CodeClass_err(code_class_array);
-          if(!err){
+          if(!err){//update ALL
             _CodeClass.update_CodeClass(sender_psid, code_class_array);//update ALL
             sendTextMessage(
               sender_psid, 
               "🎉Cập nhập danh sách thành công"
             );
-            console.log('cập nhập danh sach thanh cong');
+            changeTypeTyping(sender_psid, "khong");
           }else{
-            
+            //TODO: nếu tất cả lỗi thì: ->thất bại
+            // chỉ lỗi 1 2 code thì: //FIXME: check tồn tại?
+            //2 option[lưu những mã còn lại, không lưu gì hết]
           }
         } else {
           sendTextMessage(
