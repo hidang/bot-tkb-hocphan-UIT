@@ -5,6 +5,7 @@ router_tkbhp.get("/",async (req, res) => {
   //console.log(req.query.username);
   var username = req.query.username;
   var codeclass = await getCodeClass(username);
+  var err = null;
   if(!codeclass) err = 'Không tìm thấy username trên hệ thống hoặc database server đang bảo trì';
   console.log(codeclass);
   res.render('pages/tkbhp', {
