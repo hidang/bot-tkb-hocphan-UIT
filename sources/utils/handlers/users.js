@@ -14,8 +14,7 @@ const createNew = (sender_id, cb) => {
         var newUser = new User({//TODO: var newUser -> user
           _id: sender_id,
           type_typing: "khong",
-          username: sender_id,
-          code_class: null
+          username: sender_id
         });
         newUser.save((err, res) => {
           if(err) console.log("#createNew()# save that bai");
@@ -42,8 +41,7 @@ const updateTypeTyping = (typing, sender_id, cb) => {//trả ra code err: trùng
         user = new User({
           _id: sender_id,
           type_typing: "khong",
-          username: sender_id,
-          code_class: null
+          username: sender_id
         });
       }
       user.type_typing = typing;
@@ -70,8 +68,7 @@ const getTypeTyping = (sender_id, cb) => {
         user = new User({
           _id: sender_id,
           type_typing: "khong",
-          username: sender_id,
-          code_class: null
+          username: sender_id
         });
         user.save(function(err, res) {
           if(!err) {
@@ -100,7 +97,6 @@ const updateUsername = (username, sender_id, cb) => {
           _id: sender_id,
           type_typing: "khong",
           username: sender_id,
-          code_class: null
         });
       }
       user.username = username;
@@ -127,8 +123,7 @@ const getUsername = (sender_id, cb) => {
         user = new User({
           _id: sender_id,
           type_typing: "khong",
-          username: sender_id,
-          code_class: null
+          username: sender_id
         });
         user.save(function(err, res) {
           if(!err) {
@@ -156,8 +151,7 @@ const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
         user = new User({
           _id: sender_id,
           type_typing: "khong",
-          username: sender_id,
-          code_class: []
+          username: sender_id
         });
       }
       code_class.forEach(element => {
