@@ -36,8 +36,14 @@ module.exports = async (sender_psid, received_postback) => {
       break;
     }
     case "get_danh_sach":{
-      var text = _CodeClass.getCodeClass(sender_psid);
-      console.log(text);
+      var codeclass = await _CodeClass.getCodeClass(sender_psid);
+      if(codeclass){
+        sendTextMessage(sender_psid, `Danh sách của bạn: ${codeclass}`);
+      }else{
+        sendTextMessage(sender_psid, `Danh sách hiện tại đang trống`);
+      }
+      changeTypeTyping(sender_psid, "khong");
+      break;
     }
     default:
       chuahoanthanh(sender_psid);
