@@ -10,18 +10,8 @@
 </head>
 <body>
   <%- include('../template/nav')-%>
-
-  <% if (username) { %>
-    <h2>username: <%= username %></h2>
-  <% } %>
-  <% if (codeclass) { %>
-    <p><%= codeclass %></p>
-  <% } %>
-
-
-  <% if (err) { %>
-    <p><%= err %></p>
-  <% } %>
-  
+  <%- include('../template/get-username')-%>
+  <%- include('../template/header-1-info')-%>
+  <%- include('../template/tao-tkb')-%>
 </body>
 </html>
