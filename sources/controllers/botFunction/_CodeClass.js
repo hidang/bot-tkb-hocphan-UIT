@@ -1,3 +1,5 @@
+const _pathfile_data_tkb = '../../../public/tkbhp.json';
+const fs = require('fs');
 const sendTextMessage      = require('./sendTextMessage');
 const changeTypeTyping = require('./changeTypeTyping');
 const db_user = require('../../utils/handlers/users');
@@ -20,8 +22,14 @@ const conver_string2array = (text_class) => {
                             .filter(srt => srt !== '');//xóa ''
   return code_class_array;
 }
-const check_CodeClass_err = (code_class) => {
-
+const check_CodeClass_err = (code_class_array) => {
+  const data_tkb;
+  fs.readFile('_pathfile_data_tkb', 'utf8', function (err, data) {
+    if (err) throw err;
+    data_tkb = JSON.parse(data);
+  });
+  console.log(data_tkb);
+  return;//test
 }
 const update_CodeClass = (sender_psid, code_class) => {
   db_user.updateCodeClass(code_class, sender_psid, (err, result) =>{
