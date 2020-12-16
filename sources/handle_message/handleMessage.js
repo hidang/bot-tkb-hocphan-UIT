@@ -13,7 +13,7 @@ module.exports = async (sender_psid, received_message) => {
     switch (type_typing) {
       case "code_class": {
         if (!_CodeClass.check_CodeClass_length(received_message.text)) {//if độ dài ok
-          
+
           var code_class_array = _CodeClass.conver_string2array(received_message.text);
           //console.log(code_class_array);
           var err = _CodeClass.check_CodeClass_err(code_class_array);
@@ -21,7 +21,7 @@ module.exports = async (sender_psid, received_message) => {
             _CodeClass.update_CodeClass(sender_psid, code_class_array);//update ALL
             sendTextMessage(
               sender_psid, 
-              "🎉Cập nhập danh sách thành công"
+              "🎉Cập nhập danh sách thành công, server hiện tại chưa check trùng tkb 😢"//FIXME:
             );
             changeTypeTyping(sender_psid, "khong");
           }else{
