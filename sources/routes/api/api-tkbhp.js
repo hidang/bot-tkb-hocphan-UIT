@@ -4,13 +4,13 @@ const getCodeClass = require('../../controllers/webFunction/getCodeClass');
 router_tkbhp.get("/",async (req, res) => {
   //console.log(req.query.username);
   var username = req.query.username;
-  var codeclass = await getCodeClass(username);
+  var codeclass_array = await getCodeClass(username);
   var err = null;
-  if(!codeclass) err = 'Không tìm thấy username trên hệ thống hoặc database đang bảo trì';
-  console.log(codeclass);
+  if(!codeclass_array) err = 'Không tìm thấy username trên hệ thống hoặc database đang bảo trì';
+  
   res.render('pages/tkbhp', {
     username: username,
-    codeclass: codeclass,
+    codeclass_string: codeclass_array,
     err: err
   });
 });

@@ -8,11 +8,11 @@ module.exports = (username) => {
           if (!result) {
             resolve(result);
           }else{
-            var string_codeclass = '';
+            var codeclass_array = [];
             result.forEach(element => {
-              string_codeclass += `${element.code} `;
+              codeclass_array.push(element.code);
             });
-            resolve(string_codeclass);
+            resolve(codeclass_array);
           }
         }else {
           console.log('*web_user_getCodeClass.js get data thất bại: ! - '+ err);
