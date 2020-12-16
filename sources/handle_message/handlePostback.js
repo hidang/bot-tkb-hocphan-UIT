@@ -46,6 +46,14 @@ module.exports = async (sender_psid, received_postback) => {
       changeTypeTyping(sender_psid, "khong");
       break;
     }
+    case "get_image":{
+      var username = await _Username.getUsername(sender_psid);
+      if(username){
+        sendTextMessage(sender_psid, "https://soan-tkb-uit.herokuapp.com/tkbhp?username=" + username);
+      }
+      changeTypeTyping(sender_psid, "khong");
+      break;
+    }
     default:
       chuahoanthanh(sender_psid);
       changeTypeTyping(sender_psid, "khong");
