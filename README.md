@@ -19,5 +19,5 @@
 |🔍 [ ] Lọc/Soạn tên môn học/giảng viên/code môn học|
 |📑 [x] Danh sách mã môn học của tôi|
 |📲 [x] Xuất hình ảnh tkb by username|
-|🔧 [] Xem/thay đổi username từ database|
+|🔧 [ ] Xem/thay đổi username từ database|
 ##### Xin hãy đóng góp thêm tính năng hoặc báo cáo lỗi mà bạn phát hiện ra được [tại đây](https://github.com/hidang/bot-tkb-hocphan-UIT/issues).
