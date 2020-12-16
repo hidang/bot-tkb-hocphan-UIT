@@ -27,8 +27,9 @@ const check_err_username = (username) => {
   }
   if(username.match(letters)){
     return null;
+  }else{
+    return "username phải nằm trong các kí tự: [a->z][A->Z][0->9], xin hãy nhập lại"
   }
-  return "username phải nằm trong các kí tự: [a->z][A->Z][0->9], xin hãy nhập lại"
 };
 const getUsername = (sender_psid) => {
   return new Promise(
