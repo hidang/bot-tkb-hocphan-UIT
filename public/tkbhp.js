@@ -1,4 +1,3 @@
-
 const btn = document.getElementById('submit')
 const codeclass_input = document.getElementById('codeclass-input');
 const alert_error = document.getElementById('alert_error');
