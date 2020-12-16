@@ -10,6 +10,7 @@ const FB_API           = require('../useAPI/FB_API');
 module.exports = async (sender_psid, received_postback) => {
   // Get the payload for the postback
   let payload = received_postback.payload;
+  console.log('##',payload);
   switch (payload) {
     case "GET_STARTED_PAYLOAD":
       STARTED(sender_psid);
