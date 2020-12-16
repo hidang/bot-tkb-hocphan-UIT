@@ -4,8 +4,8 @@ const router = express.Router();
 /////////////////TODO:Chống spam cho trang web/////////////////
 const rateLimit = require("express-rate-limit");
 const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minutes
-  max: 20, // limit each IP to 20 requests per windowMs
+  windowMs: 1 * 60 * 1000, // 1 minutes
+  max: 15, // limit each IP to 15 requests per windowMs
   message:
   "Server cùi, spam là admin khóc 😢😢😢 -Thử lại sau vài phút!"
 });

@@ -3,7 +3,8 @@ const codeclass_input = document.getElementById('codeclass-input');
 const alert_error = document.getElementById('alert-error');
 const nav_username = document.getElementById('nav-username');
 
-const tableBody = document.getElementById('table-body')
+const tableBody = document.getElementById('table-body');
+const hang_dau_tien = document.getElementById('hang-dau-tien');
 btn.addEventListener('click', () => start());
 nav_username.style.display = 'none';
 alert_error.style.display = 'none';
@@ -133,7 +134,7 @@ function handleSchedulable(processedData) {
   const listTiet = [...Array(10)].map((_, index) => {
     return processedData.schedulable.filter(x => x.Tiet.includes((index + 1) % 10))
   })  
-  console.log(listTiet);
+  //console.log(listTiet);
   // check trung tkb
   for (const arr of listTiet) {
     const listThu = arr.map(x => x.Thu)
@@ -159,7 +160,7 @@ function handleSchedulable(processedData) {
       const foundClass = listTiet[index].find(_class =>
         _class.Thu.includes(thu)
       )
-      console.log(foundClass);
+      //console.log(foundClass);
       if (!foundClass) {
         toAppend += `<td></td>`
       } else {
