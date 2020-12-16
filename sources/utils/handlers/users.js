@@ -148,7 +148,7 @@ const check_getUsername = (username, cb)=>{
   User.findOne({ username: username }).exec((err, user) => {
     if(!err) {
       if(!user) {//không có
-        return (null, null);
+        return cb(null, null);
       }else {//trùng 
         return cb(null, true);
       }
