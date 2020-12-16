@@ -23,7 +23,7 @@ const conver_string2array = (text_class) => {
   return code_class_array;
 }
 const check_CodeClass_err = (code_class_array) => {
-  const data_tkb;
+  var data_tkb;
   fs.readFile('_pathfile_data_tkb', 'utf8', function (err, data) {
     if (err) throw err;
     data_tkb = JSON.parse(data);
