@@ -17,6 +17,6 @@ module.exports = {
     PAGE_ACCESS_TOKEN: process.env.PAGE_ACCESS_TOKEN,
   },
   web: {
-    uri: 'https://dovanbot2.herokuapp.com/',
+    uri: 'https://soan-tkb-uit.herokuapp.com/',
   }
 };

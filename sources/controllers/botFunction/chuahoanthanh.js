@@ -21,8 +21,8 @@ module.exports = (sender_psid) => {
             },
             {
               type: "web_url",
-              url: "https://dovanbot2.herokuapp.com/",
-              title: "🐥 Web liênkếtvớichatbot",
+              url: require('../../../config/app').web.uri,
+              title: "📎Trang web liên kết",
             },
           ],
         },
