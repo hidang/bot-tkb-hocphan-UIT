@@ -141,6 +141,22 @@ const getUsername = (sender_id, cb) => {
     }
   });
 }
+const check_getUsername = (username, cb)=>{
+  if (mongoose_conect.check_connect()) {
+    return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
+  }
+  User.findOne({ username: username }).exec((err, user) => {
+    if(!err) {
+      if(!user) {//không có
+        return (null, null);
+      }else {//trùng 
+        return cb(null, true);
+      }
+    }else {//lỗi khi check
+      return cb(err, false);
+    }
+  });
+}
 const updateCodeClass = (code_class, sender_id, cb) => {//code_class is array[]
   if (mongoose_conect.check_connect()) {
     return cb("Lỗi không nối được đến database-server!", false);//send to mess-> user
@@ -216,6 +232,7 @@ const web_user_getCodeClass = (username, cb) => {
     }
   });
 }
+
 module.exports = {
   createNew: createNew,
   updateTypeTyping, updateTypeTyping,
@@ -225,4 +242,5 @@ module.exports = {
   getUsername: getUsername,
   getCodeClass: getCodeClass,
   web_user_getCodeClass: web_user_getCodeClass,
+  check_getUsername, check_getUsername
 };

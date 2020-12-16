@@ -87,7 +87,7 @@ function getClassCell({
 function handleUnschedulable(processedData) {
   function getUnschedulableCell(data) {
     return `
-      <td colspan="7">
+      <td colspan="7" class="table align-middle">
         ${getClassCell(data)}
       </td>
     `
@@ -101,7 +101,7 @@ function handleUnschedulable(processedData) {
 function handleSchedulable(processedData) {
   function getSchedulableCell(data) {
     return `
-      <td rowspan="${data.Tiet.length}">
+      <td rowspan="${data.Tiet.length}" class="table align-middle">
         ${getClassCell(data)}
       </td>
     `
@@ -109,25 +109,25 @@ function handleSchedulable(processedData) {
   function getLessonTime(tiet) {
     switch (tiet) {
       case 1:
-        return `<td>Tiết 1<br>(7:30 - 8:15)</td>`
+        return `<td class="table align-middle">Tiết 1<br>(7:30 - 8:15)</td>`
       case 2:
-        return `<td>Tiết 2<br>(8:15 - 9:00)</td>`
+        return `<td class="table align-middle">Tiết 2<br>(8:15 - 9:00)</td>`
       case 3:
-        return `<td>Tiết 3<br>(9:00 - 9:45)</td>`
+        return `<td class="table align-middle">Tiết 3<br>(9:00 - 9:45)</td>`
       case 4:
-        return `<td>Tiết 4<br>(10:00 - 10:45)</td>`
+        return `<td class="table align-middle">Tiết 4<br>(10:00 - 10:45)</td>`
       case 5:
-        return `<td>Tiết 5<br>(10:45 - 11:30)</td>`
+        return `<td class="table align-middle">Tiết 5<br>(10:45 - 11:30)</td>`
       case 6:
-        return `<td>Tiết 6<br>(13:00 - 13:45)</td>`
+        return `<td class="table align-middle">Tiết 6<br>(13:00 - 13:45)</td>`
       case 7:
-        return `<td>Tiết 7<br>(13:45 - 14:30)</td>`
+        return `<td class="table align-middle">Tiết 7<br>(13:45 - 14:30)</td>`
       case 8:
-        return `<td>Tiết 8<br>(14:30 - 15:15)</td>`
+        return `<td class="table align-middle">Tiết 8<br>(14:30 - 15:15)</td>`
       case 9:
-        return `<td>Tiết 9<br>(15:30 - 16:15)</td>`
+        return `<td class="table align-middle">Tiết 9<br>(15:30 - 16:15)</td>`
       case 10:
-        return `<td>Tiết 10<br>(16:15 - 17:00)</td>`
+        return `<td class="table align-middle">Tiết 10<br>(16:15 - 17:00)</td>`
     }
   }
 

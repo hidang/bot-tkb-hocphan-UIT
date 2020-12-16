@@ -45,10 +45,25 @@ const getUsername = (sender_psid) => {
     }
   )
 }
-
+const check_trung_username = (username)=>{
+  return new Promise(
+    function (resolve) {
+      db_user.check_getUsername(username, (err, result) =>{
+        if(!err) {
+          if (result) var result = 'username đã tồn tại xin hãy chọn cái khác.'
+          resolve(result);
+        }else {
+          console.log('*_Username.js get data thất bại: ! - '+ err);
+          resolve(false);
+        }
+      });
+    }
+  )
+}
 module.exports = {
   set_input_Username: set_input_Username,
   updateUsername: updateUsername,
   check_err_username: check_err_username,
   getUsername: getUsername,
+  check_trung_username: check_trung_username,
 }

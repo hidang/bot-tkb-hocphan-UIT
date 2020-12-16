@@ -38,6 +38,7 @@ module.exports = async (sender_psid, received_message) => {
       }
       case "username":{
         var err = _Username.check_err_username(received_message.text);
+            err = await _Username.check_trung_username(received_message.text);
         if(!err){
           _Username.updateUsername(sender_psid, received_message.text);
           changeTypeTyping(sender_psid, "khong");

@@ -7,7 +7,7 @@ const set_input_CodeClass = (sender_psid) => {
   changeTypeTyping(sender_psid, "code_class");
 }
 const check_CodeClass_length = (text_class) => {
-  if (text_class.length < 4 | text_class.length >100){
+  if (text_class.length < 4 | text_class.length >350){
     return true;//quá ngắn hoặc quá dài
   }
   return false;//ok
