@@ -1,30 +1,61 @@
-<h2>Danh sách lớp học</h2>
+<h2>Danh sách lớp học đã chọn Hiện/Ẩn</h2>
 
+<div class="btn-group-sm" role="group" aria-label="Basic checkbox toggle button group">
+  <label class="">Lọc: </label>
 
-<table id="myTable">
+  <input type="checkbox" class="btn-check" id="STT" autocomplete="off">
+  <label class="btn btn-outline-primary" for="STT">STT</label>
+
+  <input type="checkbox" class="btn-check" id="MaMH" autocomplete="off">
+  <label class="btn btn-outline-primary" for="MaMH">Mã môn học</label>
+
+  <input type="checkbox" class="btn-check" id="MaLop" autocomplete="off">
+  <label class="btn btn-outline-primary" for="MaLop">Mã Lớp</label>
+
+  <input type="checkbox" class="btn-check" id="TenMH" autocomplete="off">
+  <label class="btn btn-outline-primary" for="TenMH">Tên môn học</label>
+  
+  <input type="checkbox" class="btn-check" id="MaGV" autocomplete="off">
+  <label class="btn btn-outline-primary" for="MaGV">Mã giảng viên</label>
+
+  <input type="checkbox" class="btn-check" id="TenGV" autocomplete="off">
+  <label class="btn btn-outline-primary" for="TenGV">Tên giảng viên</label>
+
+  <input type="checkbox" class="btn-check" id="SiSo" autocomplete="off">
+  <label class="btn btn-outline-primary" for="SiSo">Sĩ Số</label>
+</div>
+<table id="TableSelect">
   <thead>
     <tr class="header">
-      <th style="width:60%;">Name</th>
-      <th style="width:40%;">Country</th>
+      <th>Tên môn học</th>
+      <th>Mã môn học</th>
+      <th>Thứ</th>
+      <th>Tiết</th>
     </tr>
-  </thead>
-
-  <tr>
-    <td>
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-    </th>
-    <td>
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-    </td>
-  </tr>
-
-  <tr>
-    <td>Nhập môn mạng máy tính</td>
-    <td>Germany</td>
-  </tr> 
+    <tr>
+      <th>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+      </th>
+      <th>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+      </th>
+      <th>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+      </th>
+      <th>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+      </th>
+    </tr>
+</thead>
+  <tbody>
+    <tr>
+      <td>Nhập môn mạng máy tính</td>
+      <td>123456789</td>
+    </tr> 
+  </tbody>
 </table>
 
-<script>
+<!-- <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
@@ -43,5 +74,5 @@ function myFunction() {
     }       
   }
 }
-</script>
+</script> -->
 

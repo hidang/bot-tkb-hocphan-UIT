@@ -52,7 +52,7 @@ async function start() {
   if(!codeclass_array) {
     return BaoLoi('Danh sách của bạn rỗng hoặc username không tồn tại xin hãy nhập lại!');
   }
-  var jsondata = await readTextFile("./tkbhp.json")
+  var jsondata = await readTextFile("./tkbhp.json");
   data_tkb = JSON.parse(jsondata);
   ////////----------------------------///////////////----------------------------///////
 
