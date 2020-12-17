@@ -1,4 +1,4 @@
-var listCheckBox = [
+var listColumns = [
   'STT', 'MaMH', 'MaLop', 'TenMH', 'MaGV', //1->5
   'TenGV', 'SiSo', 'SoTC', 'ThucHanh', 'HTGD',//6->10
   'Thu', 'Tiet', 'CachTuan', 'PhongHoc', 'KhoaHoc', //11->15
@@ -8,7 +8,7 @@ var listCheckBox = [
 
 
 var listElementsCheckBox = [];//Mảng các element-checbox
-listCheckBox.forEach(element => {
+listColumns.forEach(element => {
   ////set size ALL BOX text-input 
   //document.getElementById(`cell-${element}`).size = 10;
   
@@ -39,8 +39,8 @@ function ShowOrHideCol(elementCheckBox) {
 
 
 
-const TableSelect = document.getElementById('TableSelect');
-const body_table  = document.getElementById('body-table');
+//const TableSelect = document.getElementById('TableSelect');
+const BodyTable  = document.getElementById('body-table');
 start();
 
 
@@ -59,16 +59,34 @@ function readTextFile(file) {
     }
   )
 }
+
 async function start() {
   var jsondata = await readTextFile("./tkbhp.json");
   var data_json = JSON.parse(jsondata);
   var data_tkb = data_json.data;
-  console.log(data_tkb[8]);
+  console.log(data_tkb[0]);
   //check all checkbox
   listElementsCheckBox.forEach(element => {
     ShowOrHideCol(element);
   });
-
-
+  let l = data_tkb.length;
+  for (let index = 0; index < l; index++) {
+    if (data_tkb[index].TenMH) {//check data json môn học unknown
+      //console.log(data_tkb[index]);
+      ShowData2Table(data_tkb[index]);
+    }
+  }
 }
-
+function ShowData2Table(element) {
+  var dataInLine ='';
+  var i;
+  listColumns.forEach(cotne => {
+    i = element.cotne;
+    dataInLine += `<td name="cell-${cotne}">${i}</td>`;
+  });
+  var lineTable = 
+`<tr>  
+  ${dataInLine}
+</tr>`
+  BodyTable.innerHTML = lineTable;
+}
