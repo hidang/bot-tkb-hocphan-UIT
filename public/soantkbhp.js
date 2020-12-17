@@ -6,26 +6,29 @@ var listCheckBox = [
   'NKT', 'GhiChu'//21, 22
 ];
 
+
 var listElementsCheckBox = [];//Mảng các element-checbox
 listCheckBox.forEach(element => {
+  ////set size ALL BOX text-input 
+  //document.getElementById(`cell-${element}`).size = 10;
+  
+  //push elementCheckBox to array
   listElementsCheckBox.push(document.getElementById(element));
 });
+
 listElementsCheckBox.forEach(element => {
+  //set envent show/hide for elementCheckBoxs
   element.addEventListener('click', ()=>{
     ShowOrHideCol(element);
   });
 });
-listElementsCheckBox.forEach(element => {
-  ShowOrHideCol(element);
-});
+
 
 function ShowOrHideCol(elementCheckBox) {
-  console.log(elementCheckBox.id);
+  //=>if checked ? show:hide -> element
   var ShowOrHide = 'none';//hide
   if (elementCheckBox.checked) ShowOrHide = '';//show
-
   var listCell = document.getElementsByName(`cell-${elementCheckBox.id}`); 
-
   listCell.forEach(element =>{
     element.style.display  = ShowOrHide;
   });
@@ -61,5 +64,11 @@ async function start() {
   var data_json = JSON.parse(jsondata);
   var data_tkb = data_json.data;
   console.log(data_tkb[8]);
+  //check all checkbox
+  listElementsCheckBox.forEach(element => {
+    ShowOrHideCol(element);
+  });
+
+
 }
 
