@@ -7,7 +7,6 @@ var listColumns = [
 ];
 const container = document.getElementById("container");
 const start_data = document.getElementById("start-data");
-const progress = document.getElementById("progress");
 //const TableSelect = document.getElementById('TableSelect');
 const BodyTable  = document.getElementById('body-table');
 
@@ -62,20 +61,22 @@ async function start() {
   var jsondata = await readTextFile("./tkbhp.json");
   var data_json = JSON.parse(jsondata);
   var data_tkb = data_json.data;
-  //console.log(data_tkb[0]);
-  var i, j;
+  var i_data, cell_data;
   var dataTable ='';
   var lineTable ='';
   let l = data_tkb.length;
-
-  for (let index = 1; index < l; index++) {
-    if (data_tkb[index].TenMH) {//check data json môn học unknown -> không tồn tại
+  //handle data table
+  for (let index = 0; index < l; index++) {
+    i_data = data_tkb[index];
+    if (i_data.TenMH && i_data.TenMH !== "TÊN MÔN HỌC") {//check data json môn học unknown - không tồn tại
       //tạo dòng
       lineTable =`<td name="cell-Chon"><input type="checkbox" class="form-check-input " id=""></td>`;
       for (const element of listColumns) {
         //https://stackoverflow.com/questions/922544/using-variable-keys-to-access-values-in-javascript-objects
         //console.log((data_tkb[index])[element]);
-        lineTable += `<td name="cell-${element}">${(data_tkb[index])[element]}</td>`;
+        cell_data = i_data[element];
+        if(!cell_data) cell_data = '';//check data unknown
+        lineTable += `<td name="cell-${element}">${cell_data}</td>`;
       }
       //thêm dòng vào bảng
       dataTable +=`<tr>${lineTable}</tr>`;
@@ -87,7 +88,7 @@ async function start() {
   //đưa dữ liệu đã xử lý vào bảng
   BodyTable.innerHTML = dataTable; 
 
-  //check all ShowOrHide checkbox
+  //check filter all ShowOrHide Checkbox
   listElementsCheckBox.forEach(element => {
     ShowOrHideCol(element);
   });
