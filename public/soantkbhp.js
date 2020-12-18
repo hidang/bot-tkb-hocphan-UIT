@@ -87,6 +87,7 @@ function OutnerData2List(malop) {
   var id = malop;
   id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
   document.getElementById(id).remove();//remove item khỏi info-danhsach-selected
+  //https://stackoverflow.com/questions/10572735/javascript-getelement-by-href
   var i_danhsach_selected = document.querySelectorAll(`a[href='#${id}']`);//remove item khỏi danhsach-selected
   i_danhsach_selected[0].remove();
 }

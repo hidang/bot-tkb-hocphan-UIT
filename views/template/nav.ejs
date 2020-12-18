@@ -2,4 +2,66 @@
   <div class="alert alert-info alert-dismissible fade show" role="alert">
     <center><strong>🎉Trang web soạn thời khóa biểu học phần UIT</strong></center>
 </div>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span > 👆 Click để xem danh sách lớp đã chọn</span>
+</button>
+<div class="fixed-top collapse mb-5" id="navbarToggleExternalContent">
+  <div class="p-4" style="background-color: #e3f2fd;">
+  </br></br>
+    <div>
+      <!-- Dạng danh sách -->
+      <a class="btn btn-warning btn-sm mb-2" data-bs-toggle="collapse" href="#show-list-danhsach" role="button" aria-expanded="true" aria-controls="ListLoc">
+        📜Ẩn/Hiện
+      </a>
+      <b>👉Danh sách lớp học đã chọn</b></br>
+      <div class="collapse show" id="show-list-danhsach">
+        <div class="row">
+          <div class="col-4">
+            <!--List  tên môn học-->
+            <div class="list-group" id="danhsach-selected" role="tablist">
+              <!-- <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-home" role="tab">Demo1</a>
+              <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-profile" role="tab">Demo2</a>
+              <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-messages" role="tab">Demo3</a>
+              <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-settings" role="tab">Demo4</a> -->
+            
+            </div>
+          </div>
+  
+          <div class="col-8">
+            <!--Thông tin môn học:-->
+            <div class="tab-content" id="info-danhsach-selected">
+              <p id="status-text-info"></p>
+              <!-- <div class="tab-pane fade" id="list-home" role="tabpanel">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
+              <div class="tab-pane fade" id="list-profile" role="tabpanel" >Demo2</br>Demo2</br>Demo2</br>Demo2</div>
+              <div class="tab-pane fade" id="list-messages" role="tabpanel">Demo3</br>Demo3</br>Demo3</br>Demo3</div>
+              <div class="tab-pane fade" id="list-settings" role="tabpanel">Demo4</br>Demo3</br>Demo3</br>Demo3</div> -->
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-------------------->
+    </div>
+    <div>
+      <!-- Dạng bảng -->
+      <a class="btn btn-warning btn-sm mb-2 " data-bs-toggle="collapse" href="#showbangtkb" role="button" aria-expanded="true" aria-controls="ListLoc">
+        🎇Ẩn/Hiện
+      </a>
+      <b>👉Xem dưới dạng bảng thời khóa biểu</b></br>
+      <div class="collapse" id="showbangtkb">
+        <div class="card card-body">
+          table
+        </div>
+      </div>
+      <!-------------------->
+    </div>
+  </div>
+</div>
 
+<nav class="fixed-top navbar navbar-light bg-transparent ">
+  <div class="container-fluid" >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>

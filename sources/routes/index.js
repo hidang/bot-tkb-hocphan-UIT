@@ -19,8 +19,6 @@ router.get("/", (req, res) => {  // <=> router.get('/', function(req, res){
 
 const tkbhp      = require('./api/api-tkbhp');
 const tao_tkbhp  = require('./_tao-tkbhp');
-const soan_tkbhp = require('./_soan-tkbhp')
 router.use("/tkbhp", tkbhp);
 router.use("/tao-tkbhp", tao_tkbhp);
-router.use("/soan-tkbhp", soan_tkbhp);
 module.exports = router;
