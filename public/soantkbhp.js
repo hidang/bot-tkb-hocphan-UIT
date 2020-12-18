@@ -79,9 +79,9 @@ function InnerData2List(info_lop) {
   id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
   //console.log(id)
   danhsach_selected.innerHTML += 
-  `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#${id}" role="tab">${info_lop.TenMH}-${info_lop.MaLop}</a>`;
+  `<a class="list-group-item-success mt-1" data-bs-toggle="list" href="#${id}" role="tab" style="text-decoration: none;border-style: solid;">${info_lop.TenMH}</a>`;
   info_danhsach_selected.innerHTML +=
-  `<div class="tab-pane fade" id="${id}" role="tabpanel">${info_lop.TenMH}</br>${info_lop.MaLop}</div>`;
+  `<div class="tab-pane fade" id="${id}" role="tabpanel">${info_lop.TenMH}</br>${info_lop.MaLop}</br>${info_lop.Thu}</br>${info_lop.Tiet}</br>${info_lop.TenGV}</div>`;
 }
 function OutnerData2List(malop) {
   var id = malop;
@@ -163,3 +163,4 @@ async function Start() {
   });
 }
 Start();
+//design by hidang on github: github.com/hidang

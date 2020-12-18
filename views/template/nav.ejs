@@ -1,6 +1,6 @@
 <div>
   <div class="alert alert-info alert-dismissible fade show" role="alert">
-    <center><strong>🎉Trang web soạn thời khóa biểu học phần UIT</strong></center>
+    <center><strong>🎉Trang web soạn thời khóa biểu học phần dành cho UITer</strong></center>
 </div>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
   <span > 👆 Click để xem danh sách lớp đã chọn</span>
@@ -8,16 +8,18 @@
 <div class="fixed-top collapse mb-5" id="navbarToggleExternalContent">
   <div class="p-4" style="background-color: #e3f2fd;">
   </br></br>
-    <div>
-      <!-- Dạng danh sách -->
+  <!-- Dạng danh sách -->
+    <div class="container">
+      
       <a class="btn btn-warning btn-sm mb-2" data-bs-toggle="collapse" href="#show-list-danhsach" role="button" aria-expanded="true" aria-controls="ListLoc">
         📜Ẩn/Hiện
       </a>
       <b>👉Danh sách lớp học đã chọn</b></br>
       <div class="collapse show" id="show-list-danhsach">
         <div class="row">
-          <div class="col-4">
+          <div class="col-5" style="border-style: inset;">
             <!--List  tên môn học-->
+            <b>Tên môn học:</b>
             <div class="list-group" id="danhsach-selected" role="tablist">
               <!-- <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-home" role="tab">Demo1</a>
               <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-profile" role="tab">Demo2</a>
@@ -27,10 +29,10 @@
             </div>
           </div>
   
-          <div class="col-8">
-            <!--Thông tin môn học:-->
+          <div class="col-5" style="border-style: solid;">
+            <b >Thông tin môn học:</b>
             <div class="tab-content" id="info-danhsach-selected">
-              <p id="status-text-info"></p>
+              <!-- <p id="status-text-info"></p> -->
               <!-- <div class="tab-pane fade" id="list-home" role="tabpanel">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
               <div class="tab-pane fade" id="list-profile" role="tabpanel" >Demo2</br>Demo2</br>Demo2</br>Demo2</div>
               <div class="tab-pane fade" id="list-messages" role="tabpanel">Demo3</br>Demo3</br>Demo3</br>Demo3</div>
@@ -38,23 +40,31 @@
             
             </div>
           </div>
+          <div class="col-5 ml-1" id="show-list-malop" style="border-style: dotted;">
+            <b>Danh sách mã lớp hiện tại:</b>
+          </div>
+          <div class="col-5 ml-1" id="show-TongTC" style="border-style: outset;">
+            <b>Tổng số tín chỉ :</b>
+          </div>
         </div>
       </div>
-      <!-------------------->
+      
     </div>
-    <div>
-      <!-- Dạng bảng -->
+  <!-------------------->
+
+  <!-- Dạng bảng -->
+    <div class="container mt-2">
       <a class="btn btn-warning btn-sm mb-2 " data-bs-toggle="collapse" href="#showbangtkb" role="button" aria-expanded="true" aria-controls="ListLoc">
         🎇Ẩn/Hiện
       </a>
       <b>👉Xem dưới dạng bảng thời khóa biểu</b></br>
-      <div class="collapse" id="showbangtkb">
-        <div class="card card-body">
-          table
-        </div>
-      </div>
-      <!-------------------->
     </div>
+    <div class="collapse" id="showbangtkb">
+      <div class="card card-body">
+        table
+      </div>
+    </div>
+  <!-------------------->
   </div>
 </div>
 
