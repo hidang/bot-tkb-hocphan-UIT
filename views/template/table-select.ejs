@@ -1,58 +1,71 @@
-<div id="start-data">
-  <label for="progress">✨Đang soạn dữ liệu cho bạn, xin đợi trong giây lát...</label>
-  <!-- <progress id="progress" value="0" max="100"></progress> -->
+
+<div class="fixed-top collapse" id="navbarToggleExternalContent">
+  <div class="p-4" style="background-color: #e3f2fd;">
+  </br></br>
+    <div>
+      <!-- Dạng danh sách -->
+      <a class="btn btn-warning btn-sm mb-2" data-bs-toggle="collapse" href="#show-list-danhsach" role="button" aria-expanded="true" aria-controls="ListLoc">
+        📜Ẩn/Hiện
+      </a>
+      <b>👉Danh sách lớp học đã chọn</b></br>
+      <div class="collapse show" id="show-list-danhsach">
+        <div class="row">
+          <div class="col-4">
+            <!--List  tên môn học-->
+            <div class="list-group" id="danhsach-selected" role="tablist">
+              <!-- <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-home" role="tab">Demo1</a>
+              <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-profile" role="tab">Demo2</a>
+              <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-messages" role="tab">Demo3</a>
+              <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-settings" role="tab">Demo4</a> -->
+            
+            </div>
+          </div>
+  
+          <div class="col-8">
+            <!--Thông tin môn học:-->
+            <div class="tab-content" id="info-danhsach-selected">
+              <p id="status-text-info"></p>
+              <!-- <div class="tab-pane fade" id="list-home" role="tabpanel">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
+              <div class="tab-pane fade" id="list-profile" role="tabpanel" >Demo2</br>Demo2</br>Demo2</br>Demo2</div>
+              <div class="tab-pane fade" id="list-messages" role="tabpanel">Demo3</br>Demo3</br>Demo3</br>Demo3</div>
+              <div class="tab-pane fade" id="list-settings" role="tabpanel">Demo4</br>Demo3</br>Demo3</br>Demo3</div> -->
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-------------------->
+    </div>
+    <div>
+      <!-- Dạng bảng -->
+      <a class="btn btn-warning btn-sm mb-2 " data-bs-toggle="collapse" href="#showbangtkb" role="button" aria-expanded="true" aria-controls="ListLoc">
+        🎇Ẩn/Hiện
+      </a>
+      <b>👉Xem dưới dạng bảng thời khóa biểu</b></br>
+      <div class="collapse" id="showbangtkb">
+        <div class="card card-body">
+          table
+        </div>
+      </div>
+      <!-------------------->
+    </div>
+  </div>
 </div>
-
-<div id="container">
-  <!-- Dạng danh sách -->
-  <a class="btn btn-warning btn-sm mb-2" data-bs-toggle="collapse" href="#showdanhsach" role="button" aria-expanded="true" aria-controls="ListLoc">
-    📜Ẩn/Hiện
-  </a>
-  Danh sách lớp học đã chọn</br>
-  <div class="collapse show" id="showdanhsach">
-    <div class="row">
-      <div id="danhsach-selected" class="col-4">
-        <div class="list-group" id="list-tab" role="tablist">
-          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Demo1</a>
-          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Demo2</a>
-          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Demo3</a>
-          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Demo4</a>
-        </div>
-      </div>
-      <div class="col-8">
-        <div class="tab-content" id="nav-tabContent">
-          Thông tin môn học
-          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
-          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Demo2</br>Demo2</br>Demo2</br>Demo2</div>
-          <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Demo3</br>Demo3</br>Demo3</br>Demo3</div>
-          <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Demo4</br>Demo3</br>Demo3</br>Demo3</div>
-        </div>
-      </div>
-    </div>
+<nav class="navbar fixed-top navbar-light style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </div>
-  <!-------------------->
+</nav>
 
-  <!-- Dạng bảng -->
-  <a class="btn btn-warning btn-sm mb-2 " data-bs-toggle="collapse" href="#showbangtkb" role="button" aria-expanded="true" aria-controls="ListLoc">
-    🎇Ẩn/Hiện
-  </a>
-  Xem dưới dạng bảng thời khóa biểu</br>
-  <div class="collapse" id="showbangtkb">
-    <div class="card card-body">
-      table
-    </div>
-  </div>
-  <!-------------------->
-
+<div id="container" class="container">
+</br></br></br></br>
   <!--Phần lọc -->
   <p>
-    <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-success me-md-2" type="button">submit</button>
-    </div> -->
     <a class="btn btn-primary btn-sm mt-2" data-bs-toggle="collapse" href="#ListLoc" role="button" aria-expanded="true" aria-controls="ListLoc">
       👉 Ẩn/hiện lọc:
     </a>
-
   </p>
   <div class="collapse show" id="ListLoc">
     <div class="card card-body">
@@ -234,6 +247,10 @@
   <!------------------->
 </div>
 
+<div id="start-data">
+  <label for="progress">✨Đang soạn dữ liệu cho bạn, xin đợi trong giây lát...</label>
+  <!-- <progress id="progress" value="0" max="100"></progress> -->
+</div>
 
 <!-- var listColumns = [
   'STT', 'MaMH', 'MaLop', 'TenMH', 'MaGV', //1->5
