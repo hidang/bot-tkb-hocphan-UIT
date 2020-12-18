@@ -1,6 +1,6 @@
 var listColumns = [
   'STT', 'MaMH', 'MaLop', 'TenMH', 'MaGV', //1->5
-  'TenGV', 'SiSo', 'SoTC', 'ThucHanh', 'HTGD',//6->10
+  'TenGV', 'SiSo', 'SoTc', 'ThucHanh', 'HTGD',//6->10
   'Thu', 'Tiet', 'CachTuan', 'PhongHoc', 'KhoaHoc', //11->15
   'HocKy', 'NamHoc', 'HeDT', 'KhoaQL', 'NBD', //16->20
   'NKT', 'GhiChu'//21, 22
@@ -29,7 +29,7 @@ listElementsCheckBox.forEach(element => {
 
 
 function ShowOrHideCol(elementCheckBox) {
-  //=>if checked ? show:hide -> element
+  //=>if checked ? show:hide -> elements
   var ShowOrHide = 'none';//hide
   if (elementCheckBox.checked) ShowOrHide = '';//show
   var listCell = document.getElementsByName(`cell-${elementCheckBox.id}`); 
@@ -56,36 +56,40 @@ function readTextFile(file) {
 
 async function start() {
   //tạm ẩn để đợi xử lý xong dữ liệu
-  container.style.display = "none";
   start_data.style.display = "";
+  container.style.display = "none";
 
   var jsondata = await readTextFile("./tkbhp.json");
   var data_json = JSON.parse(jsondata);
   var data_tkb = data_json.data;
   //console.log(data_tkb[0]);
-  //check all checkbox
-  listElementsCheckBox.forEach(element => {
-    ShowOrHideCol(element);
-  });
+  var i, j;
   var dataTable ='';
   var lineTable ='';
   let l = data_tkb.length;
+
   for (let index = 1; index < l; index++) {
-    if (data_tkb[index].TenMH) {//check data json môn học unknown
-      lineTable ='';
-      lineTable += 
-`<td name="cell-MaLop">${data_tkb[index].MaLop}</td>
-<td name="cell-TenMH">${data_tkb[index].TenMH}</td>
-<td name="cell-Thu">${data_tkb[index].Thu}</td>
-<td name="cell-Tiet">${data_tkb[index].Tiet}</td>`;
-      
+    if (data_tkb[index].TenMH) {//check data json môn học unknown -> không tồn tại
+      //tạo dòng
+      lineTable =`<td name="cell-Chon"><input type="checkbox" class="form-check-input " id=""></td>`;
+      for (const element of listColumns) {
+        //https://stackoverflow.com/questions/922544/using-variable-keys-to-access-values-in-javascript-objects
+        //console.log((data_tkb[index])[element]);
+        lineTable += `<td name="cell-${element}">${(data_tkb[index])[element]}</td>`;
+      }
+      //thêm dòng vào bảng
       dataTable +=`<tr>${lineTable}</tr>`;
     }
   }
   //hiện lại sau khi xử lý xong
   start_data.style.display = "none";
   container.style.display = "";
-
+  //đưa dữ liệu đã xử lý vào bảng
   BodyTable.innerHTML = dataTable; 
+
+  //check all ShowOrHide checkbox
+  listElementsCheckBox.forEach(element => {
+    ShowOrHideCol(element);
+  });
 }
 start();

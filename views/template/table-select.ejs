@@ -80,7 +80,7 @@
         <input type="checkbox" class="form-check-input" id="SiSo" autocomplete="off">
         <label class="form-check-label" for="SiSo">Sĩ số</label>
       
-        <input type="checkbox" class="form-check-input" id="SoTC" autocomplete="off">
+        <input type="checkbox" class="form-check-input" id="SoTc" autocomplete="off">
         <label class="form-check-label" for="SoTc">Số tính chỉ</label>
       
         <input type="checkbox" class="form-check-input" id="ThucHanh" autocomplete="off">
@@ -132,10 +132,13 @@
   <!---------->
 
   <!--Phần table select -->
-  <table id="TableSelect">
+  <table id="TableSelect" class="table table-bordered">
     <thead>
       <!-- HEAD name COL -->
       <tr id="cur-name-header-table" class="header">
+        <th name="cell-Chon">Chọn
+
+        </th>
         <th name="cell-STT">STT</br>
           <input type="text" id="cell-STT" name="cell-STT">
         </th>
@@ -163,8 +166,8 @@
         <th name="cell-SiSo">Sĩ số</br>
           <input type="text" id="cell-SiSo" name="cell-SiSo">
         </th>
-        <th name="cell-SoTC">Số TC</br>
-          <input type="text" id="cell-SoTC" name="cell-SoTC">
+        <th name="cell-SoTc">Số TC</br>
+          <input type="text" id="cell-SoTc" name="cell-SoTc">
         </th>
         <th name="cell-ThucHanh">Thực hành</br>
           <input type="checkbox" id="cell-ThucHanh" name="cell-ThucHanh">
@@ -232,7 +235,13 @@
 </div>
 
 
-
+<!-- var listColumns = [
+  'STT', 'MaMH', 'MaLop', 'TenMH', 'MaGV', //1->5
+  'TenGV', 'SiSo', 'SoTc', 'ThucHanh', 'HTGD',//6->10
+  'Thu', 'Tiet', 'CachTuan', 'PhongHoc', 'KhoaHoc', //11->15
+  'HocKy', 'NamHoc', 'HeDT', 'KhoaQL', 'NBD', //16->20
+  'NKT', 'GhiChu'//21, 22
+]; -->
 
 
 
