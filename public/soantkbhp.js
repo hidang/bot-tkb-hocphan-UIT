@@ -5,7 +5,11 @@ var listColumns = [
   'HocKy', 'NamHoc', 'HeDT', 'KhoaQL', 'NBD', //16->20
   'NKT', 'GhiChu'//21, 22
 ];
-
+const container = document.getElementById("container");
+const start_data = document.getElementById("start-data");
+const progress = document.getElementById("progress");
+//const TableSelect = document.getElementById('TableSelect');
+const BodyTable  = document.getElementById('body-table');
 
 var listElementsCheckBox = [];//Mảng các element-checbox
 listColumns.forEach(element => {
@@ -34,16 +38,6 @@ function ShowOrHideCol(elementCheckBox) {
   });
 }
 
-
-
-
-
-
-//const TableSelect = document.getElementById('TableSelect');
-const BodyTable  = document.getElementById('body-table');
-start();
-
-
 function readTextFile(file) {
   return new Promise(
     function (resolve) {
@@ -61,32 +55,37 @@ function readTextFile(file) {
 }
 
 async function start() {
+  //tạm ẩn để đợi xử lý xong dữ liệu
+  container.style.display = "none";
+  start_data.style.display = "";
+
   var jsondata = await readTextFile("./tkbhp.json");
   var data_json = JSON.parse(jsondata);
   var data_tkb = data_json.data;
-  console.log(data_tkb[0]);
+  //console.log(data_tkb[0]);
   //check all checkbox
   listElementsCheckBox.forEach(element => {
     ShowOrHideCol(element);
   });
+  var dataTable ='';
+  var lineTable ='';
   let l = data_tkb.length;
-  for (let index = 0; index < l; index++) {
+  for (let index = 1; index < l; index++) {
     if (data_tkb[index].TenMH) {//check data json môn học unknown
-      //console.log(data_tkb[index]);
-      ShowData2Table(data_tkb[index]);
+      lineTable ='';
+      lineTable += 
+`<td name="cell-MaLop">${data_tkb[index].MaLop}</td>
+<td name="cell-TenMH">${data_tkb[index].TenMH}</td>
+<td name="cell-Thu">${data_tkb[index].Thu}</td>
+<td name="cell-Tiet">${data_tkb[index].Tiet}</td>`;
+      
+      dataTable +=`<tr>${lineTable}</tr>`;
     }
   }
+  //hiện lại sau khi xử lý xong
+  start_data.style.display = "none";
+  container.style.display = "";
+
+  BodyTable.innerHTML = dataTable; 
 }
-function ShowData2Table(element) {
-  var dataInLine ='';
-  var i;
-  listColumns.forEach(cotne => {
-    i = element.cotne;
-    dataInLine += `<td name="cell-${cotne}">${i}</td>`;
-  });
-  var lineTable = 
-`<tr>  
-  ${dataInLine}
-</tr>`
-  BodyTable.innerHTML = lineTable;
-}
+start();
