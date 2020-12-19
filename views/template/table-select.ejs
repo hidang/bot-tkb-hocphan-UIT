@@ -1,88 +1,133 @@
 <!-- Loc&Table -->
 <div id="container" class="container mt-5">
   <!--Phần lọc -->
-  <p>
-    <a class="btn btn-primary btn-sm mt-2" data-bs-toggle="collapse" href="#ListLoc" role="button" aria-expanded="true" aria-controls="ListLoc">
-      👉 Ẩn/hiện lọc:
-    </a>
-  </p>
-  <div class="collapse show" id="ListLoc">
-    <div class="card card-body">
-      <!--list lọc-->
-      <div class="btn-group-sm" role="group" aria-label="Basic checkbox toggle button group">
-
-        <input type="checkbox" class="form-check-input" id="STT" autocomplete="off">
-        <label class="form-check-label" for="STT">STT</label>
-      
-        <input type="checkbox" class="form-check-input" id="MaMH" autocomplete="off">
-        <label class="form-check-label" for="MaMH">Mã môn học</label>
-      
-        <input type="checkbox" class="form-check-input" id="MaLop"checked="true" autocomplete="off">
-        <label class="form-check-label" for="MaLop">Mã Lớp</label>
-      
-        <input type="checkbox" class="form-check-input" id="TenMH" checked="true" autocomplete="off">
-        <label class="form-check-label" for="TenMH">Tên môn học</label>
+  <div>
+    <p>
+      <a class="btn btn-primary btn-sm mt-2" data-bs-toggle="collapse" href="#ListLoc" role="button" aria-expanded="true" aria-controls="ListLoc">
+        👉 Ẩn/hiện lọc:
+      </a>
+    </p>
+    <div class="collapse show" id="ListLoc">
+      <div class="card card-body">
+        <!--list lọc-->
+        <div class="btn-group-sm" role="group" aria-label="Basic checkbox toggle button group">
+  
+          <label class="form-check-label" for="STT">
+            <input type="checkbox" class="form-check-input" id="STT" autocomplete="off">
+            STT
+          </label>
+          
+          <label class="form-check-label" for="MaMH">
+            <input type="checkbox" class="form-check-input" id="MaMH" autocomplete="off">
+            Mã môn học
+          </label>
         
-        <input type="checkbox" class="form-check-input" id="MaGV" autocomplete="off">
-        <label class="form-check-label" for="MaGV">Mã giảng viên</label>
-      
-        <input type="checkbox" class="form-check-input" id="TenGV" autocomplete="off">
-        <label class="form-check-label" for="TenGV">Tên giảng viên</label>
-      
-        <input type="checkbox" class="form-check-input" id="SiSo" autocomplete="off">
-        <label class="form-check-label" for="SiSo">Sĩ số</label>
-      
-        <input type="checkbox" class="form-check-input" id="SoTc" autocomplete="off">
-        <label class="form-check-label" for="SoTc">Số tính chỉ</label>
-      
-        <input type="checkbox" class="form-check-input" id="ThucHanh" autocomplete="off">
-        <label class="form-check-label" for="ThucHanh">Thực hành</label>
-      
-        <input type="checkbox" class="form-check-input" id="HTGD" autocomplete="off">
-        <label class="form-check-label" for="HTGD">HTGD</label>
-      
-        <input type="checkbox" class="form-check-input" id="Thu" checked="true" autocomplete="off">
-        <label class="form-check-label" for="Thu">THỨ</label>
-      
-        <input type="checkbox" class="form-check-input" id="Tiet" checked="true" autocomplete="off">
-        <label class="form-check-label" for="Tiet">TIẾT</label> 
-      
-        <input type="checkbox" class="form-check-input" id="CachTuan" autocomplete="off">
-        <label class="form-check-label" for="CachTuan">Cách tuần</label>
-      
-        <input type="checkbox" class="form-check-input" id="PhongHoc" autocomplete="off">
-        <label class="form-check-label" for="PhongHoc">Phòng học</label>
-      
-        <input type="checkbox" class="form-check-input" id="KhoaHoc" autocomplete="off">
-        <label class="form-check-label" for="KhoaHoc">Khóa học</label>
-      
-        <input type="checkbox" class="form-check-input" id="HocKy" autocomplete="off">
-        <label class="form-check-label" for="HocKy">Học kỳ</label>
-      
-        <input type="checkbox" class="form-check-input" id="NamHoc" autocomplete="off">
-        <label class="form-check-label" for="NamHoc">Năm học</label>
-      
-        <input type="checkbox" class="form-check-input" id="HeDT" autocomplete="off">
-        <label class="form-check-label" for="HeDT">Hệ ĐT</label>
-      
-        <input type="checkbox" class="form-check-input" id="KhoaQL" autocomplete="off">
-        <label class="form-check-label" for="KhoaQL">Khoa QL</label>
-      
-        <input type="checkbox" class="form-check-input" id="NBD" autocomplete="off">
-        <label class="form-check-label" for="NBD">NBD</label>
-      
-        <input type="checkbox" class="form-check-input" id="NKT" autocomplete="off">
-        <label class="form-check-label" for="NKT">NKT</label>
-      
-        <input type="checkbox" class="form-check-input" id="GhiChu" autocomplete="off">
-        <label class="form-check-label" for="GhiChu">Ghi chú</label>
-      
+          <label class="form-check-label" for="MaLop">
+            <input type="checkbox" class="form-check-input" id="MaLop"checked="true" autocomplete="off">
+            Mã Lớp
+          </label>
+        
+          <label class="form-check-label" for="TenMH">
+            <input type="checkbox" class="form-check-input" id="TenMH" checked="true" autocomplete="off">
+            Tên môn học
+          </label>
+          
+          <label class="form-check-label" for="MaGV">
+            <input type="checkbox" class="form-check-input" id="MaGV" autocomplete="off">
+            Mã giảng viên
+          </label>
+        
+          <label class="form-check-label" for="TenGV">
+            <input type="checkbox" class="form-check-input" id="TenGV" autocomplete="off">
+            Tên giảng viên
+          </label>
+        
+          <label class="form-check-label" for="SiSo">
+            <input type="checkbox" class="form-check-input" id="SiSo" autocomplete="off">
+            Sĩ số
+          </label>
+  
+          <label class="form-check-label" for="SoTc">
+            <input type="checkbox" class="form-check-input" id="SoTc" autocomplete="off">
+            Số tính chỉ
+          </label>
+  
+          <label class="form-check-label" for="ThucHanh">
+            <input type="checkbox" class="form-check-input" id="ThucHanh" autocomplete="off">
+            Thực hành
+          </label>
+  
+          <label class="form-check-label" for="HTGD">
+            <input type="checkbox" class="form-check-input" id="HTGD" autocomplete="off">
+            HTGD
+          </label>
+  
+          <label class="form-check-label" for="Thu">
+            <input type="checkbox" class="form-check-input" id="Thu" checked="true" autocomplete="off">
+            THỨ
+          </label>
+  
+          <label class="form-check-label" for="Tiet">
+            <input type="checkbox" class="form-check-input" id="Tiet" checked="true" autocomplete="off">
+            TIẾT
+          </label>
+  
+          <label class="form-check-label" for="CachTuan">
+            <input type="checkbox" class="form-check-input" id="CachTuan" autocomplete="off">
+            Cách tuần
+          </label>
+        
+          <label class="form-check-label" for="PhongHoc">
+            <input type="checkbox" class="form-check-input" id="PhongHoc" autocomplete="off">
+            Phòng học
+          </label>
+        
+          <label class="form-check-label" for="KhoaHoc">
+            <input type="checkbox" class="form-check-input" id="KhoaHoc" autocomplete="off">
+            Khóa học
+          </label>
+        
+          <label class="form-check-label" for="HocKy">
+            <input type="checkbox" class="form-check-input" id="HocKy" autocomplete="off">
+            Học kỳ
+          </label>
+        
+          <label class="form-check-label" for="NamHoc">
+            <input type="checkbox" class="form-check-input" id="NamHoc" autocomplete="off">
+            Năm học
+          </label>
+        
+          <label class="form-check-label" for="HeDT">
+            <input type="checkbox" class="form-check-input" id="HeDT" autocomplete="off">
+            Hệ ĐT
+          </label>
+          
+          <label class="form-check-label" for="KhoaQL">
+            <input type="checkbox" class="form-check-input" id="KhoaQL" autocomplete="off">
+            Khoa QL
+          </label>
+  
+          <label class="form-check-label" for="NBD">
+            <input type="checkbox" class="form-check-input" id="NBD" autocomplete="off">
+            NBD
+          </label>
+        
+          <label class="form-check-label" for="NKT">
+            <input type="checkbox" class="form-check-input" id="NKT" autocomplete="off">
+            NKT
+          </label>
+        
+          <label class="form-check-label" for="GhiChu">
+            <input type="checkbox" class="form-check-input" id="GhiChu" autocomplete="off">
+            Ghi chú
+          </label>
+        
+        </div>
+        <!----------->
       </div>
-      <!----------->
     </div>
   </div>
-  <!---------->
-
+  <!----------------------->
   <!--Phần table select -->
   <table id="TableSelect" class="table table-bordered">
     <thead>

@@ -1,3 +1,20 @@
+{
+  const back_to_top = document.getElementById('back-to-top');
+  back_to_top.addEventListener('click', function(e) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  });
+  window.onscroll = function() {scrollFunction()};
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      back_to_top.style.display = "block";
+    } else {
+      back_to_top.style.display = "none";
+    }
+  }
+}
+document.getElementById('btnCopy').addEventListener('click', ButtonCopy);
+//------------------------------------------------Declare--------------------------------------------------------------
 const listColumns = [//22
   'STT', 'MaMH', 'MaLop', 'TenMH', 'MaGV',
   'TenGV', 'SiSo', 'SoTc', 'ThucHanh', 'HTGD',
@@ -14,7 +31,6 @@ const info_danhsach_selected = document.getElementById('info-danhsach-selected')
 //const status_text_info =document.getElementById('status-text-info');
 const show_list_malop = document.getElementById('show-list-malop');
 const show_TongTC = document.getElementById('show-TongTC');
-
 var data_tkb = '';//Object dữ liệu từ file excel tất cả môn học
 //🐥🐤🐣fix buggggg lần 2: hôm nay là một buổi chiều thứ 7 bất chợt chiếc lá rơi nhưng rụng xuống 2 chiếc giống nhau nhưng khác tính chất hóa học dẫn-đến-bugg-toàn-cục bầu ơi thương lấy bí cùng tuy rằng xóa code
 //vì mỗi một code class không chỉ xuất hiện một lần- đối với các môn có 2 3 ngày học trở lên sẽ khác về thứ và tiết học phải check để không bị trùng
@@ -26,6 +42,8 @@ var MyCodeClassList = [];//Danh sách {MaMH} các lớp học đã chọn -> đ�
 var MyInfoClassList = [];//Danh sách chứa {info} các lớp học đã chọn (bao gồm trùng MaMH nhưng khác thu tiet)
 var listElementsCheckBox = [];//Mảng các element-checbox-Loc
 var TongTc = 0;//số tính chỉ của danh sách đang chọn
+var textforcopy_malop_list ='';//string
+//--------------------------------------------------EndDeclare-------------------------------------------------------------
 //--------------------------------------------------SetUp-------------------------------------------------------------
 //push elementCheckBox to array
 listColumns.forEach(element => {
@@ -40,7 +58,20 @@ listElementsCheckBox.forEach(element => {
   });
 });
 //---------------------------------------------------EndSetUp--------------------------------------------------------
-
+function ButtonCopy() {
+  var textArea = document.createElement("textarea");
+  textArea.value = textforcopy_malop_list;
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+  } catch (err) {
+    console.log('Lỗi coppy');
+  }
+  document.body.removeChild(textArea);
+}
 function ReadJsonFile(file) {//return Promise resolve -> data in file json
   return new Promise(
     function (resolve) {
@@ -80,21 +111,21 @@ function ShowOrHideCol(elementCheckBox) {
 }
 function handle_show_list_malop() {
   var list_malop_show = '';
+  textforcopy_malop_list ='';
   MyCodeClassList.forEach(element => {
     list_malop_show += `${element}</br>`;
+    textforcopy_malop_list += `${element}\n`;
   });
   show_list_malop.innerHTML = list_malop_show;
 }
 function InnerData2List(array_infolop) {//add codeclass to MyCodeClassList and Inner Data to site
-  //innerHTML ra list danh sách
-  // danhsach_selected: List
-  // info_danhsach_selected: Info for List
-  //<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-home" role="tab">Demo1</a>
-  //<div class="tab-pane fade" id="list-home" role="tabpanel">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
+  //TODO:innerHTML ra list nav
+  // danhsach_selected: List   //<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-home" role="tab">Demo1</a>
+  // info_danhsach_selected: Info for List  //<div class="tab-pane fade" id="list-home" role="tabpanel">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
   var thu_tiet ='';
   array_infolop.forEach(info_lop => {
     MyInfoClassList.push(info_lop);//phải push hết vào để get info tkb
-    thu_tiet += `-thu:${info_lop.Thu} T`;
+    thu_tiet += `*thứ:${info_lop.Thu}-tiết:${info_lop.Tiet}`;
   });
   MyCodeClassList.push(array_infolop[0].MaLop);//chỉ cần push một mã lớp đại diện
   var id = array_infolop[0].MaLop;
@@ -104,8 +135,8 @@ function InnerData2List(array_infolop) {//add codeclass to MyCodeClassList and I
   `<a class="list-group-item-success mt-1" data-bs-toggle="list" href="#${id}" role="tab" style="text-decoration: none;border-style: solid;">${array_infolop[0].TenMH}</a>`;
   info_danhsach_selected.innerHTML +=
   `<div class="tab-pane fade" id="${id}" role="tabpanel">
-Tên môn học: ${array_infolop[0].TenMH}</br>Mã lớp: ${array_infolop[0].MaLop}</br>${thu_tiet}</br>GV: ${array_infolop[0].TenGV}</br>
-<button type="button" class="btn btn-danger" onclick="DeleteMonHoc('${array_infolop[0].MaLop}')">Bỏ chọn môn học này</button>
+Tên môn học: ${array_infolop[0].TenMH}</br>Mã lớp: ${array_infolop[0].MaLop}</br>Thứ - tiết: ${thu_tiet}</br>GV: ${array_infolop[0].TenGV}</br>
+<button type="button" class="btn btn-danger btn-sm" onclick="DeleteMonHoc('${array_infolop[0].MaLop}')">Bỏ chọn môn học này</button>
 </div>`;
   handle_show_list_malop();
   //handle_show_TongTC
@@ -144,7 +175,6 @@ async function CheckAndAddClass2ListChon(checkboxChon) {
   checkboxChonCungMaLops = [...checkboxChonCungMaLops];//https://stackoverflow.com/questions/222841/most-efficient-way-to-convert-an-htmlcollection-to-an-array
   if (checkboxChon.checked) {
     var err = await CheckTrungThuTiet(array_infolop);
-    console.log(err)
     if (!err) {
       InnerData2List(array_infolop);
       checkboxChonCungMaLops.forEach(checkBox => {//auto click checkbox cùng lớp học
@@ -168,9 +198,9 @@ function CheckTrungThuTiet(array_inputlop) {//return (Promise-function) resolve-
   return new Promise(
     function (resolve) {
       if(MyInfoClassList){
+        var ThuTrung, e_Tiet, i_Tiet;
         array_inputlop.forEach(input_lop => {
-          var ThuTrung = [];
-          console.log(input_lop.Thu)
+          ThuTrung = [];
           if(input_lop.Thu != '*' & input_lop.Thu != '' & input_lop.Tiet != '*' & input_lop.Tiet != ''){
             MyInfoClassList.forEach(e_lop => {
               if (e_lop.Thu === input_lop.Thu) {
@@ -180,8 +210,8 @@ function CheckTrungThuTiet(array_inputlop) {//return (Promise-function) resolve-
             if(ThuTrung){
               try {
                 ThuTrung.forEach(e_lop => {
-                  var e_Tiet = e_lop.Tiet;
-                  var i_Tiet = input_lop.Tiet;
+                  e_Tiet = e_lop.Tiet;
+                  i_Tiet = input_lop.Tiet;
                   for (const e of e_Tiet) {
                     for (const i of i_Tiet) {
                       if (e === i){

@@ -3,3 +3,10 @@
   overflow: auto;
   background-color: #e3f2fd;
 }
+
+.back-to-top {
+    position: fixed;
+    bottom: 15px;
+    right: 25px;
+    display: none;
+}
