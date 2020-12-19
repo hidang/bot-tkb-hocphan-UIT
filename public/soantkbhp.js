@@ -14,10 +14,13 @@ const info_danhsach_selected = document.getElementById('info-danhsach-selected')
 //const status_text_info =document.getElementById('status-text-info');
 const show_list_malop = document.getElementById('show-list-malop');
 const show_TongTC = document.getElementById('show-TongTC');
+
 var data_tkb = '';//Object dữ liệu từ file excel tất cả môn học
-var MyCodeClassList = [];//Danh sách {info} lớp học đã chọn -> đã check trùng lịch...
+var MyCodeClassList = [];//Danh sách {MaMH} các lớp học đã chọn -> đã check trùng lịch...
+var MyInfoClassList = [];//Danh sách chứa {info} các lớp học đã chọn
 var listElementsCheckBox = [];//Mảng các element-checbox-Loc
 var TongTc = 0;//số tính chỉ của danh sách đang chọn
+
 //push elementCheckBox to array
 listColumns.forEach(element => {
   ////set size ALL BOX text-input 
@@ -31,15 +34,6 @@ listElementsCheckBox.forEach(element => {
   });
 });
 //---------------------------------------------------------------------------------------------------------------
-function ShowOrHideCol(elementCheckBox) {
-  //=>if checked ? show:hide -> elements
-  var ShowOrHide = 'none';//hide
-  if (elementCheckBox.checked) ShowOrHide = '';//show
-  var listCell = document.getElementsByName(`cell-${elementCheckBox.id}`); 
-  listCell.forEach(element =>{
-    element.style.display  = ShowOrHide;
-  });
-}
 function ReadJsonFile(file) {//return Promise resolve -> data in file json
   return new Promise(
     function (resolve) {
@@ -55,7 +49,7 @@ function ReadJsonFile(file) {//return Promise resolve -> data in file json
     }
   )
 }
-function GetInfoClassByMaLop(malop) {//return object info_lop
+function GetInfoClassByMaLop(malop) {//return object info_lop 
   var infoLop = '';
   if(data_tkb){
     for (const datalop of data_tkb) {
@@ -68,6 +62,15 @@ function GetInfoClassByMaLop(malop) {//return object info_lop
     return false;
   }
   return infoLop;
+}
+function ShowOrHideCol(elementCheckBox) {
+  //=>if checked ? show:hide -> elements
+  var ShowOrHide = 'none';//hide
+  if (elementCheckBox.checked) ShowOrHide = '';//show
+  var listCell = document.getElementsByName(`cell-${elementCheckBox.id}`); 
+  listCell.forEach(element =>{
+    element.style.display  = ShowOrHide;
+  });
 }
 function handle_show_list_malop() {
   var list_malop_show = '';
@@ -82,6 +85,7 @@ function InnerData2List(info_lop) {//add codeclass to MyCodeClassList and Inner 
   // info_danhsach_selected: Info for List
   //<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-home" role="tab">Demo1</a>
   //<div class="tab-pane fade" id="list-home" role="tabpanel">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
+  MyInfoClassList.push(info_lop);
   MyCodeClassList.push(info_lop.MaLop);
   var id = info_lop.MaLop;
   id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
@@ -91,7 +95,7 @@ function InnerData2List(info_lop) {//add codeclass to MyCodeClassList and Inner 
   info_danhsach_selected.innerHTML +=
   `<div class="tab-pane fade" id="${id}" role="tabpanel">
 ${info_lop.TenMH}</br>${info_lop.MaLop}</br>${info_lop.Thu}</br>${info_lop.Tiet}</br>${info_lop.TenGV}</br>
-<button type="button" class="btn btn-danger" onclick="DeleteMonHoc('${info_lop.MaLop}')">Bỏ chọn học này</button>
+<button type="button" class="btn btn-danger" onclick="DeleteMonHoc('${info_lop.MaLop}')">Bỏ chọn môn học này</button>
 </div>`;
   handle_show_list_malop();
   //handle_show_TongTC
@@ -99,6 +103,7 @@ ${info_lop.TenMH}</br>${info_lop.MaLop}</br>${info_lop.Thu}</br>${info_lop.Tiet}
   show_TongTC.innerHTML = TongTc;
 }
 function OutnerData2List(info_lop) {//remove codeclass to MyCodeClassList and Data to site
+  MyInfoClassList = MyInfoClassList.filter(item => item.MaLop !== info_lop.MaLop);//remove
   MyCodeClassList = MyCodeClassList.filter(item => item !== info_lop.MaLop);//remove
   var id = info_lop.MaLop;
   id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
@@ -114,7 +119,7 @@ function OutnerData2List(info_lop) {//remove codeclass to MyCodeClassList and Da
 function DeleteMonHoc(malop) {
   //https://stackoverflow.com/questions/6267816/getting-element-by-a-custom-attribute-using-javascript
   var checkBoxChon =  document.querySelector(`input[value-malop="${malop}"]`);
-  var info_lop = GetInfoClassByMaLop(malop);
+  var info_lop = GetInfoClassByMaLop(malop);//FIXME: có thể get từ mảng MyInfoClassList[];
   checkBoxChon.checked = false;
   OutnerData2List(info_lop);
 }
@@ -123,10 +128,50 @@ function CheckAndAddClass2ListChon(checkboxChon) {
   var info_lop = GetInfoClassByMaLop(malop);
   if (checkboxChon.checked) {
     //FIXME: check trùng rồi mới add vào InnerData2List MyCodeClassList[]
-    InnerData2List(info_lop);
+    var err = CheckTrungThuTiet(info_lop);
+    if (!err) {
+      InnerData2List(info_lop);
+    }else{
+      checkboxChon.checked = false;
+      ShowErrorByAlert(err);
+    }
   }else{
     OutnerData2List(info_lop);
   }
+}
+function ShowErrorByAlert(err) {
+  alert("Lỗi: " + err);
+}
+function CheckTrungThuTiet(input_lop) {//return false -> không bị trùng | err
+  if(MyInfoClassList){
+    var ThuTrung = [];
+    console.log(input_lop.Thu)
+    if(input_lop.Thu != '*' & input_lop.Thu != '' & input_lop.Tiet != '*' & input_lop.Tiet != ''){
+      MyInfoClassList.forEach(e_lop => {
+        if (e_lop.Thu === input_lop.Thu) {
+          ThuTrung.push(e_lop);
+        }
+      });
+      if(ThuTrung){
+        try {
+          ThuTrung.forEach(e_lop => {
+            var e_Tiet = e_lop.Tiet;
+            var i_Tiet = input_lop.Tiet;
+            for (const e of e_Tiet) {
+              for (const i of i_Tiet) {
+                if (e === i){
+                  throw '📢Trùng thời gian học với môn:\n'+e_lop.TenMH+' - Thứ: '+e_lop.Thu+' Tiết: '+e_lop.Tiet;//err
+                }
+              }
+            }
+          });
+        } catch (err) {
+          if(err) return err;
+          return false;
+        }
+      }else return false;
+    }else return false;
+  }else return false;
 }
 //---------------------------------------------------------------------------------------------------------------
 async function Start() {
