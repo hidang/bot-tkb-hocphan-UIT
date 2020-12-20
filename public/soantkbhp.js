@@ -3,7 +3,7 @@ scrollFunction();
 back_to_top.addEventListener('click', function() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-  
+  document.documentElement.scrollLeft = 0;
 });
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
