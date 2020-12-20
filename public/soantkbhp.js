@@ -255,10 +255,11 @@ async function Start() {
   for (let index = 0; index < l; index++) {
     i_data = data_tkb[index];
     if (i_data.TenMH && i_data.TenMH !== "TÊN MÔN HỌC") {//check data json môn học unknown - không tồn tại
-      //FIXME: có môn có 2 mã lớp /1 lớp 
+      //fixed: TH có >= 2 mã lớp /1 lớp 🙂
       //🙂-> value-malop="${i_data.MaLop}-Thu${i_data.Thu}-Tiet${i_data.Tiet}"
-      //Tạo dòng
-      //mỗi checkboxChon sẽ mang "value-malop" chính là "mã lớp" tương ứng với dòng nó        
+      //----------------------
+      //TODO- Tạo dòng
+      //mỗi checkboxChon sẽ mang "value-malop" "value-thu" "value-tiet" chính là "mã lớp"-"thứ"-"tiết" tương ứng với dòng nó,        
       lineTable =`<td name="cell-Chon"><input type="checkbox" name="cell-Chon-CheckBox" class="form-check-input ${i_data.MaLop}"
 value-malop="${i_data.MaLop}" value-thu="${i_data.Thu}" value-tiet="${i_data.Tiet}"></td>`;    
       for (const element of listColumns) {
@@ -268,11 +269,11 @@ value-malop="${i_data.MaLop}" value-thu="${i_data.Thu}" value-tiet="${i_data.Tie
         if(!cell_data) cell_data = '';//check data unknown
         lineTable += `<td name="cell-${element}">${cell_data}</td>`;
       }
-      //thêm DÒNG vào BẢNG sau khi xử lý xong
+      //TODO- thêm DÒNG vào BẢNG sau khi xử lý xong
       dataTable +=`<tr>${lineTable}</tr>`;
     }
   }
-  //TODO:ẩn loading hiện site lại sau khi xử lý xong
+  //TODO: ẩn loading hiện site lại sau khi xử lý xong
   start_data.style.display = "none";
   container.style.display = "";
   table_select.style.display = "";
