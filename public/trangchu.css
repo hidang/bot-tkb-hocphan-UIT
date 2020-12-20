@@ -9,10 +9,10 @@
     right: 25px;
     display: none;
 }
-.navbar {
+/* .navbar {
   max-width: 100%;
-
-}
+  position: fixed;
+} */
 
 th[name="cell-Chon"] {
   vertical-align: middle;
