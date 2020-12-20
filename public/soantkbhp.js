@@ -66,6 +66,7 @@ function ButtonCopy() {
   document.body.appendChild(textArea);
   textArea.focus();
   textArea.select();
+  textArea.setSelectionRange(0, 99999); /* For mobile devices */
   try {
     document.execCommand('copy');
   } catch (err) {
