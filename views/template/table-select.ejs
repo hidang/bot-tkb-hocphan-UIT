@@ -1,7 +1,7 @@
 <!-- BODY -->
 <div name="container-body">
   <!-- wait for data loading -->
-  <div id="start-data" class="container">
+  <div id="loading-data" class="container">
     <label for="progress">✨Đang khởi tạo dữ liệu cho bạn, xin đợi trong giây lát...
       <div class="spinner-border text-primary spinner-border-sm" role="status">
         <span class="visually-hidden">Loading...</span>
@@ -13,7 +13,7 @@
   <!---------------------->
 
   <!------Phần lọc-------->
-  <div id="container" class="container mt-5">
+  <div id="box-loc" class="container mt-5">
     <div>
       <p>
         <a class="btn btn-primary btn-sm mt-2" data-bs-toggle="collapse" href="#ListLoc" role="button" aria-expanded="true" aria-controls="ListLoc">
@@ -145,8 +145,8 @@
 
   <!--Phần table select --->
   <div>
-    <table id="table-select" class="table table-bordered table table-hover mt-3 container">
-      <thead id="thead_table">
+    <table id="main-table" class="table table-bordered table table-hover mt-3 container">
+      <thead id="maint-table-head">
         <!-- HEAD name COL -->
         <tr id="cur-name-header-table" class="header" name="cell-Chon">
           <th name="cell-Chon">☑
@@ -225,7 +225,7 @@
         <!------------->
       </thead>
 
-      <tbody id="body-table">
+      <tbody id="main-table-body">
         <!-- <tr>  
           <td name="cell-MaLop">IT048448Demo</td>
           <td name="cell-TenMH">Nhập mônDemo</td>

@@ -20,9 +20,31 @@
   overflow-x: auto;
 }
 
+#table-tkbhp{
+  width: 100%;
+  max-width: 1169.6px;
+  /* height: 616.8px; */
+  display: block;
+  overflow-x: auto;
+  /* IE 9 */
+  /* -ms-transform: scale(0.5);  */
+   /* Safari 3-8 */
+  /* -webkit-transform: scale(0.5);
+  transform: scale(0.5);  */
+}
 
-
-
+.cell-monhocINtkb{
+  width: 4%;
+  background-color: rgb(255, 255, 255);
+}
+th[name="cell-thutiet"] {
+  vertical-align: middle;
+  max-width: 3%
+}
+th[name="cell-thu"] {
+  vertical-align: middle;
+  max-width: 3%
+}
 
 
 
@@ -30,7 +52,7 @@
 
 th[name="cell-Chon"] {
   vertical-align: middle;
-  width: 1%
+  width: 2%
 }
 input[name="cell-STT"] {
   max-width: 2rem;

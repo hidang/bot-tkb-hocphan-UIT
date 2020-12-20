@@ -6,15 +6,15 @@ const listColumns = [//22
   'HocKy', 'NamHoc', 'HeDT', 'KhoaQL', 'NBD',
   'NKT', 'GhiChu'
 ];
-const container = document.getElementById('container');
-const start_data = document.getElementById('start-data');
-const table_select = document.getElementById('table-select');
-const body_table  = document.getElementById('body-table');
-const danhsach_selected = document.getElementById('danhsach-selected');
-const info_danhsach_selected = document.getElementById('info-danhsach-selected');
-const show_list_malop = document.getElementById('show-list-malop');
-const show_TongTC = document.getElementById('show-TongTC');
-
+const loading_data = document.getElementById('loading-data');
+const box_loc = document.getElementById('box-loc');
+const main_table = document.getElementById('main-table');
+const main_table_body  = document.getElementById('main-table-body');
+const danhsach_ten_selected = document.getElementById('danhsach-ten-selected');
+const danhsach_info_selected = document.getElementById('danhsach-info-selected');
+const danhsach_malop_selected = document.getElementById('danhsach-malop-selected');
+const tongTC_selected = document.getElementById('tongTC-selected');
+const body_table_tkbhp = document.getElementById('body-table-tkbhp');
 var data_tkb = '';//Object dữ liệu từ file excel tất cả môn học
 //🐥🐤🐣fix buggggg lần 2: hôm nay là một buổi chiều thứ 7 bất chợt chiếc lá rơi nhưng rụng xuống 2 chiếc giống nhau nhưng khác tính chất hóa học dẫn-đến-bugg-toàn-cục bầu ơi thương lấy bí cùng tuy rằng xóa code
 //vì mỗi một code class không chỉ xuất hiện một lần- đối với các môn có 2 3 ngày học trở lên sẽ khác về thứ và tiết học phải check để không bị trùng
@@ -95,19 +95,79 @@ function ShowOrHideCol(elementCheckBox) {
     element.style.display  = ShowOrHide;
   });
 }
-function handle_show_list_malop() {
+function handle_show_danhsach_malop_selected() {
   var list_malop_show = '';
   textforcopy_malop_list ='';
   MyCodeClassList.forEach(element => {
     list_malop_show += `${element}</br>`;
     textforcopy_malop_list += `${element}\n`;
   });
-  show_list_malop.innerHTML = list_malop_show;
+  danhsach_malop_selected.innerHTML = list_malop_show;
+}
+function handle_show_body_table_tkbhp() {
+  //MyInfoClassList [{info}]
+  function getClassCell(info_lop) {
+    return `<strong>${info_lop.MaLop} - ${info_lop.NgonNgu}</strong><br>
+${info_lop.TenMH}<br>
+<strong>${info_lop.TenGV}</strong><br>
+${info_lop.PhongHoc}<br>
+BĐ: ${info_lop.NBD}<br>
+KT: ${info_lop.NKT}<br>
+    `
+  }
+  function getLessonTime(tiet) {
+    //thanks anh "loia5tqd001" từ "github.com/loia5tqd001/Dang-Ky-Hoc-Phan-UIT" ❤
+    switch (tiet) {
+      case 1:
+        return `<td class="align-middle">Tiết 1<br>(7:30 - 8:15)</td>`
+      case 2:
+        return `<td class="align-middle">Tiết 2<br>(8:15 - 9:00)</td>`
+      case 3:
+        return `<td class="align-middle">Tiết 3<br>(9:00 - 9:45)</td>`
+      case 4:
+        return `<td class="align-middle">Tiết 4<br>(10:00 - 10:45)</td>`
+      case 5:
+        return `<td class="align-middle">Tiết 5<br>(10:45 - 11:30)</td>`
+      case 6:
+        return `<td class="align-middle">Tiết 6<br>(13:00 - 13:45)</td>`
+      case 7:
+        return `<td class="align-middle">Tiết 7<br>(13:45 - 14:30)</td>`
+      case 8:
+        return `<td class="align-middle">Tiết 8<br>(14:30 - 15:15)</td>`
+      case 9:
+        return `<td class="align-middle">Tiết 9<br>(15:30 - 16:15)</td>`
+      case 10:
+        return `<td class="align-middle">Tiết 10<br>(16:15 - 17:00)</td>`
+    }
+  }
+  var data_table = '', tiet_ne, flag ;
+  for (let tiet = 1; tiet <= 10; tiet++) {//mỗi dòng là 1 tiết học
+    data_table += `<tr>${getLessonTime(tiet)}`;//cột thứ/tiết
+    tiet_ne = tiet===10 ? 0: tiet;
+    for (let thu = 2; thu <= 7; thu++) {//cột 2->7
+      flag = false;
+      MyInfoClassList.forEach(element => {
+        if (parseInt(element.Thu) == thu & (element.Tiet.toString())[0] == tiet_ne) {
+          flag = true;
+          data_table += `<td rowspan="${element.Tiet.length}" class="cell-monhocINtkb">${getClassCell(element)}</td>`;
+        }
+      });
+      if(!flag){
+        data_table+=`<td></td>`
+      }
+    }
+    data_table += '</tr>';
+  }
+  MyInfoClassList.forEach(element => {
+    if (!parseInt(element.Thu)) 
+      data_table += `<tr><td colspan="7" class="align-middle">${getClassCell(element)}</td></tr>`;
+  });
+  body_table_tkbhp.innerHTML = data_table;
 }
 function InnerData2List(array_infolop) {//add codeclass to MyCodeClassList and Inner Data to site
   //TODO:innerHTML ra list nav
-  // danhsach_selected: List   //<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-home" role="tab">Demo1</a>
-  // info_danhsach_selected: Info for List  //<div class="tab-pane fade" id="list-home" role="tabpanel">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
+  // danhsach_ten_selected: List   //<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-home" role="tab">Demo1</a>
+  // danhsach_info_selected: Info for List  //<div class="tab-pane fade" id="list-home" role="tabpanel">Demo1</br>Demo1</br>Demo1</br>Demo1</div>
   var thu_tiet ='';
   array_infolop.forEach(info_lop => {
     MyInfoClassList.push(info_lop);//phải push hết vào để get info tkb
@@ -117,17 +177,18 @@ function InnerData2List(array_infolop) {//add codeclass to MyCodeClassList and I
   var id = array_infolop[0].MaLop;
   id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
 
-  danhsach_selected.innerHTML += 
+  danhsach_ten_selected.innerHTML += 
   `<a class="list-group-item-success mt-1" data-bs-toggle="list" href="#${id}" role="tab" style="text-decoration: none;border-style: solid;">${array_infolop[0].TenMH}</a>`;
-  info_danhsach_selected.innerHTML +=
+  danhsach_info_selected.innerHTML +=
   `<div class="tab-pane fade" id="${id}" role="tabpanel">
 Tên môn học: ${array_infolop[0].TenMH}</br>Mã lớp: ${array_infolop[0].MaLop}</br>Thứ - tiết: ${thu_tiet}</br>GV: ${array_infolop[0].TenGV}</br>
 <button type="button" class="btn btn-danger btn-sm" onclick="DeleteMonHoc('${array_infolop[0].MaLop}')">Bỏ chọn môn học này</button>
 </div>`;
-  handle_show_list_malop();
-  //handle_show_TongTC
+  handle_show_danhsach_malop_selected();
+  //handle_tongTC_selected
   if(array_infolop[0].SoTc !== undefined) TongTc += parseInt(array_infolop[0].SoTc);
-  show_TongTC.innerHTML = TongTc;
+  tongTC_selected.innerHTML = TongTc;
+  handle_show_body_table_tkbhp();
 }
 function OutnerData2List(array_infolop) {//remove codeclass to MyCodeClassList, MyCodeClassList and Data in HTML
   MyInfoClassList = MyInfoClassList.filter(item => item.MaLop !== array_infolop[0].MaLop);//remove
@@ -138,10 +199,11 @@ function OutnerData2List(array_infolop) {//remove codeclass to MyCodeClassList, 
   //https://stackoverflow.com/questions/10572735/javascript-getelement-by-href
   var i_danhsach_selected = document.querySelectorAll(`a[href='#${id}']`);//remove item khỏi danhsach-selected
   i_danhsach_selected[0].remove();//mảng này thì chắc chắn chỉ 1pt duy nhất vì href được tạo từ id mà :>
-  handle_show_list_malop();
-  //handle_show_TongTC
+  handle_show_danhsach_malop_selected();
+  //handle_tongTC_selected
   if(array_infolop[0].SoTc !== undefined) TongTc -= parseInt(array_infolop[0].SoTc);
-  show_TongTC.innerHTML = TongTc;
+  tongTC_selected.innerHTML = TongTc;
+  handle_show_body_table_tkbhp();
 }
 function DeleteMonHoc(malop) {
   // //https://stackoverflow.com/questions/6267816/getting-element-by-a-custom-attribute-using-javascript
@@ -220,9 +282,9 @@ function CheckTrungThuTiet(array_inputlop) {//return (Promise-function) resolve-
 //------------------------------------------------Start()---------------------------------------------------------
 async function Start() {
   //TODO:tạm ẩn table, show loading để đợi xử lý xong dữ liệu
-  start_data.style.display = "";
-  container.style.display = "none";
-  table_select.style.display = "none";
+  loading_data.style.display = "";
+  box_loc.style.display = "none";
+  main_table.style.display = "none";
   //FIXME: Chưa hoàn thành tính năng add file excel của user
   try {
     var jsondata = await ReadJsonFile("./tkbhp.json");
@@ -259,11 +321,11 @@ value-malop="${i_data.MaLop}" value-thu="${i_data.Thu}" value-tiet="${i_data.Tie
     }
   }
   //TODO: ẩn loading hiện site lại sau khi xử lý xong
-  start_data.style.display = "none";
-  container.style.display = "";
-  table_select.style.display = "";
+  loading_data.style.display = "none";
+  box_loc.style.display = "";
+  main_table.style.display = "";
   //đưa dữ liệu đã xử lý vào bảng
-  body_table.innerHTML = dataTable; 
+  main_table_body.innerHTML = dataTable; 
 
   //TODO:add event select for Checkbox Chon
   var listCellChon = document.getElementsByName("cell-Chon-CheckBox");
