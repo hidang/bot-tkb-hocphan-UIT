@@ -25,7 +25,7 @@ const listColumns = [//22
 ];
 const container = document.getElementById('container');
 const start_data = document.getElementById('start-data');
-//const TableSelect = document.getElementById('TableSelect');
+const table_select = document.getElementById('table-select');
 const body_table  = document.getElementById('body-table');
 const danhsach_selected = document.getElementById('danhsach-selected');
 const info_danhsach_selected = document.getElementById('info-danhsach-selected');
@@ -37,7 +37,7 @@ var data_tkb = '';//Object dữ liệu từ file excel tất cả môn học
 //🐥🐤🐣fix buggggg lần 2: hôm nay là một buổi chiều thứ 7 bất chợt chiếc lá rơi nhưng rụng xuống 2 chiếc giống nhau nhưng khác tính chất hóa học dẫn-đến-bugg-toàn-cục bầu ơi thương lấy bí cùng tuy rằng xóa code
 //vì mỗi một code class không chỉ xuất hiện một lần- đối với các môn có 2 3 ngày học trở lên sẽ khác về thứ và tiết học phải check để không bị trùng
 //check box Chọn khi bị click vào sẽ phải auto click cái liên quan (trùng mã MH) còn lại
-//check box Chọn sẽ được định danh bằng Class={MãLớp} vì class có thể tồn tại bằng nhiều element
+//check box Chọn sẽ được định danh bằng Class={MãLớp} vì class có thể tồn tại ở nhiều element (getElementsByClassName ->HTML Collection[])
 var MyCodeClassList = [];//Danh sách {MaMH} các lớp học đã chọn -> đã check trùng lịch mới được thêm vào
 //info_lop là mảng chứa 1 dòng trong file data_input
 //array_info_lop là mảng chứa mảng info các dòng data môn học trong data_input vì có môn học sẽ >1 dòng nhưng khác thứ, tiết học, chỉ giống mỗi tên , mã, 🙂
@@ -234,9 +234,10 @@ function CheckTrungThuTiet(array_inputlop) {//return (Promise-function) resolve-
 }
 //------------------------------------------------Start()---------------------------------------------------------
 async function Start() {
-  //TODO:tạm ẩn để đợi xử lý xong dữ liệu
+  //TODO:tạm ẩn table, show loading để đợi xử lý xong dữ liệu
   start_data.style.display = "";
   container.style.display = "none";
+  table_select.style.display = "none";
   //FIXME: Chưa hoàn thành tính năng add file excel của user
   try {
     var jsondata = await ReadJsonFile("./tkbhp.json");
@@ -271,9 +272,10 @@ value-malop="${i_data.MaLop}" value-thu="${i_data.Thu}" value-tiet="${i_data.Tie
       dataTable +=`<tr>${lineTable}</tr>`;
     }
   }
-  //TODO:hiện site lại sau khi xử lý xong
+  //TODO:ẩn loading hiện site lại sau khi xử lý xong
   start_data.style.display = "none";
   container.style.display = "";
+  table_select.style.display = "";
   //đưa dữ liệu đã xử lý vào bảng
   body_table.innerHTML = dataTable; 
 

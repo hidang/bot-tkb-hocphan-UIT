@@ -48,10 +48,10 @@ th[name="cell-MaGV"] {
   width: 4%
 }
 input[name="cell-TenGV"] {
-  max-width: 11rem;
+  max-width: 9rem;
 }
 th[name="cell-TenGV"] {
-  width: 18%
+  width: 17%
 }
 
 
@@ -70,8 +70,103 @@ th[name="cell-SiSo"] {
 }
 
 input[name="cell-SoTc"] {
-  max-width: 3rem;
+  max-width: 1.4rem;
 }
 th[name="cell-SoTc"] {
+  width: 1%
+}
+
+input[name="cell-ThucHanh"] {
+  max-width: 1rem;
+}
+th[name="cell-ThucHanh"] {
+  width: 1%
+}
+
+input[name="cell-HTGD"] {
+  max-width: 3rem;
+}
+th[name="cell-HTGD"] {
+  width: 3%
+}
+
+input[name="cell-Thu"] {
+  max-width: 1.5rem;
+}
+th[name="cell-Thu"] {
+  width: 1%
+}
+
+input[name="cell-Tiet"] {
+  max-width: 3rem;
+}
+th[name="cell-Tiet"] {
+  width: 3%
+}
+
+input[name="cell-CachTuan"] {
+  max-width: 1.4rem;
+}
+th[name="cell-CachTuan"] {
+  width: 1%
+}
+input[name="cell-PhongHoc"] {
+  max-width: 3rem;
+}
+th[name="cell-PhongHoc"] {
+  width: 3%
+}
+input[name="cell-KhoaHoc"] {
+  max-width: 1.4rem;
+}
+th[name="cell-KhoaHoc"] {
+  width: 1%
+}
+
+input[name="cell-HocKy"] {
+  max-width: 1.5rem;
+}
+th[name="cell-HocKy"] {
+  width: 1%
+}
+
+input[name="cell-NamHoc"] {
+  max-width: 3rem;
+}
+th[name="cell-NamHoc"] {
+  width: 4%
+}
+
+input[name="cell-HeDT"] {
+  max-width: 3rem;
+}
+th[name="cell-HeDT"] {
+  width: 4%
+}
+
+input[name="cell-KhoaQL"] {
+  max-width: 4rem;
+}
+th[name="cell-KhoaQL"] {
+  width: 4%
+}
+
+input[name="cell-NBD"] {
+  max-width: 6rem;
+}
+th[name="cell-NBD"] {
+  width: 10%
+}
+
+input[name="cell-NKT"] {
+  max-width: 6rem;
+}
+th[name="cell-NKT"] {
+  width: 10%
+}
+input[name="cell-GhiChu"] {
+  max-width: 2rem;
+}
+th[name="cell-GhiChu"] {
   width: 4%
 }
