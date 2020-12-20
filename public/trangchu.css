@@ -3,12 +3,14 @@
   overflow: auto;
   background-color: #e3f2fd;
 }
+
 .back-to-top {
     position: fixed;
     bottom: 15px;
     right: 25px;
     display: none;
 }
+
 #table-select{
   width: 100%;
   max-width: 90rem;
@@ -19,19 +21,6 @@
 }
 
 
-/* .sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.sticky + .container {
-  padding-top: 60px;
-}
-
-#navbar {
-  overflow: hidden;
-} */
 
 
 

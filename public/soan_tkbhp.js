@@ -1,23 +1,3 @@
-// const navbar = document.getElementById("navbar");
-// const sticky = navbar.offsetTop;
-// navbar.classList.add("sticky");
-//---------------------------------------------------------
-const back_to_top = document.getElementById('back-to-top');
-scrollFunction();
-back_to_top.addEventListener('click', function() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-  document.documentElement.scrollLeft = 0;
-});
-window.onscroll = function() {scrollFunction()};
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    back_to_top.style.display = "block";
-  } else {
-    back_to_top.style.display = "none";
-  }
-}
-document.getElementById('btnCopy').addEventListener('click', ButtonCopy);
 //------------------------------------------------Declare--------------------------------------------------------------
 const listColumns = [//22
   'STT', 'MaMH', 'MaLop', 'TenMH', 'MaGV',
@@ -32,7 +12,6 @@ const table_select = document.getElementById('table-select');
 const body_table  = document.getElementById('body-table');
 const danhsach_selected = document.getElementById('danhsach-selected');
 const info_danhsach_selected = document.getElementById('info-danhsach-selected');
-//const status_text_info =document.getElementById('status-text-info');
 const show_list_malop = document.getElementById('show-list-malop');
 const show_TongTC = document.getElementById('show-TongTC');
 
@@ -62,6 +41,8 @@ listElementsCheckBox.forEach(element => {
     ShowOrHideCol(element);
   });
 });
+//
+document.getElementById('btnCopy').addEventListener('click', ButtonCopy);
 //---------------------------------------------------EndSetUp--------------------------------------------------------
 function ButtonCopy() {
   var textArea = document.createElement("textarea");
