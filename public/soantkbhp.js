@@ -1,6 +1,7 @@
 {
   const back_to_top = document.getElementById('back-to-top');
-  back_to_top.addEventListener('click', function(e) {
+  scrollFunction();
+  back_to_top.addEventListener('click', function() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   });
@@ -31,6 +32,7 @@ const info_danhsach_selected = document.getElementById('info-danhsach-selected')
 //const status_text_info =document.getElementById('status-text-info');
 const show_list_malop = document.getElementById('show-list-malop');
 const show_TongTC = document.getElementById('show-TongTC');
+
 var data_tkb = '';//Object dữ liệu từ file excel tất cả môn học
 //🐥🐤🐣fix buggggg lần 2: hôm nay là một buổi chiều thứ 7 bất chợt chiếc lá rơi nhưng rụng xuống 2 chiếc giống nhau nhưng khác tính chất hóa học dẫn-đến-bugg-toàn-cục bầu ơi thương lấy bí cùng tuy rằng xóa code
 //vì mỗi một code class không chỉ xuất hiện một lần- đối với các môn có 2 3 ngày học trở lên sẽ khác về thứ và tiết học phải check để không bị trùng
@@ -65,10 +67,9 @@ function ButtonCopy() {
   textArea.focus();
   textArea.select();
   try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
+    document.execCommand('copy');
   } catch (err) {
-    console.log('Lỗi coppy');
+    ShowErrorByAlert(err);
   }
   document.body.removeChild(textArea);
 }
@@ -215,7 +216,6 @@ function CheckTrungThuTiet(array_inputlop) {//return (Promise-function) resolve-
                   for (const e of e_Tiet) {
                     for (const i of i_Tiet) {
                       if (e === i){
-                        console.log('ok')
                         throw '📢Trùng thời gian học với môn:\n'+e_lop.TenMH+' - Thứ: '+e_lop.Thu+' Tiết: '+e_lop.Tiet;//err
                       }
                     }

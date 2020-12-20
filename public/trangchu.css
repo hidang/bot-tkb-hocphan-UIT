@@ -3,10 +3,75 @@
   overflow: auto;
   background-color: #e3f2fd;
 }
-
 .back-to-top {
     position: fixed;
     bottom: 15px;
     right: 25px;
     display: none;
+}
+/* .navbar {
+  max-height: 40px;
+} */
+
+th[name="cell-Chon"] {
+  vertical-align: middle;
+  width: 1%
+}
+input[name="cell-STT"] {
+  max-width: 2rem;
+}
+th[name="cell-STT"] {
+  width: 2%
+}
+input[name="cell-MaMH"] {
+  max-width: 5rem;
+}
+th[name="cell-MaMH"] {
+  width: 8%
+}
+input[name="cell-MaLop"] {
+  max-width: 9rem;
+}
+th[name="cell-MaLop"] {
+  width: 8%
+}
+input[name="cell-TenMH"] {
+  max-width: 15rem;
+}
+th[name="cell-TenMH"] {
+  width: 20%
+}
+/* input[name="cell-MaGV"] {
+  max-width: 9rem;
+} */
+th[name="cell-MaGV"] {
+  width: 4%
+}
+input[name="cell-TenGV"] {
+  max-width: 11rem;
+}
+th[name="cell-TenGV"] {
+  width: 18%
+}
+
+
+input[name="cell-SiSo"] {
+  max-width: 3rem;
+}
+th[name="cell-SiSo"] {
+  width: 4%
+}
+
+input[name="cell-SiSo"] {
+  max-width: 3rem;
+}
+th[name="cell-SiSo"] {
+  width: 4%
+}
+
+input[name="cell-SoTc"] {
+  max-width: 3rem;
+}
+th[name="cell-SoTc"] {
+  width: 4%
 }

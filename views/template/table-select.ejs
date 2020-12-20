@@ -1,3 +1,4 @@
+
 <!-- Loc&Table -->
 <div id="container" class="container mt-5">
   <!--Phần lọc -->
@@ -132,8 +133,8 @@
   <table id="TableSelect" class="table table-bordered">
     <thead>
       <!-- HEAD name COL -->
-      <tr id="cur-name-header-table" class="header">
-        <th name="cell-Chon">Chọn
+      <tr id="cur-name-header-table" class="header" name="cell-Chon">
+        <th name="cell-Chon">☑
 
         </th>
         <th name="cell-STT">STT</br>
@@ -155,7 +156,7 @@
           </select> -->
         </th>
         <th name="cell-MaGV">Mã giảng viên</br>
-          <input type="text" id="cell-MaGV" name="cell-MaGV">
+          <!-- <input type="text" id="cell-MaGV" name="cell-MaGV"> -->
         </th>
         <th name="cell-TenGV">Tên giảng viên</br>
           <input type="text" id="cell-TenGV" name="cell-TenGV">
@@ -242,26 +243,4 @@
   <!-- <progress id="progress" value="0" max="100"></progress> -->
 </div>
 
-
-
-<!-- <script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-</script> -->
 
