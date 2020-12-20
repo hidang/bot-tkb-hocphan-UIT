@@ -9,10 +9,24 @@
     right: 25px;
     display: none;
 }
-/* .navbar {
-  max-width: 100%;
-  position: fixed;
-} */
+#table-select{
+  width: 100%;
+  max-width: 90rem;
+  /* height: 20rem; */
+  
+  display: block;
+  overflow-x: auto;
+}
+#thead_table_none{
+  visibility: hidden;
+}
+
+
+
+
+
+
+
 
 th[name="cell-Chon"] {
   vertical-align: middle;
