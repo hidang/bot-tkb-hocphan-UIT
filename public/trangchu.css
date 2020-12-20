@@ -17,10 +17,21 @@
   display: block;
   overflow-x: auto;
 }
-#thead_table_none{
-  visibility: hidden;
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
+.sticky + .container {
+  padding-top: 60px;
+}
+
+#navbar {
+  overflow: hidden;
+}
 
 
 

@@ -1,3 +1,7 @@
+const navbar = document.getElementById("navbar");
+const sticky = navbar.offsetTop;
+navbar.classList.add("sticky");
+//---------------------------------------------------------
 const back_to_top = document.getElementById('back-to-top');
 scrollFunction();
 back_to_top.addEventListener('click', function() {
