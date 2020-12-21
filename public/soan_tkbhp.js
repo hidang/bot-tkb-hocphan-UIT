@@ -51,8 +51,29 @@ async function CancelAll() {
   if (MyCodeClassList.length > 0) {//dọn hết những lựa chọn cũ nếu có
     var _MyInfoClassList = MyInfoClassList;
     try {
+      //khúc này tương tự OunerData2List nhưng có sự thay đổi xíu vì data đầu vào là mảng riêng lể các info_lop 
+      //chứ không phải là mảng chứ toàn bộ các mảng info lớp buồn ngủ nên viết lung tung
+      //đã test và fix(2) ok nào rãnh sẽ viết lại cho đẹp
       _MyInfoClassList.forEach(array_info_lop => {
-        OutnerData2List(array_info_lop);
+        MyInfoClassList = MyInfoClassList.filter(item => item.MaLop !== array_info_lop.MaLop);//remove
+        MyCodeClassList = MyCodeClassList.filter(item => item !== array_info_lop.MaLop);//remove
+        var id = array_info_lop.MaLop;
+        id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
+        var thongtinmonhoc = document.getElementById(id);
+        if (thongtinmonhoc){
+          thongtinmonhoc.remove();//remove item khỏi info-danhsach-selected
+        }
+        //https://stackoverflow.com/questions/10572735/javascript-getelement-by-href
+        var i_danhsach_selected = document.querySelector(`a[href='#${id}']`);//remove item khỏi danhsach-selected
+        if (i_danhsach_selected) {//vì cấu trúc mảng MyInfoClassList là mảng info các lớp học đã chọn(mỗi dòng trong file excel) còn các i_danhsach_selected thì chỉ có 1 để hiển thị
+          i_danhsach_selected.remove();
+        }
+        handle_show_danhsach_malop_selected();
+        //handle_tongTC_selected
+        if(array_info_lop.SoTc !== undefined) TongTc -= parseInt(array_info_lop.SoTc);
+        tongTC_selected.innerHTML = TongTc;
+        handle_show_body_table_tkbhp();
+        //click all check box checked
         var checkboxChonCungMaLops = document.getElementsByClassName(array_info_lop.MaLop);//checkboxChonCungMaLops lúc này là HTML collection
         checkboxChonCungMaLops = [...checkboxChonCungMaLops];
         checkboxChonCungMaLops.forEach(checkBox => {//auto click checkbox cùng lớp học
@@ -60,12 +81,15 @@ async function CancelAll() {
         });
       });
     } catch (error) {
-      
+      console.log(error);
+      ShowErrorByAlert(error);
     } finally {
       MyCodeClassList = [];
       MyInfoClassList = [];
       return;
     }
+  }else{
+    return;
   }
 }
 async function Input_nhanh_malop() {
@@ -74,32 +98,26 @@ async function Input_nhanh_malop() {
     ShowErrorByAlert(`Danh sách rỗng!`);
     return;
   }
-  await CancelAll();
+  await CancelAll().then();
   var malop_array = text_malop
                           .toUpperCase()//in hoa
                           .split('\n')//chặt mỗi dòng thành từng phần tử
                           .map(srt => srt.trim())//xóa kí tự khoảng trắng ở đầu và cuối
                           .filter(srt => srt !== '');//xóa ''
   //
+  var array_info_lop, err, checkboxChonCungMaLops;
+
   for (const maLop of malop_array) {//check và InnerData
-    var array_info_lop = GetInfoClassByMaLopThuTiet(maLop);
+    array_info_lop = GetInfoClassByMaLopThuTiet(maLop);
     if(array_info_lop.length >0){
-      var err = await CheckTrungThuTiet(array_info_lop);
+      err = await CheckTrungThuTiet(array_info_lop);
       if (!err) {
-        // var malopne;
-        // array_info_lop.forEach(element => {//array_info_lop là mảng chứa các mảng thông tin của các lớp
-        //   MyInfoClassList.push(element);// vì MyInfoClassList là mảng 1 chiều chứa mảng 1 chiều
-        //   malopne = element.MaLop;
-        // });
-        // MyCodeClassList.push(malopne);
-        var checkboxChonCungMaLops = document.getElementsByClassName(array_info_lop[0].MaLop);//checkboxChonCungMaLops lúc này là HTML collection
+        checkboxChonCungMaLops = document.getElementsByClassName(array_info_lop[0].MaLop);//checkboxChonCungMaLops lúc này là HTML collection
         checkboxChonCungMaLops = [...checkboxChonCungMaLops];
         InnerData2List(array_info_lop);
         checkboxChonCungMaLops.forEach(checkBox => {//auto click checkbox
           checkBox.checked = true;
         });
-        text_input_malop.value = '';
-        alert("🎉Thêm thành công! Xem tkb của bạn ngay phía dưới.");
       }else{
         MyCodeClassList = [];//reset lai
         MyInfoClassList = [];//reset lai
@@ -111,6 +129,8 @@ async function Input_nhanh_malop() {
       return;
     }
   }
+  text_input_malop.value = '';
+  alert("🎉Thêm thành công! Xem tkb của bạn ngay phía dưới.");
 }
 function ButtonCopy() {
   var textArea = document.createElement("textarea");
@@ -276,8 +296,8 @@ function OutnerData2List(array_infolop) {//remove codeclass to MyCodeClassList, 
   id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
   document.getElementById(id).remove();//remove item khỏi info-danhsach-selected
   //https://stackoverflow.com/questions/10572735/javascript-getelement-by-href
-  var i_danhsach_selected = document.querySelectorAll(`a[href='#${id}']`);//remove item khỏi danhsach-selected
-  i_danhsach_selected[0].remove();//mảng này thì chắc chắn chỉ 1pt duy nhất vì href được tạo từ id mà :>
+  var i_danhsach_selected = document.querySelector(`a[href='#${id}']`);
+  i_danhsach_selected.remove();//remove item khỏi show-danhsach-selected
   handle_show_danhsach_malop_selected();
   //handle_tongTC_selected
   if(array_infolop[0].SoTc !== undefined) TongTc -= parseInt(array_infolop[0].SoTc);
