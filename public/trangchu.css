@@ -11,7 +11,7 @@
     display: none;
 }
 
-#table-select{
+#main-table{
   width: 100%;
   max-width: 90rem;
   /* height: 20rem; */
@@ -20,9 +20,9 @@
   overflow-x: auto;
 }
 
-#table-tkbhp{
+.table-tkđưbhp{
   width: 100%;
-  max-width: 1169.6px;
+  /* max-width: 1169.6px; */
   /* height: 616.8px; */
   display: block;
   overflow-x: auto;
@@ -33,17 +33,19 @@
   transform: scale(0.5);  */
 }
 
-.cell-monhocINtkb{
-  width: 4%;
+td[name="cell-monhocINtkb"]{
+  
+  height: 4%;
   background-color: rgb(255, 255, 255);
 }
+
 th[name="cell-thutiet"] {
   vertical-align: middle;
-  max-width: 3%
+  
 }
 th[name="cell-thu"] {
   vertical-align: middle;
-  max-width: 3%
+  
 }
 
 

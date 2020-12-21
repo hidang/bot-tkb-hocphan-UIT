@@ -14,7 +14,8 @@ const danhsach_ten_selected = document.getElementById('danhsach-ten-selected');
 const danhsach_info_selected = document.getElementById('danhsach-info-selected');
 const danhsach_malop_selected = document.getElementById('danhsach-malop-selected');
 const tongTC_selected = document.getElementById('tongTC-selected');
-const body_table_tkbhp = document.getElementById('body-table-tkbhp');
+var body_table_tkbhp = document.getElementsByClassName('body-table-tkbhp');
+body_table_tkbhp = [...body_table_tkbhp];
 var data_tkb = '';//Object dữ liệu từ file excel tất cả môn học
 //🐥🐤🐣fix buggggg lần 2: hôm nay là một buổi chiều thứ 7 bất chợt chiếc lá rơi nhưng rụng xuống 2 chiếc giống nhau nhưng khác tính chất hóa học dẫn-đến-bugg-toàn-cục bầu ơi thương lấy bí cùng tuy rằng xóa code
 //vì mỗi một code class không chỉ xuất hiện một lần- đối với các môn có 2 3 ngày học trở lên sẽ khác về thứ và tiết học phải check để không bị trùng
@@ -105,54 +106,57 @@ function handle_show_danhsach_malop_selected() {
   danhsach_malop_selected.innerHTML = list_malop_show;
 }
 function handle_show_body_table_tkbhp() {
-  //MyInfoClassList [{info}]
   function getClassCell(info_lop) {
-    return `<strong>${info_lop.MaLop} - ${info_lop.NgonNgu}</strong><br>
+    return `<strong>${info_lop.MaLop} - ${info_lop.NgonNgu?info_lop.NgonNgu:''}</strong><br>
 ${info_lop.TenMH}<br>
-<strong>${info_lop.TenGV}</strong><br>
-${info_lop.PhongHoc}<br>
-BĐ: ${info_lop.NBD}<br>
-KT: ${info_lop.NKT}<br>
-    `
+<strong>${info_lop.TenGV?info_lop.TenGV:''}</strong><br>
+${info_lop.PhongHoc?info_lop.PhongHoc:''}<br>
+BĐ: ${info_lop.NBD?info_lop.NBD:''}<br>
+KT: ${info_lop.NKT?info_lop.NKT:''}<br>
+<button type="button" class="btn btn-danger btn-sm" onclick="DeleteMonHoc('${info_lop.MaLop}')">Bỏ chọn</button>
+`
   }
   function getLessonTime(tiet) {
     //thanks anh "loia5tqd001" từ "github.com/loia5tqd001/Dang-Ky-Hoc-Phan-UIT" ❤
     switch (tiet) {
       case 1:
-        return `<td class="align-middle">Tiết 1<br>(7:30 - 8:15)</td>`
+        return `<td class="align-middle">Tiết 1<br>(7:30-8:15)</td>`
       case 2:
-        return `<td class="align-middle">Tiết 2<br>(8:15 - 9:00)</td>`
+        return `<td class="align-middle">Tiết 2<br>(8:15-9:00)</td>`
       case 3:
-        return `<td class="align-middle">Tiết 3<br>(9:00 - 9:45)</td>`
+        return `<td class="align-middle">Tiết 3<br>(9:00-9:45)</td>`
       case 4:
-        return `<td class="align-middle">Tiết 4<br>(10:00 - 10:45)</td>`
+        return `<td class="align-middle">Tiết 4<br>(10:00-10:45)</td>`
       case 5:
-        return `<td class="align-middle">Tiết 5<br>(10:45 - 11:30)</td>`
+        return `<td class="align-middle">Tiết 5<br>(10:45-11:30)</td>`
       case 6:
-        return `<td class="align-middle">Tiết 6<br>(13:00 - 13:45)</td>`
+        return `<td class="align-middle">Tiết 6<br>(13:00-13:45)</td>`
       case 7:
-        return `<td class="align-middle">Tiết 7<br>(13:45 - 14:30)</td>`
+        return `<td class="align-middle">Tiết 7<br>(13:45-14:30)</td>`
       case 8:
-        return `<td class="align-middle">Tiết 8<br>(14:30 - 15:15)</td>`
+        return `<td class="align-middle">Tiết 8<br>(14:30-15:15)</td>`
       case 9:
-        return `<td class="align-middle">Tiết 9<br>(15:30 - 16:15)</td>`
+        return `<td class="align-middle">Tiết 9<br>(15:30-16:15)</td>`
       case 10:
-        return `<td class="align-middle">Tiết 10<br>(16:15 - 17:00)</td>`
+        return `<td class="align-middle">Tiết 10<br>(16:15-17:00)</td>`
     }
   }
   var data_table = '', tiet_ne, flag ;
   for (let tiet = 1; tiet <= 10; tiet++) {//mỗi dòng là 1 tiết học
     data_table += `<tr>${getLessonTime(tiet)}`;//cột thứ/tiết
-    tiet_ne = tiet===10 ? 0: tiet;
+    tiet_ne = tiet=== 10 ? 0: tiet;
     for (let thu = 2; thu <= 7; thu++) {//cột 2->7
       flag = false;
       MyInfoClassList.forEach(element => {
-        if (parseInt(element.Thu) == thu & (element.Tiet.toString())[0] == tiet_ne) {
+        if (parseInt(element.Thu) == thu & (element.Tiet.toString()).includes(tiet_ne.toString())) {
+          if((element.Tiet.toString())[0] == tiet_ne.toString()){
+            data_table += `<td rowspan="${element.Tiet.length}" name="cell-monhocINtkb">${getClassCell(element)}</td>`;
+          }
           flag = true;
-          data_table += `<td rowspan="${element.Tiet.length}" class="cell-monhocINtkb">${getClassCell(element)}</td>`;
         }
       });
       if(!flag){
+        flag = false;
         data_table+=`<td></td>`
       }
     }
@@ -160,9 +164,12 @@ KT: ${info_lop.NKT}<br>
   }
   MyInfoClassList.forEach(element => {
     if (!parseInt(element.Thu)) 
-      data_table += `<tr><td colspan="7" class="align-middle">${getClassCell(element)}</td></tr>`;
+      data_table += `<tr><td colspan="7" class="align-middle" name="cell-monhocINtkb">${getClassCell(element)}</td></tr>`;
   });
-  body_table_tkbhp.innerHTML = data_table;
+  
+  body_table_tkbhp.forEach(element => {
+    element.innerHTML = data_table;
+  });
 }
 function InnerData2List(array_infolop) {//add codeclass to MyCodeClassList and Inner Data to site
   //TODO:innerHTML ra list nav
