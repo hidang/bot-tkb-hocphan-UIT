@@ -53,7 +53,7 @@ async function CancelAll() {
     try {
       //khúc này tương tự OunerData2List nhưng có sự thay đổi xíu vì data đầu vào là mảng riêng lể các info_lop 
       //chứ không phải là mảng chứ toàn bộ các mảng info lớp buồn ngủ nên viết lung tung
-      //đã test và fix(2) ok nào rãnh sẽ viết lại cho đẹp
+      //đã test và fix(2) ok nào rãnh sẽ viết lại cho đẹp bug nữa thì xóa luôn tính năng này
       _MyInfoClassList.forEach(array_info_lop => {
         MyInfoClassList = MyInfoClassList.filter(item => item.MaLop !== array_info_lop.MaLop);//remove
         MyCodeClassList = MyCodeClassList.filter(item => item !== array_info_lop.MaLop);//remove
@@ -98,37 +98,39 @@ async function Input_nhanh_malop() {
     ShowErrorByAlert(`Danh sách rỗng!`);
     return;
   }
-  await CancelAll().then();
-  var malop_array = text_malop
-                          .toUpperCase()//in hoa
-                          .split('\n')//chặt mỗi dòng thành từng phần tử
-                          .map(srt => srt.trim())//xóa kí tự khoảng trắng ở đầu và cuối
-                          .filter(srt => srt !== '');//xóa ''
-  //
-  var array_info_lop, err, checkboxChonCungMaLops;
-
-  for (const maLop of malop_array) {//check và InnerData
-    array_info_lop = GetInfoClassByMaLopThuTiet(maLop);
-    if(array_info_lop.length >0){
-      err = await CheckTrungThuTiet(array_info_lop);
+  await CancelAll().then(()=>{
+    var malop_array = text_malop
+                                .toUpperCase()//in hoa
+                                .split('\n')//chặt mỗi dòng thành từng phần tử
+                                .map(srt => srt.trim())//xóa kí tự khoảng trắng ở đầu và cuối
+                                .filter(srt => srt !== '');//xóa ''
+    //
+    var array_info_lop, err, checkboxChonCungMaLops;
+    for (const maLop of malop_array) {//check và InnerData
+      array_info_lop = GetInfoClassByMaLopThuTiet(maLop);
+      if(array_info_lop.length >0){
+        err = await CheckTrungThuTiet(array_info_lop);
       if (!err) {
         checkboxChonCungMaLops = document.getElementsByClassName(array_info_lop[0].MaLop);//checkboxChonCungMaLops lúc này là HTML collection
         checkboxChonCungMaLops = [...checkboxChonCungMaLops];
         InnerData2List(array_info_lop);
         checkboxChonCungMaLops.forEach(checkBox => {//auto click checkbox
-          checkBox.checked = true;
+        checkBox.checked = true;
         });
       }else{
+        await CancelAll().then(()=>{
         MyCodeClassList = [];//reset lai
         MyInfoClassList = [];//reset lai
+        });
         ShowErrorByAlert(err);
         return;
       }
-    }else{
-      ShowErrorByAlert(`Mã lớp "${maLop}" không tồn tại xin kiểm tra lại!`);
+      }else{
+        ShowErrorByAlert(`Mã lớp "${maLop}" không tồn tại xin kiểm tra lại!`);
       return;
+      }
     }
-  }
+  });
   text_input_malop.value = '';
   alert("🎉Thêm thành công! Xem tkb của bạn ngay phía dưới.");
 }
