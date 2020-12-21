@@ -130,9 +130,9 @@ async function Input_nhanh_malop() {
       return;
       }
     }
+    text_input_malop.value = '';
+    alert("🎉Thêm thành công! Xem tkb của bạn ngay phía dưới.");
   });
-  text_input_malop.value = '';
-  alert("🎉Thêm thành công! Xem tkb của bạn ngay phía dưới.");
 }
 function ButtonCopy() {
   var textArea = document.createElement("textarea");
