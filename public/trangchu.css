@@ -20,28 +20,29 @@
   overflow-x: auto;
 }
 
-.table-tkđưbhp{
+.table-tkbhp{
   width: 100%;
-  /* max-width: 1169.6px; */
-  /* height: 616.8px; */
+  max-width: 90rem;
   display: block;
   overflow-x: auto;
-  /* IE 9 */
-  /* -ms-transform: scale(0.5);  */
-   /* Safari 3-8 */
-  /* -webkit-transform: scale(0.5);
-  transform: scale(0.5);  */
+  /* width: 100%; */
+  /* max-width: 1169.6px; */
+  /* height: 616.8px; */
+  /* display: block; */
+  font-size:0.8em;
+  /* display: table-row; */
+  border-collapse: collapse;
+  border-color: inherit;
 }
 
 td[name="cell-monhocINtkb"]{
-  
-  height: 4%;
-  background-color: rgb(255, 255, 255);
+  /* height: 4%; */
+  background-color: rgb(255, 253, 145);
 }
 
 th[name="cell-thutiet"] {
   vertical-align: middle;
-  
+  width: 25%;
 }
 th[name="cell-thu"] {
   vertical-align: middle;
