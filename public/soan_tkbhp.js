@@ -47,69 +47,70 @@ listElementsCheckBox.forEach(element => {
 document.getElementById('btnCopy').addEventListener('click', ButtonCopy);
 document.getElementById('btn-input-xong').addEventListener('click', Input_nhanh_malop);
 //---------------------------------------------------EndSetUp--------------------------------------------------------
+async function CancelAll() {
+  if (MyCodeClassList.length > 0) {//dọn hết những lựa chọn cũ nếu có
+    var _MyInfoClassList = MyInfoClassList;
+    try {
+      _MyInfoClassList.forEach(array_info_lop => {
+        OutnerData2List(array_info_lop);
+        var checkboxChonCungMaLops = document.getElementsByClassName(array_info_lop.MaLop);//checkboxChonCungMaLops lúc này là HTML collection
+        checkboxChonCungMaLops = [...checkboxChonCungMaLops];
+        checkboxChonCungMaLops.forEach(checkBox => {//auto click checkbox cùng lớp học
+          checkBox.checked = false;
+        });
+      });
+    } catch (error) {
+      
+    } finally {
+      MyCodeClassList = [];
+      MyInfoClassList = [];
+      return;
+    }
+  }
+}
 async function Input_nhanh_malop() {
-  //name="cell-Chon-CheckBox"
-  var __MyInfoClassList = MyInfoClassList;
-  MyInfoClassList.forEach(array_infolop => {
-    var id = array_infolop[0].MaLop;
-    id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
-    document.getElementById(id).remove();//remove item khỏi info-danhsach-selected
-    //https://stackoverflow.com/questions/10572735/javascript-getelement-by-href
-    var i_danhsach_selected = document.querySelectorAll(`a[href='#${id}']`);//remove item khỏi danhsach-selected
-    i_danhsach_selected[0].remove();//mảng này thì chắc chắn chỉ 1pt duy nhất vì href được tạo từ id mà :>
-    handle_show_danhsach_malop_selected();
-    //handle_tongTC_selected
-    TongTc = 0;
-    tongTC_selected.innerHTML = TongTc;
-    handle_show_body_table_tkbhp();
-  });
-  var checkBoxChons =  document.querySelectorAll(`input[name="cell-Chon-CheckBox"]`);
-  checkBoxChons.forEach(element => {
-    element.checked = false;
-  });
-  MyCodeClassList = [];//reset lai
-  MyInfoClassList = [];//reset lai
   var text_malop = text_input_malop.value;
+  if(!text_malop){
+    ShowErrorByAlert(`Danh sách rỗng!`);
+    return;
+  }
+  await CancelAll();
   var malop_array = text_malop
                           .toUpperCase()//in hoa
                           .split('\n')//chặt mỗi dòng thành từng phần tử
                           .map(srt => srt.trim())//xóa kí tự khoảng trắng ở đầu và cuối
                           .filter(srt => srt !== '');//xóa ''
-  var array_array_infolop = [];
-  for (const maLop of malop_array) {
+  //
+  for (const maLop of malop_array) {//check và InnerData
     var array_info_lop = GetInfoClassByMaLopThuTiet(maLop);
     if(array_info_lop.length >0){
-      array_array_infolop.push(array_info_lop);
+      var err = await CheckTrungThuTiet(array_info_lop);
+      if (!err) {
+        // var malopne;
+        // array_info_lop.forEach(element => {//array_info_lop là mảng chứa các mảng thông tin của các lớp
+        //   MyInfoClassList.push(element);// vì MyInfoClassList là mảng 1 chiều chứa mảng 1 chiều
+        //   malopne = element.MaLop;
+        // });
+        // MyCodeClassList.push(malopne);
+        var checkboxChonCungMaLops = document.getElementsByClassName(array_info_lop[0].MaLop);//checkboxChonCungMaLops lúc này là HTML collection
+        checkboxChonCungMaLops = [...checkboxChonCungMaLops];
+        InnerData2List(array_info_lop);
+        checkboxChonCungMaLops.forEach(checkBox => {//auto click checkbox
+          checkBox.checked = true;
+        });
+        text_input_malop.value = '';
+        alert("🎉Thêm thành công! Xem tkb của bạn ngay phía dưới.");
+      }else{
+        MyCodeClassList = [];//reset lai
+        MyInfoClassList = [];//reset lai
+        ShowErrorByAlert(err);
+        return;
+      }
     }else{
       ShowErrorByAlert(`Mã lớp "${maLop}" không tồn tại xin kiểm tra lại!`);
       return;
     }
   }
-  array_array_infolop.forEach( array_infolop => {
-
-    var err = await CheckTrungThuTiet(array_infolop);
-    if (!err) {
-      MyCodeClassList.push(array_infolop.MaLop);
-      MyInfoClassList.push(array_infolop);
-    }else{
-      MyCodeClassList = [];//reset lai
-      MyInfoClassList = [];//reset lai
-      ShowErrorByAlert(err);
-      return;
-    }
-  });
-  MyCodeClassList = [];//reset lai
-  MyInfoClassList = [];//reset lai
-
-  array_array_infolop.forEach(array_infolop => {
-    var checkboxChonCungMaLops = document.getElementsByClassName(array_infolop[0].MaLop);//checkboxChonCungMaLops lúc này là HTML collection
-    console.log(checkboxChonCungMaLops);
-    checkboxChonCungMaLops = [...checkboxChonCungMaLops];
-    InnerData2List(array_infolop);
-    checkboxChonCungMaLops.forEach(checkBox => {//auto click checkbox
-      checkBox.checked = true;
-    });
-  });
 }
 function ButtonCopy() {
   var textArea = document.createElement("textarea");
@@ -418,6 +419,7 @@ value-malop="${i_data.MaLop}" value-thu="${i_data.Thu}" value-tiet="${i_data.Tie
   listElementsCheckBox.forEach(element => {
     ShowOrHideCol(element);
   });
+  return 0;
 }
 Start();
 //design by hidang on github: github.com/hidang
