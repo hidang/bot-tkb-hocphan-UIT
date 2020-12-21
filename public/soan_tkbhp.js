@@ -93,6 +93,7 @@ async function CancelAll() {
   }
 }
 async function Input_nhanh_malop() {
+  //vì học async chưa rành nên đây là một đống cức :v
   var text_malop = text_input_malop.value;
   if(!text_malop){
     ShowErrorByAlert(`Danh sách rỗng!`);
