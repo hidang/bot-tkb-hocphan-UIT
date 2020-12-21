@@ -98,7 +98,7 @@ async function Input_nhanh_malop() {
     ShowErrorByAlert(`Danh sách rỗng!`);
     return;
   }
-  await CancelAll().then(()=>{
+  await CancelAll().then(async()=>{
     var malop_array = text_malop
                                 .toUpperCase()//in hoa
                                 .split('\n')//chặt mỗi dòng thành từng phần tử
