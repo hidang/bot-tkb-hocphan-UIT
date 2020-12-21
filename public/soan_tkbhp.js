@@ -7,13 +7,14 @@ const listColumns = [//22
   'NKT', 'GhiChu'
 ];
 const loading_data = document.getElementById('loading-data');
-const box_loc = document.getElementById('box-loc');
+const box_header = document.getElementById('box-header');
 const main_table = document.getElementById('main-table');
 const main_table_body  = document.getElementById('main-table-body');
 const danhsach_ten_selected = document.getElementById('danhsach-ten-selected');
 const danhsach_info_selected = document.getElementById('danhsach-info-selected');
 const danhsach_malop_selected = document.getElementById('danhsach-malop-selected');
 const tongTC_selected = document.getElementById('tongTC-selected');
+const text_input_malop = document.getElementById('text-input-malop');
 var body_table_tkbhp = document.getElementsByClassName('body-table-tkbhp');
 body_table_tkbhp = [...body_table_tkbhp];
 var data_tkb = '';//Object dữ liệu từ file excel tất cả môn học
@@ -44,7 +45,72 @@ listElementsCheckBox.forEach(element => {
 });
 //
 document.getElementById('btnCopy').addEventListener('click', ButtonCopy);
+document.getElementById('btn-input-xong').addEventListener('click', Input_nhanh_malop);
 //---------------------------------------------------EndSetUp--------------------------------------------------------
+async function Input_nhanh_malop() {
+  //name="cell-Chon-CheckBox"
+  var __MyInfoClassList = MyInfoClassList;
+  MyInfoClassList.forEach(array_infolop => {
+    var id = array_infolop[0].MaLop;
+    id = id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");//vì dùng để tạo id nên phải xóa hết các kí tự đặc biệt "."...
+    document.getElementById(id).remove();//remove item khỏi info-danhsach-selected
+    //https://stackoverflow.com/questions/10572735/javascript-getelement-by-href
+    var i_danhsach_selected = document.querySelectorAll(`a[href='#${id}']`);//remove item khỏi danhsach-selected
+    i_danhsach_selected[0].remove();//mảng này thì chắc chắn chỉ 1pt duy nhất vì href được tạo từ id mà :>
+    handle_show_danhsach_malop_selected();
+    //handle_tongTC_selected
+    TongTc = 0;
+    tongTC_selected.innerHTML = TongTc;
+    handle_show_body_table_tkbhp();
+  });
+  var checkBoxChons =  document.querySelectorAll(`input[name="cell-Chon-CheckBox"]`);
+  checkBoxChons.forEach(element => {
+    element.checked = false;
+  });
+  MyCodeClassList = [];//reset lai
+  MyInfoClassList = [];//reset lai
+  var text_malop = text_input_malop.value;
+  var malop_array = text_malop
+                          .toUpperCase()//in hoa
+                          .split('\n')//chặt mỗi dòng thành từng phần tử
+                          .map(srt => srt.trim())//xóa kí tự khoảng trắng ở đầu và cuối
+                          .filter(srt => srt !== '');//xóa ''
+  var array_array_infolop = [];
+  for (const maLop of malop_array) {
+    var array_info_lop = GetInfoClassByMaLopThuTiet(maLop);
+    if(array_info_lop.length >0){
+      array_array_infolop.push(array_info_lop);
+    }else{
+      ShowErrorByAlert(`Mã lớp "${maLop}" không tồn tại xin kiểm tra lại!`);
+      return;
+    }
+  }
+  array_array_infolop.forEach( array_infolop => {
+
+    var err = await CheckTrungThuTiet(array_infolop);
+    if (!err) {
+      MyCodeClassList.push(array_infolop.MaLop);
+      MyInfoClassList.push(array_infolop);
+    }else{
+      MyCodeClassList = [];//reset lai
+      MyInfoClassList = [];//reset lai
+      ShowErrorByAlert(err);
+      return;
+    }
+  });
+  MyCodeClassList = [];//reset lai
+  MyInfoClassList = [];//reset lai
+
+  array_array_infolop.forEach(array_infolop => {
+    var checkboxChonCungMaLops = document.getElementsByClassName(array_infolop[0].MaLop);//checkboxChonCungMaLops lúc này là HTML collection
+    console.log(checkboxChonCungMaLops);
+    checkboxChonCungMaLops = [...checkboxChonCungMaLops];
+    InnerData2List(array_infolop);
+    checkboxChonCungMaLops.forEach(checkBox => {//auto click checkbox
+      checkBox.checked = true;
+    });
+  });
+}
 function ButtonCopy() {
   var textArea = document.createElement("textarea");
   textArea.value = textforcopy_malop_list;
@@ -75,7 +141,7 @@ function ReadJsonFile(file) {//return Promise resolve -> data in file json
   )
 }
 function GetInfoClassByMaLopThuTiet(maLop) {//return array [object info_lop] 
-  var array_infoLop = [];
+  var array_infoLop = [];//[]?true:false -> true //[].length===0
   if(data_tkb){
     for (const datalop of data_tkb) {
       if (datalop.MaLop == maLop) {
@@ -83,7 +149,8 @@ function GetInfoClassByMaLopThuTiet(maLop) {//return array [object info_lop]
       }
     }
   }else{
-    return false;
+    console.log('read file data err');
+    return [];//[]?true:false -> true //[].length===0
   }
   return array_infoLop;
 }
@@ -106,13 +173,17 @@ function handle_show_danhsach_malop_selected() {
   danhsach_malop_selected.innerHTML = list_malop_show;
 }
 function handle_show_body_table_tkbhp() {
+  var br = '<br>';
   function getClassCell(info_lop) {
-    return `<strong>${info_lop.MaLop} - ${info_lop.NgonNgu?info_lop.NgonNgu:''}</strong><br>
-${info_lop.TenMH}<br>
-<strong>${info_lop.TenGV?info_lop.TenGV:''}</strong><br>
-${info_lop.PhongHoc?info_lop.PhongHoc:''}<br>
-BĐ: ${info_lop.NBD?info_lop.NBD:''}<br>
-KT: ${info_lop.NKT?info_lop.NKT:''}<br>
+    if (info_lop.Thu == '*') {
+      br =' '; 
+    }
+    return `<strong>${info_lop.MaLop} - ${info_lop.NgonNgu?info_lop.NgonNgu:''}</strong>${br}
+${info_lop.TenMH}${br}
+<strong>${info_lop.TenGV?info_lop.TenGV:''}</strong>${br}
+${info_lop.PhongHoc?info_lop.PhongHoc:''}${br}
+BĐ: ${info_lop.NBD?info_lop.NBD:''}${br}
+KT: ${info_lop.NKT?info_lop.NKT:''}${br}
 <button type="button" class="btn btn-danger btn-sm" onclick="DeleteMonHoc('${info_lop.MaLop}')">Bỏ chọn</button>
 `
   }
@@ -290,7 +361,7 @@ function CheckTrungThuTiet(array_inputlop) {//return (Promise-function) resolve-
 async function Start() {
   //TODO:tạm ẩn table, show loading để đợi xử lý xong dữ liệu
   loading_data.style.display = "";
-  box_loc.style.display = "none";
+  box_header.style.display = "none";
   main_table.style.display = "none";
   //FIXME: Chưa hoàn thành tính năng add file excel của user
   try {
@@ -329,7 +400,7 @@ value-malop="${i_data.MaLop}" value-thu="${i_data.Thu}" value-tiet="${i_data.Tie
   }
   //TODO: ẩn loading hiện site lại sau khi xử lý xong
   loading_data.style.display = "none";
-  box_loc.style.display = "";
+  box_header.style.display = "";
   main_table.style.display = "";
   //đưa dữ liệu đã xử lý vào bảng
   main_table_body.innerHTML = dataTable; 
