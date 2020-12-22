@@ -273,7 +273,7 @@ function InnerData2List(array_infolop) {//add codeclass to MyCodeClassList and I
   var thu_tiet ='';
   array_infolop.forEach(info_lop => {
     MyInfoClassList.push(info_lop);//phải push hết vào để get info tkb
-    thu_tiet += `*thứ:${info_lop.Thu}-tiết:${info_lop.Tiet}`;
+    thu_tiet += `*thứ: ${info_lop.Thu}-tiết: ${info_lop.Tiet} `;
   });
   MyCodeClassList.push(array_infolop[0].MaLop);//chỉ cần push một mã lớp đại diện
   var id = array_infolop[0].MaLop;
@@ -283,7 +283,13 @@ function InnerData2List(array_infolop) {//add codeclass to MyCodeClassList and I
   `<a class="list-group-item-success mt-1" data-bs-toggle="list" href="#${id}" role="tab" style="text-decoration: none;border-style: solid;">${array_infolop[0].TenMH}</a>`;
   danhsach_info_selected.innerHTML +=
   `<div class="tab-pane fade" id="${id}" role="tabpanel">
-Tên môn học: ${array_infolop[0].TenMH}</br>Mã lớp: ${array_infolop[0].MaLop}</br>Thứ - tiết: ${thu_tiet}</br>GV: ${array_infolop[0].TenGV}</br>
+<b>Tên môn học:</b> ${array_infolop[0].TenMH}</br><b>Mã lớp:</b> ${array_infolop[0].MaLop}</br>
+<b>Thứ-Tiết:</b> ${thu_tiet?thu_tiet:'*'}</br>
+<b>GV</b>: ${array_infolop[0].TenGV?array_infolop[0].TenGV:'*'}</br>
+<b>HệĐT</b>: ${array_infolop[0].HeDT?array_infolop[0].HeDT:'*'} <b>Phòng học:</b> ${array_infolop[0].PhongHoc?array_infolop[0].PhongHoc:'*'} <b>SốTC:</b> ${array_infolop[0].SoTc?array_infolop[0].SoTc:'*'}
+<b>HTGD:</b> ${array_infolop[0].HTGD?array_infolop[0].HTGD:'*'}</br>
+<b>TH:</b> ${array_infolop[0].ThucHanh?array_infolop[0].ThucHanh:' '} <b>GhiChú:</b> ${array_infolop[0].GhiChu?array_infolop[0].GhiChu:'*'}
+</br>
 <button type="button" class="btn btn-danger btn-sm" onclick="DeleteMonHoc('${array_infolop[0].MaLop}')">Bỏ chọn môn học này</button>
 </div>`;
   handle_show_danhsach_malop_selected();
