@@ -388,13 +388,11 @@ async function Start() {
   box_header.style.display = "none";
   main_table.style.display = "none";
   //FIXME: Chưa hoàn thành tính năng add file excel của user
-  try {
-    var jsondata = await ReadJsonFile("./tkbhp.json");
-    var data_json = JSON.parse(jsondata);
-    data_tkb = data_json.data;
-  } catch (error) {
-    ShowErrorByAlert(error);
-  }
+
+  var jsondata = await ReadJsonFile("./tkbhp.json");
+  var data_json = JSON.parse(jsondata);
+  data_tkb = data_json.data;
+
 
   //TODO:render data table
   var i_data, cell_data;
