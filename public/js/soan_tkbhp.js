@@ -444,18 +444,14 @@ value-malop="${i_data.MaLop}" ></td>`;
 }
 Start()
   .then(()=>{
+    //https://github.com/chestercharles/excel-bootstrap-table-filter
     $(function() {
       // Apply the plugin filter-table
-      $('#main-table').excelTableFilter();
-    });
-    //tạm ẩn input text search vì chưa fix được lag
-    setTimeout(function(){ 
-      
-      var search_boxs = document.getElementsByClassName('dropdown-filter-search');
-      search_boxs = [...search_boxs];
-      search_boxs.forEach(box => {
-        box.style.display = "none";
+      $('#main-table').excelTableFilter({
+        columnSelector: '.apply-filter',    // (optional) if present, will only select <th> with specified class
+        sort: true,                         // (optional) default true
+        search: false                        // (optional) default true
       });
-    }, 3500);//3.5s đợi plugin filter-table xử lý xong
+    });
   })
 //design by hidang on github: github.com/hidang
