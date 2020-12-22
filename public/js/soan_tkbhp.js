@@ -403,12 +403,12 @@ async function Start() {
     i_data = data_tkb[index];
     if (i_data.TenMH && i_data.TenMH !== "TÊN MÔN HỌC") {//check data json môn học unknown - không tồn tại
       //fixed: TH có >= 2 mã lớp /1 lớp 🙂
-      //🙂-> value-malop="${i_data.MaLop}-Thu${i_data.Thu}-Tiet${i_data.Tiet}"
       //----------------------
       //TODO- Tạo dòng
       //mỗi checkboxChon sẽ mang "value-malop" "value-thu" "value-tiet" chính là "mã lớp"-"thứ"-"tiết" tương ứng với dòng nó,        
       lineTable =`<td name="cell-Chon"><input type="checkbox" name="cell-Chon-CheckBox" class="form-check-input ${i_data.MaLop}"
-value-malop="${i_data.MaLop}" value-thu="${i_data.Thu}" value-tiet="${i_data.Tiet}"></td>`;    
+value-malop="${i_data.MaLop}" ></td>`;    
+      //value-thu="${i_data.Thu}" value-tiet="${i_data.Tiet}"
       for (const element of listColumns) {
         //https://stackoverflow.com/questions/922544/using-variable-keys-to-access-values-in-javascript-objects
         //console.log((data_tkb[index])[element]);
@@ -440,7 +440,22 @@ value-malop="${i_data.MaLop}" value-thu="${i_data.Thu}" value-tiet="${i_data.Tie
   listElementsCheckBox.forEach(element => {
     ShowOrHideCol(element);
   });
-  return 0;
+  return;
 }
-Start();
+Start()
+  .then(()=>{
+    $(function() {
+      // Apply the plugin filter-table
+      $('#main-table').excelTableFilter();
+    });
+    //tạm ẩn input text search vì chưa fix được lag
+    setTimeout(function(){ 
+      
+      var search_boxs = document.getElementsByClassName('dropdown-filter-search');
+      search_boxs = [...search_boxs];
+      search_boxs.forEach(box => {
+        box.style.display = "none";
+      });
+    }, 3500);//3.5s đợi plugin filter-table xử lý xong
+  })
 //design by hidang on github: github.com/hidang

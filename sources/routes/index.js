@@ -17,8 +17,8 @@ router.get("/", (req, res) => {  // <=> router.get('/', function(req, res){
   res.render("pages/trangchu"); //dùng farmework ejs để build html trangchu.ejs ra
 });
 
-const tkbhp      = require('./api/api-tkbhp');
-const tao_tkbhp  = require('./_tao-tkbhp');
-router.use("/tkbhp", tkbhp);
-router.use("/tao-tkbhp", tao_tkbhp);
+// const tkbhp      = require('./api/api-tkbhp');
+// const tao_tkbhp  = require('./_tao-tkbhp');
+// router.use("/tkbhp", tkbhp);
+// router.use("/tao-tkbhp", tao_tkbhp);
 module.exports = router;
